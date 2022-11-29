@@ -12,8 +12,8 @@
         <router-link to="/collection/tracks">Liked Songs</router-link>
       </div>
     </nav>
-    <hr>
     <ul class="user-stations clean-list">
+      <hr>
       <li v-for="station in stations" :key="station._id">
         <router-link :to="'/station/' + station._id"> {{ station.name }}  </router-link>
       </li>
