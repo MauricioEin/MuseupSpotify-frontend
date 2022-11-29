@@ -40,3 +40,11 @@
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 20px;
 }
+
+
+
+
+// for station app specifically
+.main-layout{
+    flex-grow: 1;
+}

@@ -2,17 +2,18 @@
   <section class="nav-container">
     <div class="logo">Spotify</div>
     <nav>
-      <div class="app-nav">
+      <div class="app-nav flex column">
         <router-link to="/station">Home</router-link>
         <router-link to="/search">Search</router-link>
         <router-link to="/collection">Your Library</router-link>
       </div>
-      <div class="user-nav">
+      <div class="user-nav flex column">
         <router-link @click="createStation" to="">Create Playlist</router-link>
         <router-link to="/collection/tracks">Liked Songs</router-link>
       </div>
     </nav>
-    <ul class="user-stations">
+    <hr>
+    <ul class="user-stations clean-list">
       <li v-for="station in stations" :key="station._id">
         <router-link :to="'/station/' + station._id"> {{ station.name }}  </router-link>
       </li>
