@@ -8,6 +8,9 @@ import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import stationDetails from './views/station-details.vue'
+import stationSearch from './views/station-search.vue'
+import userCollection from './views/user-collection.vue'
+import likedSongs from './views/liked-songs.vue'
 
 const routes = [
   {
@@ -23,6 +26,21 @@ const routes = [
     path: '/station',
     name: 'station-app',
     component: stationApp
+  },
+  {
+    path: '/search',
+    name: 'station-search',
+    component: stationSearch
+  },
+  {
+    path: '/collection',
+    name: 'user-collection',
+    component: userCollection
+  },
+  {
+    path: '/collection/tracks',
+    name: 'liked-songs',
+    component: likedSongs
   },
   {
     path: '/station/:id',
