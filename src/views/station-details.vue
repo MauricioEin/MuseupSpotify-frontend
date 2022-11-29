@@ -1,15 +1,23 @@
 <template>
-  <section class="station-details">
+  <section v-if="station" class="station-details">
     <section class="station-preview">
-      <img :src="stationToAdd.imgUrl" alt="">
+      <img :src="station.imgUrl" alt="">
       <label>PLAYLIST</label>
-      <h1>{{ stationToAdd.name }}</h1>
-      <label>{{ this.stationToAdd.songs.length }} songs</label>
+      <h1>{{ station.name }}</h1>
+      <label>{{ this.station.songs.length }} songs</label>
     </section>
     <section>
-      Actions
+      PLAY | MORE
     </section>
-    <song-list v-if="this.stationToAdd.songs" :songs="stationToAdd.songs" />
+    <section class="song-list-header flex">
+      <div class="list-song-index">#</div>
+      <div class="list-song-title"><small>Title</small></div>
+      <div class="list-song-date"><small>Date Added</small></div>
+      <div class="list-song-length"><small>Time:</small></div>
+    </section>
+    <hr>
+    <song-list v-if="station.songs.length" :songs="station.songs" />
+    <div v-else>Add some songs</div>
   </section>
 </template>
 
@@ -21,7 +29,7 @@ import songList from '../cmps/song-list.vue'
 export default {
   data() {
     return {
-      stationToAdd: stationService.getEmptyStation()
+      station: null,
     }
   },
   computed: {
@@ -32,15 +40,17 @@ export default {
       return this.$store.getters.stations
     }
   },
-  created() {
-    this.$store.dispatch({ type: 'loadStations' })
+  mounted() {
+    // this.$store.dispatch({ type: 'loadStations' })
+    const stationId = this.$route.params.id
+    stationService.getById(stationId).then(station => this.station = station)
   },
   methods: {
     async addStation() {
       try {
         await this.$store.dispatch({ type: 'addStation', station: this.stationToAdd })
         showSuccessMsg('Station added')
-        this.stationToAdd = stationService.getEmptyStation()
+        this.station = stationService.getEmptyStation()
       } catch (err) {
         console.log(err)
         showErrorMsg('Cannot add station')

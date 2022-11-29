@@ -1,19 +1,15 @@
 <template>
-    <td>
-        {{ index + 1 }}
-    </td>
-    <td>
-        IMG
-    </td>
-    <td>
-        {{ song.title }}
-    </td>
-    <td>
-        {{ dateAdded }}
-    </td>
-    <!-- <td>
-        {{ song.length }}
-    </td> -->
+    <li class="song-preview flex">
+        <div class="song-preview-info flex">
+            <div class="song-index">{{ index + 1 }}</div>
+            <div class="song-img-container">
+                <img :src="song.imgUrl" alt="">
+            </div>
+            <div class="song-title">{{ song.title }}</div>
+        </div>
+        <div class="song-created-at">{{ dateAdded }}</div>
+        <div class="song-length">3:13</div>
+    </li>
 </template>
 
 <script>
