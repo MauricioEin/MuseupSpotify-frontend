@@ -1,9 +1,11 @@
 <template>
-  <section>
-    <user-msg />
-    <app-header />
-    <router-view />
-    <app-nav/>
+  <user-msg />
+  <app-header />
+  <section class="app-layout flex">
+    <app-nav />
+    <section class="main-layout">
+      <router-view />
+    </section>
   </section>
 </template>
 

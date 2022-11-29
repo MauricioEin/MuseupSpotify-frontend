@@ -1,0 +1,10 @@
+ .nav-container {
+     background-color: $clr3;
+     padding-inline-start: 18px;
+     padding-block-start: 25px;
+
+     & a {
+         color: $clr4;
+
+     }
+ }
