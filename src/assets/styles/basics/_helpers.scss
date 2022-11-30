@@ -77,3 +77,24 @@
 .portrait-ratio {
     @include aspect-ratio(9, 16);
 }
+
+//Button helpers
+
+.btn-play-green {
+    cursor: pointer;
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    transition: transform 0.1s;
+    //TODO change to var
+    background-color: #1ed760;
+
+    svg {
+        fill: black;
+        align-self: center;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
