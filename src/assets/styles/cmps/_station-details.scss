@@ -2,18 +2,21 @@
     // padding: 20px;
 
     .station-preview {
-        display: flex;
         gap: 25px;
-        padding: 120px 20px 20px 20px;
+        align-items: flex-end;
+        height:60vh;
+        padding: 120px 20px 24px;
         background: rgb(60, 60, 68);
         background: linear-gradient(180deg, rgba(60, 60, 68, 1) 0%, rgba(29, 29, 33, 1) 100%);
 
         .station-img-container {
-            height: rem(232px);
-            width: rem(232px);
+            height: 33.3vh;
+            width: 33.3vh;
             //TODO change to var
             background: #282828;
             display: grid;
+
+            box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
 
             svg {}
 
@@ -21,7 +24,7 @@
                 justify-self: center;
                 aspect-ratio: 1/1;
                 object-fit: cover;
-                height: rem(232px);
+                height: 100%;
             }
         }
 
@@ -32,10 +35,16 @@
             gap: 20px;
 
             h1 {
-                font-size: rem(96px);
+                font-size: rem(72px);
                 margin: 0;
                 font-family: gotham;
                 font-weight: 900;
+            }
+
+            p{
+                font-size: 0.875rem;
+                margin-bottom: 0;
+                ;
             }
         }
     }

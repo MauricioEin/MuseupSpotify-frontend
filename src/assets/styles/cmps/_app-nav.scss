@@ -10,7 +10,8 @@
          align-items: center;
          gap: 5px;
          font-size: 24px;
-         width: 240px;
+         width:18vw;
+         min-width: 160px;
 
      }
 
@@ -69,8 +70,6 @@
      width: 24px;
      border-radius: 3px;
 
-
-
      svg {
          fill: $clr3;
          height: 12px;
@@ -81,6 +80,7 @@
  .heart-btn {
      background: linear-gradient(135deg, #450af5, #c4efd9);
      opacity: 0.7;
+     transition: opacity .4s;
 
      svg {
          fill: currentcolor;
