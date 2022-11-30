@@ -1,6 +1,6 @@
 <template>
     <section class="main-search-list">
-        <h1>Tracks</h1>
+        <h1 v-if="songs.length">Tracks</h1>
         <ul class="clean-list">
             <li v-for="song in songs" :key="song.id">
                 <search-song-preview :song="song" />

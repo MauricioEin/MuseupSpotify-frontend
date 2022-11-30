@@ -1,6 +1,6 @@
 <template>
     <section class="main-search">
-        <input v-model="searchStr" type="text" placeholder="Search for songs or artists">
+        <input v-model="searchStr" type="search" placeholder="What do you want to listen to?">
     </section>
 </template>
 
@@ -17,7 +17,10 @@ export default {
     },
     methods: {
         async setSearchStr() {
-            if (!this.searchStr) return
+            if (!this.searchStr) {
+                this.$store.commit({ type: 'clearMainSearch' })
+                return
+            }
             this.searchedSongs = await stationService.searchSongs(this.searchStr)
             this.$store.commit({ type: 'setSearchedSongs', searchedSongs: this.searchedSongs })
         },

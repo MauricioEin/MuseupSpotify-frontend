@@ -44,6 +44,9 @@ export const stationStore = {
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
+        },
+        clearMainSearch(state) {
+            state.searchedSongs = []
         }
     },
     actions: {
