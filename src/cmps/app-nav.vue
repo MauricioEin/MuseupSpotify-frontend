@@ -58,10 +58,10 @@
         </router-link>
       </div>
     </nav>
+    <hr>
     <ul class="user-stations clean-list">
-      <hr>
       <li v-for="station in stations" :key="station._id">
-        <router-link :to="'/station/' + station._id"> {{ station.name }} </router-link>
+        <router-link :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
       </li>
     </ul>
   </section>
@@ -81,7 +81,7 @@ export default {
       console.log('creating!')
       const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
-      this.stations.push(savedStation) // ZMANI
+      this.stations.unshift(savedStation) // ZMANI
       this.$router.push('/station/' + savedStation._id)
     }
   }
