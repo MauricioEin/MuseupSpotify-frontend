@@ -48,8 +48,8 @@
           <span>Create Playlist</span>
         </router-link>
         <router-link to="/collection/tracks">
-          <div class="nav-btn heart-btn flex align-center justify-center"><svg role="img" height="12" width="12" aria-hidden="true"
-              viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 uPxdw">
+          <div class="nav-btn heart-btn flex align-center justify-center"><svg role="img" height="12" width="12"
+              aria-hidden="true" viewBox="0 0 16 16" class="Svg-sc-ytk21e-0 uPxdw">
               <path
                 d="M15.724 4.22A4.313 4.313 0 0012.192.814a4.269 4.269 0 00-3.622 1.13.837.837 0 01-1.14 0 4.272 4.272 0 00-6.21 5.855l5.916 7.05a1.128 1.128 0 001.727 0l5.916-7.05a4.228 4.228 0 00.945-3.577z">
               </path>
@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       stations: [
-        { _id: 123, name: 'Ilan' }, { _id: 1234, name: 'Tomer' }, { _id: 1233, name: 'Mauricio' }
+        { _id: 123, name: 'Ilan', songs: [] }, { _id: 1234, name: 'Tomer', songs: [] }, { _id: 1233, name: 'Mauricio', songs: [] }
       ]
     }
   },

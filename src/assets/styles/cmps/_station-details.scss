@@ -9,7 +9,15 @@
         background: linear-gradient(180deg, rgba(60, 60, 68, 1) 0%, rgba(29, 29, 33, 1) 100%);
 
         .station-img-container {
+            height: rem(232px);
+            width: rem(232px);
+            //TODO change to var
+            background: #282828;
+            display: grid;
+
+            svg,
             img {
+                justify-self: center;
                 aspect-ratio: 1/1;
                 object-fit: cover;
                 height: rem(232px);
@@ -35,7 +43,6 @@
 
 
     .song-list-header {
-        // padding: 20px;
         text-transform: uppercase;
         border-bottom: 1px solid gray;
         border-radius: 0;
@@ -45,6 +52,7 @@
         display: grid;
         grid-template-columns: 40px 40px 2fr 1fr 120px;
         gap: 10px;
+        // font-family: ;
 
         .list-song-index {
             justify-self: center;
