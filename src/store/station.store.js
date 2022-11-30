@@ -21,10 +21,10 @@ export function getActionUpdateStation(station) {
 
 export const stationStore = {
     state: {
-        stations: []
+        stations: [],
     },
     getters: {
-        stations({stations}) { return stations },
+        stations({ stations }) { return stations },
     },
     mutations: {
         setStations(state, { stations }) {
@@ -80,6 +80,5 @@ export const stationStore = {
                 throw err
             }
         },
-
     }
 }
