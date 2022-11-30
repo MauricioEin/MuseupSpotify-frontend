@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
-    
+
+
 }
 
 ::selection {
@@ -20,7 +21,12 @@ body {
     background-color: $clr1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: caveat;
     margin: 0 0 0.6em;
     line-height: 1;
@@ -39,7 +45,7 @@ p {
 a {
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
 }
-
