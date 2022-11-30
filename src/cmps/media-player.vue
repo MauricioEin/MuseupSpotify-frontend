@@ -61,9 +61,9 @@ export default defineComponent({
             
         },
 
-        togglePlay(){
-            if(this.isPlayed){
-                this.$refs.youtube.pauseVideo() 
+        togglePlay() {
+            if (this.isPlayed) {
+                this.$refs.youtube.pauseVideo()
                 this.isPlayed = false
                 clearInterval(this.timeInterval)
             }else{
@@ -77,15 +77,15 @@ export default defineComponent({
             if (this.isMute){
                 this.$refs.youtube.unMute() 
                 this.isMute = false
-            }else{
+            } else {
                 this.$refs.youtube.mute()
-                this.isMute = true 
+                this.isMute = true
             }
         },
 
-        setVolume(e){
-           const volume = e.target.value
-           this.$refs.youtube.setVolume(volume)
+        setVolume(e) {
+            const volume = e.target.value
+            this.$refs.youtube.setVolume(volume)
         },
 
         changeSong(dir){
@@ -98,7 +98,7 @@ export default defineComponent({
            
         },
 
-        setTimestamp(e){
+        setTimestamp(e) {
             const timeStamp = e.target.value
             this.$refs.youtube.seekTo(timeStamp)
         },
@@ -160,9 +160,9 @@ export default defineComponent({
 </script>
 
 <style>
-    .controls{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
+.controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 </style>
