@@ -4,7 +4,10 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { getActionRemoveStation, getActionAddStation, getActionUpdateStation } from '../store/station.store.js'
 import { store } from '../store/store'
+import axios from 'axios'
 
+
+const API_KEY = 'AIzaSyC-eUmSLJiWa-4c0NO17ogFFVaGMll8ngg'
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
 const STORAGE_KEY = 'station'
@@ -23,8 +26,9 @@ export const stationService = {
     save,
     remove,
     getEmptyStation,
+    searchSongs
 }
-window.cs = stationService
+window.stationService = stationService
 
 
 async function query(filterBy = { txt: '', price: 0 }) {
@@ -86,10 +90,33 @@ function getEmptyStation() {
     }
 }
 
+async function searchSongs() {
+    const searchStr = 'adele song'
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr}`
+    const res = await axios.get(url)
+    console.log('res', res.data.items)
+    return _prepareSongSearchPreviews(res.data.items)
+}
+
+function _prepareSongSearchPreviews(items) {
+    const songs = items.map(({ id, snippet }) => {
+        let imgUrls = {}
+        for (let size in snippet.thumbnails) {
+            imgUrls[size] = snippet.thumbnails[size].url
+        }
+
+        return {
+            id: utilService.makeId(),
+            title: snippet.title,
+            youtubeId: id.videoId,
+            imgUrl: imgUrls,
+            addedBy: {},
+            createdAt: Date.now()
+        }
+    })
+}
+
+
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {name: 'Subali Rahok 2', price: 980}).then(x => console.log(x))
-
-
-
-

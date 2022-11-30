@@ -11,7 +11,7 @@
         <div class="song-preview-actions">
             <button class="btn-like-song"><heart-empty-svg /></button>
             <div class="song-length">3:13</div>
-            <button class="btn-more-options"><more-options-svg></more-options-svg></button>
+            <button class="btn-more-options"><more-options-svg /></button>
         </div>
     </li>
 </template>
