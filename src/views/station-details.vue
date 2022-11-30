@@ -11,11 +11,14 @@
         <!-- </div> -->
       </div>
       <div class="station-summary">
-        <small>PLAYLIST</small>
-        <h1>{{ station.name }}</h1>
-        <p> owner | likes | {{ station.likedByUsers?.length }} songs, <span class="light">total time</span></p>
+        <p class="summary-title">PLAYLIST</p>
+        <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
+        <p class="mini-dashboard"> owner | likes | {{ station.likedByUsers?.length }} songs, <span class="light">total
+            time</span></p>
       </div>
     </section>
+
+    <station-edit v-if="isEdit" @close="isEdit = false" />
 
     <section class="playlist-actions">
       <button class="btn-play-green" v-if="station.songs.length">
@@ -23,12 +26,13 @@
       </button>
       <button @click="openStationMenu" class="btn-playlist-more-options">
         <more-options-svg @click.stop="toggleStationMenu" />
-        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="" @edit="" />
+        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
+          @edit="isEdit = true" />
       </button>
     </section>
 
 
-    <song-list-header/>
+    <song-list-header />
 
     <song-list v-if="station.songs.length" :songs="station.songs" />
     <div v-else style="padding: 10px 20px">Add some songs</div>
@@ -47,10 +51,12 @@ import { stationService } from '../services/station.service'
 import { getActionRemoveStation, getActionUpdateStation } from '../store/station.store'
 import songList from '../cmps/song-list.vue'
 import songListHeader from '../cmps/song-list-header.vue'
+import stationMenu from '../cmps/station-menu.vue'
+import stationEdit from '../cmps/station-edit.vue'
+
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import pencilSvg from '../assets/svgs/pencil-svg.vue'
-import stationMenu from '../cmps/station-menu.vue'
 import musicNoteSvg from '../assets/svgs/music-note-svg.vue'
 
 export default {
@@ -58,6 +64,7 @@ export default {
     return {
       station: null,
       isStationMenuOpen: false,
+      isEdit: false
     }
   },
   computed: {
@@ -71,8 +78,11 @@ export default {
       return this.station.imgUrl || this.station.songs[0]?.imgUrl
     },
     stationId() {
-      const id = this.station?._id || this.$route.params.id
+      const id = this.$route.params.id || this.station?._id
       return id
+    },
+    isFollowed() {
+      return this.loggedInUser.followedStations.some(station => station._id = this.stationId)
     }
   },
   mounted() {
@@ -80,14 +90,14 @@ export default {
     this.loadStation()
   },
   methods: {
-    async addStation() {
+    async follow() {
+      const actionStr = this.isFollowed ? 'unfollow' : 'follow'
       try {
-        await this.$store.dispatch({ type: 'addStation', station: this.stationToAdd })
-        showSuccessMsg('Station added')
-        this.station = stationService.getEmptyStation()
+        await this.$store.dispatch({ type: 'followStation', station: this.station, isToFollow: !this.isFollowed })
+        showSuccessMsg('Station ' + actionStr + 'ed')
       } catch (err) {
-        console.log(err)
-        showErrorMsg('Cannot add station')
+        console.error(err)
+        showErrorMsg('Cannot ' + actionStr + ' station')
       }
     },
     async removeStation() {
@@ -106,11 +116,11 @@ export default {
         station = { ...station }
         station.name = prompt('New name?', station.name)
         await this.$store.dispatch(getActionUpdateStation(station))
-        showSuccessMsg('Station removed')
+        showSuccessMsg('Station updated')
 
       } catch (err) {
         console.log(err)
-        showErrorMsg('Cannot remove station')
+        showErrorMsg('Cannot update station')
       }
     },
     async loadStation() {
@@ -123,17 +133,18 @@ export default {
   },
   watch: {
     stationId() {
-      this.loadStation
+      this.loadStation()
     }
   },
   components: {
     songList,
+    stationMenu,
+    songListHeader,
+    stationEdit,
     playBtn,
     moreOptionsSvg,
     pencilSvg,
-    stationMenu,
     musicNoteSvg,
-    songListHeader
   }
 
 

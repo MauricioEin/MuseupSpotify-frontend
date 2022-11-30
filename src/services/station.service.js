@@ -26,7 +26,8 @@ export const stationService = {
     save,
     remove,
     getEmptyStation,
-    searchSongs
+    searchSongs,
+    updateFollowers
 }
 window.stationService = stationService
 
@@ -96,6 +97,12 @@ async function searchSongs() {
     const res = await axios.get(url)
     console.log('res', res.data.items)
     return _prepareSongSearchPreviews(res.data.items)
+}
+
+async function updateFollowers(station, miniUser, isToFollow) {
+    isToFollow ? station.followers.push(miniUser)
+        : station.followers = station.followers.filter(user => user._id !== miniUser._id)
+    return save(station)
 }
 
 function _prepareSongSearchPreviews(items) {

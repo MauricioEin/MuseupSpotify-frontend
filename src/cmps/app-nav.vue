@@ -1,7 +1,7 @@
 <template>
   <section class="nav-container">
-    <div class="logo" to="/station">
-      <logo-svg /> <span>Spotify</span>
+    <div class="logo pointer" @click="$router.push('/station')">
+      <logo-svg /> <span>Sprintify</span>
     </div>
     <nav class="permanent-nav">
       <ul class="app-nav clean-list">
@@ -58,11 +58,9 @@ import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 
 export default {
   components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg },
-  data() {
-    return {
-      stations: [
-        { _id: 123, name: 'Ilan', songs: [] }, { _id: 1234, name: 'Tomer', songs: [] }, { _id: 1233, name: 'Mauricio', songs: [] }
-      ]
+  computed: {
+    stations() {
+      return this.$store.getters.stations
     }
   },
   methods: {
