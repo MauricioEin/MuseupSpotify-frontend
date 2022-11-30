@@ -15,7 +15,8 @@
             background: #282828;
             display: grid;
 
-            svg,
+            svg {}
+
             img {
                 justify-self: center;
                 aspect-ratio: 1/1;
@@ -33,12 +34,18 @@
             h1 {
                 font-size: rem(96px);
                 margin: 0;
+                font-family: gotham;
+                font-weight: 900;
             }
         }
     }
 
     .playlist-actions {
         padding: 20px;
+
+        .btn-playlist-more-options {
+            position: relative;
+        }
     }
 
 
@@ -52,7 +59,7 @@
         display: grid;
         grid-template-columns: 40px 40px 2fr 1fr 120px;
         gap: 10px;
-        // font-family: ;
+        font-family: gotham-light;
 
         .list-song-index {
             justify-self: center;

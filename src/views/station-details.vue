@@ -3,7 +3,10 @@
     <section class="station-preview">
       <div class="station-img-container">
         <img :src="getSrc" v-if="getSrc" alt="">
-        <pencil-svg v-else />
+        <!-- <div v-else> -->
+        <music-note-svg v-else />
+        <!-- <pencil-svg /> -->
+        <!-- </div> -->
       </div>
       <div class="station-summary">
         <small>PLAYLIST</small>
@@ -15,7 +18,11 @@
       <button class="btn-play-green" v-if="station.songs.length">
         <play-btn />
       </button>
-      <button @click="openStationMenu" class="btn-playlist-more-options"><more-options-svg></more-options-svg></button>
+      <button @click="openStationMenu" class="btn-playlist-more-options">
+        <more-options-svg @click="toggleStationMenu" />
+        <!-- <station-menu @removeStation="removeStation" v-if="isStationMenuOpen" /> -->
+        <station-menu v-if="isStationMenuOpen" />
+      </button>
     </section>
     <section class="song-list-header">
       <div class="list-song-index">#</div>
@@ -38,11 +45,14 @@ import playBtn from '../assets/svgs/play-btn-svg.vue'
 import clockSvg from '../assets/svgs/clock-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import pencilSvg from '../assets/svgs/pencil-svg.vue'
+import stationMenu from '../cmps/station-menu.vue'
+import musicNoteSvg from '../assets/svgs/music-note-svg.vue'
 
 export default {
   data() {
     return {
       station: null,
+      isStationMenuOpen: false,
     }
   },
   computed: {
@@ -56,11 +66,11 @@ export default {
       return this.station.imgUrl || this.station.songs[0]?.imgUrl
     },
     stationId() {
-      const id = this.$route.params.id || this.station?._id
+      const id = this.station?._id || this.$route.params.id
       return id
     }
   },
-  created() {
+  mounted() {
     // this.$store.dispatch({ type: 'loadStations' })
     // const stationId = this.$route.params.id
     // stationService.getById(stationId).then(station => this.station = station)
@@ -79,6 +89,7 @@ export default {
     },
     async removeStation(stationId) {
       try {
+
         await this.$store.dispatch(getActionRemoveStation(stationId))
         showSuccessMsg('Station removed')
 
@@ -103,8 +114,8 @@ export default {
       this.station = await stationService.getById(this.stationId)
       console.log('station', this.station)
     },
-    openStationMenu() {
-
+    toggleStationMenu() {
+      this.isStationMenuOpen = !this.isStationMenuOpen
     }
   },
   watch: {
@@ -117,7 +128,9 @@ export default {
     playBtn,
     clockSvg,
     moreOptionsSvg,
-    pencilSvg
+    pencilSvg,
+    stationMenu,
+    musicNoteSvg
   }
 
 
