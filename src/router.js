@@ -8,6 +8,7 @@ import reviewApp from './views/review-app.vue'
 import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import stationDetails from './views/station-details.vue'
+import mediaPlayer from './cmps/media-player.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/user/:id',
     name: 'user-details',
     component: userDetails
+  },
+  {
+    path: '/player',
+    name: 'media-player',
+    component: mediaPlayer
   }
 ]
 
