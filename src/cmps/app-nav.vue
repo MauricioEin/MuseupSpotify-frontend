@@ -58,10 +58,10 @@
         </router-link>
       </div>
     </nav>
+    <hr>
     <ul class="user-stations clean-list">
-      <hr>
       <li v-for="station in stations" :key="station._id">
-        <router-link :to="'/station/' + station._id"> {{ station.name }} </router-link>
+        <router-link :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
       </li>
     </ul>
   </section>

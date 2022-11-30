@@ -1,6 +1,8 @@
  .nav-container {
      background-color: $clr3;
      padding: 24px;
+     font-size: 0.8125rem;
+
 
      .logo {
          margin-bottom: 24px;
@@ -26,11 +28,19 @@
          &:hover {
              color: $clr2;
              text-decoration: none;
-             .heart-btn{
-                    opacity:1;
+
+             .heart-btn {
+                 opacity: 1;
              }
          }
 
+     }
+
+     hr {
+         background-color: #282828;
+         border: none;
+         min-height: 2px;
+         margin-bottom: 0;
      }
  }
 
@@ -45,17 +55,12 @@
      height: 40px;
 
      span {
-         font-size: 0.8125rem;
          font-weight: 600;
      }
  }
 
  .app-nav {
      margin-bottom: 24px;
- }
-
- .user-stations a {
-     cursor: default;
  }
 
  .nav-btn {
@@ -75,10 +80,26 @@
 
  .heart-btn {
      background: linear-gradient(135deg, #450af5, #c4efd9);
-     opacity:0.7;
+     opacity: 0.7;
 
      svg {
          fill: currentcolor;
      }
 
+ }
+
+ .user-stations {
+     padding: 8px 0;
+     overflow-y: auto;
+     height: 40vh;
+
+     a {
+         cursor: default;
+         font-weight: 600;
+         height: 32px;
+
+         &:hover {
+             font-weight: 900;
+         }
+     }
  }
