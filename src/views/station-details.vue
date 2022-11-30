@@ -1,21 +1,26 @@
 <template>
   <section v-if="station" class="station-details">
     <section class="station-preview">
-      <img :src="station.imgUrl" alt="">
-      <label>PLAYLIST</label>
-      <h1>{{ station.name }}</h1>
-      <label>{{ this.station.songs.length }} songs</label>
+      <div class="station-img-container">
+        <img :src="getSrc" alt="">
+      </div>
+      <div class="station-summary">
+        <label>PLAYLIST</label>
+        <h1>{{ station.name }}</h1>
+        <label>{{ this.station.songs.length }} songs</label>
+      </div>
     </section>
-    <section>
-      PLAY | MORE
+    <section class="playlist-actions">
+      <button class="btn-play-green"><play-btn /></button>
+      <button class="btn-playlist-more-options"><more-options-svg></more-options-svg></button>
     </section>
-    <section class="song-list-header flex">
+    <section class="song-list-header">
       <div class="list-song-index">#</div>
       <div class="list-song-title"><small>Title</small></div>
+      <div></div>
       <div class="list-song-date"><small>Date Added</small></div>
-      <div class="list-song-length"><small>Time:</small></div>
+      <div class="list-song-length song-preview-actions"><small><clock-svg /></small></div>
     </section>
-    <hr>
     <song-list v-if="station.songs.length" :songs="station.songs" />
     <div v-else>Add some songs</div>
   </section>
@@ -26,6 +31,10 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { stationService } from '../services/station.service'
 import { getActionRemoveStation, getActionUpdateStation } from '../store/station.store'
 import songList from '../cmps/song-list.vue'
+import playBtn from '../assets/svgs/play-btn-svg.vue'
+import clockSvg from '../assets/svgs/clock-svg.vue'
+import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
+
 export default {
   data() {
     return {
@@ -38,6 +47,9 @@ export default {
     },
     stations() {
       return this.$store.getters.stations
+    },
+    getSrc() {
+      return this.station.imgUrl || this.station.songs[0].imgUrl
     }
   },
   mounted() {
@@ -80,7 +92,10 @@ export default {
     }
   },
   components: {
-    songList
+    songList,
+    playBtn,
+    clockSvg,
+    moreOptionsSvg
   }
 
 
