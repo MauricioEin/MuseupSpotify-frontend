@@ -22,9 +22,11 @@ export function getActionUpdateStation(station) {
 export const stationStore = {
     state: {
         stations: [],
+        searchedSongs: [],
     },
     getters: {
         stations({ stations }) { return stations },
+        searchedSongs({ searchedSongs }) { return searchedSongs }
     },
     mutations: {
         setStations(state, { stations }) {
@@ -40,6 +42,9 @@ export const stationStore = {
         removeStation(state, { stationId }) {
             state.stations = state.stations.filter(station => station._id !== stationId)
         },
+        setSearchedSongs(state, { searchedSongs }) {
+            state.searchedSongs = searchedSongs
+        }
     },
     actions: {
         async addStation(context, { station }) {

@@ -4,6 +4,7 @@
   <section class="app-layout flex">
     <app-nav />
     <section class="main-layout">
+      <app-header />
       <router-view />
     </section>
   </section>

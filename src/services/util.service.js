@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    debounce
 }
 
 function makeId(length = 6) {
@@ -38,3 +39,16 @@ function delay(ms = 1500) {
     })
 }
 
+function debounce(func, wait = 500) {
+    let timeout
+
+    return function (...args) {
+        const later = () => {
+            clearTimeout(timeout)
+            func(...args)
+        }
+
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+    }
+}

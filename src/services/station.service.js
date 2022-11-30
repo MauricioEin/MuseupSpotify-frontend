@@ -90,16 +90,15 @@ function getEmptyStation() {
     }
 }
 
-async function searchSongs() {
-    const searchStr = 'adele song'
+async function searchSongs(searchStr) {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr}`
     const res = await axios.get(url)
-    console.log('res', res.data.items)
+    // console.log('res', res.data.items)
     return _prepareSongSearchPreviews(res.data.items)
 }
 
 function _prepareSongSearchPreviews(items) {
-    const songs = items.map(({ id, snippet }) => {
+    return items.map(({ id, snippet }) => {
         let imgUrls = {}
         for (let size in snippet.thumbnails) {
             imgUrls[size] = snippet.thumbnails[size].url
