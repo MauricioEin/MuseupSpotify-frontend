@@ -67,8 +67,8 @@ function createDummySocketService() {
         terminate() {
             this.setup()
         },
-        login() {},
-        logout() {},
+        login() { },
+        logout() { },
         on(eventName, cb) {
             listenersMap[eventName] = [...(listenersMap[eventName] || []), cb]
         },

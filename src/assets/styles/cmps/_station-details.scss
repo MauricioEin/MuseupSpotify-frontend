@@ -1,0 +1,32 @@
+.station-details {
+    //TODO change to var
+    padding: 35px;
+    background-color: #161619;
+    color: white;
+
+    .song-list-header {
+        text-transform: uppercase;
+        padding: 5px;
+
+        // gap: 20px;
+        // justify-content: space-between;
+        .list-song-index {
+            // flex-grow: 1;
+            margin: 0 20px;
+        }
+
+        .list-song-title {
+            flex-grow: 5;
+            // margin-inline-start: 50px;
+        }
+
+        .list-song-date {
+            flex-grow: 2;
+            padding-inline-start: 50px;
+        }
+
+        .list-song-length {
+            flex-grow: 1;
+        }
+    }
+}

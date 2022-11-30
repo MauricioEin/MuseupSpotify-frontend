@@ -65,19 +65,23 @@ async function save(station) {
 function getEmptyStation() {
     return {
         name: 'My Playlist #' + (Date.now() % 1000),
+        imgUrl: '',
+        createdAt: Date.now(),
         songs: [{
             id: 's1001',
             title: 'The Meters - Cissy Strut',
             url: 'youtube/song.mp4',
             imgUrl: 'https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg',
             addedBy: '{minimal-user}',
+            createdAt: Date.now()
         },
         {
             id: 'mUkfiLjooxs',
             title: 'The JB\'s - Pass The Peas',
             url: 'youtube/song.mp4',
             imgUrl: 'https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg',
-            addedBy: {}
+            addedBy: {},
+            createdAt: Date.now()
         }]
     }
 }
