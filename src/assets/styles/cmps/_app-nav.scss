@@ -26,6 +26,9 @@
          &:hover {
              color: $clr2;
              text-decoration: none;
+             .heart-btn{
+                    opacity:1;
+             }
          }
 
      }
@@ -72,8 +75,10 @@
 
  .heart-btn {
      background: linear-gradient(135deg, #450af5, #c4efd9);
+     opacity:0.7;
+
      svg {
-        fill: currentcolor;
+         fill: currentcolor;
      }
 
  }
