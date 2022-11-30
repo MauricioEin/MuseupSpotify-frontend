@@ -36,7 +36,7 @@ export const stationStore = {
             state.stations.push(station)
         },
         updateStation(state, { station }) {
-            const idx = state.stations.findIndex(c => c.id === station._id)
+            const idx = state.stations.findIndex(s => s._id === station._id)
             state.stations.splice(idx, 1, station)
         },
         removeStation(state, { stationId }) {
@@ -73,6 +73,15 @@ export const stationStore = {
                 context.commit({ type: 'setStations', stations })
             } catch (err) {
                 console.log('stationStore: Error in loadStations', err)
+                throw err
+            }
+        },
+        async removeStation(context, { stationId }) {
+            try {
+                await stationService.remove(stationId)
+                context.commit(getActionRemoveStation(stationId))
+            } catch (err) {
+                console.log('stationStore: Error in removeStation', err)
                 throw err
             }
         },

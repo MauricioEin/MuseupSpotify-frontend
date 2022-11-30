@@ -1,8 +1,8 @@
-header {
-
-    // padding: 10px;
-    // display: flex;
-    // justify-content: space-between;
+.app-header {
+    background-color: $clr5;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 
     .loggedin-user {
         background-color: $clr1;
