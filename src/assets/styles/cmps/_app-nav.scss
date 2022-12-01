@@ -2,6 +2,10 @@
      background-color: $clr3;
      padding: 24px;
      font-size: 0.8125rem;
+     width:20vw;
+     min-width: 200px;
+     max-width: 300px;
+
 
 
      .logo {
@@ -10,9 +14,6 @@
          align-items: center;
          gap: 5px;
          font-size: 24px;
-         width:18vw;
-         min-width: 160px;
-
      }
 
      svg {
@@ -91,7 +92,7 @@
  .user-stations {
      padding: 8px 0;
      overflow-y: auto;
-     height: 40vh;
+     height: calc(100vh - 413px);
 
      a {
          cursor: default;

@@ -34,10 +34,14 @@ export const stationStore = {
             state.stations = stations
         },
         addStation(state, { station }) {
-            state.stations.push(station)
+            state.stations.unshift(station)
         },
         updateStation(state, { station }) {
             const idx = state.stations.findIndex(s => s._id === station._id)
+            console.log('idx:', idx)
+            console.log('station:', station)
+            console.log('stations:', state.stations)
+            // state.stations[idx]=station
             state.stations.splice(idx, 1, station)
         },
         removeStation(state, { stationId }) {
@@ -62,6 +66,8 @@ export const stationStore = {
             try {
                 station = await stationService.save(station)
                 context.commit(getActionAddStation(station))
+                const { name, desc, _id, imgUrl, owner } = station
+                context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner.username } })
                 return station
             } catch (err) {
                 console.log('stationStore: Error in addStation', err)

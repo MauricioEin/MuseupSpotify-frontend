@@ -40,7 +40,7 @@
 
 // for station app specifically
 .app-layout {
-    height: 100vh;
+    height: calc(100vh - 90px);
 }
 
 .main-layout {

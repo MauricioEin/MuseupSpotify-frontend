@@ -18,7 +18,7 @@ export const userStore = {
     mutations: {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
-            state.loggedinUser = (user) ? { ...user, followedStations: [...user.followedStations] } : null
+            state.loggedinUser = (user) ? { ...user, stations: [...user.stations] } : null
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
@@ -36,6 +36,7 @@ export const userStore = {
             const idx = state.users.findIndex(u => u._id === user._id)
             state.users.splice(idx, 1, user)
         },
+
 
     },
     actions: {
@@ -116,6 +117,12 @@ export const userStore = {
                 console.log('userStore: Error in increaseScore', err)
                 throw err
             }
+        },
+        async addStationToLibrary({ commit }, {miniStation}) {
+            console.log('dispatch ministation:', miniStation)
+            const savedUser = await userService.followStation(miniStation, true)
+            commit({ type: 'updateUser', user: savedUser })
+            commit({ type: 'setLoggedinUser', user: savedUser })
         }
     }
 }

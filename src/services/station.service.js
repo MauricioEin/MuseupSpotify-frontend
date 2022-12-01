@@ -64,7 +64,7 @@ async function save(station) {
         savedStation = await storageService.post(STORAGE_KEY, station)
         // stationChannel.postMessage(getActionAddStation(savedStation))
     }
-    return savedStation
+    return JSON.parse(JSON.stringify(savedStation))
 }
 
 function getEmptyStation() {
@@ -99,6 +99,7 @@ async function searchSongs(searchStr) {
 }
 
 async function updateFollowers(station, miniUser, isToFollow) {
+    station.followers = station.followers ? station.followers : []
     isToFollow ? station.followers.push(miniUser)
         : station.followers = station.followers.filter(user => user._id !== miniUser._id)
     return save(station)
