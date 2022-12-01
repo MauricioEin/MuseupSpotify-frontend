@@ -8,12 +8,14 @@
                 </button>
             </header>
             <main>
-                <div class="img-container"></div>
+                <div class="img-container">
+                    <img :src="imgUrl" class="fit-img"/>
+                </div>
                 <div class="title-container">
-                    <input type="text" placeholder="Add a name">
+                    <input type="text" placeholder="Add a name" :value="name">
                 </div>
                 <div class="desc-container">
-                    <textarea placeholder="Add an optional description"></textarea>
+                    <textarea :value="desc" placeholder="Add an optional description"></textarea>
                 </div>
                 <div class="save-container">
                     <button>Save</button>
@@ -27,7 +29,8 @@
 import xBtnSvg from '../assets/svgs/x-btn-svg.vue';
 
 export default {
-    components: { xBtnSvg }
+    components: { xBtnSvg },
+    props: ['name', 'desc', 'imgUrl'],
 }
 </script>
 
