@@ -78,7 +78,7 @@ export default defineComponent({
             isLoop: false,
             isShuffled: false,
             isFullscreen: false,
-            volume:0,
+            volume:50,
             currSongIdx: 0,
             originalList: ['nukZQTFsA10', 'ogCih4OavoY','-tWhPv2U6aQ'],
             songList: ['nukZQTFsA10', 'ogCih4OavoY','-tWhPv2U6aQ'],
