@@ -104,7 +104,7 @@ svg {
 
 // typography helpers
 
-.light{
+.light {
     font-family: gotham-light;
 }
 
@@ -112,4 +112,12 @@ svg {
 
 .pointer {
     cursor: pointer;
+}
+
+// image helpers
+
+.fit-img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 }

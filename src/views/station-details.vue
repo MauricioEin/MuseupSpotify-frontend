@@ -18,7 +18,7 @@
       </div>
     </section>
 
-    <station-edit v-if="isEdit" @close="isEdit = false" />
+    <station-edit v-if="isEdit" :name="station.name" :desc="station.desc" :imgUrl="stationImg" @close="isEdit = false"/>
 
     <section class="playlist-actions">
       <button class="btn-play-green" v-if="station.songs.length">
