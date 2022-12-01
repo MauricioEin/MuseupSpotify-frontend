@@ -1,6 +1,8 @@
 <template>
-  <section v-if="station" class="station-details">
-    <section class="station-preview flex">
+  <section v-if="station" class="station-details details-layout">
+
+
+    <section class="station-preview flex full">
       <div class="station-img-container">
         <img :src="stationImg" v-if="stationImg" alt="">
         <!-- <div v-else> -->
@@ -33,17 +35,18 @@
     </section>
 
 
-    <song-list-header />
+    <song-list-header v-if="station.songs.length" />
 
     <song-list v-if="station.songs.length" :songs="station.songs" />
-    <div v-else style="padding: 10px 20px">Add some songs</div>
+
+    <button v-if="!isSearchOpen" @click="openSearch" class="btn-find-more">Find more</button>
+    <section v-else>
+      <station-song-search @closeSearch="closeSearch" />
+      <station-song-list v-if="searchedSongs" :songs="searchedSongs" />
+    </section>
 
   </section>
 </template>
-
-
-
-
 
 
 <script>
@@ -54,6 +57,8 @@ import songList from '../cmps/song-list.vue'
 import songListHeader from '../cmps/song-list-header.vue'
 import stationMenu from '../cmps/station-menu.vue'
 import stationEdit from '../cmps/station-edit.vue'
+import stationSongSearch from '../cmps/station-song-search.vue'
+import stationSongList from '../cmps/station-song-list.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -65,7 +70,9 @@ export default {
     return {
       station: null,
       isStationMenuOpen: false,
-      isEdit: false
+      isEdit: false,
+      isSearchOpen: false,
+
     }
   },
   computed: {
@@ -76,7 +83,7 @@ export default {
       return this.$store.getters.stations
     },
     stationImg() {
-      return this.station.imgUrl || this.station.songs[0]?.imgUrl
+      return this.station.imgUrl || this.station.songs[0]?.imgUrl.high || this.station.songs[0]?.imgUrl
     },
     stationId() {
       const id = this.$route.params.id || this.station?._id
@@ -84,6 +91,9 @@ export default {
     },
     isFollowed() {
       return this.loggedInUser.stations.some(station => station._id === this.stationId)
+    },
+    searchedSongs() {
+      return this.$store.getters.searchedSongs
     }
   },
   mounted() {
@@ -131,11 +141,23 @@ export default {
     toggleStationMenu() {
       this.isStationMenuOpen = !this.isStationMenuOpen
     },
+    openSearch() {
+      this.isSearchOpen = true
+    },
+    closeSearch() {
+      this.isSearchOpen = false
+    }
   },
   watch: {
     stationId() {
       this.loadStation()
+    },
+    station() {
+      this.$store.commit({ type: 'setCurrStation', station: this.station })
     }
+  },
+  unmounted() {
+    this.$store.commit({ type: 'clearCurrStation' })
   },
   components: {
     songList,
@@ -146,6 +168,8 @@ export default {
     moreOptionsSvg,
     pencilSvg,
     musicNoteSvg,
+    stationSongSearch,
+    stationSongList,
   }
 
 

@@ -1,13 +1,13 @@
 <template>
-    <section class="song-list">
+    <section class="station-song-list">
         <ul class="clean-list">
-            <song-preview v-for="(song, index) in songs" :song="song" :index="index" :key="song._id" />
+            <station-song-preview v-for="song in songs" :song="song" :key="song.id" />
         </ul>
     </section>
 </template>
 
 <script>
-import songPreview from '../cmps/song-preview.vue'
+import stationSongPreview from './station-song-preview.vue';
 export default {
     props: {
         songs: {
@@ -16,7 +16,7 @@ export default {
         }
     },
     components: {
-        songPreview
+        stationSongPreview
     }
 }
 </script>

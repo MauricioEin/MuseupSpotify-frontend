@@ -49,3 +49,17 @@
     overflow-x: hidden;
     height: 100%;
 }
+
+.details-layout {
+
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+
+    >* {
+        grid-column: 2;
+
+        &.full {
+            grid-column: 1 /-1;
+        }
+    }
+}
