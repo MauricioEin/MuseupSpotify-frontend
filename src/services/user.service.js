@@ -79,9 +79,10 @@ async function logout() {
 }
 
 async function followStation(miniStation, isToFollow) {
+    console.log('service ministation:',miniStation)
     const user = getLoggedinUser()
-    isToFollow ? user.followedStations.push(miniStation)
-        : user.followedStations = user.followedStation.filter(station => station._id !== miniStation._id)
+    isToFollow ? user.stations.push(miniStation)
+        : user.stations = user.stations.filter(station => station._id !== miniStation._id)
     return update(user)
 }
 
@@ -103,11 +104,11 @@ function getLoggedinUser() {
 }
 
 
-;(async ()=>{
-    await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',likedSongs:[], followedStations:[], stations:[], isAdmin: false})
-    await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', likedSongs:[], followedStations:[], stations:[], isAdmin: true})
-    await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', likedSongs:[], followedStations:[], stations:[]})
-})()
+// ;(async ()=>{
+//     await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',likedSongs:[], stations:[], isAdmin: false})
+//     await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', likedSongs:[], stations:[], isAdmin: true})
+//     await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', likedSongs:[], stations:[]})
+// })()
 
 
 

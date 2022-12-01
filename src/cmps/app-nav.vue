@@ -61,14 +61,16 @@ export default {
   computed: {
     stations() {
       return this.$store.getters.stations
+    },
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
     }
   },
   methods: {
     async createStation() {
       console.log('creating!')
-      const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [] }
+      const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [], followers:[] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
-      this.stations.unshift(savedStation) // ZMANI
       this.$router.push('/station/' + savedStation._id)
     }
   }

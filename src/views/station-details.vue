@@ -1,7 +1,5 @@
 <template>
   <section v-if="station" class="station-details">
-
-
     <section class="station-preview flex">
       <div class="station-img-container">
         <img :src="stationImg" v-if="stationImg" alt="">
@@ -13,7 +11,7 @@
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
-        <p class="mini-dashboard"> owner | likes | {{ station.likedByUsers?.length }} songs, <span class="light">total
+        <p class="mini-dashboard"> {{station.owner?.username}} | likes | {{ station.likedByUsers?.length }} songs, <span class="light">total
             time</span></p>
       </div>
     </section>
@@ -82,7 +80,7 @@ export default {
       return id
     },
     isFollowed() {
-      return this.loggedInUser.followedStations.some(station => station._id = this.stationId)
+      return this.loggedInUser.stations.some(station => station._id === this.stationId)
     }
   },
   mounted() {
@@ -124,7 +122,7 @@ export default {
       }
     },
     async loadStation() {
-      this.station = await stationService.getById(this.stationId)
+      this.station = JSON.parse(JSON.stringify(await stationService.getById(this.stationId)))
       console.log('station', this.station)
     },
     toggleStationMenu() {
