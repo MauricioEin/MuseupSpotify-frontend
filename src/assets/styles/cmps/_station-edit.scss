@@ -59,12 +59,12 @@
             ". save-button";
         padding: 0 24px 24px;
 
-        .img-container {
+        .img-uploader-container {
             grid-area: album-image;
-            // height: 180px;
-            // margin: 0;
-            // position: relative;
-            // width: 180px;
+            height: 180px;
+            margin: 0;
+            position: relative;
+            width: 180px;
             background-color: $clr7;
         }
 
@@ -117,18 +117,27 @@
                 background-color: $clr2;
                 color: $clr6;
                 padding: .8em 2em;
+                position:relative;
 
                 &:hover {
                     padding: .9em 2.1em;
-                    transform: translateX(.05em);
+                    transform: translateX(5.05em);
+                    left: 0.05em;
                     transform: translateY(calc( -5px - 0.05em));
                     opacity:0.95;
+                    // font-weight: ;
 
                     // transform: translate(.05em, -.05em);
                 }
             }
-
-
         }
     }
+}
+
+.img-change-cover{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(40, 40, 40, 0.7);
+    position:absolute;
+    inset: 0;
 }

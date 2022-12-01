@@ -3,19 +3,15 @@
 
 
     <section class="station-preview flex full">
-      <div class="station-img-container">
-        <img :src="stationImg" v-if="stationImg" alt="">
-        <!-- <div v-else> -->
-        <music-note-svg v-else />
-        <!-- <pencil-svg /> -->
-        <!-- </div> -->
-      </div>
+
+      <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
+
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
-        <p class="station-desc pointer light" @click="isEdit = true">{{ station.desc }}</p>
-        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} | {{ station.followers.length }} likes |
-          {{ station.songs.length }} songs, <span class="light">total
+        <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
+        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} | {{ station.followers?.length || 0 }}
+          likes | {{ station.songs.length }} songs, <span class="light">total
             time</span></p>
       </div>
     </section>
@@ -58,6 +54,7 @@ import stationMenu from '../cmps/station-menu.vue'
 import stationEdit from '../cmps/station-edit.vue'
 import stationSongSearch from '../cmps/station-song-search.vue'
 import stationSongList from '../cmps/station-song-list.vue'
+import imgUploader from '../cmps/img-uploader.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -71,6 +68,7 @@ export default {
       isStationMenuOpen: false,
       isEdit: false,
       isSearchOpen: false,
+      isImgHover: false
 
     }
   },
@@ -176,6 +174,7 @@ export default {
     stationMenu,
     songListHeader,
     stationEdit,
+    imgUploader,
     playBtn,
     moreOptionsSvg,
     pencilSvg,
