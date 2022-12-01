@@ -5,12 +5,13 @@
             <img-screen-play @playSong="playSong" />
         </div>
         <div class="song-title">{{ song.title }}</div>
-        <button class="btn-add-song">Add</button>
+        <button @click="addSongToStation" class="btn-add-song">Add</button>
     </li>
 </template>
 
 <script>
 import imgScreenPlay from './img-screen-play.vue';
+
 export default {
     props: {
         song: {
@@ -20,7 +21,7 @@ export default {
     },
     computed: {
         imgUrl() {
-            return this.song.imgUrl.medium
+            return this.song.imgUrl.medium || this.song.imgUrl
         }
     },
     components: {
@@ -28,8 +29,19 @@ export default {
     },
     methods: {
         playSong() {
-            console.log('Play song:', this.song.id);
-        }
+            const { id, youtubeId, title, imgUrl } = this.song
+            const miniSong = {
+                id,
+                youtubeId,
+                title,
+                imgUrl: imgUrl.medium
+            }
+
+        },
+        addSongToStation() {
+            this.$emit('addSongToStation', JSON.parse(JSON.stringify(this.song)))
+        },
+
     }
 }
 </script>

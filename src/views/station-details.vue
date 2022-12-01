@@ -20,8 +20,7 @@
       </div>
     </section>
 
-    <station-edit v-if="isEdit" :station="station" :altImg="stationImg" 
-    @close="isEdit = false" @save="updateStation" />
+    <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="playlist-actions">
       <button class="btn-play-green" v-if="station.songs.length">
@@ -39,10 +38,10 @@
 
     <song-list v-if="station.songs.length" :songs="station.songs" />
 
-    <button v-if="!isSearchOpen" @click="openSearch" class="btn-find-more">Find more</button>
+    <button v-if="(!isSearchOpen)" @click="openSearch" class="btn-find-more">Find more</button>
     <section v-else>
       <station-song-search @closeSearch="closeSearch" />
-      <station-song-list v-if="searchedSongs" :songs="searchedSongs" />
+      <station-song-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     </section>
 
   </section>
@@ -124,7 +123,7 @@ export default {
     },
     async updateStation(editedStation) {
       try {
-        editedStation = {...this.station, ...editedStation }
+        editedStation = { ...this.station, ...editedStation }
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Station updated')
         this.loadStation()
@@ -146,6 +145,18 @@ export default {
     },
     closeSearch() {
       this.isSearchOpen = false
+    },
+    async addSongToStation(song) {
+      try {
+        const editedStation = JSON.parse(JSON.stringify(this.station))
+        editedStation.songs.push(song)
+        await this.$store.dispatch(getActionUpdateStation(editedStation))
+        showSuccessMsg('Added to playlist')
+        this.loadStation()
+      } catch {
+        console.log(err)
+        showErrorMsg('Failed adding song to station')
+      }
     }
   },
   watch: {
@@ -154,6 +165,7 @@ export default {
     },
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
+      this.closeSearch()
     }
   },
   unmounted() {

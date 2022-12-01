@@ -28,6 +28,8 @@ export default {
                 return
             }
             this.searchedSongs = await stationService.searchSongs(this.searchStr)
+            console.log("🚀 ~ file: station-song-search.vue:31 ~ setSearchStr ~ this.searchedSongs", this.searchedSongs)
+
             this.$store.commit({ type: 'setSearchedSongs', searchedSongs: this.searchedSongs })
         },
 

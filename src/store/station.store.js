@@ -27,7 +27,8 @@ export const stationStore = {
     },
     getters: {
         stations({ stations }) { return stations },
-        searchedSongs({ searchedSongs }) { return searchedSongs }
+        searchedSongs({ searchedSongs }) { return searchedSongs },
+        currStation({ currStation }) { return currStation }
     },
     mutations: {
         setStations(state, { stations }) {
@@ -49,7 +50,6 @@ export const stationStore = {
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
-            console.log("🚀 ~ file: station.store.js:48 ~ setSearchedSongs ~ searchedSongs", searchedSongs)
         },
         clearMainSearch(state) {
             state.searchedSongs = []
@@ -59,7 +59,7 @@ export const stationStore = {
         },
         clearCurrStation(state) {
             state.currStation = null
-        }
+        },
     },
     actions: {
         async addStation(context, { station }) {
@@ -102,15 +102,5 @@ export const stationStore = {
                 throw err
             }
         },
-        async removeStation(context, { stationId }) {
-            try {
-                await stationService.remove(stationId)
-                context.commit(getActionRemoveStation(stationId))
-            } catch (err) {
-                console.log('stationStore: Error in removeStation', err)
-                throw err
-            }
-        },
-
     }
 }

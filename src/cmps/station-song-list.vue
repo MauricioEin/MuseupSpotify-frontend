@@ -1,7 +1,8 @@
 <template>
     <section class="station-song-list">
         <ul class="clean-list">
-            <station-song-preview v-for="song in songs" :song="song" :key="song.id" />
+            <station-song-preview @addSongToStation="addSongToStation" v-for="song in songs" :song="song"
+                :key="song.id" />
         </ul>
     </section>
 </template>
@@ -17,6 +18,11 @@ export default {
     },
     components: {
         stationSongPreview
+    },
+    methods: {
+        addSongToStation(song) {
+            this.$emit('addSongToStation', song)
+        }
     }
 }
 </script>

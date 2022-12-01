@@ -10,7 +10,7 @@
         <div class="song-created-at">{{ dateAdded }}</div>
         <div class="song-preview-actions">
             <button class="btn-like-song"><heart-empty-svg /></button>
-            <div class="song-length">3:13</div>
+            <div class="song-length">{{ song.length }}</div>
             <button class="btn-more-options"><more-options-svg /></button>
         </div>
     </li>
@@ -19,6 +19,7 @@
 <script>
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue';
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
+
 export default {
     props: {
         song: {
@@ -28,18 +29,23 @@ export default {
             type: Number
         }
     },
+    data() {
+        return {
+            isMenuOpen: false,
+        }
+    },
     computed: {
         dateAdded() {
             const d = new Date(this.song.createdAt)
             return d.toLocaleDateString('he-IL')
         },
         imgUrl() {
-            return this.song.imgUrl
+            return this.song.imgUrl.medium || this.song.imgUrl
         }
     },
     components: {
         heartEmptySvg,
-        moreOptionsSvg
+        moreOptionsSvg,
     }
 }
 </script>

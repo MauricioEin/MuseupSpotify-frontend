@@ -1,5 +1,5 @@
 <template>
-  <header class="app-header">
+  <header class="app-header details-layout">
     <!-- <nav>
       <router-link to="/">
         <span role="img" aria-label="logo">🙏</span>
