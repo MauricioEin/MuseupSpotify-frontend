@@ -149,11 +149,12 @@
     flex-basis: 20%;
 
     input{
-        display: block;
+        display: none;
     }
     
     progress{
-        display: none;
+        display: block;
+        width:129px;
     }
     &:hover {
         input{
@@ -165,8 +166,6 @@
         }
     }
 }
-
-
 
 .bottom-center-controls{
     display: flex;
