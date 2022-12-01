@@ -91,6 +91,9 @@ svg {
     transition: transform 0.1s;
     //TODO change to var
     background-color: #1ed760;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     svg {
         fill: black;

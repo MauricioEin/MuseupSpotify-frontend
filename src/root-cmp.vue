@@ -1,12 +1,11 @@
 <template>
   <user-msg />
-  <!-- <app-header /> -->
   <section class="app-layout flex">
     <app-nav />
     <section class="main-layout">
       <app-header />
       <router-view />
-      <media-player/>
+      <media-player />
     </section>
   </section>
 </template>
@@ -27,9 +26,9 @@ export default {
     console.log('Vue App created')
     var user = userService.getLoggedinUser()
     // if (!user) user={_id:'demo', name: 'demo', likedSongs:[], stations:[]}
-    
+
     if (user) store.commit({ type: 'setLoggedinUser', user })
-    this.$store.dispatch({type:'loadStations'})
+    this.$store.dispatch({ type: 'loadStations' })
   },
   components: {
     appHeader,
