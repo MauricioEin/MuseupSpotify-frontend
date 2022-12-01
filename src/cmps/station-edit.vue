@@ -8,9 +8,8 @@
                 </button>
             </header>
             <main>
-                <div class="img-container">
-                    <img :src="editedStation.imgUrl || altImg" class="fit-img" />
-                </div>
+                <img-uploader :imgSrc="editedStation.imgUrl || altImg" @saved="url => editedStation.imgUrl = url" />
+
                 <div class="title-container">
                     <input type="text" placeholder="Add a name" v-model="editedStation.name">
                 </div>
@@ -26,10 +25,11 @@
 </template>
 
 <script>
-import xBtnSvg from '../assets/svgs/x-btn-svg.vue';
+import xBtnSvg from '../assets/svgs/x-btn-svg.vue'
+import imgUploader from './img-uploader.vue'
 
 export default {
-    components: { xBtnSvg },
+    components: { xBtnSvg, imgUploader },
     props: ['station', 'altImg'],
     data() {
         return {
@@ -37,15 +37,18 @@ export default {
                 name: this.station.name,
                 desc: this.station.desc,
                 imgUrl: this.station.imgUrl,
-            }
+            },
+            isImgHover: false,
+            isLoading: false,
+
         }
     },
     methods: {
         save() {
             if (!this.editedStation.name) return
-            this.$emit('save', {...this.editedStation})
+            this.$emit('save', { ...this.editedStation })
             this.$emit('close')
-        }
+        },
     }
 }
 </script>
