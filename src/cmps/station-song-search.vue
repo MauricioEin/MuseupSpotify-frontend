@@ -1,13 +1,19 @@
 <template>
-    <section class="main-search">
-        <input v-model="searchStr" type="search" placeholder="What do you want to listen to?">
+    <section class="station-song-search flex">
+        <div>
+            <h1>Let's find something for your playlist</h1>
+            <input v-model="searchStr" type="search" placeholder="Search for songs">
+        </div>
+        <div class="flex align-center">
+            <button @click="this.$emit('closeSearch')"><x-btn-svg /></button>
+        </div>
     </section>
 </template>
 
 <script>
-import { stationService } from '../services/station.service';
 import { utilService } from '../services/util.service';
-import mainSearchList from '../cmps/main-search-list.vue'
+import { stationService } from '../services/station.service';
+import xBtnSvg from '../assets/svgs/x-btn-svg.vue';
 export default {
     data() {
         return {
@@ -35,14 +41,10 @@ export default {
     watch: {
         searchStr() {
             this.setSearchStr()
-        }
+        },
     },
     components: {
-        mainSearchList
+        xBtnSvg,
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

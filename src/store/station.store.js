@@ -23,6 +23,7 @@ export const stationStore = {
     state: {
         stations: [],
         searchedSongs: [],
+        currStation: null
     },
     getters: {
         stations({ stations }) { return stations },
@@ -44,9 +45,16 @@ export const stationStore = {
         },
         setSearchedSongs(state, { searchedSongs }) {
             state.searchedSongs = searchedSongs
+            console.log("🚀 ~ file: station.store.js:48 ~ setSearchedSongs ~ searchedSongs", searchedSongs)
         },
         clearMainSearch(state) {
             state.searchedSongs = []
+        },
+        setCurrStation(state, { station }) {
+            state.currStation = station
+        },
+        clearCurrStation(state) {
+            state.currStation = null
         }
     },
     actions: {
@@ -97,5 +105,6 @@ export const stationStore = {
                 throw err
             }
         },
+
     }
 }

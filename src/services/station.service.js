@@ -92,7 +92,7 @@ function getEmptyStation() {
 }
 
 async function searchSongs(searchStr) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr}`
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr + ' song'}`
     const res = await axios.get(url)
     // console.log('res', res.data.items)
     return _prepareSongSearchPreviews(res.data.items)
