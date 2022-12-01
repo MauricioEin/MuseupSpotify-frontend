@@ -6,22 +6,6 @@
 
       <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
 
-      <!-- <div class="img-uploader-container" @mouseenter="isImgHover = true" @mouseleave="isImgHover = false"> -->
-      <!-- <img class="fit-img" :src="stationImg" v-if="stationImg" alt="">
-        <label>
-          <div v-if="isImgHover" class="img-change-cover flex justify-center align-center text-center">
-            <div>
-              <pencil-svg />
-              <h4 class="light">Choose photo</h4>
-            </div>
-          </div> -->
-      <!-- <music-note-svg v-else hidden /> -->
-      <!-- <input hidden type="file" accept="image/.jpg, image/.jpeg, image/.png" @change="handleFile" />
-        </label> -->
-      <!-- <div v-else> -->
-      <!-- <pencil-svg /> -->
-      <!-- </div> -->
-      <!-- </div> -->
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
