@@ -164,6 +164,7 @@ export default {
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
       this.closeSearch()
+      if (!this.station.songs.length) this.openSearch()
     }
   },
   unmounted() {
