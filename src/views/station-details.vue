@@ -1,24 +1,22 @@
 <template>
-  <section v-if="station" class="station-details">
+  <section v-if="station" class="station-details details-layout">
 
 
-    <section class="station-preview flex">
-      <div class="station-img-container">
-        <img :src="stationImg" v-if="stationImg" alt="">
-        <!-- <div v-else> -->
-        <music-note-svg v-else />
-        <!-- <pencil-svg /> -->
-        <!-- </div> -->
-      </div>
+    <section class="station-preview flex full">
+
+      <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
+
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
-        <p class="mini-dashboard"> owner | likes | {{ station.likedByUsers?.length }} songs, <span class="light">total
+        <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
+        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} | {{ station.followers?.length || 0 }}
+          likes | {{ station.songs.length }} songs, <span class="light">total
             time</span></p>
       </div>
     </section>
 
-    <station-edit v-if="isEdit" :name="station.name" :desc="station.desc" :imgUrl="stationImg" @close="isEdit = false"/>
+    <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="playlist-actions">
       <button class="btn-play-green" v-if="station.songs.length">
@@ -26,23 +24,24 @@
       </button>
       <button @click="openStationMenu" class="btn-playlist-more-options">
         <more-options-svg @click.stop="toggleStationMenu" />
-        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
-          @edit="isEdit = true" />
+        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow" @edit="isEdit = true"
+          :isFollowed="isFollowed" />
       </button>
     </section>
 
 
-    <song-list-header />
+    <song-list-header v-if="station.songs.length" />
 
     <song-list v-if="station.songs.length" :songs="station.songs" />
-    <div v-else style="padding: 10px 20px">Add some songs</div>
+
+    <button v-if="(!isSearchOpen)" @click="openSearch" class="btn-find-more">Find more</button>
+    <section v-else>
+      <station-song-search @closeSearch="closeSearch" />
+      <station-song-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
+    </section>
 
   </section>
 </template>
-
-
-
-
 
 
 <script>
@@ -53,6 +52,9 @@ import songList from '../cmps/song-list.vue'
 import songListHeader from '../cmps/song-list-header.vue'
 import stationMenu from '../cmps/station-menu.vue'
 import stationEdit from '../cmps/station-edit.vue'
+import stationSongSearch from '../cmps/station-song-search.vue'
+import stationSongList from '../cmps/station-song-list.vue'
+import imgUploader from '../cmps/img-uploader.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -64,7 +66,10 @@ export default {
     return {
       station: null,
       isStationMenuOpen: false,
-      isEdit: false
+      isEdit: false,
+      isSearchOpen: false,
+      isImgHover: false
+
     }
   },
   computed: {
@@ -75,14 +80,17 @@ export default {
       return this.$store.getters.stations
     },
     stationImg() {
-      return this.station.imgUrl || this.station.songs[0]?.imgUrl
+      return this.station.imgUrl || this.station.songs[0]?.imgUrl.high || this.station.songs[0]?.imgUrl
     },
     stationId() {
       const id = this.$route.params.id || this.station?._id
       return id
     },
     isFollowed() {
-      return this.loggedInUser.followedStations.some(station => station._id = this.stationId)
+      return this.loggedInUser.stations.some(station => station._id === this.stationId)
+    },
+    searchedSongs() {
+      return this.$store.getters.searchedSongs
     }
   },
   mounted() {
@@ -111,12 +119,12 @@ export default {
         showErrorMsg('Cannot remove station')
       }
     },
-    async updateStation(station) {
+    async updateStation(editedStation) {
       try {
-        station = { ...station }
-        station.name = prompt('New name?', station.name)
-        await this.$store.dispatch(getActionUpdateStation(station))
+        editedStation = { ...this.station, ...editedStation }
+        await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Station updated')
+        this.loadStation()
 
       } catch (err) {
         console.log(err)
@@ -124,27 +132,55 @@ export default {
       }
     },
     async loadStation() {
-      this.station = await stationService.getById(this.stationId)
+      this.station = JSON.parse(JSON.stringify(await stationService.getById(this.stationId)))
       console.log('station', this.station)
     },
     toggleStationMenu() {
       this.isStationMenuOpen = !this.isStationMenuOpen
+    },
+    openSearch() {
+      this.isSearchOpen = true
+    },
+    closeSearch() {
+      this.isSearchOpen = false
+    },
+    async addSongToStation(song) {
+      try {
+        const editedStation = JSON.parse(JSON.stringify(this.station))
+        editedStation.songs.push(song)
+        await this.$store.dispatch(getActionUpdateStation(editedStation))
+        showSuccessMsg('Added to playlist')
+        this.loadStation()
+      } catch {
+        console.log(err)
+        showErrorMsg('Failed adding song to station')
+      }
     }
   },
   watch: {
     stationId() {
       this.loadStation()
+    },
+    station() {
+      this.$store.commit({ type: 'setCurrStation', station: this.station })
+      this.closeSearch()
     }
+  },
+  unmounted() {
+    this.$store.commit({ type: 'clearCurrStation' })
   },
   components: {
     songList,
     stationMenu,
     songListHeader,
     stationEdit,
+    imgUploader,
     playBtn,
     moreOptionsSvg,
     pencilSvg,
     musicNoteSvg,
+    stationSongSearch,
+    stationSongList,
   }
 
 

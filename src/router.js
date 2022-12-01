@@ -16,9 +16,7 @@ import likedSongs from './views/liked-songs.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: home
-  },
+    redirect: '/station'  },
   {
     path: '/car',
     name: 'car-app',

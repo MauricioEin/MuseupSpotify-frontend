@@ -25,8 +25,11 @@ export default {
 
   created() {
     console.log('Vue App created')
-    const user = userService.getLoggedinUser()
+    var user = userService.getLoggedinUser()
+    // if (!user) user={_id:'demo', name: 'demo', likedSongs:[], stations:[]}
+    
     if (user) store.commit({ type: 'setLoggedinUser', user })
+    this.$store.dispatch({type:'loadStations'})
   },
   components: {
     appHeader,

@@ -1,6 +1,6 @@
 <template>
     <section class="song-list">
-        <ul>
+        <ul class="clean-list">
             <song-preview v-for="(song, index) in songs" :song="song" :index="index" :key="song._id" />
         </ul>
     </section>

@@ -1,9 +1,9 @@
 <template>
     <section class="song-list-header">
         <div class="list-song-index">#</div>
-        <div class="list-song-title"><small>Title</small></div>
+        <div class="list-song-title">Title</div>
         <div></div>
-        <div class="list-song-date"><small>Date Added</small></div>
+        <div class="list-song-date">Date Added</div>
         <div class="list-song-length song-preview-actions"><small>
                 <clock-svg />
             </small></div>

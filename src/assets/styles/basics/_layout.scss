@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: 20px 1fr 20px;
 
-    > * {
+    >* {
         grid-column: 2;
 
         &.full {
@@ -16,22 +16,18 @@
     }
 
     @include for-narrow-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $mobile-breakpoint)
-            minmax(20px, 1fr);
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, $mobile-breakpoint) minmax(20px, 1fr);
     }
+
     @include for-normal-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $narrow-breakpoint)
-            minmax(20px, 1fr);
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, $narrow-breakpoint) minmax(20px, 1fr);
     }
+
     @include for-wide-layout {
-        grid-template-columns: 
-            minmax(20px, 1fr)
-            minmax(auto, $normal-breakpoint)
-            minmax(20px, 1fr);
+        grid-template-columns:
+            minmax(20px, 1fr) minmax(auto, $normal-breakpoint) minmax(20px, 1fr);
     }
 }
 
@@ -43,12 +39,27 @@
 
 
 // for station app specifically
-.app-layout{
-height: 100vh;
+.app-layout {
+    height: calc(100vh - 90px);
 }
-.main-layout{
+
+.main-layout {
     flex-grow: 1;
-    overflow-y:auto;
+    overflow-y: auto;
     overflow-x: hidden;
-    height:100%;
+    height: 100%;
+}
+
+.details-layout {
+
+    display: grid;
+    grid-template-columns: 30px 1fr 30px;
+
+    >* {
+        grid-column: 2;
+
+        &.full {
+            grid-column: 1 /-1;
+        }
+    }
 }

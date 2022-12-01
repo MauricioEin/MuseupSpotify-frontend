@@ -64,7 +64,7 @@ async function save(station) {
         savedStation = await storageService.post(STORAGE_KEY, station)
         // stationChannel.postMessage(getActionAddStation(savedStation))
     }
-    return savedStation
+    return JSON.parse(JSON.stringify(savedStation))
 }
 
 function getEmptyStation() {
@@ -72,13 +72,15 @@ function getEmptyStation() {
         name: 'My Playlist #' + (Date.now() % 1000),
         imgUrl: '',
         createdAt: Date.now(),
+        followers: [],
         songs: [{
             id: 's1001',
             title: 'The Meters - Cissy Strut',
             url: 'youtube/song.mp4',
             imgUrl: 'https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg',
             addedBy: '{minimal-user}',
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            length: '3:07'
         },
         {
             id: 'mUkfiLjooxs',
@@ -86,30 +88,37 @@ function getEmptyStation() {
             url: 'youtube/song.mp4',
             imgUrl: 'https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg',
             addedBy: {},
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            length: '3:31'
         }]
     }
 }
 
 async function searchSongs(searchStr) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr}`
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr + ' song'}`
     const res = await axios.get(url)
     // console.log('res', res.data.items)
-    return _prepareSongSearchPreviews(res.data.items)
+    const songs = await _prepareSongSearchPreviews(res.data.items)
+    console.log("🚀 ~ file: station.service.js:102 ~ searchSongs ~ songs", songs)
+    return songs
 }
 
 async function updateFollowers(station, miniUser, isToFollow) {
+    station.followers = station.followers ? station.followers : []
     isToFollow ? station.followers.push(miniUser)
         : station.followers = station.followers.filter(user => user._id !== miniUser._id)
     return save(station)
 }
 
-function _prepareSongSearchPreviews(items) {
-    return items.map(({ id, snippet }) => {
+async function _prepareSongSearchPreviews(items) {
+    const songs = await items.map(async ({ id, snippet }) => {
         let imgUrls = {}
         for (let size in snippet.thumbnails) {
             imgUrls[size] = snippet.thumbnails[size].url
         }
+        const songLength = await _getSongLength(id.videoId)
+        console.log("🚀 ~ file: station.service.js:119 ~ returnitems.map ~ songLength", songLength)
+        // console.log(_getSongLength(id.videoId));
 
         return {
             id: utilService.makeId(),
@@ -117,11 +126,30 @@ function _prepareSongSearchPreviews(items) {
             youtubeId: id.videoId,
             imgUrl: imgUrls,
             addedBy: {},
-            createdAt: Date.now()
+            createdAt: Date.now(),
+            length: songLength,
         }
     })
+    return Promise.all(songs).then(songs => songs)
 }
 
+async function _getSongLength(videoId) {
+    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY}`
+    const res = await axios.get(url)
+    const data = res.data.items[0].contentDetails.duration
+    // data returned: PT3H46M32S
+    let hours
+    let mins
+    if (data.includes('H')) {
+        hours = data.slice(2, data.indexOf('H'))
+        mins = data.slice(data.indexOf('H') + 1, data.indexOf('M'))
+    } else {
+        mins = data.slice(2, data.indexOf('M'))
+    }
+    const secs = data.slice(data.indexOf('M') + 1, data.indexOf('S'))
+    if (hours) return `${hours}:${mins.padStart(2, 0)}:${secs.padStart(2, 0)}`
+    else return `${mins}:${secs.padStart(2, 0)}`
+}
 
 
 // TEST DATA

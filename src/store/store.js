@@ -23,8 +23,8 @@ export const store = Vuex.createStore({
     async followStation({ state, commit }, { station, isToFollow }) {
       try {
         const miniUser = {
-          _id: state.loggedinUser._id,
-          username: state.loggedinUser.username
+          _id: state.userStore.loggedinUser._id,
+          username: state.userStore.loggedinUser.username
         }
         const miniStation = {
           _id: station._id,

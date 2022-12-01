@@ -6,7 +6,7 @@
         <small class="song-title">{{ song.title }}</small>
         <div class="song-preview-actions">
             <button @click="toggleLike" class="btn-like-song" ref="search-like-btn"><heart-empty-svg /></button>
-            <div class="song-length">3:13</div>
+            <div class="song-length">{{ song.length }}</div>
             <button class="btn-more-options"><more-options-svg /></button>
         </div>
     </section>
