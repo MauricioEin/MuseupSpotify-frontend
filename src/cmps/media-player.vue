@@ -7,7 +7,7 @@
         <div class="player-section">
 
             <YouTube 
-                src="https://www.youtube.com/watch?v=CMSAELTTgrk" 
+                :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" 
                 @ready="getDuration"
                 @state-change="onStateChanged"
                 ref="youtube" />
@@ -20,7 +20,7 @@
                             <a href="" class="player-song-name">{{ currSongPlaying.title }}</a>
                             <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                         </div>
-                        <heart-svg/>
+                        <button><heart-svg/></button>
                     </div>
         
                     <div class="center-controls" :class="setFull">
@@ -80,8 +80,8 @@ export default defineComponent({
             isFullscreen: false,
             volume:0,
             currSongIdx: 0,
-            originalList: ['nukZQTFsA10', 'ogCih4OavoY','-tWhPv2U6aQ'],
-            songList: ['nukZQTFsA10', 'ogCih4OavoY','-tWhPv2U6aQ'],
+            originalList:[],
+            songList: [],
             currTime: 0,
             duration: null,
             timeInterval: '',
@@ -93,7 +93,7 @@ export default defineComponent({
         this.originalList = this.$store.getters.getPlayingStation
         this.songList = this.$store.getters.getPlayingStation
         this.currSongPlaying = this.songList[0] 
-        console.log(this.originalList);
+        console.log(this.songList);
     },
     
     methods: {
@@ -140,8 +140,13 @@ export default defineComponent({
 
         changeSong(dir){
             this.currSongIdx += dir
-            this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx])
-          
+
+            if(!this.currSongIdx) this.currSongIdx = this.songList.length -1
+            if(this.currSongIdx === this.songList.length) this.currSongIdx = 0
+            console.log(this.currSongIdx);
+            console.log(this.songList[this.currSongIdx]);
+            this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
+            this.currSongPlaying = this.songList[this.currSongIdx]
             this.isPlayed = true
             clearInterval(this.timeInterval)
             this.updateCurrTime()
