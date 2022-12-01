@@ -5,6 +5,7 @@
     <app-nav />
     <section class="main-layout">
       <router-view />
+      <media-player/>
     </section>
   </section>
 </template>
@@ -17,7 +18,7 @@ import appHeader from './cmps/app-header.vue'
 import appNav from './cmps/app-nav.vue'
 import userMsg from './cmps/user-msg.vue'
 import { userService } from './services/user.service'
-
+import mediaPlayer from './cmps/media-player.vue'
 
 export default {
 
@@ -29,7 +30,8 @@ export default {
   components: {
     appHeader,
     userMsg,
-    appNav
+    appNav,
+    mediaPlayer,
   },
 }
 </script>
