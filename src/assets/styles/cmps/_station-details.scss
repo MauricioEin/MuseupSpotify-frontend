@@ -4,7 +4,7 @@
     .station-preview {
         gap: 25px;
         align-items: flex-end;
-        height:60vh;
+        height: 60vh;
         padding: 120px 20px 24px;
         background: rgb(60, 60, 68);
         background: linear-gradient(180deg, rgba(60, 60, 68, 1) 0%, rgba(29, 29, 33, 1) 100%);
@@ -41,10 +41,15 @@
                 font-weight: 900;
             }
 
-            p{
+            .summary-title{
+                font-size: .75rem;
+                margin-bottom: 0;
+            }
+
+            .mini-dashboard {
                 font-size: 0.875rem;
                 margin-bottom: 0;
-                ;
+                line-height: normal;
             }
         }
     }
@@ -54,6 +59,11 @@
 
         .btn-playlist-more-options {
             position: relative;
+            color: $clr4;
+
+            :hover{
+                color:$clr2;
+            }
         }
     }
 

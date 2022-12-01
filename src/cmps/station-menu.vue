@@ -1,5 +1,5 @@
 <template>
-    <section class="station-menu" @click="">
+    <section class="station-menu">
         <button @click="$emit('queue')">Add to queue</button>
         <button @click="$emit('follow')">Add to profile</button>
         <button @click="$emit('edit')">Edit details</button>

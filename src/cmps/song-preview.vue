@@ -3,7 +3,7 @@
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">{{ index + 1 }}</div>
         <div class="song-img-container">
-            <img :src="song.imgUrl" alt="">
+            <img :src="imgUrl" alt="">
         </div>
         <div class="song-title">{{ song.title }}</div>
         <!-- </div> -->
@@ -32,6 +32,9 @@ export default {
         dateAdded() {
             const d = new Date(this.song.createdAt)
             return d.toLocaleDateString('he-IL')
+        },
+        imgUrl() {
+            return this.song.imgUrl
         }
     },
     components: {

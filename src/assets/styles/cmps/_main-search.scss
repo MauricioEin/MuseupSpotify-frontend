@@ -1,0 +1,30 @@
+.main-search {
+    display: flex;
+    width: rem(364px);
+
+    input {
+        height: 40px;
+        border-radius: 500px;
+        width: 100%;
+        padding: 6px 48px;
+        border: 0;
+        color: black;
+
+        &:focus-visible {
+            outline: unset;
+        }
+
+        // TODO change x button in search
+        &::-webkit-search-cancel-button {
+            cursor: pointer;
+            position: relative;
+            left: 35px;
+
+            // -webkit-appearance: none;
+            // background-image: image-url('../../svgs/x-btn-svg.vue');
+            // height: 18px;
+            // width: 18px;
+            // border-radius: 10px;
+        }
+    }
+}
