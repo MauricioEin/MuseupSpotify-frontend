@@ -11,12 +11,15 @@
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
-        <p class="mini-dashboard"> {{station.owner?.username}} | likes | {{ station.likedByUsers?.length }} songs, <span class="light">total
+        <p class="station-desc pointer light" @click="isEdit = true">{{ station.desc }}</p>
+        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} | {{ station.followers.length }} likes |
+          {{ station.songs.length }} songs, <span class="light">total
             time</span></p>
       </div>
     </section>
 
-    <station-edit v-if="isEdit" :name="station.name" :desc="station.desc" :imgUrl="stationImg" @close="isEdit = false"/>
+    <station-edit v-if="isEdit" :station="station" :altImg="stationImg" 
+    @close="isEdit = false" @save="updateStation" />
 
     <section class="playlist-actions">
       <button class="btn-play-green" v-if="station.songs.length">
@@ -24,8 +27,8 @@
       </button>
       <button @click="openStationMenu" class="btn-playlist-more-options">
         <more-options-svg @click.stop="toggleStationMenu" />
-        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
-          @edit="isEdit = true" />
+        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow" @edit="isEdit = true"
+          :isFollowed="isFollowed" />
       </button>
     </section>
 
@@ -109,12 +112,12 @@ export default {
         showErrorMsg('Cannot remove station')
       }
     },
-    async updateStation(station) {
+    async updateStation(editedStation) {
       try {
-        station = { ...station }
-        station.name = prompt('New name?', station.name)
-        await this.$store.dispatch(getActionUpdateStation(station))
+        editedStation = {...this.station, ...editedStation }
+        await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Station updated')
+        this.loadStation()
 
       } catch (err) {
         console.log(err)
@@ -127,7 +130,7 @@ export default {
     },
     toggleStationMenu() {
       this.isStationMenuOpen = !this.isStationMenuOpen
-    }
+    },
   },
   watch: {
     stationId() {

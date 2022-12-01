@@ -41,9 +41,13 @@
                 font-weight: 900;
             }
 
-            .summary-title{
+            .summary-title {
                 font-size: .75rem;
                 margin-bottom: 0;
+            }
+
+            .station-desc {
+                margin: 0;
             }
 
             .mini-dashboard {
@@ -61,8 +65,8 @@
             position: relative;
             color: $clr4;
 
-            :hover{
-                color:$clr2;
+            :hover {
+                color: $clr2;
             }
         }
     }
@@ -79,6 +83,9 @@
         grid-template-columns: 40px 40px 2fr 1fr 120px;
         gap: 10px;
         font-family: gotham-light;
+        font-size: 0.75rem;
+        font-weight: 560;
+        letter-spacing: 1px;
 
         .list-song-index {
             justify-self: center;

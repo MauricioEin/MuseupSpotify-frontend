@@ -5,6 +5,7 @@
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, .7);
+    z-index: 30;
 }
 
 .station-edit {
@@ -103,37 +104,31 @@
         }
 
         .save-container {
-            align-items: center;
-            display: -webkit-box;
-            display: -ms-flexbox;
-            display: flex;
             grid-area: save-button;
             justify-self: flex-end;
 
             button {
-                box-sizing: border-box;
-                -webkit-tap-highlight-color: transparent;
                 font-size: 1rem;
-                font-weight: 700;
-                font-family: var(--font-family, CircularSp, CircularSp-Arab, CircularSp-Hebr, CircularSp-Cyrl, CircularSp-Grek, CircularSp-Deva, var(--fallback-fonts, sans-serif));
-                background-color: transparent;
+                font-weight: bold;
                 border: 0px;
                 border-radius: 500px;
-                display: inline-block;
-                position: relative;
-                text-align: center;
-                text-decoration: none;
-                text-transform: none;
-                touch-action: manipulation;
-                transition-duration: 33ms;
-                transition-property: background-color, border-color, color, box-shadow, filter, transform;
-                user-select: none;
-                vertical-align: middle;
-                transform: translate3d(0px, 0px, 0px);
-                padding: 0px;
-                min-inline-size: 0px;
-                align-self: center;
+                transform: translateY(-5px);
+                margin: 0;
+                background-color: $clr2;
+                color: $clr6;
+                padding: .8em 2em;
+
+                &:hover {
+                    padding: .9em 2.1em;
+                    transform: translateX(.05em);
+                    transform: translateY(calc( -5px - 0.05em));
+                    opacity:0.95;
+
+                    // transform: translate(.05em, -.05em);
+                }
             }
+
+
         }
     }
 }
