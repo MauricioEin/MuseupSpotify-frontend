@@ -17,6 +17,22 @@
         }
     }
 
+    progress{
+        height: 4px;
+        appearance: none;
+        background: gray;
+        width: 100%;
+        margin: 5px;
+        border-radius: 8px;
+        transition: 0.2s ease;
+        background-color: #5e5e5e;
+        &::-webkit-progress-value{
+                background-color: white;
+                border-radius: 20px;
+        }
+    
+    }
+
     input {
         height: 4px;
         appearance: none;
@@ -26,20 +42,19 @@
         border-radius: 8px;
         transition: 0.2s ease;
         background-color: #5e5e5e;
+        cursor: pointer;
+        
 
-            &::-webkit-slider-thumb {
+        &::-webkit-slider-thumb {
             -webkit-appearance: none;
             /* display: none; */
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: green;
+            background-color: #1ab24f;
             cursor: pointer;
           }
         
-            &:hover {
-                background: green;
-            }
             &::-webkit-slider-thumb:hover {
                 background-color: $clr2;
             }
@@ -47,9 +62,16 @@
             &::-webkit-progress-bar{
                 background-color: $clr2;
             }
+
+            &::-webkit-progress-value {
+                background-color: red;
+              }
             
       }
 }
+
+
+
 .controls{
     position: absolute;
     bottom: 0;
@@ -124,8 +146,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
+   
+    input{
+        display: block;
+    }
     
+    progress{
+        display: none;
+    }
+    &:hover {
+        input{
+            display: block;
+        }
+        
+        progress{
+            display: none;
+        }
+    }
 }
+
+
 
 .bottom-center-controls{
     display: flex;
@@ -141,6 +181,21 @@
 
     span{
         color: $clr4;
+    }
+
+    input{
+        display: none;
+    }
+
+    &:hover{
+        input{
+            display: block;
+            // position: absolute;
+        }
+    
+        progress{
+            display: none;
+        }
     }
 }
 

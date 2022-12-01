@@ -1,44 +1,55 @@
 <template>
-    <section class="media-player">
-        <YouTube 
-            src="https://www.youtube.com/watch?v=tCXGJQYZ9JA" 
-            @ready="getDuration"
-            @state-change="onStateChanged"
-            ref="youtube" />
-    
-            <div class="controls">
-    
-                <div class="left-controls">
-                    <img src="https://upload.wikimedia.org/wikipedia/he/a/a2/Coldplay_-_My_Universe.png" alt="">
-                    <div class="artist-details">
-                        <a href="" class="player-song-name">My Universe</a>
-                        <a href="" class="player-artist-name">Coldplay, BTS</a>
+    <section class="media-player" :class="setFull">
+
+        <img class="fit-img album " :class="setFull" src="https://assets.fontsinuse.com/static/use-media-items/52/51196/full-1500x1500/58f577f9/C9H8-PWUIAAzbQ2-jpg-large-e.jpeg" alt="">
+
+
+        <div class="player-section">
+
+            <YouTube 
+                src="https://www.youtube.com/watch?v=CMSAELTTgrk" 
+                @ready="getDuration"
+                @state-change="onStateChanged"
+                ref="youtube" />
+        
+                <div class="controls" :class="setFull">
+        
+                    <div class="left-controls" :class="setFull">
+                        <img :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+                        <div  :class="setFull" class="artist-details">
+                            <a href="" class="player-song-name">{{ currSongPlaying.title }}</a>
+                            <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
+                        </div>
+                        <heart-svg/>
                     </div>
-                    <heart-svg/>
+        
+                    <div class="center-controls" :class="setFull">
+                        <div class="top-center-controls">
+                            <button @click="(isShuffled) ? restoreOriginalList() : shuffleList()" ><random-svg :style="shuffleStyle"/></button>
+                            <button @click="changeSong(-1)"><prev-svg/></button>
+                            <button @click="togglePlay" class="play-btn"> <play-svg v-if="!isPlayed"/> <stop-svg v-else /></button>
+                            <button @click="changeSong(1)"><next-svg/></button>
+                            <button @click="(isLoop = !isLoop)"><loop-svg :style="loopStyle"/></button>
+                        </div>
+                        <div class="bottom-center-controls" :class="setFull">
+                            <span class="time-progress">{{ formattedTime(currTime) }}</span>
+                            <input class="timestamp" @input="setTimestamp"  type="range" :value="currTime" min="0" :max='duration'> 
+                            <progress :value="currTime" type="progress" min="0" :max='duration'></progress>                  
+                            <span class="time-progress">{{ formattedTime(duration) }}</span>
+                        </div>
+                    </div>
+        
+                    <div class="right-controls" :class="setFull">
+                        <button @click="toggleMute"><sound-svg v-if="!isMute"/> <muted-svg v-else/> </button>
+                        <input class="volume" @input="setVolume" type="range" min="0" max="100">
+                        <progress class="prog" :value="volume" min="0" max="100"></progress>
+                        <button @click="(isFullscreen = !isFullscreen)"><full-svg v-if="!isFullscreen"/> <minimize-svg v-else/></button>
+                    </div>
+                    
                 </div>
     
-                <div class="center-controls">
-                    <div class="top-center-controls">
-                        <button @click="randomSong"><random-svg/></button>
-                        <button @click="changeSong(-1)"><prev-svg/></button>
-                        <button @click="togglePlay" class="play-btn"> <play-svg v-if="!isPlayed"/> <stop-svg v-else /></button>
-                        <button @click="changeSong(1)"><next-svg/></button>
-                        <button><loop-svg/></button>
-                    </div>
-                    <div class="bottom-center-controls">
-                        <span class="time-progress">{{ formattedTime(currTime) }}</span>
-                        <input @input="setTimestamp"  type="range" :value="currTime" min="0" :max='duration'>                   
-                        <span class="time-progress">{{ formattedTime(duration) }}</span>
-                    </div>
-                </div>
-    
-                <div class="right-controls">
-                    <button @click="toggleMute"><sound-svg v-if="!isMute"/> <muted-svg v-else/> </button>
-                    <input @input="setVolume" type="range" min="0" max="100">
-                </div>
-                
             </div>
-    </section>
+        </section>
 </template>
 
 <script>
@@ -55,20 +66,34 @@ import soundSvg from '../assets/svgs/media-player-sound.vue'
 import mutedSvg from '../assets/svgs/media-player-muted.vue'
 import heartSvg from '../assets/svgs/media-player-heart.vue'
 import loopSvg from '../assets/svgs/media-player-loop.vue'
+import fullSvg from '../assets/svgs/media-player-full.vue'
+import minimizeSvg from '../assets/svgs/media-player-minimize.vue'
 
 export default defineComponent({
-
+    //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
     data(){
         return{
             isPlayed: false,
             isMute: false,
             isLoop: false,
+            isShuffled: false,
+            isFullscreen: false,
+            volume:0,
             currSongIdx: 0,
-            songList:['1w7OgIMMRc4', 'jNQXAC9IVRw','-tWhPv2U6aQ'],
+            originalList: ['nukZQTFsA10', 'ogCih4OavoY','-tWhPv2U6aQ'],
+            songList: ['nukZQTFsA10', 'ogCih4OavoY','-tWhPv2U6aQ'],
             currTime: 0,
             duration: null,
             timeInterval: '',
+            currSongPlaying: {}
         }
+    },
+    
+    created(){
+        this.originalList = this.$store.getters.getPlayingStation
+        this.songList = this.$store.getters.getPlayingStation
+        this.currSongPlaying = this.songList[0] 
+        console.log(this.originalList);
     },
     
     methods: {
@@ -77,8 +102,10 @@ export default defineComponent({
                 this.getDuration()
             }
 
-            if(e.data === 0){
+            if(e.data === 0 && !this.isLoop){ 
                 this.changeSong(1)
+            }else if(e.data === 0 && this.isLoop){
+                this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx])
             }
 
         },
@@ -107,6 +134,7 @@ export default defineComponent({
 
         setVolume(e) {
             const volume = e.target.value
+            this.volume = volume
             this.$refs.youtube.setVolume(volume)
         },
 
@@ -151,10 +179,37 @@ export default defineComponent({
             return minutes.toString() + ':' + seconds
         },
 
-        randomSong(){
-            const randomRange = this.songList.length - 1
-            const randIdx = utilService.getRandomIntInclusive(0, randomRange)
-            this.$refs.youtube.loadVideoById(this.songList[randIdx])
+        shuffleList(){
+            const formatted = Array.from(this.songList)
+            const shuffled = utilService.shuffle(formatted)
+            this.songList = shuffled
+            this.isShuffled = true
+
+            console.log(this.songList);
+        },
+        
+        restoreOriginalList(){
+            this.songList = this.originalList
+            this.isShuffled = false
+            console.log(this.songList);
+        },
+
+        setFullscreen(){
+
+        },
+    },
+
+    computed:{
+        shuffleStyle(){
+            return (this.isShuffled) ? {fill: '#1ED760'} : {}
+        },
+
+        loopStyle(){
+            return (this.isLoop) ? {fill: '#1ED760'} : {}
+        },
+
+        setFull(){
+            return (this.isFullscreen) ? 'full' : ''
         },
     },
 
@@ -168,7 +223,9 @@ export default defineComponent({
         soundSvg,
         mutedSvg,
         heartSvg,
-        loopSvg
+        loopSvg,
+        fullSvg,
+        minimizeSvg
         },
 })
 </script>

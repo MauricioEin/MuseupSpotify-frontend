@@ -1,0 +1,52 @@
+.media-player.full{
+    // background-image: url(https://assets.fontsinuse.com/static/use-media-items/52/51196/full-1500x1500/58f577f9/C9H8-PWUIAAzbQ2-jpg-large-e.jpeg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    // display: none;
+    // display: block;
+}
+
+.album{
+    // display: none;
+    // display: block;
+    opacity: 0;
+    transition: opacity .4s;
+}
+
+.album.full{
+    display: block;
+    // height: 95%;
+    filter: brightness(20%);
+    opacity: 1;
+    transition: opacity .4s;
+}
+
+.bottom-center-controls.full{
+    position: absolute;
+    bottom: 90px;
+    padding: 0 16px;
+}
+
+.controls.full{
+    background-color: transparent;
+    border: 0;
+    justify-content: space-between;
+}
+
+.left-controls.full{
+    /* position: absolute;
+    left: 0;
+    padding-left: 16px; */
+    width: 230px;
+}
+
+.heart-svg.full{
+    padding-left: 0;
+}
+.full-svg.full{
+    padding-right: 0;
+}

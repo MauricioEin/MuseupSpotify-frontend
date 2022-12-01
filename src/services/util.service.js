@@ -3,7 +3,8 @@ export const utilService = {
     makeLorem,
     getRandomIntInclusive,
     delay,
-    debounce
+    debounce,
+    shuffle
 }
 
 function makeId(length = 6) {
@@ -51,4 +52,8 @@ function debounce(func, wait = 500) {
         clearTimeout(timeout)
         timeout = setTimeout(later, wait)
     }
+}
+
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
 }

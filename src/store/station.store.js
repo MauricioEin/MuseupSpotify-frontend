@@ -23,10 +23,14 @@ export const stationStore = {
     state: {
         stations: [],
         searchedSongs: [],
+        playingStation: [{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}],
     },
     getters: {
         stations({ stations }) { return stations },
-        searchedSongs({ searchedSongs }) { return searchedSongs }
+        searchedSongs({ searchedSongs }) { return searchedSongs },
+        getPlayingStation(state){
+            return state.playingStation
+        }
     },
     mutations: {
         setStations(state, { stations }) {
