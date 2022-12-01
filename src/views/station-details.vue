@@ -104,6 +104,17 @@ export default {
         }
         return acc
       }, { sec: 0, min: 0, hour: 0 })
+
+      while (time.sec > 60) {
+        time.sec -= 60
+        time.min++
+      }
+
+      while (time.min > 60) {
+        time.min -= 60
+        time.hour++
+      }
+
       if (time.hour) return `${time.hour} hr ${time.min} min`
       else return `${time.min} min ${time.sec} sec`
     }
@@ -179,7 +190,6 @@ export default {
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
       this.closeSearch()
-      if (!this.station.songs.length) this.openSearch()
     }
   },
   unmounted() {
