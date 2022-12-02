@@ -23,21 +23,21 @@ export const stationStore = {
     state: {
         stations: [],
         searchedSongs: [],
-        playingStation:[
-            {title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubeId: 'bZYPI4mYwhw'},
-            {title:'Bruno Mars -Talking to the moon', imgUrl:'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI'},
-            {title:'Gunz N Roses - Dont Cry', imgUrl:'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0'}
+        playingStation: [
+            { title: 'Coldplay - Universe', imgUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubeId: 'bZYPI4mYwhw' },
+            { title: 'Bruno Mars -Talking to the moon', imgUrl: 'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI' },
+            { title: 'Gunz N Roses - Dont Cry', imgUrl: 'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0' }
         ],
-        playingSongIdx:0,
+        playingSongIdx: 0,
         currStation: null
     },
     getters: {
         stations({ stations }) { return stations },
         searchedSongs({ searchedSongs }) { return searchedSongs },
-        getPlayingStation(state){
+        getPlayingStation(state) {
             return state.playingStation
         },
-        getPlayingSongIdx(state){
+        getPlayingSongIdx(state) {
             return state.playingSongIdx
         },
         currStation({ currStation }) { return currStation }
@@ -72,12 +72,17 @@ export const stationStore = {
         clearCurrStation(state) {
             state.currStation = null
         },
+        playSong(state, { song }) {
+            const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
+            state.playingStation = [songCopy]
+            state.playingSongIdx = 0
+        }
     },
     actions: {
         async addStation(context, { station }) {
             try {
-                const user = {...context.getters.loggedinUser}
-                console.log('user:',user)
+                const user = { ...context.getters.loggedinUser }
+                console.log('user:', user)
                 // station.owner = context.getters.loggedinUser
                 // console.log('user:',context.rootState.userStore.loggedinUser)
                 station.owner = user
@@ -86,7 +91,7 @@ export const stationStore = {
 
                 context.commit(getActionAddStation(station))
                 const { name, desc, _id, imgUrl, owner } = station
-                console.log('owner:',owner)
+                console.log('owner:', owner)
                 context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner.username } })
 
                 return station

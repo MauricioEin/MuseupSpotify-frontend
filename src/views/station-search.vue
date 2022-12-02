@@ -1,6 +1,6 @@
 <template>
   <section class="station-search">
-    <main-search-list :songs="searchedSongs" />
+    <main-search-list v-if="searchedSongs.length" :songs="searchedSongs" />
   </section>
 </template>
 
