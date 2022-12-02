@@ -6,50 +6,51 @@
 
         <div class="player-section">
 
-            <YouTube 
-                :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" 
-                @ready="getDuration"
-                @state-change="onStateChanged"
-                ref="youtube" />
-        
-                <div class="controls" :class="setFull">
-        
-                    <div class="left-controls" :class="setFull">
-                        <img :class="setFull" :src="currSongPlaying.imgUrl" alt="">
-                        <div  :class="setFull" class="artist-details">
-                            <a href="" class="player-song-name">{{ currSongPlaying.title }}</a>
-                            <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
-                        </div>
-                        <button><heart-svg/></button>
+            <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
+                @state-change="onStateChanged" ref="youtube" />
+
+            <div class="controls" :class="setFull">
+
+                <div class="left-controls" :class="setFull">
+                    <img :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+                    <div :class="setFull" class="artist-details">
+                        <a href="" class="player-song-name">{{ currSongPlaying.title }}</a>
+                        <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
-        
-                    <div class="center-controls" :class="setFull">
-                        <div class="top-center-controls">
-                            <button @click="(isShuffled) ? restoreOriginalList() : shuffleList()" ><random-svg :style="shuffleStyle"/></button>
-                            <button @click="changeSong(-1)"><prev-svg/></button>
-                            <button @click="togglePlay" class="play-btn"> <play-svg v-if="!isPlayed"/> <stop-svg v-else /></button>
-                            <button @click="changeSong(1)"><next-svg/></button>
-                            <button @click="(isLoop = !isLoop)"><loop-svg :style="loopStyle"/></button>
-                        </div>
-                        <div class="bottom-center-controls" :class="setFull">
-                            <span class="time-progress">{{ formattedTime(currTime) }}</span>
-                            <input class="timestamp" @input="setTimestamp"  type="range" :value="currTime" min="0" :max='duration'> 
-                            <progress :value="currTime" type="progress" min="0" :max='duration'></progress>                  
-                            <span class="time-progress">{{ formattedTime(duration) }}</span>
-                        </div>
-                    </div>
-        
-                    <div class="right-controls" :class="setFull">
-                        <button @click="toggleMute"><sound-svg v-if="!isMute"/> <muted-svg v-else/> </button>
-                        <input class="volume" @input="setVolume" type="range" min="0" max="100">
-                        <progress class="prog" :value="volume" min="0" max="100"></progress>
-                        <button @click="(isFullscreen = !isFullscreen)"><full-svg v-if="!isFullscreen"/> <minimize-svg v-else/></button>
-                    </div>
-                    
+                    <button><heart-svg /></button>
                 </div>
-    
+
+                <div class="center-controls" :class="setFull">
+                    <div class="top-center-controls">
+                        <button @click="(isShuffled) ? restoreOriginalList() : shuffleList()"><random-svg
+                                :style="shuffleStyle" /></button>
+                        <button @click="changeSong(-1)"><prev-svg /></button>
+                        <button @click="togglePlay" class="play-btn"> <play-svg v-if="!isPlayed" /> <stop-svg
+                                v-else /></button>
+                        <button @click="changeSong(1)"><next-svg /></button>
+                        <button @click="(isLoop = !isLoop)"><loop-svg :style="loopStyle" /></button>
+                    </div>
+                    <div class="bottom-center-controls" :class="setFull">
+                        <span class="time-progress">{{ formattedTime(currTime) }}</span>
+                        <input class="timestamp" @input="setTimestamp" type="range" :value="currTime" min="0"
+                            :max='duration'>
+                        <progress :value="currTime" type="progress" min="0" :max='duration'></progress>
+                        <span class="time-progress">{{ formattedTime(duration) }}</span>
+                    </div>
+                </div>
+
+                <div class="right-controls" :class="setFull">
+                    <button @click="toggleMute"><sound-svg v-if="!isMute" /> <muted-svg v-else /> </button>
+                    <input class="volume" @input="setVolume" type="range" min="0" max="100">
+                    <progress class="prog" :value="volume" min="0" max="100"></progress>
+                    <button @click="(isFullscreen = !isFullscreen)"><full-svg v-if="!isFullscreen" /> <minimize-svg
+                            v-else /></button>
+                </div>
+
             </div>
-        </section>
+
+        </div>
+    </section>
 </template>
 
 <script>
@@ -71,16 +72,16 @@ import minimizeSvg from '../assets/svgs/media-player-minimize.vue'
 
 export default defineComponent({
     //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
-    data(){
-        return{
+    data() {
+        return {
             isPlayed: false,
             isMute: false,
             isLoop: false,
             isShuffled: false,
             isFullscreen: false,
-            volume:50,
+            volume: 50,
             currSongIdx: this.getPlayingSongIdx,
-            originalList: this.getStation,
+            originalList: [],
             songList: [],
             currTime: 0,
             duration: null,
@@ -88,28 +89,25 @@ export default defineComponent({
             currSongPlaying: {}
         }
     },
-    
-    mounted(){
+
+    created() {
         // const station = this.$store.getters.getPlayingStation
         // const songIdx = this.$store.getters.getPlayingSongIdx
-        // this.originalList = this.songList = this.getStation
-        // this.currSongIdx = this.getPlayingSongIdx
-        setTimeout(()=>{
-            console.log(this.currSongIdx);
-            console.log(this.originalList);
-        },5000)
-        // this.currSongPlaying = this.songList[this.currSongIdx] 
+        this.originalList = this.songList = this.getStation
+        this.currSongIdx = this.getPlayingSongIdx
+        // console.log(this.currSongIdx);
+        this.currSongPlaying = this.songList[this.currSongIdx]
     },
-    
+
     methods: {
-        onStateChanged(e){    
-            if(e.data === 1){
+        onStateChanged(e) {
+            if (e.data === 1) {
                 this.getDuration()
             }
 
-            if(e.data === 0 && !this.isLoop){ 
+            if (e.data === 0 && !this.isLoop) {
                 this.changeSong(1)
-            }else if(e.data === 0 && this.isLoop){
+            } else if (e.data === 0 && this.isLoop) {
                 console.log('here', this.songList[this.currSongIdx]);
                 this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
             }
@@ -121,16 +119,16 @@ export default defineComponent({
                 this.$refs.youtube.pauseVideo()
                 this.isPlayed = false
                 clearInterval(this.timeInterval)
-            }else{
-                this.$refs.youtube.playVideo() 
+            } else {
+                this.$refs.youtube.playVideo()
                 this.isPlayed = true
                 this.updateCurrTime()
             }
         },
-        
-        toggleMute(){
-            if (this.isMute){
-                this.$refs.youtube.unMute() 
+
+        toggleMute() {
+            if (this.isMute) {
+                this.$refs.youtube.unMute()
                 this.isMute = false
             } else {
                 this.$refs.youtube.mute()
@@ -144,11 +142,11 @@ export default defineComponent({
             this.$refs.youtube.setVolume(volume)
         },
 
-        changeSong(dir){
+        changeSong(dir) {
             this.currSongIdx += dir
 
-            if(this.currSongIdx < 0) this.currSongIdx = this.songList.length -1
-            if(this.currSongIdx === this.songList.length) this.currSongIdx = 0
+            if (this.currSongIdx < 0) this.currSongIdx = this.songList.length - 1
+            if (this.currSongIdx === this.songList.length) this.currSongIdx = 0
             console.log(this.currSongIdx);
             console.log(this.songList[this.currSongIdx]);
             this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
@@ -158,7 +156,7 @@ export default defineComponent({
             this.updateCurrTime()
 
             // Video URL expample http://www.youtube.com/v/VIDEO_ID?version=3
-           
+
         },
 
         setTimestamp(e) {
@@ -166,31 +164,31 @@ export default defineComponent({
             this.$refs.youtube.seekTo(timeStamp)
         },
 
-        updateCurrTime(){
-                this.timeInterval = setInterval(()=>{
-                        const currTime = this.$refs?.youtube?.getCurrentTime()
-                        console.log(currTime);
-                        if(currTime){
-                            this.currTime = Math.floor(currTime)
-                        }
-                },1000)         
+        updateCurrTime() {
+            this.timeInterval = setInterval(() => {
+                const currTime = this.$refs?.youtube?.getCurrentTime()
+                console.log(currTime);
+                if (currTime) {
+                    this.currTime = Math.floor(currTime)
+                }
+            }, 1000)
         },
 
-        getDuration(){
-                this.duration = Math.floor(this.$refs.youtube.getDuration())
+        getDuration() {
+            this.duration = Math.floor(this.$refs.youtube.getDuration())
         },
-       
-        formattedTime(time){
+
+        formattedTime(time) {
             const duration = time
             const minutes = ('minutes:,', Math.floor(duration / 60))
             var seconds = ('seconds:,', Math.floor(((duration / 60) % 1) * 60).toString());
-            if(seconds.length < 2){
-               seconds = '0' + seconds 
-            } 
+            if (seconds.length < 2) {
+                seconds = '0' + seconds
+            }
             return minutes.toString() + ':' + seconds
         },
 
-        shuffleList(){
+        shuffleList() {
             const formatted = Array.from(this.songList)
             const shuffled = utilService.shuffle(formatted)
             this.songList = shuffled
@@ -198,58 +196,36 @@ export default defineComponent({
 
             console.log(this.songList);
         },
-        
-        restoreOriginalList(){
+
+        restoreOriginalList() {
             this.songList = this.originalList
             this.isShuffled = false
         },
 
-        setFullscreen(){
+        setFullscreen() {
 
         },
     },
 
-    computed:{
-        shuffleStyle(){
-            return (this.isShuffled) ? {fill: '#1ED760'} : {}
+    computed: {
+        shuffleStyle() {
+            return (this.isShuffled) ? { fill: '#1ED760' } : {}
         },
 
-        loopStyle(){
-            return (this.isLoop) ? {fill: '#1ED760'} : {}
+        loopStyle() {
+            return (this.isLoop) ? { fill: '#1ED760' } : {}
         },
 
-        setFull(){
+        setFull() {
             return (this.isFullscreen) ? 'full' : ''
         },
-        getStation(){
+        getStation() {
             return this.$store.getters.getPlayingStation
         },
 
-        getPlayingSongIdx(){
+        getPlayingSongIdx() {
             return this.$store.getters.getPlayingSongIdx
         },
-    },
-
-    watch:{
-        getStation(){
-            this.songList = (this.getStation)
-            // console.log(this.songList[0]);
-            this.currSongPlaying = this.songList[0]
-
-            // console.log(this.songList)
-        //    const obj = (this.getStation[0])
-        //    const obj2 = {
-        //     title: obj.title,
-        //     imgUrl: obj.imgUrl,
-        //     youtubeId: obj.youtubeId
-        //    }
-
-        // //    console.log(obj2);
-
-        //    this.currSongPlaying = obj2
-
-           console.log(this.currSongPlaying);
-        }
     },
 
     components: {
@@ -265,7 +241,7 @@ export default defineComponent({
         loopSvg,
         fullSvg,
         minimizeSvg
-        },
+    },
 })
 </script>
 
