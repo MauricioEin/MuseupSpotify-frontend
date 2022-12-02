@@ -124,6 +124,7 @@ export default defineComponent({
                 this.isPlayed = true
                 this.updateCurrTime()
             }
+            this.$store.commit({ type: 'toggleIsPlayed' })
         },
 
         toggleMute() {
@@ -210,7 +211,9 @@ export default defineComponent({
             this.originalList = this.songList = this.getStation
             this.currSongIdx = this.getPlayingSongIdx
             this.currSongPlaying = this.songList[this.currSongIdx]
-
+            if (!this.isPlayed) {
+                this.togglePlay()
+            }
         }
     },
 
@@ -233,11 +236,19 @@ export default defineComponent({
         getPlayingSongIdx() {
             return this.$store.getters.getPlayingSongIdx
         },
+
+        isPlaying() {
+            return this.$store.getters.isPlayed
+        }
     },
 
     watch: {
         getStation() {
             this.updateCurrStation()
+        },
+        isPlaying() {
+            this.isPlayed = this.isPlaying
+            this.togglePlay()
         }
     },
 
