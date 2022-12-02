@@ -15,28 +15,37 @@
     </section>
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
+    
+    <section class="song-list-container details-layout">
 
-    <section class="playlist-actions">
-      <button class="btn-play-green" v-if="station.songs.length">
-        <play-btn />
-      </button>
-      <button @click="openStationMenu" class="btn-playlist-more-options">
-        <more-options-svg @click.stop="toggleStationMenu" />
-        <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow" @edit="isEdit = true"
-          :isFollowed="isFollowed" />
-      </button>
+      <section class="playlist-actions">
+        <button class="btn-play-green" v-if="station.songs.length">
+          <play-btn />
+        </button>
+        <div class="follow-btn" @click="follow">
+          <heart-btn-svg v-if="isFollowed" class="followed"/>
+          <heart-empty-svg v-else/>
+        </div>
+        
+        <button @click="openStationMenu" class="btn-playlist-more-options">
+          <more-options-svg @click.stop="toggleStationMenu" />
+          <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
+            @edit="isEdit = true" :isFollowed="isFollowed" />
+        </button>
+      </section>
+
+
+      <song-list-header v-if="station.songs.length" />
+
+      <song-list v-if="station.songs.length" :songs="station.songs" />
+      <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
+      <!-- <section > -->
+      <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
+        @closeSearch="closeSearch" />
+      <button v-else @click="openSearch" class="btn-find-more">Find more</button>
     </section>
-
-
-    <song-list-header v-if="station.songs.length" />
-
-    <song-list v-if="station.songs.length" :songs="station.songs" />
-
-    <button v-if="(!isSearchOpen)" @click="openSearch" class="btn-find-more">Find more</button>
-    <section v-else>
-      <station-song-search @closeSearch="closeSearch" />
-      <station-song-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
-    </section>
+    <station-song-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
+    <!-- </section> -->
 
   </section>
 </template>
@@ -58,6 +67,8 @@ import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import pencilSvg from '../assets/svgs/pencil-svg.vue'
 import musicNoteSvg from '../assets/svgs/music-note-svg.vue'
+import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
+import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 
 export default {
   data() {
@@ -65,7 +76,7 @@ export default {
       station: null,
       isStationMenuOpen: false,
       isEdit: false,
-      isSearchOpen: false,
+      isSearchOpen: true,
       isImgHover: false
 
     }
@@ -189,7 +200,7 @@ export default {
     },
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
-      this.closeSearch()
+      // this.closeSearch()
     }
   },
   unmounted() {
@@ -205,6 +216,8 @@ export default {
     moreOptionsSvg,
     pencilSvg,
     musicNoteSvg,
+    heartEmptySvg,
+    heartBtnSvg,
     stationSongSearch,
     stationSongList,
   }

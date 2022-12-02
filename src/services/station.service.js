@@ -65,8 +65,8 @@ async function save(station) {
 
     } else {
         // Later, owner is set by the backend
-        station.owner = userService.getLoggedinUser() || station.owner
-        savedStation = await storageService.post(STORAGE_KEY, station)
+        station.owner = userService.getLoggedinUser()||station.owner
+        savedStation = await storageService.post(STORAGE_KEY, station) //**this is unshifting- pay attention when moving to httpSerice
         // stationChannel.postMessage(getActionAddStation(savedStation))
     }
     return JSON.parse(JSON.stringify(savedStation))
@@ -120,6 +120,7 @@ async function searchSongs(searchStr) {
 }
 
 async function updateFollowers(station, miniUser, isToFollow) {
+    station=JSON.parse(JSON.stringify(station))
     station.followers = station.followers ? station.followers : []
     isToFollow ? station.followers.push(miniUser)
         : station.followers = station.followers.filter(user => user._id !== miniUser._id)
