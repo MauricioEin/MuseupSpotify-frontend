@@ -54,3 +54,25 @@ a:hover {
     height:100%;width:100%;
     background-color: $clr6;
 }
+
+/* width */
+::-webkit-scrollbar {
+    position: absolute;
+    right: 0;
+    width: 10px;
+    /* Track */
+    &-track {
+      background: transparent;
+    }
+    
+    /* Handle */
+    &-thumb {
+      background: #888;
+    }
+    
+    /* Handle on hover */
+    &-thumb:hover {
+      background: #555;
+    }
+  }
+  
