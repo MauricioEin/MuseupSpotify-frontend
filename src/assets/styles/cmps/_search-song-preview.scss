@@ -3,8 +3,9 @@
     display: grid;
     gap: 15px;
     border-radius: 5px;
-    grid-template-columns: 40px 1fr 150px;
+    grid-template-columns: 10px 40px 1fr 150px;
     align-items: center;
+    font-family: gotham-light;
 
     .btn-like-song,
     .btn-more-options {
@@ -21,6 +22,24 @@
         }
     }
 
+    .song-index {
+        font-size: rem(14px);
+
+        svg {
+            // opacity: 0;
+            cursor: pointer;
+            display: none;
+            height: 15px;
+            width: 15px;
+        }
+    }
+
+    .song-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     &:hover {
         //TODO change to var
         background-color: #2b2b2c;
@@ -30,6 +49,22 @@
             cursor: pointer;
             opacity: 1;
             pointer-events: all;
+        }
+
+        .song-index {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            span {
+                // opacity: 0;
+                display: none;
+            }
+
+            svg {
+                // opacity: 1;
+                display: block;
+            }
         }
     }
 
@@ -48,11 +83,14 @@
     .song-preview-actions {
         display: grid;
         grid-template-columns: 40px 1fr 40px;
-        justify-self: center;
+        justify-self: flex-end;
 
         .song-length {
             justify-self: center;
             align-self: center;
+            font-size: rem(14px);
+            //TODO change to var
+            color: #a7a7a7;
         }
 
         .btn-like-song.liked svg {

@@ -95,11 +95,10 @@ function getEmptyStation() {
 }
 
 async function searchSongs(searchStr) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${searchStr + ' song'}`
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&maxResults=20&type=video&key=${API_KEY}&q=${searchStr + ' song'}`
     const res = await axios.get(url)
     // console.log('res', res.data.items)
     const songs = await _prepareSongSearchPreviews(res.data.items)
-    console.log("🚀 ~ file: station.service.js:102 ~ searchSongs ~ songs", songs)
     return songs
 }
 
@@ -118,12 +117,12 @@ async function _prepareSongSearchPreviews(items) {
             imgUrls[size] = snippet.thumbnails[size].url
         }
         const songLength = await _getSongLength(id.videoId)
-        console.log("🚀 ~ file: station.service.js:119 ~ returnitems.map ~ songLength", songLength)
+        // console.log("🚀 ~ file: station.service.js:119 ~ returnitems.map ~ songLength", songLength)
         // console.log(_getSongLength(id.videoId));
 
         return {
             id: utilService.makeId(),
-            title: snippet.title,
+            title: utilService.decodeHtmlCharCodes(snippet.title),
             youtubeId: id.videoId,
             imgUrl: imgUrls,
             addedBy: {},

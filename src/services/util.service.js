@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     delay,
     debounce,
-    shuffle
+    shuffle,
+    decodeHtmlCharCodes
 }
 
 function makeId(length = 6) {
@@ -57,3 +58,12 @@ function debounce(func, wait = 500) {
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
+
+function decodeHtmlCharCodes(str) {
+    return str.replace(/(&#(\d+);)/g, function (match, capture, charCode) {
+        return String.fromCharCode(charCode);
+    });
+    // Will output "The show that gained int’l reputation’!"
+    // console.log(decodeHtmlCharCodes('The show that gained int&#8217;l reputation&#8217;!'));
+}
+
