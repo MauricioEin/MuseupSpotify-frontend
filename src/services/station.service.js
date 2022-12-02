@@ -60,7 +60,7 @@ async function save(station) {
 
     } else {
         // Later, owner is set by the backend
-        station.owner = userService.getLoggedinUser()
+        station.owner = userService.getLoggedinUser()||station.owner
         savedStation = await storageService.post(STORAGE_KEY, station)
         // stationChannel.postMessage(getActionAddStation(savedStation))
     }

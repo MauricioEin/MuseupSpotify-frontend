@@ -61,11 +61,19 @@
 
     .playlist-actions {
         padding: 24px 0;
+        display:flex;
+
+        .btn-play-green {
+        margin-inline-end: 32px;
+        }
 
         .btn-playlist-more-options {
             position: relative;
             color: $clr4;
             margin: 0;
+            padding:0;
+            display: inline-flex;
+            align-items: center;
 
             :hover {
                 color: $clr2;

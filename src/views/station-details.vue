@@ -3,7 +3,6 @@
 
 
     <section class="station-preview flex full">
-
       <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
 
       <div class="station-summary">

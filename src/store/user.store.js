@@ -118,9 +118,10 @@ export const userStore = {
                 throw err
             }
         },
-        async addStationToLibrary({ commit }, {miniStation}) {
+        async addStationToLibrary({ commit, state }, {miniStation}) {
             console.log('dispatch ministation:', miniStation)
-            const savedUser = await userService.followStation(miniStation, true)
+            const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
+            const savedUser = await userService.followStation(miniStation, true , loggedinUser)
             commit({ type: 'updateUser', user: savedUser })
             commit({ type: 'setLoggedinUser', user: savedUser })
         }
