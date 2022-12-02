@@ -1,6 +1,5 @@
 <template>
   <user-msg />
-  <!-- <app-header /> -->
   <section class="app-layout flex">
     <app-nav />
     <section class="main-layout">

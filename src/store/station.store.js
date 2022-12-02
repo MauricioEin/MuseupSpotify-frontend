@@ -23,7 +23,11 @@ export const stationStore = {
     state: {
         stations: [],
         searchedSongs: [],
-        playingStation: [{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}],
+        playingStation:[
+            {title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubeId: 'bZYPI4mYwhw'},
+            {title:'Bruno Mars -Talking to the moon', imgUrl:'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI'},
+            {title:'Gunz N Roses - Dont Cry', imgUrl:'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0'}
+        ],
         currStation: null
     },
     getters: {

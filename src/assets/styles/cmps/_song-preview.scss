@@ -58,7 +58,6 @@
     .song-img-container {
         height: rem(40px);
         width: rem(40px);
-        // margin-inline-end: 15px;
 
         img {
             width: 100%;
@@ -71,6 +70,8 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        padding: 10px;
+        // transform: translateX(12px);
     }
 
     .song-created-at {
@@ -81,6 +82,7 @@
     .song-preview-actions {
         display: grid;
         grid-template-columns: 40px 1fr 40px;
+        // transform: translateX(-40%);
 
         .song-length {
             justify-self: center;

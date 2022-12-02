@@ -10,8 +10,7 @@
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
         <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
         <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} | {{ station.followers?.length || 0 }}
-          likes | {{ station.songs.length }} songs, <span class="light">total
-            time</span></p>
+          likes | {{ station.songs.length }} songs, <span class="light">{{ totalTime }}</span></p>
       </div>
     </section>
 
@@ -90,6 +89,33 @@ export default {
     },
     searchedSongs() {
       return this.$store.getters.searchedSongs
+    },
+    totalTime() {
+      const time = this.station.songs.reduce((acc, song) => {
+        const t = song.length.split(':')
+        if (t.length > 2) {
+          acc.hour += +t[0]
+          acc.min += +t[1]
+          acc.sec += +t[2]
+        } else {
+          acc.min += +t[0]
+          acc.sec += +t[1]
+        }
+        return acc
+      }, { sec: 0, min: 0, hour: 0 })
+
+      while (time.sec > 60) {
+        time.sec -= 60
+        time.min++
+      }
+
+      while (time.min > 60) {
+        time.min -= 60
+        time.hour++
+      }
+
+      if (time.hour) return `${time.hour} hr ${time.min} min`
+      else return `${time.min} min ${time.sec} sec`
     }
   },
   mounted() {
@@ -149,7 +175,8 @@ export default {
         editedStation.songs.push(song)
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Added to playlist')
-        this.loadStation()
+        // this.loadStation()
+        this.station.songs.push(song)
       } catch {
         console.log(err)
         showErrorMsg('Failed adding song to station')
@@ -163,7 +190,6 @@ export default {
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
       this.closeSearch()
-      if (!this.station.songs.length) this.openSearch()
     }
   },
   unmounted() {
