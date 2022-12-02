@@ -29,7 +29,8 @@ export const stationStore = {
             { title: 'Gunz N Roses - Dont Cry', imgUrl: 'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0' }
         ],
         playingSongIdx: 0,
-        currStation: null
+        currStation: null,
+        isPlayed: false
     },
     getters: {
         stations({ stations }) { return stations },
@@ -40,7 +41,10 @@ export const stationStore = {
         getPlayingSongIdx(state) {
             return state.playingSongIdx
         },
-        currStation({ currStation }) { return currStation }
+        currStation({ currStation }) { return currStation },
+        isPlayed(state) {
+            return state.isPlayed
+        }
     },
     mutations: {
         setStations(state, { stations }) {
@@ -76,6 +80,9 @@ export const stationStore = {
             const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
             state.playingStation = [songCopy]
             state.playingSongIdx = 0
+        },
+        toggleIsPlayed(state) {
+            state.isPlayed = !state.isPlayed
         }
     },
     actions: {

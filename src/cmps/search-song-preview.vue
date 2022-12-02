@@ -4,13 +4,13 @@
             <span>
                 {{ index + 1 }}
             </span>
-            <div @click="playSong" title="Play song">
+            <div v-if="!isPlaying" @click="playSong" title="Play song">
                 <play-btn-svg />
             </div>
+            <div v-else @click="pauseSong">
+                <media-player-stop />
+            </div>
         </div>
-        <!-- <div>
-            <play-btn-svg />
-        </div> -->
         <div class="song-img-container">
             <img :src="song.imgUrl.medium" alt="">
         </div>
@@ -27,6 +27,7 @@
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue';
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue';
 import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
 
 export default {
     props: {
@@ -35,11 +36,15 @@ export default {
         },
         index: {
             type: Number
+        },
+        playingSongId: {
+            type: String
         }
     },
     data() {
         return {
-            isHovered: false
+            isPlayed: false,
+
         }
     },
     methods: {
@@ -47,18 +52,33 @@ export default {
             this.$refs['search-like-btn'].classList.toggle('liked')
         },
         playSong() {
+            this.$emit('songSelected', this.song.id)
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
+            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.isPlayed = true
+        },
+        pauseSong() {
+            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.isPlayed = false
         }
     },
     computed: {
-        // isHovered() {
-        //     return this.$refs
-        // }
+        isPlaying() {
+            return this.song.id === this.playingSongId
+        }
+
     },
+    // watch: {
+    //     isPlaying() {
+    //         this.isPlayed = this.isPlaying
+    //         console.log('this.isPlayed', this.isPlayed)
+    //     }
+    // },
     components: {
         moreOptionsSvg,
         heartEmptySvg,
         playBtnSvg,
+        mediaPlayerStop,
     }
 }
 </script>
