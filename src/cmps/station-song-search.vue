@@ -5,7 +5,7 @@
             <input v-model="searchStr" type="search" placeholder="Search for songs">
         </div>
         <div class="flex align-center">
-            <button @click="this.$emit('closeSearch')"><x-btn-svg /></button>
+            <button v-if="!isStationEmpty" @click="this.$emit('closeSearch')"><x-btn-svg /></button>
         </div>
     </section>
 </template>
@@ -15,6 +15,7 @@ import { utilService } from '../services/util.service';
 import { stationService } from '../services/station.service';
 import xBtnSvg from '../assets/svgs/x-btn-svg.vue';
 export default {
+    props:['isStationEmpty'],
     data() {
         return {
             searchStr: '',
