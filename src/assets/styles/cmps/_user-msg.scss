@@ -1,7 +1,7 @@
 .alert {
     background-color: lightgray;
     position: absolute;
-    bottom: 100px;
+    bottom: 120px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -11,7 +11,7 @@
     padding: 0.5em 0.1em;
     z-index: 50;
     color:$clr2;
-    box-shadow: 0 -4px 8px rgb(0 0 0 / 80%);
+    box-shadow: 0 4px 8px 2px rgb(0 0 0 / 60%);
 
     &.alert-success {
         background-color: rgb(34, 148, 255);
