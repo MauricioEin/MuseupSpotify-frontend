@@ -1,9 +1,16 @@
 <template>
     <section class="main-search-list">
-        <h1 v-if="songs.length">Tracks</h1>
+        <section class="main-search-list-header">
+            <div class="list-song-index">#</div>
+            <div class="list-song-title">Title</div>
+            <div></div>
+            <div class="list-song-length song-preview-actions">
+                <small><clock-svg /></small>
+            </div>
+        </section>
         <ul class="clean-list">
-            <li v-for="song in songs" :key="song.id">
-                <search-song-preview :song="song" />
+            <li v-for="(song, index) in songs" :key="song._id">
+                <search-song-preview :index="index" :song="song" />
             </li>
         </ul>
     </section>
@@ -11,6 +18,8 @@
 
 <script>
 import searchSongPreview from './search-song-preview.vue';
+import songListHeader from './song-list-header.vue';
+import clockSvg from '../assets/svgs/clock-svg.vue';
 export default {
     props: {
         songs: {
@@ -25,7 +34,9 @@ export default {
 
     },
     components: {
-        searchSongPreview
+        searchSongPreview,
+        songListHeader,
+        clockSvg,
     }
 }
 </script>

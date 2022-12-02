@@ -10,7 +10,6 @@
         <router-link :to="`/user/${loggedInUser._id}`">
           {{ loggedInUser.fullname }}
         </router-link>
-        <span>{{ loggedInUser.score.toLocaleString() }}</span>
       </section>
     </div>
   </header>

@@ -1,8 +1,40 @@
 .main-search-list {
     padding: 35px;
 
-    h1 {
-        font-family: gotham;
-        font-size: rem(24px);
+    .main-search-list-header {
+        text-transform: uppercase;
+        border-bottom: 1px solid gray;
+        border-radius: 0;
+        margin: 0 7px 15px 0;
+        padding: 0 7px;
+        height: 35px;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 15px 9fr 4fr 110px;
+        gap: 10px;
+        font-family: gotham-light;
+        font-size: 0.75rem;
+        font-weight: 560;
+        letter-spacing: 1px;
+
+        .list-song-index {
+            // justify-self: center;
+            font-size: 1rem;
+        }
+
+        .list-song-title {
+            // flex-grow: 5;
+            // margin-inline-start: 50px;
+        }
+
+        .list-song-length {
+            // flex-grow: 1;
+            display: grid;
+
+            small {
+                justify-self: center;
+            }
+        }
     }
+
 }
