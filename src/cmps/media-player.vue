@@ -205,6 +205,13 @@ export default defineComponent({
         setFullscreen() {
 
         },
+
+        updateCurrStation() {
+            this.originalList = this.songList = this.getStation
+            this.currSongIdx = this.getPlayingSongIdx
+            this.currSongPlaying = this.songList[this.currSongIdx]
+
+        }
     },
 
     computed: {
@@ -226,6 +233,12 @@ export default defineComponent({
         getPlayingSongIdx() {
             return this.$store.getters.getPlayingSongIdx
         },
+    },
+
+    watch: {
+        getStation() {
+            this.updateCurrStation()
+        }
     },
 
     components: {
