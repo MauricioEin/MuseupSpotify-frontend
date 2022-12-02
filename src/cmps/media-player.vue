@@ -1,7 +1,7 @@
 <template>
     <section class="media-player" :class="setFull">
 
-        <img class="fit-img album " :class="setFull" src="https://assets.fontsinuse.com/static/use-media-items/52/51196/full-1500x1500/58f577f9/C9H8-PWUIAAzbQ2-jpg-large-e.jpeg" alt="">
+        <img class="fit-img album " :class="setFull" :src="currSongPlaying.imgUrl" alt="">
 
 
         <div class="player-section">
@@ -79,8 +79,8 @@ export default defineComponent({
             isShuffled: false,
             isFullscreen: false,
             volume:50,
-            currSongIdx: 0,
-            originalList:[],
+            currSongIdx: this.getPlayingSongIdx,
+            originalList: [],
             songList: [],
             currTime: 0,
             duration: null,
@@ -90,10 +90,12 @@ export default defineComponent({
     },
     
     created(){
-        this.originalList = this.$store.getters.getPlayingStation
-        this.songList = this.$store.getters.getPlayingStation
-        this.currSongPlaying = this.songList[0] 
-        console.log(this.songList);
+        // const station = this.$store.getters.getPlayingStation
+        // const songIdx = this.$store.getters.getPlayingSongIdx
+        this.originalList = this.songList = this.getStation
+        this.currSongIdx = this.getPlayingSongIdx
+        // console.log(this.currSongIdx);
+        this.currSongPlaying = this.songList[this.currSongIdx] 
     },
     
     methods: {
@@ -141,7 +143,7 @@ export default defineComponent({
         changeSong(dir){
             this.currSongIdx += dir
 
-            if(!this.currSongIdx) this.currSongIdx = this.songList.length -1
+            if(this.currSongIdx < 0) this.currSongIdx = this.songList.length -1
             if(this.currSongIdx === this.songList.length) this.currSongIdx = 0
             console.log(this.currSongIdx);
             console.log(this.songList[this.currSongIdx]);
@@ -196,7 +198,6 @@ export default defineComponent({
         restoreOriginalList(){
             this.songList = this.originalList
             this.isShuffled = false
-            console.log(this.songList);
         },
 
         setFullscreen(){
@@ -215,6 +216,13 @@ export default defineComponent({
 
         setFull(){
             return (this.isFullscreen) ? 'full' : ''
+        },
+        getStation(){
+            return this.$store.getters.getPlayingStation
+        },
+
+        getPlayingSongIdx(){
+            return this.$store.getters.getPlayingSongIdx
         },
     },
 

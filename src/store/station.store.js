@@ -28,6 +28,7 @@ export const stationStore = {
             {title:'Bruno Mars -Talking to the moon', imgUrl:'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI'},
             {title:'Gunz N Roses - Dont Cry', imgUrl:'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0'}
         ],
+        playingSongIdx:0,
         currStation: null
     },
     getters: {
@@ -35,6 +36,9 @@ export const stationStore = {
         searchedSongs({ searchedSongs }) { return searchedSongs },
         getPlayingStation(state){
             return state.playingStation
+        },
+        getPlayingSongIdx(state){
+            return state.playingSongIdx
         },
         currStation({ currStation }) { return currStation }
     },
