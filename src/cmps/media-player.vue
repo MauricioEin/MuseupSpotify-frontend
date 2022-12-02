@@ -107,7 +107,8 @@ export default defineComponent({
             if(e.data === 0 && !this.isLoop){ 
                 this.changeSong(1)
             }else if(e.data === 0 && this.isLoop){
-                this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx])
+                console.log('here', this.songList[this.currSongIdx]);
+                this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
             }
 
         },
