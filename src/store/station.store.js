@@ -76,10 +76,19 @@ export const stationStore = {
     actions: {
         async addStation(context, { station }) {
             try {
+                const user = {...context.getters.loggedinUser}
+                console.log('user:',user)
+                // station.owner = context.getters.loggedinUser
+                // console.log('user:',context.rootState.userStore.loggedinUser)
+                station.owner = user
+                console.log('station', station)
                 station = await stationService.save(station)
+
                 context.commit(getActionAddStation(station))
                 const { name, desc, _id, imgUrl, owner } = station
+                console.log('owner:',owner)
                 context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner.username } })
+
                 return station
             } catch (err) {
                 console.log('stationStore: Error in addStation', err)

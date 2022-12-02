@@ -8,11 +8,12 @@
     // display: none;
     box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
     flex-direction: column;
-    transform: translate(0, 20%);
+    transform: translate(0, 35%);
     width: 150px;
     top: 0;
     align-items: flex-start;
     border-radius: 5px;
+    z-index: 20;
 
     hr {
         width: 90%;

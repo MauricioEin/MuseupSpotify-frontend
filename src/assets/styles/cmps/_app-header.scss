@@ -1,10 +1,39 @@
 .app-header {
     //TODO change from full opacity to black according to scroll
-    padding: 10px;
-    display: flex;
+    background-color: #212121;
     height: 64px;
-    // justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 30;
     align-items: center;
+
+    >div {
+        justify-content: space-between;
+    }
+
+    nav {
+        gap: 5px;
+
+        .btn-go-back,
+        .btn-go-next {
+            display: grid;
+            // align-items: center;
+            // justify-content: center;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 50%;
+            height: 32px;
+            width: 32px;
+            cursor: not-allowed;
+
+            >svg {
+                fill: #b9b9b9;
+                justify-self: center;
+                transform: translateX(-5px);
+                width: 22px;
+                height: 22px;
+            }
+        }
+    }
 
     .loggedin-user {
         background-color: $clr1;

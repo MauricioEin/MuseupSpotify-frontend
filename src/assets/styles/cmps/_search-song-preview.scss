@@ -48,6 +48,7 @@
     .song-preview-actions {
         display: grid;
         grid-template-columns: 40px 1fr 40px;
+        justify-self: center;
 
         .song-length {
             justify-self: center;

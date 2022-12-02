@@ -6,7 +6,7 @@
     align-items: center;
     display: grid;
     grid-template-columns: 40px 40px 2fr 1fr 120px;
-    gap: 10px;
+    gap: 16px;
     font-size:0.875rem;
 
     .btn-like-song,
@@ -47,12 +47,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding-inline-end: 4px;
+        padding-top:2px;
+        font-size: 1rem;
+        font-family: 'gotham-light';
+        min-width: 13px;
+        justify-self: end;
     }
 
     .song-img-container {
         height: rem(40px);
         width: rem(40px);
-        // margin-inline-end: 15px;
 
         img {
             width: 100%;
@@ -65,6 +70,8 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        padding: 10px;
+        // transform: translateX(12px);
     }
 
     .song-created-at {
@@ -75,6 +82,7 @@
     .song-preview-actions {
         display: grid;
         grid-template-columns: 40px 1fr 40px;
+        // transform: translateX(-40%);
 
         .song-length {
             justify-self: center;

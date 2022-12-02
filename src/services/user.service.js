@@ -49,10 +49,11 @@ function remove(userId) {
 }
 
 async function update(user) {
+    console.log('UPDATE', user)
     await storageService.put('user', user)
     // user = await httpService.put(`user/${user._id}`, user)
     // Handle case in which admin updates other user's details
-    if (getLoggedinUser()._id === user._id) saveLocalUser(user)
+    if (getLoggedinUser()?._id === user._id) saveLocalUser(user)
     return user
 }
 
@@ -78,12 +79,14 @@ async function logout() {
     // return await httpService.post('auth/logout')
 }
 
-async function followStation(miniStation, isToFollow) {
+async function followStation(miniStation, isToFollow, user) {
     console.log('service ministation:',miniStation)
-    const user = getLoggedinUser()
-    isToFollow ? user.stations.push(miniStation)
-        : user.stations = user.stations.filter(station => station._id !== miniStation._id)
-    return update(user)
+    const loggedinUser = getLoggedinUser() || user
+    console.log('FOLLOWSTATION loggedinUser:',loggedinUser)
+
+    isToFollow ? loggedinUser.stations.push(miniStation)
+        : loggedinUser.stations = loggedinUser.stations.filter(station => station._id !== miniStation._id)
+    return update(loggedinUser)
 }
 
 async function changeScore(by) {

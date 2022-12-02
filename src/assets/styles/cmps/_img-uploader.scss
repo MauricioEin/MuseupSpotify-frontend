@@ -23,4 +23,11 @@
             fill:$clr8;
         }
     }
+
+    .loader-container{
+        position:absolute;
+        inset:0;
+        display:flex;
+        background-color: rgba(40,40,40,0.5);
+    }
 }
