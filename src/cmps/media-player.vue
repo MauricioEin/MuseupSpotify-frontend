@@ -80,7 +80,7 @@ export default defineComponent({
             isFullscreen: false,
             volume:50,
             currSongIdx: this.getPlayingSongIdx,
-            originalList: [],
+            originalList: this.getStation,
             songList: [],
             currTime: 0,
             duration: null,
@@ -89,13 +89,16 @@ export default defineComponent({
         }
     },
     
-    created(){
+    mounted(){
         // const station = this.$store.getters.getPlayingStation
         // const songIdx = this.$store.getters.getPlayingSongIdx
-        this.originalList = this.songList = this.getStation
-        this.currSongIdx = this.getPlayingSongIdx
-        // console.log(this.currSongIdx);
-        this.currSongPlaying = this.songList[this.currSongIdx] 
+        // this.originalList = this.songList = this.getStation
+        // this.currSongIdx = this.getPlayingSongIdx
+        setTimeout(()=>{
+            console.log(this.currSongIdx);
+            console.log(this.originalList);
+        },5000)
+        // this.currSongPlaying = this.songList[this.currSongIdx] 
     },
     
     methods: {
@@ -225,6 +228,28 @@ export default defineComponent({
         getPlayingSongIdx(){
             return this.$store.getters.getPlayingSongIdx
         },
+    },
+
+    watch:{
+        getStation(){
+            this.songList = (this.getStation)
+            // console.log(this.songList[0]);
+            this.currSongPlaying = this.songList[0]
+
+            // console.log(this.songList)
+        //    const obj = (this.getStation[0])
+        //    const obj2 = {
+        //     title: obj.title,
+        //     imgUrl: obj.imgUrl,
+        //     youtubeId: obj.youtubeId
+        //    }
+
+        // //    console.log(obj2);
+
+        //    this.currSongPlaying = obj2
+
+           console.log(this.currSongPlaying);
+        }
     },
 
     components: {
