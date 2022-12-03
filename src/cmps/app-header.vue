@@ -6,55 +6,89 @@
         <button class="btn-go-next"><btn-go-next /></button>
         <main-search v-if="isOnSearchPage" />
       </nav>
-      <section class="loggedin-user" v-if="loggedInUser">
+      <!-- <section class="loggedin-user" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
         <router-link :to="`/user/${loggedInUser._id}`">
           {{ loggedInUser.fullname }}
         </router-link>
+      </section> -->
+      <section @click="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
+        <div class="user-img-container">
+          <img v-if="imgSrc" :src="imgSrc" alt="">
+          <div v-else>
+            <user-portrait />
+          </div>
+        </div>
+        <span>{{ loggedInUser.fullname }}</span>
+        <menu-arrow-down />
+        <mini-menu @profile="goToProfile" @logout="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
+          style="transform: translateY(40%); top: 0; right: 0;" />
+      </section>
+      <section class="header-login-signup" v-else>
+        <button class="btn-signup" @click="goToSignup">Sign up</button>
+        <button class="btn-login" @click="goToLogin">Log in</button>
       </section>
     </div>
   </header>
 </template>
 <script>
-import mainSearch from './main-search.vue';
+import mainSearch from './main-search.vue'
 
-import btnGoBack from '../assets/svgs/btn-go-back.vue';
-import btnGoNext from '../assets/svgs/btn-go-next.vue';
+import btnGoBack from '../assets/svgs/btn-go-back.vue'
+import btnGoNext from '../assets/svgs/btn-go-next.vue'
+import userPortrait from '../assets/svgs/user-portrait.vue'
+import menuArrowDown from '../assets/svgs/menu-arrow-down.vue'
+import miniMenu from './mini-menu.vue'
 
 export default {
+  data() {
+    return {
+      isMenuOpen: false
+    }
+  },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedinUser
     },
     isOnSearchPage() {
       return (this.$route.fullPath === '/search')
+    },
+    imgSrc() {
+      return this.loggedInUser?.imgUrl
+    },
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen
+    },
+    openMenu() {
+      this.isMenuOpen = true
+      console.log('Hi');
+    },
+    closeMenu() {
+      this.isMenuOpen = false
+    },
+    goToLogin() {
+      this.$router.push('/login')
+    },
+    goToSignup() {
+      this.$router.push('/signup')
+    },
+    logout() {
+      this.$store.dispatch({ type: 'logout' })
+      this.$router.push('/')
+    },
+    goToProfile() {
+      const id = this.loggedInUser._id
+      this.$router.push(`/user/${id}`)
     }
   },
   components: {
     mainSearch,
     btnGoBack,
     btnGoNext,
+    userPortrait,
+    menuArrowDown,
+    miniMenu,
   },
-  // methods: {
-  //   onHeaderObserved(entries) {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting) console.log('Scrolled');
-  //       // this.isScrolled = entry.isIntersecting ? false : true;
-  //     });
-  //   },
-  // },
-
-  // mounted() {
-  //   this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-  //     rootMargin: "-64px 0px 0px",
-  //   });
-  //   this.headerObserver.observe(this.$refs.header);
-  // },
-
-  // data() {
-  //   return {
-  //     headerObserver: null,
-  //     isScrolled: false,
-  //   };
-  // },
 }
 </script>
