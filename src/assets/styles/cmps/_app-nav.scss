@@ -1,107 +1,132 @@
- .nav-container {
-     background-color: $clr3;
-     padding: 24px;
-     font-size: 0.8125rem;
-     width:20vw;
-     min-width: 200px;
-     max-width: 300px;
+.nav-container {
+    background-color: $clr3;
+    padding: 24px;
+    font-size: 0.8125rem;
+    width: 20vw;
+    min-width: 200px;
+    max-width: 300px;
     padding-inline-end: 0;
 
 
-     .logo {
-         margin-bottom: 24px;
-         display: flex;
-         align-items: center;
-         gap: 5px;
-         font-size: 24px;
-     }
+    .logo {
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 24px;
+    }
 
-     svg {
-         flex-shrink: 0;
-         height: 24px;
-         width: 24px;
-         fill: currentcolor;
-         overflow: hidden;
-     }
+    svg {
+        flex-shrink: 0;
+        height: 24px;
+        width: 24px;
+        fill: currentcolor;
+        overflow: hidden;
+    }
 
-     & a {
-         color: $clr4;
+    & a {
+        color: $clr4;
 
-         &:hover {
-             color: $clr2;
-             text-decoration: none;
 
-             .heart-btn {
-                 opacity: 1;
-             }
-         }
+        &:hover {
+            color: $clr2;
+            text-decoration: none;
 
-     }
+            .heart-btn {
+                opacity: 1;
+            }
+        }
 
-     hr {
-         background-color: #282828;
-         border: none;
-         min-height: 2px;
-         margin-bottom: 0;
-         margin-inline-end: 24px;
-     }
- }
+        .ifActive {
+            display: none;
+        }
 
- .permanent-nav a {
-     transition: color .4s;
+        hr {
+            background-color: #282828;
+            border: none;
+            min-height: 2px;
+            margin-bottom: 0;
+            margin-inline-end: 24px;
+        }
+    }
 
-     align-items: center;
-     display: -webkit-box;
-     display: -ms-flexbox;
-     display: flex;
-     gap: 16px;
-     height: 40px;
+    & .router-link-active:not(.create) {
+        color: $clr2;
 
-     span {
-         font-weight: 600;
-     }
- }
+        & .ifActive {
+            display: block;
+        }
 
- .app-nav {
-     margin-bottom: 24px;
- }
+        & .heart-btn {
+            opacity: 1;
+        }
+    }
 
- .nav-btn {
-     background-color: currentcolor;
-     height: 24px;
-     width: 24px;
-     border-radius: 3px;
+}
 
-     svg {
-         fill: $clr3;
-         height: 12px;
-         width: 12px;
-     }
- }
+hr {
+    background-color: #282828;
+    border: none;
+    min-height: 2px;
+    margin-bottom: 0;
+}
 
- .heart-btn {
-     background: linear-gradient(135deg, #450af5, #c4efd9);
-     opacity: 0.7;
-     transition: opacity .4s;
 
-     svg {
-         fill: $clr2;
-     }
+.permanent-nav a {
+    transition: color .4s;
 
- }
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 16px;
+    height: 40px;
 
- .user-stations {
-     padding: 8px 0;
-     overflow-y: auto;
-     height: calc(100vh - 413px);
+    span {
+        font-weight: 600;
+    }
+}
 
-     a {
-         cursor: default;
-         font-weight: 600;
-         height: 32px;
+.app-nav {
+    margin-bottom: 24px;
+}
 
-         &:hover {
-             font-weight: 900;
-         }
-     }
- }
+.nav-btn {
+    background-color: currentcolor;
+    height: 24px;
+    width: 24px;
+    border-radius: 3px;
+
+    svg {
+        fill: $clr3;
+        height: 12px;
+        width: 12px;
+    }
+}
+
+.heart-btn {
+    background: linear-gradient(135deg, #450af5, #c4efd9);
+    opacity: 0.7;
+    transition: opacity .4s;
+
+    svg {
+        fill: $clr2;
+    }
+
+}
+
+.user-stations {
+    padding: 8px 0;
+    overflow-y: auto;
+    height: calc(100vh - 413px);
+
+    a {
+        cursor: default;
+        font-weight: 600;
+        height: 32px;
+
+        &:hover {
+            font-weight: 900;
+        }
+    }
+}

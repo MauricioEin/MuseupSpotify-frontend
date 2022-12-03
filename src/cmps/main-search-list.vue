@@ -10,7 +10,8 @@
         </section>
         <ul class="clean-list">
             <li v-for="(song, index) in songs" :key="song._id">
-                <search-song-preview :index="index" :song="song" />
+                <search-song-preview @songSelected="songSelected" :index="index" :song="song"
+                    :playingSongId="playingSongId" />
             </li>
         </ul>
     </section>
@@ -25,10 +26,17 @@ export default {
         songs: {
             type: Array,
             required: true
+        },
+    },
+    data() {
+        return {
+            playingSongId: ''
         }
     },
     methods: {
-
+        songSelected(songId) {
+            this.playingSongId = songId
+        }
     },
     created() {
 

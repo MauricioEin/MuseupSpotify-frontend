@@ -8,7 +8,9 @@
     grid-template-columns: 40px 40px 2fr 1fr 120px;
     gap: 16px;
     font-size:0.875rem;
-
+    position:relative;
+    
+    
     .btn-like-song,
     .btn-more-options {
         background-color: unset;
@@ -17,17 +19,24 @@
         opacity: 0;
         pointer-events: none;
         justify-self: center;
-
+        
         svg {
             height: 1rem;
             width: 1rem;
         }
+        
+        .mini-menu{
+            // opacity: 1;
+            top: -20px;
+            right:30px;
+            
+        }
     }
-
+    
     &:hover {
         //TODO change to var
         background-color: #2b2b2c;
-
+        
         .btn-like-song,
         .btn-more-options {
             cursor: pointer;
@@ -35,14 +44,17 @@
             pointer-events: all;
         }
     }
-
-
+    
+    &.clicked {
+        background-color: $clr9;
+    }
+    
     // .song-preview-info {
-    //     flex-grow: 5;
-    //     align-items: center;
-
-    // }
-    .song-index {
+        //     flex-grow: 5;
+        //     align-items: center;
+        
+        // }
+        .song-index {
         // padding: 0 20px;
         display: flex;
         justify-content: center;

@@ -1,4 +1,4 @@
-.station-menu {
+.mini-menu {
 
     // TODO change to var
     background-color: #282828;
@@ -10,7 +10,7 @@
     flex-direction: column;
     transform: translate(0, 35%);
     width: 150px;
-    top: 0;
+    top: -24px;
     align-items: flex-start;
     border-radius: 5px;
     z-index: 20;

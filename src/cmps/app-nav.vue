@@ -25,7 +25,7 @@
         </li>
       </ul>
       <div class="user-nav flex column">
-        <router-link @click="createStation" to="">
+        <router-link @click="createStation" to="" class="create">
           <div class="nav-btn flex align-center justify-center">
             <plus-btn-svg />
           </div>
@@ -72,7 +72,8 @@ export default {
       const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [], followers:[] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
       this.$router.push('/station/' + savedStation._id)
-    }
+    },
+    
   }
 }
 </script>

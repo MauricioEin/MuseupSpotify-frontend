@@ -1,5 +1,5 @@
 <template>
-    <section class="station-menu">
+    <section class="mini-menu">
         <button @click="$emit('queue')">Add to queue</button>
         <button @click="$emit('follow')">{{ followAction }}</button>
         <button @click="$emit('edit')">Edit details</button>
@@ -12,7 +12,7 @@ export default {
     props: ['isFollowed'],
     computed: {
         followAction() {
-            return this.isFollowed ? 'Remove from library' : 'Add to library'
+            return this.isFollowed ? 'Unfollow playlist' : 'Follow playlist'
         }
     }
 }

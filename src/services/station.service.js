@@ -7,7 +7,12 @@ import { store } from '../store/store'
 import axios from 'axios'
 
 
-const API_KEY = 'AIzaSyC-eUmSLJiWa-4c0NO17ogFFVaGMll8ngg'
+const API_KEY = [
+    'AIzaSyC-eUmSLJiWa-4c0NO17ogFFVaGMll8ngg',
+    'AIzaSyC1Gw-VuraXVtAPlQQbrg8bFrYEwMEPQfA',
+    'AIzaSyBVyzOPEOZa2Y4CTbf_JpQhnO5L53IxYjU',
+]
+let keyIdx = 0
 // This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
 const STORAGE_KEY = 'station'
@@ -60,8 +65,8 @@ async function save(station) {
 
     } else {
         // Later, owner is set by the backend
-        station.owner = userService.getLoggedinUser() || station.owner
-        savedStation = await storageService.post(STORAGE_KEY, station)
+        station.owner = userService.getLoggedinUser()||station.owner
+        savedStation = await storageService.post(STORAGE_KEY, station) //**this is unshifting- pay attention when moving to httpSerice
         // stationChannel.postMessage(getActionAddStation(savedStation))
     }
     return JSON.parse(JSON.stringify(savedStation))
@@ -73,36 +78,49 @@ function getEmptyStation() {
         imgUrl: '',
         createdAt: Date.now(),
         followers: [],
-        songs: [{
-            id: 's1001',
-            title: 'The Meters - Cissy Strut',
-            url: 'youtube/song.mp4',
-            imgUrl: 'https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg',
-            addedBy: '{minimal-user}',
-            createdAt: Date.now(),
-            length: '3:07'
-        },
-        {
-            id: 'mUkfiLjooxs',
-            title: 'The JB\'s - Pass The Peas',
-            url: 'youtube/song.mp4',
-            imgUrl: 'https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg',
-            addedBy: {},
-            createdAt: Date.now(),
-            length: '3:31'
-        }]
+        songs: [
+            // {
+            //     id: 's1001',
+            //     title: 'The Meters - Cissy Strut',
+            //     url: 'youtube/song.mp4',
+            //     imgUrl: 'https://i.ytimg.com/vi/4_iC0MyIykM/mqdefault.jpg',
+            //     addedBy: '{minimal-user}',
+            //     createdAt: Date.now(),
+            //     length: '3:07'
+            // },
+            // {
+            //     id: 'mUkfiLjooxs',
+            //     title: 'The JB\'s - Pass The Peas',
+            //     url: 'youtube/song.mp4',
+            //     imgUrl: 'https://i.ytimg.com/vi/mUkfiLjooxs/mqdefault.jpg',
+            //     addedBy: {},
+            //     createdAt: Date.now(),
+            //     length: '3:31'
+            // }
+        ]
     }
 }
 
 async function searchSongs(searchStr) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&maxResults=20&type=video&key=${API_KEY}&q=${searchStr + ' song'}`
-    const res = await axios.get(url)
-    // console.log('res', res.data.items)
-    const songs = await _prepareSongSearchPreviews(res.data.items)
-    return songs
+    try {
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&maxResults=5&type=video&key=${API_KEY[keyIdx]}&q=${searchStr + ' song'}`
+        const res = await axios.get(url)
+        // console.log('res', res.data.items)
+        const songs = await _prepareSongSearchPreviews(res.data.items)
+        return songs
+    } catch (err) {
+        console.log(err);
+        ++keyIdx
+        if (keyIdx >= API_KEY.length) {
+            throw err
+        }
+        const songs = searchSongs(searchStr)
+        if (songs) return songs
+    }
 }
 
 async function updateFollowers(station, miniUser, isToFollow) {
+    station=JSON.parse(JSON.stringify(station))
     station.followers = station.followers ? station.followers : []
     isToFollow ? station.followers.push(miniUser)
         : station.followers = station.followers.filter(user => user._id !== miniUser._id)
@@ -133,7 +151,7 @@ async function _prepareSongSearchPreviews(items) {
 }
 
 async function _getSongLength(videoId) {
-    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY}`
+    const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY[keyIdx]}`
     const res = await axios.get(url)
     const data = res.data.items[0].contentDetails.duration
     // data returned: PT3H46M32S
