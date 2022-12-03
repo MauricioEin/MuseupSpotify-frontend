@@ -15,7 +15,7 @@
             </button>
             <div class="song-length">{{ song.length }}
                 <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
-                    @savetoyourlikedsongs="onMiniMenu('saveSong')" />
+                    @savetoyourlikedsongs="onMiniMenu('saveSong')" @removefromplaylist="onMiniMenu('removeSong')"/>
 
             </div>
             <button class="btn-more-options" @click="toggleMiniMenu">
@@ -71,7 +71,7 @@ export default {
             return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
         },
         songActions() {
-            return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to playlist', 'Share']
+            return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
         }
 
     }, methods: {
