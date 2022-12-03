@@ -17,8 +17,6 @@
     <section class="song-list-container details-layout">
 
       <section class="playlist-actions">
-        isCurrStationPlayed? {{ isCurrStationPlayed }} <br>
-        isPlayed? {{ isPlayed }}
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlayed) ? toggleIsPlayed() : playStation()">
           <pause-btn v-if="isCurrStationPlayed && isPlayed" />

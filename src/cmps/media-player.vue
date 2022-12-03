@@ -109,7 +109,7 @@ export default defineComponent({
     created() {
         // const station = this.$store.getters.getPlayingStation
         // const songIdx = this.$store.getters.getPlayingSongIdx
-        this.originalList = this.songList = this.getStation
+        this.originalList = this.songList = this.getStation.songs
         this.currSongIdx = this.getPlayingSongIdx
         // console.log(this.currSongIdx);
         console.log('SONGLISTTTTTTTTT', this.songList)
@@ -161,9 +161,10 @@ export default defineComponent({
         },
 
         changeSong(dir) {
+            console.log('CHANGING! SONGLIST',this.getStation)
             const newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
             // this gives us the calc for looping around the playlist
-            this.$store.commit({type:'playStation',station:this.songList, idx:newIdx})
+            this.$store.commit({type:'playStation',station:this.getStation, idx:newIdx})
         },
 
         setTimestamp(e) {
@@ -214,7 +215,7 @@ export default defineComponent({
         },
 
         updateCurrStation() {
-            this.originalList = this.songList = this.getStation
+            this.originalList = this.songList = this.getStation.songs
             this.currSongIdx = this.getPlayingSongIdx
             console.log('SONGLIST',this.songList)
             this.currSongPlaying = this.songList[this.currSongIdx]
@@ -237,7 +238,7 @@ export default defineComponent({
             return (this.isFullscreen) ? 'full' : ''
         },
         getStation() {
-            return this.$store.getters.getPlayingStation.songs
+            return this.$store.getters.getPlayingStation
         },
 
         getPlayingSongIdx() {
