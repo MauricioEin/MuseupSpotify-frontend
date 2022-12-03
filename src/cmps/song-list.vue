@@ -1,7 +1,10 @@
 <template>
     <section class="song-list">
         <ul class="clean-list">
-            <song-preview v-for="(song, index) in songs" :song="song" :index="index" :key="song._id" />
+            <song-preview v-for="(song, index) in songs" @clicked="onSongClicked"
+                 :key="song._id" :song="song" :loggedInUser="loggedInUser"
+                :index="index" :clickedSong="clickedSong"
+                @songAction="action=>$emit(action,song)" />
         </ul>
     </section>
 </template>
@@ -13,10 +16,30 @@ export default {
         songs: {
             type: Array,
             required: true
-        }
+        },
+        isClickOutside: {
+            type: Boolean
+        },
+        loggedInUser:{type:Object}
     },
     components: {
         songPreview
+    },
+    data() {
+        return {
+            clickedSong: '',
+        }
+    },
+    watch: {
+        isClickOutside() {
+            if (this.isClickOutside) this.clickedSong = ''
+        }
+    },
+    methods:{
+        onSongClicked(id){
+           this.clickedSong=id
+           this.$emit('songClicked')
+        },
     }
 }
 </script>
