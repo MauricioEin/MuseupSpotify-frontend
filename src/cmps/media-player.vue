@@ -115,16 +115,16 @@ export default defineComponent({
         },
 
         togglePlay() {
-            if (this.isPlayed) {
-                this.$refs.youtube.pauseVideo()
-                this.isPlayed = false
-                clearInterval(this.timeInterval)
-            } else {
-                this.$refs.youtube.playVideo()
-                this.isPlayed = true
-                this.updateCurrTime()
-            }
             this.$store.commit({ type: 'toggleIsPlayed' })
+            // if (this.isPlayed) {
+            //     this.$refs.youtube.pauseVideo()
+            //     // this.isPlayed = false
+            //     clearInterval(this.timeInterval)
+            // } else {
+            //     this.$refs.youtube.playVideo()
+            //     // this.isPlayed = true
+            //     this.updateCurrTime()
+            // }
         },
 
         toggleMute() {
@@ -237,7 +237,7 @@ export default defineComponent({
             return this.$store.getters.getPlayingSongIdx
         },
 
-        isPlaying() {
+        isPlayingInStore() {
             return this.$store.getters.isPlayed
         }
     },
@@ -246,9 +246,21 @@ export default defineComponent({
         getStation() {
             this.updateCurrStation()
         },
-        isPlaying() {
-            this.isPlayed = this.isPlaying
-            this.togglePlay()
+        isPlayingInStore() {
+            this.isPlayed = this.isPlayingInStore
+            // this.togglePlay()
+        },
+
+        isPlayed(){
+            if (!this.isPlayed) {
+                this.$refs.youtube.pauseVideo()
+                // this.isPlayed = false
+                clearInterval(this.timeInterval)
+            } else {
+                this.$refs.youtube.playVideo()
+                // this.isPlayed = true
+                this.updateCurrTime()
+            }
         }
     },
 

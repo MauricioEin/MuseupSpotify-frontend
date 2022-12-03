@@ -111,11 +111,11 @@ function getLoggedinUser() {
 }
 
 
-; (async () => {
-    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', likedSongs: [], stations: [], isAdmin: false })
-    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', likedSongs: [], stations: [], isAdmin: true })
-    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123', likedSongs: [], stations: [] })
-})()
+// ; (async () => {
+//     await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', likedSongs: [], stations: [], isAdmin: false })
+//     await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', likedSongs: [], stations: [], isAdmin: true })
+//     await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123', likedSongs: [], stations: [] })
+// })()
 
 
 
