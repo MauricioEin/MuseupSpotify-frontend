@@ -18,7 +18,7 @@ export const userStore = {
     mutations: {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
-            state.loggedinUser = (user) ? { ...user, stations: [...user.stations] } : null
+            state.loggedinUser = (user) ? { ...user, stations: [...user.stations], likedSongs: [...user.likedSongs] } : null
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
@@ -118,10 +118,16 @@ export const userStore = {
                 throw err
             }
         },
-        async addStationToLibrary({ commit, state }, {miniStation}) {
-            console.log('dispatch ministation:', miniStation)
+        async addStationToLibrary({ commit, state }, { miniStation }) {
             const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
-            const savedUser = await userService.followStation(miniStation, true , loggedinUser)
+            const savedUser = await userService.followStation(miniStation, true, loggedinUser)
+            commit({ type: 'updateUser', user: savedUser })
+            commit({ type: 'setLoggedinUser', user: savedUser })
+        },
+        async saveSong({ commit, state }, { song }) {
+            const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
+            const savedUser = await userService.saveSong(song, loggedinUser)
+            console.log('savedUserFromService:', savedUser)
             commit({ type: 'updateUser', user: savedUser })
             commit({ type: 'setLoggedinUser', user: savedUser })
         }

@@ -17,7 +17,8 @@ export const userService = {
     remove,
     update,
     changeScore,
-    followStation
+    followStation,
+    saveSong
 }
 
 window.userService = userService
@@ -80,20 +81,23 @@ async function logout() {
 }
 
 async function followStation(miniStation, isToFollow, user) {
-    console.log('service ministation:',miniStation)
+    console.log('service ministation:', miniStation)
     const loggedinUser = getLoggedinUser() || user
-    console.log('FOLLOWSTATION loggedinUser:',loggedinUser)
+    console.log('FOLLOWSTATION loggedinUser:', loggedinUser)
 
     isToFollow ? loggedinUser.stations.push(miniStation)
         : loggedinUser.stations = loggedinUser.stations.filter(station => station._id !== miniStation._id)
     return update(loggedinUser)
 }
 
+async function saveSong(song, loggedUser) {
+    const user = getLoggedinUser() || loggedUser
+    const idx = user.likedSongs.findIndex(s => s.id === song.id)
+    idx === -1 ? user.likedSongs.unshift({...song}) : user.likedSongs.splice(idx, 1)
+    return update(user)
+}
+
 async function changeScore(by) {
-    const user = getLoggedinUser()
-    if (!user) throw new Error('Not loggedin')
-    user.score = user.score + by || by
-    await update(user)
     return user.score
 }
 
@@ -107,10 +111,10 @@ function getLoggedinUser() {
 }
 
 
-;(async ()=>{
-    await userService.signup({fullname: 'Puki Norma', username: 'user1', password:'123',likedSongs:[], stations:[], isAdmin: false})
-    await userService.signup({fullname: 'Master Adminov', username: 'admin', password:'123', likedSongs:[], stations:[], isAdmin: true})
-    await userService.signup({fullname: 'Muki G', username: 'muki', password:'123', likedSongs:[], stations:[]})
+; (async () => {
+    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', likedSongs: [], stations: [], isAdmin: false })
+    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', likedSongs: [], stations: [], isAdmin: true })
+    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123', likedSongs: [], stations: [] })
 })()
 
 

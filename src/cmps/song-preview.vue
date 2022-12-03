@@ -1,6 +1,5 @@
 <template>
-    ISMINIMENU? {{ isMiniMenu }}
-    <li class="song-preview" @click="isClicked = !isClicked" :class="{ clicked: isClicked }">
+    <li class="song-preview" @click.stop="$emit('clicked', song.id)" :class="{ clicked: isClicked }">
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">{{ index + 1 }}</div>
         <div class="song-img-container">
@@ -10,15 +9,17 @@
         <!-- </div> -->
         <div class="song-created-at">{{ dateAdded }}</div>
         <div class="song-preview-actions">
-            <button class="btn-like-song">
-                <heart-empty-svg />
+            <button class="btn-like-song" @click="onMiniMenu('saveSong')">
+                <heart-btn-svg v-if="isLiked" class="liked" />
+                <heart-empty-svg v-else />
             </button>
             <div class="song-length">{{ song.length }}
-                <mini-menu v-if="isMiniMenu"
-                    :actions="['Add to queue', 'Save to your Liked Songs', 'Add to playlist', 'Share']" />
+                <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu"
+                    :actions="['Add to queue', 'Save to your Liked Songs', 'Add to playlist', 'Share']"
+                    @savetoyourlikedsongs="onMiniMenu('saveSong')" />
 
             </div>
-            <button class="btn-more-options" @click.stop="isClicked = !isClicked;toggleMiniMenu()">
+            <button class="btn-more-options" @click="toggleMiniMenu">
                 <more-options-svg />
             </button>
         </div>
@@ -29,6 +30,7 @@
 
 <script>
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
+import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import miniMenu from '../cmps/mini-menu.vue'
 
@@ -40,17 +42,20 @@ export default {
         },
         index: {
             type: Number
-        }
+        },
+        clickedSong: {
+            type: String
+        },
+        loggedInUser: { type: Object }
     },
+    emits: ['clicked'],
     data() {
         return {
             isMiniMenu: false,
-            isClicked: false,
         }
     },
-    created(){
-        window.addEventListener('click', () => this.isMiniMenu = false);
-
+    created() {
+        window.addEventListener('click', () => this.$emit('clicked', ''));
     },
     computed: {
         dateAdded() {
@@ -59,15 +64,35 @@ export default {
         },
         imgUrl() {
             return this.song.imgUrl.medium || this.song.imgUrl
+        },
+        isClicked() {
+            return this.clickedSong === this.song.id
+        },
+        isLiked() {
+            return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
         }
     }, methods: {
         toggleMiniMenu() {
             this.isMiniMenu = !this.isMiniMenu
         },
-
+        onMiniMenu(action) {
+            this.isMiniMenu = false
+            console.log(action)
+            this.$emit('songAction', action)
+        }
+    },
+    watch: {
+        isClicked() {
+            if (!this.isClicked) this.isMiniMenu = false
+        },
+        isMiniMenu() {
+            // console.log('MINI', this.$refs)
+            // if (this.isMiniMenu) this.$refs?.miniMenu?.addEventListener('click', ()=>this.isMiniMenu=false)
+        }
     },
     components: {
         heartEmptySvg,
+        heartBtnSvg,
         moreOptionsSvg,
         miniMenu
     }

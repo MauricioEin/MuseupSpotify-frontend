@@ -81,6 +81,19 @@ export const stationStore = {
             state.playingStation = [songCopy]
             state.playingSongIdx = 0
         },
+        playStation(state, { station }) {
+            const miniStation = station.songs.map(song => {
+                const { title, imgUrl, youtubeId } = song
+                return {
+                    title,
+                    imgUrl: imgUrl.medium,
+                    youtubeId,
+                }
+            })
+            state.playingStation = miniStation
+            state.playingSongIdx = 0
+            this.toggleIsPlayed()
+        },
         toggleIsPlayed(state) {
             state.isPlayed = !state.isPlayed
         }
