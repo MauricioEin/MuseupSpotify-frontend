@@ -15,18 +15,18 @@
     </section>
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
-    
+
     <section class="song-list-container details-layout">
 
       <section class="playlist-actions">
-        <button class="btn-play-green" v-if="station.songs.length">
+        <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
           <play-btn />
         </button>
         <div class="follow-btn" @click="follow">
-          <heart-btn-svg v-if="isFollowed" class="followed"/>
-          <heart-empty-svg v-else/>
+          <heart-btn-svg v-if="isFollowed" class="followed" />
+          <heart-empty-svg v-else />
         </div>
-        
+
         <button @click="openStationMenu" class="btn-playlist-more-options">
           <more-options-svg @click.stop="toggleStationMenu" />
           <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
@@ -62,7 +62,7 @@ import stationEdit from '../cmps/station-edit.vue'
 import stationSongSearch from '../cmps/station-song-search.vue'
 import stationSongList from '../cmps/station-song-list.vue'
 import imgUploader from '../cmps/img-uploader.vue'
- 
+
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import pencilSvg from '../assets/svgs/pencil-svg.vue'
@@ -192,6 +192,9 @@ export default {
         console.log(err)
         showErrorMsg('Failed adding song to station')
       }
+    },
+    playStation() {
+      this.$store.commit({ type: 'playStation', station: this.station })
     }
   },
   watch: {
