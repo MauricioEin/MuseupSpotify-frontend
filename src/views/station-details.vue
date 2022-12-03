@@ -38,7 +38,8 @@
       <song-list-header v-if="station.songs.length" />
 
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
-        :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong" />
+        :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
+        @removeSong="removeSong" />
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -193,11 +194,11 @@ export default {
         editedStation.songs.push(song)
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Added to playlist')
-        // this.loadStation()
-        this.station.songs.push(song)
-      } catch {
+        this.loadStation()
+
+      } catch (err) {
         console.log(err)
-        showErrorMsg('Failed adding song to station')
+        showErrorMsg('Failed adding song to playlist')
       }
     },
     playStation() {
@@ -209,6 +210,19 @@ export default {
     toggleIsPlayed(){
         this.$store.commit('toggleIsPlayed')
       },
+    async removeSong(song) {
+      try {
+        const editedStation = JSON.parse(JSON.stringify(this.station))
+        const idx = editedStation.songs.findIndex(s => s.id === song.id)
+        editedStation.songs.splice(idx,1)
+        await this.$store.dispatch(getActionUpdateStation(editedStation))
+        showSuccessMsg('Removed from playlist')
+        this.loadStation()
+      } catch (err) {
+        console.log(err)
+        showErrorMsg('Failed removing song from playlist')
+      }
+    }
   },
   watch: {
     stationId() {

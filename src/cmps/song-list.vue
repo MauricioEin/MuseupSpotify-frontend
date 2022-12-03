@@ -2,8 +2,9 @@
     <section class="song-list">
         <ul class="clean-list">
             <song-preview v-for="(song, index) in songs" @clicked="onSongClicked"
+            @playing="id=>playingSong=id"
                  :key="song._id" :song="song" :loggedInUser="loggedInUser"
-                :index="index" :clickedSong="clickedSong"
+                :index="index" :clickedSong="clickedSong" :playingSong="playingSong"
                 @songAction="action=>$emit(action,song)" />
         </ul>
     </section>
@@ -28,6 +29,7 @@ export default {
     data() {
         return {
             clickedSong: '',
+            playingSong: ''
         }
     },
     watch: {
