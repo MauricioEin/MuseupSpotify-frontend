@@ -26,9 +26,11 @@
 
 }
 .station-card{
+    position: relative;
     background-color: #1a1a1a;
     border-radius: 10px;
     padding: 20px;
+    transition: background-color .4s;
     .station-title{
         font-size: 16px;
     }
@@ -36,10 +38,43 @@
         font-size: 14px;
         color: rgb(183, 183, 183);
     }
-
+    
     .card-details{
         // min-height: 100px;
         // background-color: red;
+    }
+    &:hover{
+        background-color: #282828;
+        cursor: pointer;
+    }
+    
+    &:hover .play-playlist-btn{
+        top: 38%;
+        opacity: 1;
+        transition: opacity .6s, top .6s;
+        cursor: pointer;
+    }
+
+    .play-playlist-btn{
+        height: 48px;
+        width: 48px;
+        background-color: #1FDF64;
+        padding: 10px;
+        border-radius: 50%;
+        position: absolute;
+        top: 42%;
+        right: 10%;
+        opacity: 0;
+        box-shadow: 0px 1px 5px 0px black;
+        transition: opacity .6s, top .6s;
+
+        &:hover{
+            background-color: #3bef7d;
+        }
+
+        svg{
+            fill:black;
+        }
     }
 }
 

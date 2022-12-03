@@ -14,6 +14,8 @@
           <p class="station-desc cut-text">
             The essential tracks, all in one playlist.
           </p >
+          <button class="play-playlist-btn"><play-btn/></button>
+          
           <!-- <router-link :to="'station/'  +  station._id">Details</router-link>
           <button @click="removeStation(station._id)">x</button>
           <button @click="updateStation(station)">Update</button> -->
@@ -33,6 +35,7 @@
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { stationService } from '../services/station.service'
 import { getActionRemoveStation, getActionUpdateStation } from '../store/station.store'
+import playBtn from '../assets/svgs/play-btn-svg.vue'
 export default {
   data() {
     return {
@@ -82,7 +85,11 @@ export default {
         console.log(err)
         showErrorMsg('Cannot remove station')
       }
-    }
+    },
+
+  },
+  components:{
+    playBtn,
   }
 
 
