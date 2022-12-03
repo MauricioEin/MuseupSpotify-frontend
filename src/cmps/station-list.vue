@@ -14,7 +14,7 @@
             <p class="station-desc cut-text">
               The essential tracks, all in one playlist.
             </p >
-            <button class="play-playlist-btn" @click.stop="(!isPlayed) ? playStation(station) :  toggleIsPlayed()" ><play-btn v-if="!isPlayed"/><pause-btn v-else/></button>
+            <button class="play-playlist-btn" @click.stop="(!isPlayed) ? playStation(station) :  toggleIsPlayed()" ><pause-btn v-if="isCurrStationPlayed(station)"/><play-btn v-else/></button>
          
           </div>
         </li>
@@ -56,12 +56,33 @@
       toggleIsPlayed(){
         this.$store.commit('toggleIsPlayed')
       },
-    
+
+      isCurrStationPlayed(station){
+        const miniStation = station.songs.map(song => {
+            const { title, imgUrl, youtubeId } = song
+            return {
+                title,
+                imgUrl: imgUrl.medium,
+                youtubeId,
+            }
+        })
+
+        const stringedStore =(JSON.stringify(this.getPlayingStation))
+        const stringedMini = (JSON.stringify(miniStation))
+      
+        if(this.isPlayed && stringedStore == stringedMini){
+            return true
+        }   return false
+      },
     },
 
     computed:{
         isPlayed(){
             return this.$store.getters.isPlayed
+        },
+
+        getPlayingStation(){
+            return this.$store.getters.getPlayingStation
         }
     },
 
