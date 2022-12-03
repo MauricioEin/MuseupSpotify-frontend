@@ -12,7 +12,7 @@
             <div class="controls" :class="setFull">
 
                 <div class="left-controls" :class="setFull">
-                    <img :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+                    <img class="media-img" :class="setFull" :src="currSongPlaying.imgUrl" alt="">
                     <div :class="setFull" class="artist-details">
                         <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25)}}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->

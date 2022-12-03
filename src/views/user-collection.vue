@@ -2,9 +2,10 @@
   <div class="container home">
     <h1>Playlists</h1>
     <ul class="station-list">
-      <li class="station-card" v-for="station in stations" :key="station._id">
+      {{ loggedInUser }}
+      <li class="station-card" v-for="station in loggedInUser.stations" :key="station._id">
         <!-- <pre>{{station}}</pre> -->
-        <img :src="getStationImg(station)" alt="" class="station-img">
+        <!-- <img :src="getStationImg(station)" alt="" class="station-img"> -->
         <div class="card-details">
           <p class="station-title cut-text" >
             {{  station.name  }}
