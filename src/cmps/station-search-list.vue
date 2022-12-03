@@ -1,14 +1,14 @@
 <template>
-    <section class="station-song-list">
+    <section class="station-search-list">
         <ul class="clean-list">
-            <station-song-preview @addSongToStation="addSongToStation" v-for="song in songs" :song="song"
+            <station-search-preview @addSongToStation="addSongToStation" v-for="song in songs" :song="song"
                 :key="song.id" />
         </ul>
     </section>
 </template>
 
 <script>
-import stationSongPreview from './station-song-preview.vue';
+import stationSearchPreview from './station-search-preview.vue';
 export default {
     props: {
         songs: {
@@ -17,7 +17,7 @@ export default {
         }
     },
     components: {
-        stationSongPreview
+        stationSearchPreview
     },
     methods: {
         addSongToStation(song) {

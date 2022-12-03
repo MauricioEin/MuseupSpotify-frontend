@@ -1,4 +1,4 @@
-.station-song-preview {
+.station-search-preview {
     border-radius: 5px;
     height: 56px;
     align-items: center;
@@ -11,12 +11,33 @@
         position: relative;
         height: rem(40px);
         width: rem(40px);
+
         // margin-inline-end: 15px;
+        &>* {
+            width: 100%;
+            height: 100%;
+
+        }
+
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: 0;
+        }
+
+        .play-pause-btn {
+            display: none;
+            background-color: rgba(83, 83, 83, 0.5);
+            position: absolute;
+            inset: 0;
+
+            svg {
+                fill: $clr2;
+                height: 20px;
+                width: 20px;
+            }
         }
     }
 
@@ -26,6 +47,12 @@
 
         .img-screen-play {
             opacity: 1;
+        }
+
+        .play-pause-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 

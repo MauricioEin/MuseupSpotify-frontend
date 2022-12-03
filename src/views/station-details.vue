@@ -46,7 +46,7 @@
         @closeSearch="closeSearch" />
       <button v-else @click="openSearch" class="btn-find-more">Find more</button>
     </section>
-    <station-song-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
+    <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     <!-- </section> -->
 
   </section>
@@ -62,7 +62,7 @@ import songListHeader from '../cmps/song-list-header.vue'
 import stationMenu from '../cmps/station-menu.vue'
 import stationEdit from '../cmps/station-edit.vue'
 import stationSongSearch from '../cmps/station-song-search.vue'
-import stationSongList from '../cmps/station-song-list.vue'
+import stationSearchList from '../cmps/station-search-list.vue'
 import imgUploader from '../cmps/img-uploader.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
@@ -249,7 +249,7 @@ export default {
     heartEmptySvg,
     heartBtnSvg,
     stationSongSearch,
-    stationSongList,
+    stationSearchList,
     pauseBtn,
   }
 
