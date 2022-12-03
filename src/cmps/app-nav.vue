@@ -40,8 +40,8 @@
       </div>
     </nav>
     <hr>
-    <ul class="user-stations clean-list">
-      <li v-for="station in stations" :key="station._id">
+    <ul v-if="loggedinUser" class="user-stations clean-list">
+      <li v-for="station in loggedinUser.stations" :key="station._id">
         <router-link :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
       </li>
     </ul>
@@ -69,11 +69,11 @@ export default {
   methods: {
     async createStation() {
       console.log('creating!')
-      const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [], followers:[] }
+      const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [], followers: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
       this.$router.push('/station/' + savedStation._id)
     },
-    
+
   }
 }
 </script>
