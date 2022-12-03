@@ -1,7 +1,7 @@
 <template>
   <section class="nav-container">
     <div class="logo pointer" @click="$router.push('/station')">
-      <logo-svg /> <span>Sprintify</span>
+      <logo-svg /> <span>WannaPlay</span>
     </div>
     <nav class="permanent-nav">
       <ul class="app-nav clean-list">
