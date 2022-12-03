@@ -1,7 +1,16 @@
 <template>
+    is on Player? {{isOnPlayer}}
     <li class="song-preview" @click.stop="$emit('clicked', song.id)" :class="{ clicked: isClicked }">
         <!-- <div class="song-preview-info"> -->
-        <div class="song-index">{{ index + 1 }}</div>
+        <div class="song-index">
+            <span> {{ index + 1 }} </span>
+            <div v-if="!isPlaying" @click="playSong" title = "Play song">
+                <play-btn-svg />
+            </div>
+            <div v-else @click="pauseSong">
+                <media-player-stop />
+            </div>
+        </div>
         <div class="song-img-container">
             <img :src="imgUrl" alt="">
         </div>
@@ -15,7 +24,7 @@
             </button>
             <div class="song-length">{{ song.length }}
                 <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
-                    @savetoyourlikedsongs="onMiniMenu('saveSong')" @removefromplaylist="onMiniMenu('removeSong')"/>
+                    @savetoyourlikedsongs="onMiniMenu('saveSong')" @removefromplaylist="onMiniMenu('removeSong')" />
 
             </div>
             <button class="btn-more-options" @click="toggleMiniMenu">
@@ -31,6 +40,9 @@
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
+
 import miniMenu from '../cmps/mini-menu.vue'
 
 
@@ -45,12 +57,16 @@ export default {
         clickedSong: {
             type: String
         },
+        playingSong: {
+            type: String
+        },
         loggedInUser: { type: Object }
     },
     emits: ['clicked'],
     data() {
         return {
             isMiniMenu: false,
+            isPlaying:false,
         }
     },
     created() {
@@ -67,6 +83,9 @@ export default {
         isClicked() {
             return this.clickedSong === this.song.id
         },
+        isOnPlayer() {
+            return this.playingSong === this.song.id
+        },
         isLiked() {
             return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
         },
@@ -82,6 +101,17 @@ export default {
             this.isMiniMenu = false
             console.log(action)
             this.$emit('songAction', action)
+        },
+        playSong() {
+            this.$emit('playing', this.song.id)
+            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
+            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.isPlaying=true
+        },
+        pauseSong() {
+            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.isPlaying=false
+
         }
     },
     watch: {
@@ -97,6 +127,9 @@ export default {
         heartEmptySvg,
         heartBtnSvg,
         moreOptionsSvg,
+        playBtnSvg,
+        mediaPlayerStop,
+
         miniMenu
     }
 }
