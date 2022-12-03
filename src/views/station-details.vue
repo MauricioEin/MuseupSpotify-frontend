@@ -185,9 +185,9 @@ export default {
         editedStation.songs.push(song)
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Added to playlist')
-        // this.loadStation()
-        this.station.songs.push(song)
-      } catch {
+        this.loadStation()
+
+      } catch (err) {
         console.log(err)
         showErrorMsg('Failed adding song to station')
       }

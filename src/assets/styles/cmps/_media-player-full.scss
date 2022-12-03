@@ -11,7 +11,7 @@
 }
 
 .album{
-    // display: none;
+    display: none;
     // display: block;
     opacity: 0;
     transition: opacity .4s;
@@ -49,4 +49,8 @@
 }
 .full-svg.full{
     padding-right: 0;
+}
+
+.player-section:first-child{
+display:none;
 }

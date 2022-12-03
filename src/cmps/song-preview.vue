@@ -9,13 +9,12 @@
         <!-- </div> -->
         <div class="song-created-at">{{ dateAdded }}</div>
         <div class="song-preview-actions">
-            <button class="btn-like-song" @click="onMiniMenu('saveSong')">
+            <button class="btn-like-song" @click="onMiniMenu('saveSong')" :class="{ liked: isLiked }">
                 <heart-btn-svg v-if="isLiked" class="liked" />
                 <heart-empty-svg v-else />
             </button>
             <div class="song-length">{{ song.length }}
-                <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu"
-                    :actions="['Add to queue', 'Save to your Liked Songs', 'Add to playlist', 'Share']"
+                <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
                     @savetoyourlikedsongs="onMiniMenu('saveSong')" />
 
             </div>
@@ -70,7 +69,11 @@ export default {
         },
         isLiked() {
             return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
+        },
+        songActions() {
+            return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to playlist', 'Share']
         }
+
     }, methods: {
         toggleMiniMenu() {
             this.isMiniMenu = !this.isMiniMenu

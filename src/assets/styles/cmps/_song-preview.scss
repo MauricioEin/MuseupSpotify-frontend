@@ -20,6 +20,10 @@
         pointer-events: none;
         justify-self: center;
 
+        &.liked {
+            opacity: 1;
+        }
+
         svg {
             height: 1rem;
             width: 1rem;
