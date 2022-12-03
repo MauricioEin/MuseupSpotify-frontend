@@ -6,7 +6,7 @@
             <div v-if="isOnPlayer&& isPlayerOn" @click="pauseSong">
                 <media-player-stop />
             </div>
-            <div v-else @click="playSong" title="Play song">
+            <div v-else @click="$emit('play')" title="Play song">
                 <play-btn-svg />
             </div>
         </div>
@@ -107,10 +107,10 @@ export default {
             console.log(action)
             this.$emit('songAction', action)
         },
-        playSong() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
-            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
-        },
+        // playSong() {
+        //     this.$store.commit({ type: 'toggleIsPlayed' })
+        //     this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
+        // },
         pauseSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
         }

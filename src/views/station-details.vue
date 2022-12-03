@@ -17,7 +17,11 @@
     <section class="song-list-container details-layout">
 
       <section class="playlist-actions">
-        <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlayed) ? playStation() :  toggleIsPlayed()" ><play-btn v-if="!isPlayed"/><pause-btn v-else/></button>
+        <button class="btn-play-green" v-if="station.songs.length"
+          @click.stop="(!isPlayed) ? playStation() : toggleIsPlayed()">
+          <play-btn v-if="!isPlayed" />
+          <pause-btn v-else />
+        </button>
         <!-- <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
 
           <play-btn />
@@ -39,7 +43,7 @@
 
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" />
+        @removeSong="removeSong" @play="playStation" />
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -132,10 +136,10 @@ export default {
       else return `${time.min} min ${time.sec} sec`
     },
 
-    isPlayed(){
-            return this.$store.getters.isPlayed
+    isPlayed() {
+      return this.$store.getters.isPlayed
     }
-    
+
   },
   mounted() {
     window.addEventListener('click', () => this.isStationMenuOpen = false);
@@ -201,20 +205,20 @@ export default {
         showErrorMsg('Failed adding song to playlist')
       }
     },
-    playStation() {
-      this.$store.commit({ type: 'playStation', station: this.station })
+    playStation(idx = 0) {
+      this.$store.commit({ type: 'playStation', station: this.station, idx })
     },
     saveSong(song) {
       this.$store.dispatch({ type: 'saveSong', song })
     },
-    toggleIsPlayed(){
-        this.$store.commit('toggleIsPlayed')
-      },
+    toggleIsPlayed() {
+      this.$store.commit('toggleIsPlayed')
+    },
     async removeSong(song) {
       try {
         const editedStation = JSON.parse(JSON.stringify(this.station))
         const idx = editedStation.songs.findIndex(s => s.id === song.id)
-        editedStation.songs.splice(idx,1)
+        editedStation.songs.splice(idx, 1)
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Removed from playlist')
         this.loadStation()
@@ -242,14 +246,14 @@ export default {
     songListHeader,
     stationEdit,
     imgUploader,
-    playBtn,
+    stationSongSearch,
+    stationSearchList,
     moreOptionsSvg,
     pencilSvg,
     musicNoteSvg,
     heartEmptySvg,
     heartBtnSvg,
-    stationSongSearch,
-    stationSearchList,
+    playBtn,
     pauseBtn,
   }
 

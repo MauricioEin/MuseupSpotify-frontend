@@ -45,7 +45,7 @@ export const stationStore = {
         isPlayed(state) {
             return state.isPlayed
         },
-        playingSong({playingStation, playingSongIdx}){
+        playingSong({ playingStation, playingSongIdx }) {
             return playingStation[playingSongIdx]
         }
     },
@@ -84,7 +84,7 @@ export const stationStore = {
             state.playingStation = [songCopy]
             state.playingSongIdx = 0
         },
-        playStation(state, { station }) {
+        playStation(state, { station, idx = 0 }) {
             console.log(station);
             const miniStation = station.songs.map(song => {
                 const { title, imgUrl, youtubeId } = song
@@ -95,7 +95,7 @@ export const stationStore = {
                 }
             })
             state.playingStation = miniStation
-            state.playingSongIdx = 0
+            state.playingSongIdx = idx
             // commit('toggleIsPlayed')
             // state.isPlayed = !state.isPlayed
             // console.log(state.isPlayed);
@@ -103,7 +103,7 @@ export const stationStore = {
         toggleIsPlayed(state) {
             state.isPlayed = !state.isPlayed
             console.log(state.isPlayed);
-            console.log('Is played?',state.isPlayed)
+            console.log('Is played?', state.isPlayed)
         }
     },
     actions: {
