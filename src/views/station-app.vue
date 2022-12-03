@@ -1,9 +1,9 @@
 <template>
-  <div class="container home">
+  <station-list :stations="stations"/>
+  <!-- <div class="container home">
     <h1>Home</h1>
     <ul class="station-list">
       <li class="station-card" v-for="station in stations" :key="station._id">
-        <!-- <pre>{{station}}</pre> -->
         <img :src="getStationImg(station)" alt="" class="station-img">
         <div class="card-details">
           <p class="station-title cut-text" >
@@ -17,19 +17,17 @@
           </p >
           <button class="play-playlist-btn"><play-btn/></button>
           
-          <!-- <router-link :to="'station/'  +  station._id">Details</router-link>
-          <button @click="removeStation(station._id)">x</button>
-          <button @click="updateStation(station)">Update</button> -->
+        
         </div>
       </li>
-    </ul>
+    </ul> -->
     <!-- <hr />
     <form @submit.prevent="addStation()">
       <h2>Add station</h2>
       <input type="text" v-model="stationToAdd.name" />
       <button>Save</button>
     </form> -->
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -37,6 +35,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { stationService } from '../services/station.service'
 import { getActionRemoveStation, getActionUpdateStation } from '../store/station.store'
 import playBtn from '../assets/svgs/play-btn-svg.vue'
+import stationList from '../cmps/station-list.vue'
 export default {
   data() {
     return {
@@ -98,6 +97,7 @@ export default {
   },
   components:{
     playBtn,
+    stationList,
   }
 
 
