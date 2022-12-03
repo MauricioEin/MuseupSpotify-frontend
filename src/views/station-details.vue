@@ -17,7 +17,9 @@
     <section class="song-list-container details-layout">
 
       <section class="playlist-actions">
-        <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlayed) ? playStation() :  toggleIsPlayed()" ><play-btn v-if="!isPlayed"/><pause-btn v-else/></button>
+        <button class="btn-play-green" v-if="station.songs.length"  @click.stop="(!isPlayed) ? playStation(station) :  toggleIsPlayed()" ><pause-btn v-if="isCurrStationPlayed(station)"/><play-btn v-else/></button>
+
+        <!-- <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlayed) ? playStation() :  toggleIsPlayed()" ><play-btn v-if="!isPlayed"/><pause-btn v-else/></button> -->
         <!-- <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
 
           <play-btn />
@@ -134,6 +136,10 @@ export default {
 
     isPlayed(){
             return this.$store.getters.isPlayed
+    },
+
+    getPlayingStation(){
+            return this.$store.getters.getPlayingStation
     }
     
   },
@@ -222,7 +228,25 @@ export default {
         console.log(err)
         showErrorMsg('Failed removing song from playlist')
       }
-    }
+    },
+
+    isCurrStationPlayed(){
+        const miniStation = this.station.songs.map(song => {
+            const { title, imgUrl, youtubeId } = song
+            return {
+                title,
+                imgUrl: imgUrl.medium,
+                youtubeId,
+            }
+        })
+
+        const stringedStore =(JSON.stringify(this.getPlayingStation))
+        const stringedMini = (JSON.stringify(miniStation))
+      
+        if(this.isPlayed && stringedStore == stringedMini){
+            return true
+        }   return false
+      },
   },
   watch: {
     stationId() {
