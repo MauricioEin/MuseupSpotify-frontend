@@ -102,7 +102,6 @@ export const stationStore = {
         async addStation(context, { station }) {
             try {
                 const user = { ...context.getters.loggedinUser }
-                console.log('user:', user)
                 // station.owner = context.getters.loggedinUser
                 // console.log('user:',context.rootState.userStore.loggedinUser)
                 station.owner = user
