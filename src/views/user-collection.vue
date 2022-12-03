@@ -3,7 +3,8 @@
     <h1>Playlists</h1>
     <ul class="station-list">
       <li class="station-card" v-for="station in stations" :key="station._id">
-        <img src="https://i.scdn.co/image/ab67706f0000000262a2b2b0d95d902b307837d2" alt="">
+        <!-- <pre>{{station}}</pre> -->
+        <img :src="getStationImg(station)" alt="" class="station-img">
         <div class="card-details">
           <p class="station-title cut-text" >
             {{  station.name  }}
@@ -48,7 +49,8 @@ export default {
     },
     stations() {
       return this.$store.getters.stations
-    }
+    },
+
   },
   created() {
     this.$store.dispatch({ type: 'loadStations' })
@@ -68,7 +70,7 @@ export default {
       try {
         await this.$store.dispatch(getActionRemoveStation(stationId))
         showSuccessMsg('Station removed')
-
+        
       } catch (err) {
         console.log(err)
         showErrorMsg('Cannot remove station')
@@ -85,6 +87,12 @@ export default {
         console.log(err)
         showErrorMsg('Cannot remove station')
       }
+    },
+
+    getStationImg(station){
+      if(station.imgUrl)return station.imgUrl  
+      else if(station.songs[0]?.imgUrl) return station.songs[0]?.imgUrl
+      else return 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
     },
 
   },
