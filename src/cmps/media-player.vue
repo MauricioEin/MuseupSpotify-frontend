@@ -7,28 +7,39 @@
         <div class="player-section">
 
             <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
-                @state-change="onStateChanged" ref="youtube" />
+                @state-change="onStateChange" ref="youtube" />
 
             <div class="controls" :class="setFull">
 
                 <div class="left-controls" :class="setFull">
                     <img class="media-img" :class="setFull" :src="currSongPlaying.imgUrl" alt="">
                     <div :class="setFull" class="artist-details">
-                        <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25)}}...</a>
+                        <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
-                    <button><heart-svg /></button>
+                    <button>
+                        <heart-svg />
+                    </button>
                 </div>
 
                 <div class="center-controls" :class="setFull">
                     <div class="top-center-controls">
-                        <button @click="(isShuffled) ? restoreOriginalList() : shuffleList()"><random-svg
-                                :style="shuffleStyle" /></button>
-                        <button @click="changeSong(-1)"><prev-svg /></button>
-                        <button @click="togglePlay" class="play-btn"> <play-svg v-if="!isPlayed" /> <stop-svg
-                                v-else /></button>
-                        <button @click="changeSong(1)"><next-svg /></button>
-                        <button @click="(isLoop = !isLoop)"><loop-svg :style="loopStyle" /></button>
+                        <button @click="(isShuffled) ? restoreOriginalList() : shuffleList()">
+                            <random-svg :style="shuffleStyle" />
+                        </button>
+                        <button @click="changeSong(-1)">
+                            <prev-svg />
+                        </button>
+                        <button @click="togglePlay" class="play-btn">
+                            <play-svg v-if="!isPlayed" />
+                            <stop-svg v-else />
+                        </button>
+                        <button @click="changeSong(1)">
+                            <next-svg />
+                        </button>
+                        <button @click="(isLoop = !isLoop)">
+                            <loop-svg :style="loopStyle" />
+                        </button>
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
                         <span class="time-progress">{{ formattedTime(currTime) }}</span>
@@ -40,11 +51,16 @@
                 </div>
 
                 <div class="right-controls" :class="setFull">
-                    <button @click="toggleMute"><sound-svg v-if="!isMute" /> <muted-svg v-else /> </button>
+                    <button @click="toggleMute">
+                        <sound-svg v-if="!isMute" />
+                        <muted-svg v-else />
+                    </button>
                     <input class="volume" @input="setVolume" type="range" min="0" max="100">
                     <progress class="prog" :value="volume" min="0" max="100"></progress>
-                    <button @click="(isFullscreen = !isFullscreen)"><full-svg v-if="!isFullscreen" /> <minimize-svg
-                            v-else /></button>
+                    <button @click="(isFullscreen = !isFullscreen)">
+                        <full-svg v-if="!isFullscreen" />
+                        <minimize-svg v-else />
+                    </button>
                 </div>
 
             </div>
@@ -96,11 +112,12 @@ export default defineComponent({
         this.originalList = this.songList = this.getStation
         this.currSongIdx = this.getPlayingSongIdx
         // console.log(this.currSongIdx);
+        console.log('SONGLISTTTTTTTTT', this.songList)
         this.currSongPlaying = this.songList[this.currSongIdx]
     },
 
     methods: {
-        onStateChanged(e) {
+        onStateChange(e) {
             if (e.data === 1) {
                 this.getDuration()
             }
@@ -144,20 +161,9 @@ export default defineComponent({
         },
 
         changeSong(dir) {
-            this.currSongIdx += dir
-
-            if (this.currSongIdx < 0) this.currSongIdx = this.songList.length - 1
-            if (this.currSongIdx === this.songList.length) this.currSongIdx = 0
-            console.log(this.currSongIdx);
-            console.log(this.songList[this.currSongIdx]);
-            this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
-            this.currSongPlaying = this.songList[this.currSongIdx]
-            this.isPlayed = true
-            clearInterval(this.timeInterval)
-            this.updateCurrTime()
-
-            // Video URL expample http://www.youtube.com/v/VIDEO_ID?version=3
-
+            const newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
+            // this gives us the calc for looping around the playlist
+            this.$store.commit({type:'playStation',station:this.songList, idx:newIdx})
         },
 
         setTimestamp(e) {
@@ -210,6 +216,7 @@ export default defineComponent({
         updateCurrStation() {
             this.originalList = this.songList = this.getStation
             this.currSongIdx = this.getPlayingSongIdx
+            console.log('SONGLIST',this.songList)
             this.currSongPlaying = this.songList[this.currSongIdx]
             if (!this.isPlayed) {
                 this.togglePlay()
@@ -230,7 +237,7 @@ export default defineComponent({
             return (this.isFullscreen) ? 'full' : ''
         },
         getStation() {
-            return this.$store.getters.getPlayingStation
+            return this.$store.getters.getPlayingStation.songs
         },
 
         getPlayingSongIdx() {
@@ -246,12 +253,16 @@ export default defineComponent({
         getStation() {
             this.updateCurrStation()
         },
+        getPlayingSongIdx(){
+            this.updateCurrStation()
+
+        },
         isPlayingInStore() {
             this.isPlayed = this.isPlayingInStore
             // this.togglePlay()
         },
 
-        isPlayed(){
+        isPlayed() {
             if (!this.isPlayed) {
                 this.$refs.youtube.pauseVideo()
                 // this.isPlayed = false

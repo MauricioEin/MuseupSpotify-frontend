@@ -23,11 +23,13 @@ export const stationStore = {
     state: {
         stations: [],
         searchedSongs: [],
-        playingStation: [
-            { title: 'Coldplay - Universe', imgUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubeId: 'bZYPI4mYwhw' },
-            { title: 'Bruno Mars -Talking to the moon', imgUrl: 'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI' },
-            { title: 'Gunz N Roses - Dont Cry', imgUrl: 'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0' }
-        ],
+        playingStation: {
+            _id: '', songs: [
+                { title: 'Coldplay - Universe', imgUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubeId: 'bZYPI4mYwhw' },
+                { title: 'Bruno Mars -Talking to the moon', imgUrl: 'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI' },
+                { title: 'Gunz N Roses - Dont Cry', imgUrl: 'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0' }
+            ]
+        },
         playingSongIdx: 0,
         currStation: null,
         isPlayed: false
@@ -46,7 +48,7 @@ export const stationStore = {
             return state.isPlayed
         },
         playingSong({ playingStation, playingSongIdx }) {
-            return playingStation[playingSongIdx]
+            return playingStation.songs[playingSongIdx]
         }
     },
     mutations: {
@@ -81,19 +83,23 @@ export const stationStore = {
         },
         playSong(state, { song }) {
             const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
-            state.playingStation = [songCopy]
+            state.playingStation = { _id: '', songs: [songCopy] }
             state.playingSongIdx = 0
         },
         playStation(state, { station, idx = 0 }) {
-            console.log(station);
-            const miniStation = station.songs.map(song => {
+            console.log('station', station);
+            const miniStation = (Array.isArray(station)) ?
+                { _id: '' } : { _id: station._id }
+            miniStation.songs = station.songs?.map(song => {
                 const { title, imgUrl, youtubeId } = song
                 return {
                     title,
-                    imgUrl: imgUrl.medium,
+                    imgUrl: imgUrl.medium || imgUrl,
                     youtubeId,
                 }
-            })
+            }) || station
+            console.log('ministation and idx', miniStation, idx);
+
             state.playingStation = miniStation
             state.playingSongIdx = idx
             // commit('toggleIsPlayed')
