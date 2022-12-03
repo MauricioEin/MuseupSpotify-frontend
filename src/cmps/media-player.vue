@@ -12,7 +12,7 @@
             <div class="controls" :class="setFull">
 
                 <div class="left-controls" :class="setFull">
-                    <img :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+                    <img class="media-img" :class="setFull" :src="currSongPlaying.imgUrl" alt="">
                     <div :class="setFull" class="artist-details">
                         <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25)}}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
@@ -115,16 +115,16 @@ export default defineComponent({
         },
 
         togglePlay() {
-            if (this.isPlayed) {
-                this.$refs.youtube.pauseVideo()
-                this.isPlayed = false
-                clearInterval(this.timeInterval)
-            } else {
-                this.$refs.youtube.playVideo()
-                this.isPlayed = true
-                this.updateCurrTime()
-            }
             this.$store.commit({ type: 'toggleIsPlayed' })
+            // if (this.isPlayed) {
+            //     this.$refs.youtube.pauseVideo()
+            //     // this.isPlayed = false
+            //     clearInterval(this.timeInterval)
+            // } else {
+            //     this.$refs.youtube.playVideo()
+            //     // this.isPlayed = true
+            //     this.updateCurrTime()
+            // }
         },
 
         toggleMute() {
@@ -237,7 +237,7 @@ export default defineComponent({
             return this.$store.getters.getPlayingSongIdx
         },
 
-        isPlaying() {
+        isPlayingInStore() {
             return this.$store.getters.isPlayed
         }
     },
@@ -246,9 +246,21 @@ export default defineComponent({
         getStation() {
             this.updateCurrStation()
         },
-        isPlaying() {
-            this.isPlayed = this.isPlaying
-            this.togglePlay()
+        isPlayingInStore() {
+            this.isPlayed = this.isPlayingInStore
+            // this.togglePlay()
+        },
+
+        isPlayed(){
+            if (!this.isPlayed) {
+                this.$refs.youtube.pauseVideo()
+                // this.isPlayed = false
+                clearInterval(this.timeInterval)
+            } else {
+                this.$refs.youtube.playVideo()
+                // this.isPlayed = true
+                this.updateCurrTime()
+            }
         }
     },
 

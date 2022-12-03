@@ -86,6 +86,7 @@ export const stationStore = {
 
         },
         playStation(state, { station }) {
+            console.log(station);
             const miniStation = station.songs.map(song => {
                 const { title, imgUrl, youtubeId } = song
                 return {
@@ -96,10 +97,13 @@ export const stationStore = {
             })
             state.playingStation = miniStation
             state.playingSongIdx = 0
-            this.toggleIsPlayed()
+            // commit('toggleIsPlayed')
+            // state.isPlayed = !state.isPlayed
+            // console.log(state.isPlayed);
         },
         toggleIsPlayed(state) {
             state.isPlayed = !state.isPlayed
+            console.log(state.isPlayed);
             console.log('Is played?',state.isPlayed)
         }
     },

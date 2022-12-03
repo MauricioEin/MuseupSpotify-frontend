@@ -17,9 +17,11 @@
     <section class="song-list-container details-layout">
 
       <section class="playlist-actions">
-        <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
+        <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlayed) ? playStation() :  toggleIsPlayed()" ><play-btn v-if="!isPlayed"/><pause-btn v-else/></button>
+        <!-- <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
+
           <play-btn />
-        </button>
+        </button> -->
         <div class="follow-btn" @click="follow">
           <heart-btn-svg v-if="isFollowed" class="followed" />
           <heart-empty-svg v-else />
@@ -69,6 +71,7 @@ import pencilSvg from '../assets/svgs/pencil-svg.vue'
 import musicNoteSvg from '../assets/svgs/music-note-svg.vue'
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
+import pauseBtn from '../assets/svgs/media-player-stop.vue'
 
 export default {
   data() {
@@ -127,7 +130,12 @@ export default {
 
       if (time.hour) return `${time.hour} hr ${time.min} min`
       else return `${time.min} min ${time.sec} sec`
+    },
+
+    isPlayed(){
+            return this.$store.getters.isPlayed
     }
+    
   },
   mounted() {
     window.addEventListener('click', () => this.isStationMenuOpen = false);
@@ -199,6 +207,9 @@ export default {
     saveSong(song) {
       this.$store.dispatch({ type: 'saveSong', song })
     },
+    toggleIsPlayed(){
+        this.$store.commit('toggleIsPlayed')
+      },
     async removeSong(song) {
       try {
         const editedStation = JSON.parse(JSON.stringify(this.station))
@@ -239,6 +250,7 @@ export default {
     heartBtnSvg,
     stationSongSearch,
     stationSongList,
+    pauseBtn,
   }
 
 
