@@ -168,7 +168,7 @@ export default defineComponent({
         updateCurrTime() {
             this.timeInterval = setInterval(() => {
                 const currTime = this.$refs?.youtube?.getCurrentTime()
-                console.log(currTime);
+                // console.log(currTime);
                 if (currTime) {
                     this.currTime = Math.floor(currTime)
                 }

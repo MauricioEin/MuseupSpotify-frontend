@@ -1,4 +1,5 @@
 <template>
+    {{song}}
     <section class="search-song-preview">
         <div class="song-index">
             <span>
