@@ -1,14 +1,16 @@
 <template>
-    is on Player? {{isOnPlayer}}
+    <!-- is Player ON? {{isPlayerOn}} <br>
+    is on Player? {{ isOnPlayer }} -->
+
     <li class="song-preview" @click.stop="$emit('clicked', song.id)" :class="{ clicked: isClicked }">
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">
             <span> {{ index + 1 }} </span>
-            <div v-if="!isPlaying" @click="playSong" title = "Play song">
-                <play-btn-svg />
-            </div>
-            <div v-else @click="pauseSong">
+            <div v-if="isOnPlayer&& isPlayerOn" @click="pauseSong">
                 <media-player-stop />
+            </div>
+            <div v-else @click="playSong" title="Play song">
+                <play-btn-svg />
             </div>
         </div>
         <div class="song-img-container">
@@ -57,16 +59,16 @@ export default {
         clickedSong: {
             type: String
         },
-        playingSong: {
-            type: String
-        },
+        // playingSong: {
+        //     type: String
+        // },
         loggedInUser: { type: Object }
     },
     emits: ['clicked'],
     data() {
         return {
             isMiniMenu: false,
-            isPlaying:false,
+            // isPlaying: false,
         }
     },
     created() {
@@ -84,13 +86,19 @@ export default {
             return this.clickedSong === this.song.id
         },
         isOnPlayer() {
-            return this.playingSong === this.song.id
+            return this.nowPlayingSong.youtubeId === this.song.id
         },
         isLiked() {
             return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
         },
         songActions() {
             return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
+        },
+        nowPlayingSong() {
+            return this.$store.getters.playingSong
+        },
+        isPlayerOn(){
+            return this.$store.getters.isPlayed
         }
 
     }, methods: {
@@ -103,15 +111,21 @@ export default {
             this.$emit('songAction', action)
         },
         playSong() {
-            this.$emit('playing', this.song.id)
-            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
             this.$store.commit({ type: 'toggleIsPlayed' })
-            this.isPlaying=true
+            console.log('DONE')
+            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
+            this.isPlaying = true
+            console.log('here4')
+            this.$emit('playing', this.song.id)
+            console.log('here5')
+
         },
         pauseSong() {
+            console.log('here1')
             this.$store.commit({ type: 'toggleIsPlayed' })
-            this.isPlaying=false
-
+            console.log('here2')
+            this.isPlaying = false
+            console.log('here3')
         }
     },
     watch: {

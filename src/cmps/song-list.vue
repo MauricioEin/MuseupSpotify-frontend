@@ -1,11 +1,9 @@
 <template>
     <section class="song-list">
         <ul class="clean-list">
-            <song-preview v-for="(song, index) in songs" @clicked="onSongClicked"
-            @playing="id=>playingSong=id"
-                 :key="song._id" :song="song" :loggedInUser="loggedInUser"
-                :index="index" :clickedSong="clickedSong" :playingSong="playingSong"
-                @songAction="action=>$emit(action,song)" />
+            <song-preview v-for="(song, index) in songs" @clicked="onSongClicked" @playing="id => playingSong = id"
+                :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index" :clickedSong="clickedSong"
+                :playingSong="playingSong" @songAction="action => $emit(action, song)" />
         </ul>
     </section>
 </template>
@@ -21,7 +19,7 @@ export default {
         isClickOutside: {
             type: Boolean
         },
-        loggedInUser:{type:Object}
+        loggedInUser: { type: Object }
     },
     components: {
         songPreview
@@ -32,15 +30,16 @@ export default {
             playingSong: ''
         }
     },
+
     watch: {
         isClickOutside() {
             if (this.isClickOutside) this.clickedSong = ''
         }
     },
-    methods:{
-        onSongClicked(id){
-           this.clickedSong=id
-           this.$emit('songClicked')
+    methods: {
+        onSongClicked(id) {
+            this.clickedSong = id
+            this.$emit('songClicked')
         },
     }
 }

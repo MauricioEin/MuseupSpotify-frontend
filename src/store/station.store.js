@@ -44,6 +44,9 @@ export const stationStore = {
         currStation({ currStation }) { return currStation },
         isPlayed(state) {
             return state.isPlayed
+        },
+        playingSong({playingStation, playingSongIdx}){
+            return playingStation[playingSongIdx]
         }
     },
     mutations: {
@@ -101,6 +104,7 @@ export const stationStore = {
         toggleIsPlayed(state) {
             state.isPlayed = !state.isPlayed
             console.log(state.isPlayed);
+            console.log('Is played?',state.isPlayed)
         }
     },
     actions: {

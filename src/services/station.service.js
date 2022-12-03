@@ -138,7 +138,7 @@ async function _prepareSongSearchPreviews(items) {
         // console.log(_getSongLength(id.videoId));
 
         return {
-            id: utilService.makeId(),
+            id: id.videoId,
             title: utilService.decodeHtmlCharCodes(snippet.title),
             youtubeId: id.videoId,
             imgUrl: imgUrls,
