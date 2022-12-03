@@ -68,7 +68,9 @@ async function login(userCred) {
     }
 }
 async function signup(userCred) {
-    userCred.score = 10000;
+    // userCred.score = 10000;
+    userCred.stations = []
+    userCred.likedSongs = []
     const user = await storageService.post('user', userCred)
     // const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
@@ -93,7 +95,7 @@ async function followStation(miniStation, isToFollow, user) {
 async function saveSong(song, loggedUser) {
     const user = getLoggedinUser() || loggedUser
     const idx = user.likedSongs.findIndex(s => s.id === song.id)
-    idx === -1 ? user.likedSongs.unshift({...song}) : user.likedSongs.splice(idx, 1)
+    idx === -1 ? user.likedSongs.unshift({ ...song }) : user.likedSongs.splice(idx, 1)
     return update(user)
 }
 
@@ -111,11 +113,11 @@ function getLoggedinUser() {
 }
 
 
-; (async () => {
-    await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', likedSongs: [], stations: [], isAdmin: false })
-    await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', likedSongs: [], stations: [], isAdmin: true })
-    await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123', likedSongs: [], stations: [] })
-})()
+// ; (async () => {
+//     await userService.signup({ fullname: 'Puki Norma', username: 'user1', password: '123', likedSongs: [], stations: [], isAdmin: false })
+//     await userService.signup({ fullname: 'Master Adminov', username: 'admin', password: '123', likedSongs: [], stations: [], isAdmin: true })
+//     await userService.signup({ fullname: 'Muki G', username: 'muki', password: '123', likedSongs: [], stations: [] })
+// })()
 
 
 
