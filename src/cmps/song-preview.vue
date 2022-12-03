@@ -1,7 +1,4 @@
 <template>
-    <!-- is Player ON? {{isPlayerOn}} <br>
-    is on Player? {{ isOnPlayer }} -->
-
     <li class="song-preview" @click.stop="$emit('clicked', song.id)" :class="{ clicked: isClicked }">
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">
@@ -112,20 +109,10 @@ export default {
         },
         playSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
-            console.log('DONE')
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
-            this.isPlaying = true
-            console.log('here4')
-            this.$emit('playing', this.song.id)
-            console.log('here5')
-
         },
         pauseSong() {
-            console.log('here1')
             this.$store.commit({ type: 'toggleIsPlayed' })
-            console.log('here2')
-            this.isPlaying = false
-            console.log('here3')
         }
     },
     watch: {

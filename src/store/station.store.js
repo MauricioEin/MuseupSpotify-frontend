@@ -83,7 +83,6 @@ export const stationStore = {
             const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
             state.playingStation = [songCopy]
             state.playingSongIdx = 0
-
         },
         playStation(state, { station }) {
             console.log(station);

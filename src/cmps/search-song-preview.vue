@@ -1,17 +1,17 @@
 <template>
-    {{song}}
     <section class="search-song-preview">
         <div class="song-index">
             <span>
                 {{ index + 1 }}
             </span>
-            <div v-if="!isPlaying" @click="playSong" title="Play song">
-                <play-btn-svg />
-            </div>
-            <div v-else @click="pauseSong">
+            <div v-if="isOnPlayer&& isPlayerOn" @click="pauseSong">
                 <media-player-stop />
             </div>
+            <div v-else @click="playSong" title="Play song">
+                <play-btn-svg />
+            </div>
         </div>
+
         <div class="song-img-container">
             <img :src="song.imgUrl.medium" alt="">
         </div>
@@ -42,32 +42,30 @@ export default {
             type: String
         }
     },
-    data() {
-        return {
-            isPlayed: false,
 
+    computed: {
+        nowPlayingSong() {
+            return this.$store.getters.playingSong
+        },
+        isOnPlayer() {
+            return this.nowPlayingSong.youtubeId === this.song.id
+        },
+        isPlayerOn(){
+            return this.$store.getters.isPlayed
         }
+
     },
     methods: {
         toggleLike() {
             this.$refs['search-like-btn'].classList.toggle('liked')
         },
         playSong() {
-            this.$emit('songSelected', this.song.id)
-            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
             this.$store.commit({ type: 'toggleIsPlayed' })
-            this.isPlayed = true
+            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
         },
         pauseSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
-            this.isPlayed = false
         }
-    },
-    computed: {
-        isPlaying() {
-            return this.song.id === this.playingSongId
-        }
-
     },
     // watch: {
     //     isPlaying() {
