@@ -1,10 +1,13 @@
 <template>
-  <div class="signup-page">
+  <section class="signup-page">
     <form @submit.prevent="doSignup">
       <h2>Signup</h2>
+      <label>Full name</label>
       <input type="text" v-model="signupCred.fullname" placeholder="Your full name" />
-      <input type="password" v-model="signupCred.password" placeholder="Password" />
+      <label>Username</label>
       <input type="text" v-model="signupCred.username" placeholder="Username" />
+      <label>Password</label>
+      <input type="password" v-model="signupCred.password" placeholder="Password" />
       <button>Signup</button>
     </form>
     <!-- <details>
@@ -18,7 +21,7 @@
         </li>
       </ul>
     </details> -->
-  </div>
+  </section>
 </template>
 
 <script>

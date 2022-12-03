@@ -1,0 +1,42 @@
+.signup-page {
+
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            align-self: center;
+            width: unset;
+        }
+
+        input {
+            width: 450px;
+            height: 52px;
+        }
+
+
+
+        button {
+            font-family: gotham;
+            // background-color: unset;
+            cursor: pointer;
+            //TODO change to var
+            color: #000;
+            background-color: #1ed760;
+            font-size: 1rem;
+            line-height: rem(24px);
+            padding: 16px 48px;
+            border-radius: 500px;
+            align-self: center;
+
+            &:hover {
+                background-color: #1fdf64;
+                transform: scale(1.05);
+            }
+        }
+    }
+}
