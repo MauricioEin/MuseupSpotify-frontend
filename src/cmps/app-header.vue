@@ -21,7 +21,7 @@
         <span>{{ loggedInUser.fullname }}</span>
         <menu-arrow-down />
         <mini-menu @profile="goToProfile" @logout="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
-          style="transform: translate(-25%, 40%); top: 0;" />
+          style="transform: translateY(40%); top: 0; right: 0;" />
       </section>
       <section class="header-login-signup" v-else>
         <button class="btn-signup" @click="goToSignup">Sign up</button>
