@@ -1,6 +1,6 @@
 <template>
-  <section v-if="user">
-    <h1>User Details - {{ user.fullname }}</h1>
+  <section class="user-details details-layout" v-if="user">
+    <!-- <h1>User Details - {{ user.fullname }}</h1>
     <h3>{{ user.username }} score: {{ user.score }}</h3>
     <ul>
       <li v-for="review in user.givenReviews" :key="review._id">
@@ -9,17 +9,33 @@
           About {{ review.aboutUser.fullname }}
         </router-link>
       </li>
-    </ul>
+    </ul> -->
+    <!-- <section class="user-info"> -->
+    <div>
 
-    <details>
-      <summary>Full JSON</summary>
-      <pre>{{ user }}</pre>
-    </details>
+      <div class="user-img-container">
+        <img v-if="imgUrl" :src="imgUrl" alt="">
+        <div v-else><user-portrait /></div>
+      </div>
+      <div class="user-info">
+        <label>Profile</label>
+        <h1>{{ user.fullname }}</h1>
+        <small>{{ user.likedSongs.length }} liked songs</small>
+      </div>
+    </div>
   </section>
+
+  <details>
+    <summary>Full JSON</summary>
+    <pre>{{ user }}</pre>
+  </details>
+
+  <!-- </section> -->
 </template>
 
 <script>
 // import {userService} from '../services/user.service'
+import userPortrait from '../assets/svgs/user-portrait.vue'
 
 export default {
   data() {
@@ -34,8 +50,8 @@ export default {
   watch: {
     userId: {
       handler() {
-        if(this.userId){
-            this.$store.dispatch({ type: "loadAndWatchUser", userId: this.userId })
+        if (this.userId) {
+          this.$store.dispatch({ type: "loadAndWatchUser", userId: this.userId })
         }
       },
       immediate: true,
@@ -48,6 +64,12 @@ export default {
     userId() {
       return this.$route.params.id
     },
+    imgUrl() {
+      return this.user?.imgUrl
+    }
   },
+  components: {
+    userPortrait,
+  }
 }
 </script>

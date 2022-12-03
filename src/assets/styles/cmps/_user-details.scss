@@ -1,0 +1,45 @@
+.user-details {
+    padding-top: 65px;
+    padding-bottom: 25px;
+    background: linear-gradient(180deg, rgba(83, 83, 83, 1) 0%, rgba(44, 44, 44, 1) 100%);
+
+
+    >div {
+        display: flex;
+        gap: 24px;
+    }
+
+    .user-img-container {
+        height: 192px;
+        width: 192px;
+        overflow: hidden;
+        border-radius: 50%;
+        background-color: #333333;
+
+        svg {
+            padding: 20px;
+        }
+    }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        label {
+            padding-top: 15px;
+            font-size: .75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: rem(90px);
+            margin: 0;
+        }
+
+        small {
+            font-family: gotham-light;
+        }
+    }
+}
