@@ -1,29 +1,14 @@
 <template>
-  <div class="login-page">
-    <div>
-      <!-- <h3>
-        Loggedin User:
-        {{ loggedinUser.username }}
-        <button @click="doLogout">Logout</button>
-      </h3> -->
+  <section class="login-page">
+    <form @submit.prevent="doLogin">
       <h2>Login</h2>
-      <form @submit.prevent="doLogin">
-        <!-- <select v-model="loginCred.username">
-          <option value="">Select User</option>
-          <option v-for="user in users" :key="user._id" :value="user.username">{{ user.fullname }}</option>
-        </select> -->
-        <label>
-          Username
-          <input v-model="loginCred.username" type="text" placeholder="Username" required>
-        </label>
-        <label>
-          Password
-          <input v-model="loginCred.password" type="password" placeholder="Password" required>
-        </label>
-        <button>Login</button>
-      </form>
-    </div>
-    <hr />
+      <label>Username</label>
+      <input v-model="loginCred.username" type="text" placeholder="Username" required>
+      <label>Password</label>
+      <input v-model="loginCred.password" type="password" placeholder="Password" required>
+      <button>Login</button>
+    </form>
+    <!-- <hr />
     <details>
       <summary>
         Admin Section
@@ -34,8 +19,8 @@
           <button @click="removeUser(user._id)">x</button>
         </li>
       </ul>
-    </details>
-  </div>
+    </details> -->
+  </section>
 </template>
 
 <script>
@@ -64,6 +49,7 @@ export default {
       try {
         await this.$store.dispatch({ type: "login", userCred: this.loginCred })
         this.$router.push('/')
+        showSuccessMsg('Welcome back!')
       } catch (err) {
         console.log(err)
         // this.msg = 'Failed to login'
