@@ -28,7 +28,10 @@ export const store = Vuex.createStore({
         }
         const miniStation = {
           _id: station._id,
-          name: station.name
+          name: station.name,
+          imgUrl: station.imgUrl || station.songs[0].imgUrl.medium,
+          desc: station.desc,
+          owner: station.owner.username
         }
         const savedStation = await stationService.updateFollowers(station, miniUser, isToFollow)
         const savedUser = await userService.followStation(miniStation, isToFollow)

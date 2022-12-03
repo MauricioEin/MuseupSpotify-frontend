@@ -1,7 +1,5 @@
 <template>
   <section v-if="station" class="station-details details-layout">
-
-
     <section class="station-preview flex full">
       <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
 
