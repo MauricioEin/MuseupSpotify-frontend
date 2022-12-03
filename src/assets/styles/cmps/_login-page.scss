@@ -16,6 +16,12 @@
         input {
             width: 450px;
             height: 52px;
+            border-radius: 4px;
+
+
+            &:focus-within {
+                outline: unset;
+            }
         }
 
 
