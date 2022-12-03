@@ -37,7 +37,8 @@
 
       <song-list-header v-if="station.songs.length" />
 
-      <song-list v-if="station.songs.length" :songs="station.songs" />
+      <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
+        :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong" />
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -195,6 +196,9 @@ export default {
     },
     playStation() {
       this.$store.commit({ type: 'playStation', station: this.station })
+    },
+    saveSong(song) {
+      this.$store.dispatch({ type: 'saveSong', song })
     }
   },
   watch: {
