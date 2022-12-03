@@ -46,22 +46,21 @@
             border: none;
             min-height: 2px;
             margin-bottom: 0;
-            margin-inline-end: 24px;
         }
     }
-
+    
     & .router-link-active:not(.create) {
         color: $clr2;
-
+        
         & .ifActive {
             display: block;
         }
-
+        
         & .heart-btn {
             opacity: 1;
         }
     }
-
+    
 }
 
 hr {
@@ -69,6 +68,7 @@ hr {
     border: none;
     min-height: 2px;
     margin-bottom: 0;
+    margin-inline-end: 24px;
 }
 
 
