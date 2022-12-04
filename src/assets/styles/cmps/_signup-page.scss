@@ -11,12 +11,16 @@
         h2 {
             align-self: center;
             width: unset;
+            margin-bottom: 0;
         }
 
         input {
             width: 450px;
-            height: 52px;
+            height: 40px;
             border-radius: 4px;
+            padding: 0 10px;
+            margin-top:0;
+            margin-bottom: 0;
 
             &:focus-within {
                 outline: unset;
@@ -35,6 +39,7 @@
             padding: 16px 48px;
             border-radius: 500px;
             align-self: center;
+            margin-top: 20px;
 
             &:hover {
                 background-color: #1fdf64;

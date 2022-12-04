@@ -57,6 +57,8 @@
 
 
 <script>
+// import { getAverageColor } from 'fast-average-color-node'
+
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { stationService } from '../services/station.service'
 import { getActionRemoveStation, getActionUpdateStation } from '../store/station.store'
@@ -134,7 +136,6 @@ export default {
       if (time.hour) return `${time.hour} hr ${time.min} min`
       else return `${time.min} min ${time.sec} sec`
     },
-
     isPlaying() {
       return this.$store.getters.isPlaying
     },
@@ -148,6 +149,12 @@ export default {
     isCurrStationPlayed() {
       return this.station._id === this.getPlayingStation._id
     },
+    avgClr() {
+      console.log(this.station)
+      // const color = getAverageColor(this.station.imgUrl)
+      // console.log('avgClr:', color)
+      // return color
+    }
 
 
   },
