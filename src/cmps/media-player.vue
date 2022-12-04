@@ -96,7 +96,7 @@ export default defineComponent({
             isShuffled: false,
             isFullscreen: false,
             volume: 50,
-            currSongIdx: this.getPlayingSongIdx,
+            currSongIdx: this.playingSongIdx,
             originalList: [],
             songList: [],
             currTime: 0,
@@ -108,22 +108,22 @@ export default defineComponent({
 
     created() {
         // const station = this.$store.getters.getPlayingStation
-        // const songIdx = this.$store.getters.getPlayingSongIdx
-        this.originalList = this.songList = this.getStation.songs
-        this.currSongIdx = this.getPlayingSongIdx
+        // const songIdx = this.$store.getters.playingSongIdx
+        this.originalList = this.songList = this.playingStation.songs
+        this.currSongIdx = this.playingSongIdx
         // console.log(this.currSongIdx);
         this.currSongPlaying = this.songList[this.currSongIdx]
     },
 
     methods: {
-        onStateChange(e) {
-            if (e.data === 1) {
+        onStateChange(ev) {
+            if (ev.data === 1) {
                 this.getDuration()
             }
 
-            if (e.data === 0 && !this.isLoop) {
+            if (ev.data === 0 && !this.isLoop) {
                 this.changeSong(1)
-            } else if (e.data === 0 && this.isLoop) {
+            } else if (ev.data === 0 && this.isLoop) {
                 this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
             }
 
@@ -152,8 +152,8 @@ export default defineComponent({
             }
         },
 
-        setVolume(e) {
-            const volume = e.target.value
+        setVolume(ev) {
+            const volume = ev.target.value
             this.volume = volume
             this.$refs.youtube.setVolume(volume)
         },
@@ -161,11 +161,11 @@ export default defineComponent({
         changeSong(dir) {
             const newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
             // this gives us the calc for looping around the playlist
-            this.$store.commit({ type: 'playStation', station: this.getStation, idx: newIdx })
+            this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
         },
 
-        setTimestamp(e) {
-            const timeStamp = e.target.value
+        setTimestamp(ev) {
+            const timeStamp = ev.target.value
             this.$refs.youtube.seekTo(timeStamp)
         },
 
@@ -210,8 +210,8 @@ export default defineComponent({
         },
 
         updateCurrStation() {
-            this.originalList = this.songList = this.getStation.songs
-            this.currSongIdx = this.getPlayingSongIdx
+            this.originalList = this.songList = this.playingStation.songs
+            this.currSongIdx = this.playingSongIdx
             this.currSongPlaying = this.songList[this.currSongIdx]
             if (!this.isPlayingInStore) {
                 this.togglePlay()
@@ -231,11 +231,11 @@ export default defineComponent({
         setFull() {
             return (this.isFullscreen) ? 'full' : ''
         },
-        getStation() {
+        playingStation() {
             return this.$store.getters.getPlayingStation
         },
 
-        getPlayingSongIdx() {
+        playingSongIdx() {
             return this.$store.getters.getPlayingSongIdx
         },
 
@@ -245,10 +245,10 @@ export default defineComponent({
     },
 
     watch: {
-        getStation() {
+        playingStation() {
             this.updateCurrStation()
         },
-        getPlayingSongIdx() {
+        playingSongIdx() {
             this.updateCurrStation()
 
         },
@@ -258,14 +258,14 @@ export default defineComponent({
         },
 
         isPlayed() {
-            if (!this.isPlayed) {
-                this.$refs.youtube.pauseVideo()
-                // this.isPlayed = false
-                clearInterval(this.timeInterval)
-            } else {
+            if (this.isPlayed) {
                 this.$refs.youtube.playVideo()
                 // this.isPlayed = true
                 this.updateCurrTime()
+            } else {
+                this.$refs.youtube.pauseVideo()
+                // this.isPlayed = false
+                clearInterval(this.timeInterval)
             }
         }
     },
