@@ -15,8 +15,8 @@
     <section class="song-list-container content-layout">
       <section class="playlist-actions">
         <button class="btn-play-green" v-if="user.likedSongs.length"
-          @click.stop="(isCurrStationPlayed && isPlayed) ? toggleIsPlayed() : playStation()">
-          <pause-btn v-if="isCurrStationPlayed && isPlayed" />
+          @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
+          <pause-btn v-if="isCurrStationPlayed && isPlaying" />
           <play-btn v-else />
         </button>
       </section>
@@ -53,8 +53,8 @@ export default {
       // console.log('SONGS:',)
       return this.$store.getters.loggedinUser
     },
-    isPlayed() {
-      return this.$store.getters.isPlayed
+    isPlaying() {
+      return this.$store.getters.isPlaying
     },
     getPlayingStation() {
       return this.$store.getters.getPlayingStation
@@ -72,12 +72,12 @@ export default {
   methods: {
     playStation(idx) {
       console.log('playing')
-      if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlayed()
+      if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlaying()
       console.log('got here with', idx, this.playingSongIdx, 'station:', this.station,)
       this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
-    toggleIsPlayed() {
-      this.$store.commit('toggleIsPlayed')
+    toggleIsPlaying() {
+      this.$store.commit('toggleIsPlaying')
     },
     saveSong(song) {
       console.log('saving', song)
