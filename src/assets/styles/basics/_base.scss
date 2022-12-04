@@ -10,10 +10,10 @@
 }
 
 html {
-    font-family: gotham, rubik;
+    font-family: circular, gotham, rubik;
     line-height: 1.6;
     color: $clr2;
-    letter-spacing: -.01em;
+    // letter-spacing: -.01em;
 }
 
 body {
@@ -50,9 +50,13 @@ a:hover {
     text-decoration: underline;
 }
 
+button {
+    font-family: circular, gotham, rubik;
+}
 
-.img-uploader{
-    height:100%;width:100%;
+.img-uploader {
+    height: 100%;
+    width: 100%;
     background-color: $clr6;
 }
 
@@ -61,19 +65,19 @@ a:hover {
     position: absolute;
     right: 0;
     width: 10px;
+
     /* Track */
     &-track {
-      background: transparent;
+        background: transparent;
     }
-    
+
     /* Handle */
     &-thumb {
-      background: rgba(136, 136, 136, 0.576);
+        background: rgba(136, 136, 136, 0.576);
     }
-    
+
     /* Handle on hover */
     &-thumb:hover {
-      background: #555;
+        background: #555;
     }
-  }
-  
+}

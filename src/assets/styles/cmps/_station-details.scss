@@ -38,7 +38,6 @@
             h1 {
                 font-size: rem(72px);
                 margin: 0;
-                font-family: gotham;
                 font-weight: 900;
                 transform: translateY(-15%);
             }
@@ -115,7 +114,7 @@
         display: grid;
         grid-template-columns: 40px 40px 9fr 4fr 110px;
         gap: 10px;
-        font-family: gotham-light;
+        font-family: circular-light;
         font-size: 0.75rem;
         font-weight: 560;
         letter-spacing: 1px;
@@ -150,7 +149,6 @@
         white-space: nowrap;
         cursor: pointer;
         text-transform: uppercase;
-        font-family: gotham, sans-serif;
         font-size: rem(14px);
         justify-self: end;
         transform: translateX(-10%);

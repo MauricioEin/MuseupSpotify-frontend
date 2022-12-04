@@ -6,6 +6,8 @@
     min-width: 200px;
     max-width: 300px;
     padding-inline-end: 0;
+    letter-spacing: 0.06em;
+    word-spacing: -0.1em;
 
 
     .logo {
@@ -14,6 +16,9 @@
         align-items: center;
         gap: 5px;
         font-size: 24px;
+        font-family: gotham;
+        letter-spacing: -0.05em;
+        // font-weight: 600;
     }
 
     svg {
@@ -83,7 +88,7 @@ hr {
     height: 40px;
 
     span {
-        font-weight: 600;
+        font-weight: 900;
     }
 }
 
