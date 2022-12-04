@@ -32,7 +32,7 @@
                     @savetoyourlikedsongs="onMiniMenu('saveSong')" @removefromplaylist="onMiniMenu('removeSong')" />
 
             </div>
-            <button class="btn-more-options" @click="toggleMiniMenu">
+            <button class="btn-more" @click="toggleMiniMenu">
                 <more-options-svg />
             </button>
         </div>

@@ -1,7 +1,6 @@
 .mini-menu {
 
-    // TODO change to var
-    background-color: #282828;
+    background-color: $clr06;
     padding: 5px;
     position: absolute;
     display: flex;
@@ -18,7 +17,6 @@
 
     hr {
         width: 90%;
-        //TODO change to var
         background-color: #3e3e3e;
         size: 5px;
     }
@@ -34,7 +32,6 @@
 
 
         &:hover {
-            //TODO change to var
             background-color: #3e3e3e;
         }
     }

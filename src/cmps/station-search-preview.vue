@@ -4,10 +4,10 @@
             <div class="song-img">
                 <img :src="imgUrl" alt="">
             </div>
-            <div class="play-pause-btn" v-if="isOnPlayer && isPlayerOn" @click="pauseSong">
+            <div class="btn-play-pause" v-if="isOnPlayer && isPlayerOn" @click="pauseSong">
                 <media-player-stop />
             </div>
-            <div class="play-pause-btn" v-else @click="playSong">
+            <div class="btn-play-pause" v-else @click="playSong">
                 <play-btn-svg />
             </div>
         </div>

@@ -91,8 +91,7 @@ svg {
     transition: transform 0.1s;
     display: inline-flex;
     justify-content: center;
-    //TODO change to var
-    background-color: #1ed760;
+    background-color: $clrGreen;
     display: flex;
     align-items: center;
     justify-content: center;

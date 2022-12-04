@@ -57,14 +57,14 @@
         cursor: pointer;
     }
 
-    &:hover .play-playlist-btn {
+    &:hover .btn-play-playlist {
         top: 38%;
         opacity: 1;
         transition: opacity .6s, top .6s;
         // cursor: pointer;
     }
 
-    .play-playlist-btn {
+    .btn-play-playlist {
         height: 48px;
         width: 48px;
         background-color: #1FDF64;

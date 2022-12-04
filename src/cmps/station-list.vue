@@ -18,7 +18,7 @@
           </p> -->
           <p v-if="station.desc" class="station-desc cut-text">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
-          <button v-if="(station.songs.length)" class="play-playlist-btn"
+          <button v-if="(station.songs.length)" class="btn-play-playlist"
             @click.stop="(!isPlayed) ? playStation(station) : toggleIsPlayed()"><pause-btn
               v-if="isCurrStationPlayed(station)" /><play-btn v-else /></button>
 
@@ -64,7 +64,7 @@ export default {
     },
 
     isCurrStationPlayed(station) {
-        return (this.isPlayed && station._id === this.getPlayingStation._id)
+      return (this.isPlayed && station._id === this.getPlayingStation._id)
     },
   },
 
@@ -77,8 +77,8 @@ export default {
       return this.$store.getters.getPlayingStation
     },
 
-    loggedInUser(){
-        return this.$store.getters.loggedInUser
+    loggedInUser() {
+      return this.$store.getters.loggedInUser
     }
   },
 

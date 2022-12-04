@@ -1,5 +1,5 @@
 <template>
-  <header ref="header" class="app-header details-layout">
+  <header ref="header" class="app-header content-layout">
     <div class="flex">
       <nav class="flex">
         <button class="btn-go-back"><btn-go-back /></button>

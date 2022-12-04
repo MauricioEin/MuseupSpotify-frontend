@@ -27,7 +27,7 @@
             z-index: 0;
         }
 
-        .play-pause-btn {
+        .btn-play-pause {
             display: none;
             background-color: rgba(83, 83, 83, 0.5);
             position: absolute;
@@ -42,14 +42,13 @@
     }
 
     &:hover {
-        //TODO change to var
-        background-color: #2b2b2c;
+        background-color: $clr10;
 
         .img-screen-play {
             opacity: 1;
         }
 
-        .play-pause-btn {
+        .btn-play-pause {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,14 +56,13 @@
     }
 
     &.clicked {
-        //TODO change to var
         background-color: $clr04;
 
         .img-screen-play {
             opacity: 1;
         }
 
-        .play-pause-btn {
+        .btn-play-pause {
             display: flex;
             justify-content: center;
             align-items: center;
