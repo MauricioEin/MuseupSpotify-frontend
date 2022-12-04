@@ -1,6 +1,6 @@
 <template>
   <section class="home-page">
-    <station-list :stations="stations"/>
+    <station-list :stations="stations" />
   </section>
 </template>
 
@@ -14,8 +14,8 @@ export default {
       return this.$store.getters.stations
     },
   },
-  
-  components:{
+
+  components: {
     stationList,
   }
 }
