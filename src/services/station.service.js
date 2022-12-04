@@ -13,7 +13,7 @@ const API_KEY = [
     'AIzaSyBVyzOPEOZa2Y4CTbf_JpQhnO5L53IxYjU',
 ]
 let keyIdx = 0
-// This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
+// This file MuseUpnstrates how to use a BroadcastChannel to notify other browser tabs 
 
 const STORAGE_KEY = 'station'
 // const stationChannel = new BroadcastChannel('stationChannel')
@@ -169,7 +169,7 @@ async function _getSongLength(videoId) {
 }
 
 
-// var demo1 = 
+// var MuseUp1 = 
 //         {
 //           "name": "90's Hip Hop",
 //           "songs": [
@@ -254,19 +254,19 @@ async function _getSongLength(videoId) {
 //           ],
 //           "followers": [],
 //           "owner": {
-//             "username": "ilan",
+//             "username": "MuseUp",
 //             "password": "123",
-//             "fullname": "ilan",
+//             "fullname": "MuseUp",
 //             "stations": [
 //               {
 //                 "_id": "SkAsV",
 //                 "name": "This Is JuiceWRLD",
-//                 "owner": "ilan"
+//                 "owner": "MuseUp"
 //               },
 //               {
 //                 "_id": "TNm4g",
 //                 "name": "הלהיטים הגדולים של ישראל",
-//                 "owner": "ilan"
+//                 "owner": "MuseUp"
 //               }
 //             ],
 //             "likedSongs": [],
@@ -276,7 +276,359 @@ async function _getSongLength(videoId) {
 //           "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670159560/90s_ffhu6w.jpg"
 //         }
 
-var demo = [
+var MuseUp =[
+    {
+      "name": "This Is Jay-Z",
+      "songs": [
+        {
+          "id": "vk6014HuxcE",
+          "title": "JAY-Z - Empire State Of Mind ft. Alicia Keys",
+          "youtubeId": "vk6014HuxcE",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/vk6014HuxcE/default.jpg",
+            "medium": "https://i.ytimg.com/vi/vk6014HuxcE/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/vk6014HuxcE/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169987566,
+          "length": "4:42"
+        },
+        {
+          "id": "w5srnNrICJo",
+          "title": "JAY-Z - Song Cry",
+          "youtubeId": "w5srnNrICJo",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/w5srnNrICJo/default.jpg",
+            "medium": "https://i.ytimg.com/vi/w5srnNrICJo/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/w5srnNrICJo/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169987556,
+          "length": "4:57"
+        },
+        {
+          "id": "Kzq15y2J4UM",
+          "title": "JAY-Z - Young Forever ft. Mr Hudson",
+          "youtubeId": "Kzq15y2J4UM",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/Kzq15y2J4UM/default.jpg",
+            "medium": "https://i.ytimg.com/vi/Kzq15y2J4UM/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/Kzq15y2J4UM/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169987563,
+          "length": "5:35"
+        }
+      ],
+      "followers": [],
+      "owner": {
+        "_id": "MuseUp",
+        "username": "MuseUp",
+        "fullname": "Guest",
+        "likedSongs": [],
+        "stations": [
+          {
+            "_id": "15o32",
+            "name": "Cardio Workout",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "qTbm5",
+            "name": "Top Hits of 2022 ",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "TlZAR",
+            "name": "My Playlist #8",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "ExSZY",
+            "name": "Today's Hits",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "pLHzE",
+            "name": "This Is J.Cole",
+            "owner": "MuseUp"
+          }
+        ]
+      },
+      "_id": "GXaEd",
+      "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169977/jz_uofaf0.jpg"
+    },
+    {
+      "name": "This Is J.Cole",
+      "songs": [
+        {
+          "id": "WILNIXZr2oc",
+          "title": "J. Cole - MIDDLE CHILD",
+          "youtubeId": "WILNIXZr2oc",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/WILNIXZr2oc/default.jpg",
+            "medium": "https://i.ytimg.com/vi/WILNIXZr2oc/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/WILNIXZr2oc/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169900380,
+          "length": "3:39"
+        },
+        {
+          "id": "eCGV26aj-mM",
+          "title": "J. Cole - Wet Dreamz",
+          "youtubeId": "eCGV26aj-mM",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/eCGV26aj-mM/default.jpg",
+            "medium": "https://i.ytimg.com/vi/eCGV26aj-mM/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/eCGV26aj-mM/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169900374,
+          "length": "4:01"
+        }
+      ],
+      "followers": [],
+      "owner": {
+        "_id": "MuseUp",
+        "username": "MuseUp",
+        "fullname": "Guest",
+        "likedSongs": [],
+        "stations": [
+          {
+            "_id": "15o32",
+            "name": "Cardio Workout",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "qTbm5",
+            "name": "Top Hits of 2022 ",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "TlZAR",
+            "name": "My Playlist #8",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "ExSZY",
+            "name": "Today's Hits",
+            "owner": "MuseUp"
+          }
+        ]
+      },
+      "_id": "pLHzE",
+      "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169895/jc_oblpna.jpg"
+    },
+    {
+      "name": "Today's Hits",
+      "songs": [
+        {
+          "id": "EgT_us6AsDg",
+          "title": "Selena Gomez &amp; The Scene - Love You Like A Love Song",
+          "youtubeId": "EgT_us6AsDg",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/EgT_us6AsDg/default.jpg",
+            "medium": "https://i.ytimg.com/vi/EgT_us6AsDg/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/EgT_us6AsDg/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169722159,
+          "length": "3:41"
+        },
+        {
+          "id": "ij_0p_6qTss",
+          "title": "Selena Gomez - The Heart Wants What It Wants (Official Video)",
+          "youtubeId": "ij_0p_6qTss",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/ij_0p_6qTss/default.jpg",
+            "medium": "https://i.ytimg.com/vi/ij_0p_6qTss/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/ij_0p_6qTss/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169722159,
+          "length": "4:36"
+        },
+        {
+          "id": "TW98pGSTvM0",
+          "title": "Selena Gomez - My Mind &amp; Me (Official Lyric Video)",
+          "youtubeId": "TW98pGSTvM0",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/TW98pGSTvM0/default.jpg",
+            "medium": "https://i.ytimg.com/vi/TW98pGSTvM0/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/TW98pGSTvM0/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169722153,
+          "length": "2:31"
+        }
+      ],
+      "followers": [],
+      "owner": {
+        "_id": "MuseUp",
+        "username": "MuseUp",
+        "fullname": "Guest",
+        "likedSongs": [],
+        "stations": [
+          {
+            "_id": "15o32",
+            "name": "Cardio Workout",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "qTbm5",
+            "name": "Top Hits of 2022 ",
+            "owner": "MuseUp"
+          },
+          {
+            "_id": "TlZAR",
+            "name": "My Playlist #8",
+            "owner": "MuseUp"
+          }
+        ]
+      },
+      "_id": "ExSZY",
+      "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169686/todayshits_tlbenp.jpg"
+    },
+    {
+      "name": "Top Hits of 2022 ",
+      "songs": [
+        {
+          "id": "u5CVsCnxyXg",
+          "title": "Radiohead - No Surprises",
+          "youtubeId": "u5CVsCnxyXg",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/u5CVsCnxyXg/default.jpg",
+            "medium": "https://i.ytimg.com/vi/u5CVsCnxyXg/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/u5CVsCnxyXg/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169741466,
+          "length": "3:48"
+        },
+        {
+          "id": "1uYWYWPc9HU",
+          "title": "Radiohead - Karma Police",
+          "youtubeId": "1uYWYWPc9HU",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/1uYWYWPc9HU/default.jpg",
+            "medium": "https://i.ytimg.com/vi/1uYWYWPc9HU/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/1uYWYWPc9HU/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169741472,
+          "length": "4:23"
+        },
+        {
+          "id": "DP0BChp9PiA",
+          "title": "The Chainsmokers Greatest Hits Full Album 2020 - The Chainsmokers Best Songs Playlist 2020",
+          "youtubeId": "DP0BChp9PiA",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/DP0BChp9PiA/default.jpg",
+            "medium": "https://i.ytimg.com/vi/DP0BChp9PiA/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/DP0BChp9PiA/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169761393,
+          "length": "54:53"
+        },
+        {
+          "id": "PT2_F-1esPk",
+          "title": "The Chainsmokers - Closer (Lyric) ft. Halsey",
+          "youtubeId": "PT2_F-1esPk",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/PT2_F-1esPk/default.jpg",
+            "medium": "https://i.ytimg.com/vi/PT2_F-1esPk/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/PT2_F-1esPk/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169761418,
+          "length": "4:22"
+        },
+        {
+          "id": "b4SmjTMg9ZI",
+          "title": "Ed Sheeran, Martin Garrix, Kygo, Dua Lipa, Avicii, Robin Schulz, The Chainsmokers Style - Feeling Me",
+          "youtubeId": "b4SmjTMg9ZI",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/b4SmjTMg9ZI/default_live.jpg",
+            "medium": "https://i.ytimg.com/vi/b4SmjTMg9ZI/mqdefault_live.jpg",
+            "high": "https://i.ytimg.com/vi/b4SmjTMg9ZI/hqdefault_live.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169761403,
+          "length": ":P0"
+        }
+      ],
+      "followers": [],
+      "owner": {
+        "_id": "MuseUp",
+        "username": "MuseUp",
+        "fullname": "Guest",
+        "likedSongs": [],
+        "stations": [
+          {
+            "_id": "15o32",
+            "name": "Cardio Workout",
+            "owner": "MuseUp"
+          }
+        ]
+      },
+      "_id": "qTbm5",
+      "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169494/top22_dvslqm.jpg"
+    },
+    {
+      "name": "Cardio Workout",
+      "songs": [
+        {
+          "id": "oorVWW9ywG0",
+          "title": "POP SMOKE - DIOR (OFFICIAL VIDEO)",
+          "youtubeId": "oorVWW9ywG0",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/oorVWW9ywG0/default.jpg",
+            "medium": "https://i.ytimg.com/vi/oorVWW9ywG0/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/oorVWW9ywG0/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169783107,
+          "length": "2:53"
+        },
+        {
+          "id": "8_oOES_uKPI",
+          "title": "POP SMOKE - INVINCIBLE (Official Lyric Video)",
+          "youtubeId": "8_oOES_uKPI",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/8_oOES_uKPI/default.jpg",
+            "medium": "https://i.ytimg.com/vi/8_oOES_uKPI/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/8_oOES_uKPI/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169783083,
+          "length": "2:08"
+        },
+        {
+          "id": "G6XthQpk8uk",
+          "title": "Pop Smoke - The Woo ft. 50 Cent, Roddy Ricch",
+          "youtubeId": "G6XthQpk8uk",
+          "imgUrl": {
+            "default": "https://i.ytimg.com/vi/G6XthQpk8uk/default.jpg",
+            "medium": "https://i.ytimg.com/vi/G6XthQpk8uk/mqdefault.jpg",
+            "high": "https://i.ytimg.com/vi/G6XthQpk8uk/hqdefault.jpg"
+          },
+          "addedBy": {},
+          "createdAt": 1670169798562,
+          "length": "3:24"
+        }
+      ],
+      "followers": [],
+      "owner": {
+        "_id": "MuseUp",
+        "username": "MuseUp",
+        "fullname": "Guest",
+        "likedSongs": [],
+        "stations": []
+      },
+      "_id": "15o32",
+      "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169383/cardio_afvxhi.jpg"
+    },
     {
       "name": "Pop Mix",
       "songs": [
@@ -322,29 +674,29 @@ var demo = [
       ],
       "followers": [],
       "owner": {
-        "username": "ilan",
+        "username": "MuseUp",
         "password": "123",
-        "fullname": "ilan",
+        "fullname": "MuseUp",
         "stations": [
           {
             "_id": "SkAsV",
             "name": "This Is JuiceWRLD",
-            "owner": "ilan"
+            "owner": "MuseUp"
           },
           {
             "_id": "TNm4g",
             "name": "הלהיטים הגדולים של ישראל",
-            "owner": "ilan"
+            "owner": "MuseUp"
           },
           {
             "_id": "nxB4r",
             "name": "90's Hip Hop",
-            "owner": "ilan"
+            "owner": "MuseUp"
           },
           {
             "_id": "dkGpG",
             "name": "Rock This",
-            "owner": "ilan"
+            "owner": "MuseUp"
           }
         ],
         "likedSongs": [],
@@ -411,24 +763,24 @@ var demo = [
       ],
       "followers": [],
       "owner": {
-        "username": "ilan",
+        "username": "MuseUp",
         "password": "123",
-        "fullname": "ilan",
+        "fullname": "MuseUp",
         "stations": [
           {
             "_id": "SkAsV",
             "name": "This Is JuiceWRLD",
-            "owner": "ilan"
+            "owner": "MuseUp"
           },
           {
             "_id": "TNm4g",
             "name": "הלהיטים הגדולים של ישראל",
-            "owner": "ilan"
+            "owner": "MuseUp"
           },
           {
             "_id": "nxB4r",
             "name": "90's Hip Hop",
-            "owner": "ilan"
+            "owner": "MuseUp"
           }
         ],
         "likedSongs": [],
@@ -521,19 +873,19 @@ var demo = [
       ],
       "followers": [],
       "owner": {
-        "username": "ilan",
+        "username": "MuseUp",
         "password": "123",
-        "fullname": "ilan",
+        "fullname": "MuseUp",
         "stations": [
           {
             "_id": "SkAsV",
             "name": "This Is JuiceWRLD",
-            "owner": "ilan"
+            "owner": "MuseUp"
           },
           {
             "_id": "TNm4g",
             "name": "הלהיטים הגדולים של ישראל",
-            "owner": "ilan"
+            "owner": "MuseUp"
           }
         ],
         "likedSongs": [],
@@ -626,14 +978,14 @@ var demo = [
       ],
       "followers": [],
       "owner": {
-        "username": "ilan",
+        "username": "MuseUp",
         "password": "123",
-        "fullname": "ilan",
+        "fullname": "MuseUp",
         "stations": [
           {
             "_id": "SkAsV",
             "name": "This Is JuiceWRLD",
-            "owner": "ilan"
+            "owner": "MuseUp"
           }
         ],
         "likedSongs": [],
@@ -674,19 +1026,19 @@ var demo = [
       ],
       "followers": [],
       "owner": {
-        "username": "ilan",
+        "username": "MuseUp",
         "password": "123",
-        "fullname": "ilan",
+        "fullname": "MuseUp",
         "stations": [],
         "likedSongs": [],
         "_id": "kiH1V"
       },
       "_id": "SkAsV",
       "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670148061/jw_f796t2.jpg"
-    },
+    }
   ]
 // // TEST DATA
 
     if(!localStorage.getItem(STORAGE_KEY) || !localStorage.getItem(STORAGE_KEY).length){
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(demo));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(MuseUp));
     }

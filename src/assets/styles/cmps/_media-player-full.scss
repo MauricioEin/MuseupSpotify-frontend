@@ -12,15 +12,13 @@
 }
 
 .album{
-    display: none;
-    // display: block;
+    height: 0vh;
     opacity: 0;
-    transition: opacity .4s;
+    transition: opacity .6s;
     z-index: 1;
 }
 
 .album.full{
-    display: block;
     height: 100vh;
     filter: brightness(20%);
     opacity: 1;
