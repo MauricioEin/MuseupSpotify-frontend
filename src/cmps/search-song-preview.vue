@@ -1,10 +1,10 @@
 <template>
-    <section class="search-song-preview">
+    <section class="search-song-preview" @click.stop="$emit('clicked', song.id)"
+        :class="{ clicked: isClicked, playing: isOnPlayer }">
         <div class="song-index">
-            <span>
-                {{ index + 1 }}
-            </span>
-            <div v-if="isOnPlayer&& isPlayerOn" @click="pauseSong">
+            <img v-if="isOnPlayer && isPlayerOn" src="../assets/gifs/equaliser-animated.gif" />
+            <span v-else> {{ index + 1 }} </span>
+            <div v-if="isOnPlayer && isPlayerOn" @click="pauseSong">
                 <media-player-stop />
             </div>
             <div v-else @click="playSong" title="Play song">
@@ -15,11 +15,18 @@
         <div class="song-img-container">
             <img :src="song.imgUrl.medium" alt="">
         </div>
-        <small class="song-title">{{ song.title }}</small>
+        <div class="song-title">
+            <span class="artist-name"> {{ song.title.slice(0, titleBreakIdx) }}</span>
+            {{ song.title.slice(titleBreakIdx) }}
+        </div>
         <div class="song-preview-actions">
-            <button @click="toggleLike" class="btn-like-song" ref="search-like-btn"><heart-empty-svg /></button>
+            <button @click="toggleLike" class="btn-like-song" ref="search-like-btn">
+                <heart-empty-svg />
+            </button>
             <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more-options"><more-options-svg /></button>
+            <button class="btn-more-options">
+                <more-options-svg />
+            </button>
         </div>
     </section>
 </template>
@@ -40,9 +47,14 @@ export default {
         },
         playingSongId: {
             type: String
-        }
+        },
+        clickedSong: {
+            type: String
+        },
     },
-
+created(){
+    window.addEventListener('click', () => this.$emit('clicked', ''));
+},
     computed: {
         nowPlayingSong() {
             return this.$store.getters.playingSong
@@ -50,9 +62,18 @@ export default {
         isOnPlayer() {
             return this.nowPlayingSong.youtubeId === this.song.id
         },
-        isPlayerOn(){
+        isPlayerOn() {
             return this.$store.getters.isPlayed
-        }
+        },
+        isClicked() {
+            return this.clickedSong === this.song.id
+        },
+        titleBreakIdx() {
+            var idx = this.song.title.indexOf('-')
+            if (idx === -1) idx = this.song.title.indexOf('|')
+            return idx === -1 ? 0 : idx
+        },
+
 
     },
     methods: {

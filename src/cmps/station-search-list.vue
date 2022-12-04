@@ -2,7 +2,7 @@
     <section class="station-search-list">
         <ul class="clean-list">
             <station-search-preview @addSongToStation="addSongToStation" v-for="song in songs" :song="song"
-                :key="song.id" />
+                :key="song.id" :clickedSong="clickedSong" @clicked="onSongClicked"/>
         </ul>
     </section>
 </template>
@@ -19,9 +19,17 @@ export default {
     components: {
         stationSearchPreview
     },
+    data(){
+        return{
+            clickedSong: '',
+        }
+    },
     methods: {
         addSongToStation(song) {
             this.$emit('addSongToStation', song)
+        },
+        onSongClicked(id) {
+            this.clickedSong = id
         }
     }
 }

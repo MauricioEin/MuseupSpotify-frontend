@@ -112,7 +112,6 @@ export default defineComponent({
         this.originalList = this.songList = this.getStation.songs
         this.currSongIdx = this.getPlayingSongIdx
         // console.log(this.currSongIdx);
-        console.log('SONGLISTTTTTTTTT', this.songList)
         this.currSongPlaying = this.songList[this.currSongIdx]
     },
 
@@ -125,7 +124,6 @@ export default defineComponent({
             if (e.data === 0 && !this.isLoop) {
                 this.changeSong(1)
             } else if (e.data === 0 && this.isLoop) {
-                console.log('here', this.songList[this.currSongIdx]);
                 this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
             }
 
@@ -161,10 +159,9 @@ export default defineComponent({
         },
 
         changeSong(dir) {
-            console.log('CHANGING! SONGLIST',this.getStation)
             const newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
             // this gives us the calc for looping around the playlist
-            this.$store.commit({type:'playStation',station:this.getStation, idx:newIdx})
+            this.$store.commit({ type: 'playStation', station: this.getStation, idx: newIdx })
         },
 
         setTimestamp(e) {
@@ -201,8 +198,6 @@ export default defineComponent({
             const shuffled = utilService.shuffle(formatted)
             this.songList = shuffled
             this.isShuffled = true
-
-            console.log(this.songList);
         },
 
         restoreOriginalList() {
@@ -217,9 +212,8 @@ export default defineComponent({
         updateCurrStation() {
             this.originalList = this.songList = this.getStation.songs
             this.currSongIdx = this.getPlayingSongIdx
-            console.log('SONGLIST',this.songList)
             this.currSongPlaying = this.songList[this.currSongIdx]
-            if (!this.isPlayed) {
+            if (!this.isPlayingInStore) {
                 this.togglePlay()
             }
         }
@@ -254,7 +248,7 @@ export default defineComponent({
         getStation() {
             this.updateCurrStation()
         },
-        getPlayingSongIdx(){
+        getPlayingSongIdx() {
             this.updateCurrStation()
 
         },

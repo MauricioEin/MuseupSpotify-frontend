@@ -56,6 +56,26 @@
         }
     }
 
+    &.clicked {
+        //TODO change to var
+        background-color: $clr9;
+
+        .img-screen-play {
+            opacity: 1;
+        }
+
+        .play-pause-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .artist-name {
+            color: $clrGreen;
+        }
+    }
+
+
     .song-title {
         font-size: 1rem;
         text-overflow: ellipsis;

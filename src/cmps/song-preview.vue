@@ -1,9 +1,12 @@
 <template>
-    <li class="song-preview" @click.stop="$emit('clicked', song.id)" :class="{ clicked: isClicked }">
+    <li class="song-preview" @click.stop="$emit('clicked', song.id)"
+        :class="{ clicked: isClicked, playing: isOnPlayer }">
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">
-            <span> {{ index + 1 }} </span>
-            <div v-if="isOnPlayer&& isPlayerOn" @click="pauseSong">
+            <img v-if="isOnPlayer && isPlayerOn" src="../assets/gifs/equaliser-animated.gif" />
+            <span v-else> {{ index + 1 }} </span>
+
+            <div v-if="isOnPlayer && isPlayerOn" @click="pauseSong">
                 <media-player-stop />
             </div>
             <div v-else @click="$emit('play')" title="Play song">
@@ -13,7 +16,10 @@
         <div class="song-img-container">
             <img :src="imgUrl" alt="">
         </div>
-        <div class="song-title">{{ song.title }}</div>
+        <div class="song-title">
+            <span class="artist-name"> {{song.title.slice(0,titleBreakIdx)}}</span>
+            {{ song.title.slice(titleBreakIdx) }}
+        </div>
         <!-- </div> -->
         <div class="song-created-at">{{ dateAdded }}</div>
         <div class="song-preview-actions">
@@ -94,9 +100,14 @@ export default {
         nowPlayingSong() {
             return this.$store.getters.playingSong
         },
-        isPlayerOn(){
+        isPlayerOn() {
             return this.$store.getters.isPlayed
-        }
+        },
+        titleBreakIdx() {
+            var idx = this.song.title.indexOf('-')
+            if (idx === -1) idx = this.song.title.indexOf('|')
+            return idx === -1? 0: idx
+        },
 
     }, methods: {
         toggleMiniMenu() {

@@ -15,7 +15,6 @@
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="song-list-container details-layout">
-
       <section class="playlist-actions">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlayed) ? toggleIsPlayed() : playStation()">
@@ -145,9 +144,10 @@ export default {
     getPlayingStation() {
       return this.$store.getters.getPlayingStation
     },
+    playingSongIdx() {
+      return this.$store.getters.getPlayingSongIdx
+    },
     isCurrStationPlayed() {
-      console.log('this.station._id',this.station._id)
-      console.log('this.getPlayingStation._id',this.getPlayingStation._id)
       return this.station._id === this.getPlayingStation._id
       // const miniStation = this.station.songs.map(song => {
       //     const { title, imgUrl, youtubeId } = song
@@ -208,7 +208,6 @@ export default {
     },
     async loadStation() {
       this.station = JSON.parse(JSON.stringify(await stationService.getById(this.stationId)))
-      console.log('station', this.station)
     },
     toggleStationMenu() {
       this.isStationMenuOpen = !this.isStationMenuOpen
@@ -232,10 +231,10 @@ export default {
         showErrorMsg('Failed adding song to playlist')
       }
     },
-    playStation(idx = 0) {
-      // if (!this.isPlayed) this.$store.commit('toggleIsPlayed')
-      this.$store.commit({ type: 'playStation', station: this.station, idx })
-
+    playStation(idx) {
+      if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlayed()
+      console.log('got here with', idx, this.playingSongIdx,  'station', this.station,)
+      this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
     saveSong(song) {
       this.$store.dispatch({ type: 'saveSong', song })
@@ -264,7 +263,9 @@ export default {
     },
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
-      // this.closeSearch()
+    },
+    isPlayed(){
+      console.log('IS PLAYED CHANGED TO',this.isPlayed)
     }
   },
   unmounted() {

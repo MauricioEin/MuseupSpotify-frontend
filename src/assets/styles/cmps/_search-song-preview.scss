@@ -7,6 +7,12 @@
     align-items: center;
     font-family: gotham-light;
 
+    &.playing{
+        .artist-name{
+            color:$clrGreen;
+        }
+    }
+
     .btn-like-song,
     .btn-more-options {
         background-color: unset;
@@ -31,6 +37,11 @@
             display: none;
             height: 15px;
             width: 15px;
+        }
+
+        img{
+            height: 16px;
+            width: 16px;
         }
     }
 
@@ -61,6 +72,40 @@
                 display: none;
             }
 
+            svg {
+                // opacity: 1;
+                display: block;
+            }
+
+            img{
+                display: none;
+            }
+        }
+    }
+
+    &.clicked {
+        background-color: $clr9;
+
+        .btn-like-song,
+        .btn-more-options {
+            cursor: pointer;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .song-index {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
+            span {
+                // opacity: 0;
+                display: none;
+            }
+            img{
+                display:none;
+            }
+        
             svg {
                 // opacity: 1;
                 display: block;

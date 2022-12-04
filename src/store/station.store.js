@@ -60,9 +60,6 @@ export const stationStore = {
         },
         updateStation(state, { station }) {
             const idx = state.stations.findIndex(s => s._id === station._id)
-            console.log('idx:', idx)
-            console.log('station:', station)
-            console.log('stations:', state.stations)
             // state.stations[idx]=station
             state.stations.splice(idx, 1, station)
         },
@@ -87,7 +84,6 @@ export const stationStore = {
             state.playingSongIdx = 0
         },
         playStation(state, { station, idx = 0 }) {
-            console.log('station', station);
             const miniStation = (Array.isArray(station)) ?
                 { _id: '' } : { _id: station._id }
             miniStation.songs = station.songs?.map(song => {
@@ -98,7 +94,6 @@ export const stationStore = {
                     youtubeId,
                 }
             }) || station
-            console.log('ministation and idx', miniStation, idx);
 
             state.playingStation = miniStation
             state.playingSongIdx = idx
@@ -108,8 +103,6 @@ export const stationStore = {
         },
         toggleIsPlayed(state) {
             state.isPlayed = !state.isPlayed
-            console.log(state.isPlayed);
-            console.log('Is played?', state.isPlayed)
         }
     },
     actions: {
@@ -119,12 +112,10 @@ export const stationStore = {
                 // station.owner = context.getters.loggedinUser
                 // console.log('user:',context.rootState.userStore.loggedinUser)
                 station.owner = user
-                console.log('station', station)
                 station = await stationService.save(station)
 
                 context.commit(getActionAddStation(station))
                 const { name, desc, _id, imgUrl, owner } = station
-                console.log('owner:', owner)
                 context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner.username } })
 
                 return station

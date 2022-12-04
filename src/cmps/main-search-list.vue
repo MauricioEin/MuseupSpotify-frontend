@@ -5,13 +5,15 @@
             <div class="list-song-title">Title</div>
             <div></div>
             <div class="list-song-length song-preview-actions">
-                <small><clock-svg /></small>
+                <small>
+                    <clock-svg />
+                </small>
             </div>
         </section>
         <ul class="clean-list">
             <li v-for="(song, index) in songs" :key="song._id">
                 <search-song-preview @songSelected="songSelected" :index="index" :song="song"
-                    :playingSongId="playingSongId" />
+                    :playingSongId="playingSongId" :clickedSong="clickedSong" @clicked="onSongClicked" />
             </li>
         </ul>
     </section>
@@ -30,12 +32,17 @@ export default {
     },
     data() {
         return {
-            playingSongId: ''
+            playingSongId: '',
+            clickedSong: '',
+
         }
     },
     methods: {
         songSelected(songId) {
             this.playingSongId = songId
+        },
+        onSongClicked(id) {
+            this.clickedSong = id
         }
     },
     created() {
