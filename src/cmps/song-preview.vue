@@ -75,10 +75,10 @@ export default {
         }
     },
     created() {
-        window.addEventListener(this.emitClicked)
+        window.addEventListener('click',this.emitClicked)
     },
     unmounted() {
-        window.removeEventListener(this.emitClicked)
+        window.removeEventListener('click',this.emitClicked)
 
     },
     computed: {

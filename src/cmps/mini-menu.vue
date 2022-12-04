@@ -8,8 +8,17 @@
 </template>
 
 <script>
+import { withModifiers } from 'vue';
+
 export default {
     props: ['actions'],
+    methods:{
+        makeEventName(action){
+            // `${action.split(' ').map(word=>
+            // .join('').toLowerCase()}`
+        }
+
+    }
 }
 </script> 
 
