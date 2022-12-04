@@ -24,7 +24,7 @@
                 <heart-empty-svg />
             </button>
             <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more-options">
+            <button class="btn-more">
                 <more-options-svg />
             </button>
         </div>

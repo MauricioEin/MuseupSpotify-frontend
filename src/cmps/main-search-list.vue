@@ -1,15 +1,6 @@
 <template>
     <section class="main-search-list">
-        <section class="main-search-list-header">
-            <div class="list-song-index">#</div>
-            <div class="list-song-title">Title</div>
-            <div></div>
-            <div class="list-song-length song-preview-actions">
-                <small>
-                    <clock-svg />
-                </small>
-            </div>
-        </section>
+        <main-search-list-header />
         <ul class="clean-list">
             <li v-for="(song, index) in songs" :key="song._id">
                 <search-song-preview @songSelected="songSelected" :index="index" :song="song"
@@ -21,8 +12,7 @@
 
 <script>
 import searchSongPreview from './search-song-preview.vue';
-import songListHeader from './song-list-header.vue';
-import clockSvg from '../assets/svgs/clock-svg.vue';
+import mainSearchListHeader from './main-search-list-header.vue';
 export default {
     props: {
         songs: {
@@ -50,8 +40,7 @@ export default {
     },
     components: {
         searchSongPreview,
-        songListHeader,
-        clockSvg,
+        mainSearchListHeader
     }
 }
 </script>

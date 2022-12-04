@@ -26,13 +26,13 @@
       </ul>
       <div class="user-nav flex column">
         <router-link @click="createStation" to="" class="create">
-          <div class="nav-btn flex align-center justify-center">
+          <div class="btn-nav flex align-center justify-center">
             <plus-btn-svg />
           </div>
           <span>Create Playlist</span>
         </router-link>
         <router-link to="/collection/tracks">
-          <div class="nav-btn heart-btn flex align-center justify-center">
+          <div class="btn-nav btn-heart flex align-center justify-center">
             <heart-btn-svg />
           </div>
           <span>Liked Songs</span>

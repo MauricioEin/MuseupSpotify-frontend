@@ -17,7 +17,7 @@
             <img :src="imgUrl" alt="">
         </div>
         <div class="song-title">
-            <span class="artist-name"> {{song.title.slice(0,titleBreakIdx)}}</span>
+            <span class="artist-name"> {{ song.title.slice(0, titleBreakIdx) }}</span>
             {{ song.title.slice(titleBreakIdx) }}
         </div>
         <!-- </div> -->
@@ -32,7 +32,7 @@
                     @savetoyourlikedsongs="onMiniMenu('saveSong')" @removefromplaylist="onMiniMenu('removeSong')" />
 
             </div>
-            <button class="btn-more-options" @click="toggleMiniMenu">
+            <button class="btn-more" @click="toggleMiniMenu">
                 <more-options-svg />
             </button>
         </div>
@@ -106,7 +106,7 @@ export default {
         titleBreakIdx() {
             var idx = this.song.title.indexOf('-')
             if (idx === -1) idx = this.song.title.indexOf('|')
-            return idx === -1? 0: idx
+            return idx === -1 ? 0 : idx
         },
 
     }, methods: {

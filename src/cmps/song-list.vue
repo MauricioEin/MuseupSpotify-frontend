@@ -1,15 +1,17 @@
 <template>
     <section class="song-list">
+        <song-list-header v-if="songs?.length" />
         <ul class="clean-list">
             <song-preview v-for="(song, index) in songs" @clicked="onSongClicked" @playing="id => playingSong = id"
                 :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index" :clickedSong="clickedSong"
-                :playingSong="playingSong" @play="$emit('play',index)" @songAction="action => $emit(action, song)" />
+                :playingSong="playingSong" @play="$emit('play', index)" @songAction="action => $emit(action, song)" />
         </ul>
     </section>
 </template>
 
 <script>
 import songPreview from '../cmps/song-preview.vue'
+import songListHeader from './song-list-header.vue'
 export default {
     props: {
         songs: {
@@ -22,7 +24,8 @@ export default {
         loggedInUser: { type: Object }
     },
     components: {
-        songPreview
+        songPreview,
+        songListHeader
     },
     data() {
         return {

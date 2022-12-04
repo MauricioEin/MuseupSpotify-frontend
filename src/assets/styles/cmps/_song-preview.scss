@@ -25,7 +25,7 @@
 
 
     .btn-like-song,
-    .btn-more-options {
+    .btn-more {
         background-color: unset;
         margin: 0;
         padding: 0;
@@ -88,7 +88,7 @@
         background-color: $clr10;
 
         .btn-like-song,
-        .btn-more-options {
+        .btn-more {
             cursor: pointer;
             opacity: 1;
             pointer-events: all;
@@ -130,7 +130,7 @@
         background-color: $clr04;
 
         .btn-like-song,
-        .btn-more-options {
+        .btn-more {
             cursor: pointer;
             opacity: 1;
             pointer-events: all;

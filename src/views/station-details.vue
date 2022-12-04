@@ -1,5 +1,5 @@
 <template>
-  <section v-if="station" class="station-details details-layout">
+  <section v-if="station" class="station-details content-layout">
     <section class="station-preview flex full">
       <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
 
@@ -8,13 +8,14 @@
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
         <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
         <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} • {{ station.followers?.length || 0 }}
-          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime }}</span></span></p>
+          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
+          }}</span></span></p>
       </div>
     </section>
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
-    <section class="song-list-container details-layout">
+    <section class="song-list-container content-layout">
       <section class="playlist-actions">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlayed) ? toggleIsPlayed() : playStation()">
@@ -27,20 +28,17 @@
 
           <play-btn />
         </button> -->
-        <div class="follow-btn" @click="follow">
+        <div class="btn-follow" @click="follow">
           <heart-btn-svg v-if="isFollowed" class="followed" />
           <heart-empty-svg v-else />
         </div>
 
-        <button @click="openStationMenu" class="btn-playlist-more-options">
+        <button @click="openStationMenu" class="btn-more">
           <more-options-svg @click.stop="toggleStationMenu" />
           <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
             @edit="isEdit = true" :isFollowed="isFollowed" />
         </button>
       </section>
-
-
-      <song-list-header v-if="station.songs.length" />
 
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
@@ -171,8 +169,8 @@ export default {
     async removeStation() {
       try {
         await this.$store.dispatch(getActionRemoveStation(this.station._id))
-        await this.$store.commit({type: 'removeUserStation', id: this.station._id})
-        await this.$store.dispatch({type: 'updateUser', user: this.loggedInUser})
+        await this.$store.commit({ type: 'removeUserStation', id: this.station._id })
+        await this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
         showSuccessMsg('Station removed')
         this.$router.push('/station')
 
@@ -185,12 +183,12 @@ export default {
       try {
         editedStation = { ...this.station, ...editedStation }
         await this.$store.dispatch(getActionUpdateStation(editedStation))
-        await this.$store.commit({type: 'updateUsersStation', editedStation})
+        await this.$store.commit({ type: 'updateUsersStation', editedStation })
 
-        
+
         showSuccessMsg('Station updated')
         this.loadStation()
-        this.$store.dispatch({type: 'updateUser', user: this.loggedInUser})
+        this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
 
       } catch (err) {
         console.log(err)
@@ -224,7 +222,7 @@ export default {
     },
     playStation(idx) {
       if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlayed()
-      console.log('got here with', idx, this.playingSongIdx,  'station', this.station,)
+      console.log('got here with', idx, this.playingSongIdx, 'station', this.station,)
       this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
     saveSong(song) {
