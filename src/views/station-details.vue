@@ -18,12 +18,12 @@
     <section class="song-list-container content-layout">
       <section class="playlist-actions">
         <button class="btn-play-green" v-if="station.songs.length"
-          @click.stop="(isCurrStationPlayed && isPlayed) ? toggleIsPlayed() : playStation()">
-          <pause-btn v-if="isCurrStationPlayed && isPlayed" />
+          @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
+          <pause-btn v-if="isCurrStationPlayed && isPlaying" />
           <play-btn v-else />
         </button>
 
-        <!-- <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlayed) ? playStation() :  toggleIsPlayed()" ><play-btn v-if="!isPlayed"/><pause-btn v-else/></button> -->
+        <!-- <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlaying) ? playStation() :  toggleIsPlaying()" ><play-btn v-if="!isPlaying"/><pause-btn v-else/></button> -->
         <!-- <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
 
           <play-btn />
@@ -135,8 +135,8 @@ export default {
       else return `${time.min} min ${time.sec} sec`
     },
 
-    isPlayed() {
-      return this.$store.getters.isPlayed
+    isPlaying() {
+      return this.$store.getters.isPlaying
     },
 
     getPlayingStation() {
@@ -172,7 +172,7 @@ export default {
     async removeStation() {
       try {
         await this.$store.dispatch(getActionRemoveStation(this.station._id))
-        await this.$store.dispatch({type: 'updateUser', user: this.loggedInUser})
+        await this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
         showSuccessMsg('Station removed')
         this.$router.push('/station')
 
@@ -223,15 +223,15 @@ export default {
       }
     },
     playStation(idx) {
-      if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlayed()
+      if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlaying()
       console.log('got here with', idx, this.playingSongIdx, 'station', this.station,)
       this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
     saveSong(song) {
       this.$store.dispatch({ type: 'saveSong', song })
     },
-    toggleIsPlayed() {
-      this.$store.commit('toggleIsPlayed')
+    toggleIsPlaying() {
+      this.$store.commit('toggleIsPlaying')
     },
     async removeSong(song) {
       try {
@@ -246,7 +246,7 @@ export default {
         showErrorMsg('Failed removing song from playlist')
       }
     },
-    closeMenu(){
+    closeMenu() {
       this.isStationMenuOpen = false
     }
 

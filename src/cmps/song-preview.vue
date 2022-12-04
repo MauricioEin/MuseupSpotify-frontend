@@ -109,7 +109,7 @@ export default {
             return this.$store.getters.playingSong
         },
         isPlayerOn() {
-            return this.$store.getters.isPlayed
+            return this.$store.getters.isPlaying
         },
         titleBreakIdx() {
             var idx = this.song.title.indexOf('-')
@@ -127,11 +127,11 @@ export default {
             this.$emit('songAction', action)
         },
         // playSong() {
-        //     this.$store.commit({ type: 'toggleIsPlayed' })
+        //     this.$store.commit({ type: 'toggleIsPlaying' })
         //     this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
         // },
         pauseSong() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.$store.commit({ type: 'toggleIsPlaying' })
         },
         emitClicked() {
             this.$emit('clicked', '')

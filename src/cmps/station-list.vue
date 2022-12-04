@@ -19,7 +19,7 @@
           <p v-if="station.desc" class="station-desc cut-text">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
           <button v-if="(station.songs.length)" class="btn-play-playlist"
-            @click.stop="(!isPlayed) ? playStation(station) : toggleIsPlayed()"><pause-btn
+            @click.stop="(!isPlaying) ? playStation(station) : toggleIsPlaying()"><pause-btn
               v-if="isCurrStationPlayed(station)" /><play-btn v-else /></button>
 
         </div>
@@ -59,18 +59,18 @@ export default {
       this.$store.commit({ type: 'playStation', station })
     },
 
-    toggleIsPlayed() {
-      this.$store.commit('toggleIsPlayed')
+    toggleIsPlaying() {
+      this.$store.commit('toggleIsPlaying')
     },
 
     isCurrStationPlayed(station) {
-      return (this.isPlayed && station._id === this.getPlayingStation._id)
+      return (this.isPlaying && station._id === this.getPlayingStation._id)
     },
   },
 
   computed: {
-    isPlayed() {
-      return this.$store.getters.isPlayed
+    isPlaying() {
+      return this.$store.getters.isPlaying
     },
 
     getPlayingStation() {

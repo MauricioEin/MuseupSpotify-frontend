@@ -46,7 +46,7 @@ export default {
             return this.nowPlayingSong.youtubeId === this.song.id
         },
         isPlayerOn() {
-            return this.$store.getters.isPlayed
+            return this.$store.getters.isPlaying
         },
         titleBreakIdx() {
             var idx = this.song.title.indexOf('-')
@@ -58,18 +58,18 @@ export default {
         },
     },
     created() {
-        window.addEventListener('click',this.emitClicked)
+        window.addEventListener('click', this.emitClicked)
     },
     unmounted() {
-        window.removeEventListener('click',this.emitClicked)
+        window.removeEventListener('click', this.emitClicked)
     },
     methods: {
         playSong() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.$store.commit({ type: 'toggleIsPlaying' })
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
         },
         pauseSong() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.$store.commit({ type: 'toggleIsPlaying' })
 
         },
         addSongToStation() {
