@@ -171,6 +171,8 @@ export default {
     async removeStation() {
       try {
         await this.$store.dispatch(getActionRemoveStation(this.station._id))
+        await this.$store.commit({type: 'removeUserStation', id: this.station._id})
+        await this.$store.dispatch({type: 'updateUser', user: this.loggedInUser})
         showSuccessMsg('Station removed')
         this.$router.push('/station')
 

@@ -40,6 +40,11 @@ export const userStore = {
         updateUsersStation(state, {editedStation}){       
             const stationIdx = state.loggedinUser.stations.findIndex(station => station._id === editedStation._id)
             state.loggedinUser.stations[stationIdx].name = editedStation.name
+        },
+        
+        removeUserStation(state, {id}){
+            const stationIdx = state.loggedinUser.stations.findIndex(station => station._id === id)
+            state.loggedinUser.stations.splice(stationIdx, 1)
         }
 
     },
