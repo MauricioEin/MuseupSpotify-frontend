@@ -7,8 +7,8 @@
         <p class="summary-title">PLAYLIST</p>
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
         <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
-        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} | {{ station.followers?.length || 0 }}
-          likes | {{ station.songs.length }} songs, <span class="light">{{ totalTime }}</span></p>
+        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} • {{ station.followers?.length || 0 }}
+          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime }}</span></span></p>
       </div>
     </section>
 
