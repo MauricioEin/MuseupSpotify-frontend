@@ -37,7 +37,7 @@
             color: $clr01;
             text-decoration: none;
 
-            .heart-btn {
+            .btn-heart {
                 opacity: 1;
             }
         }
@@ -53,19 +53,19 @@
             margin-bottom: 0;
         }
     }
-    
+
     & .router-link-active:not(.create) {
         color: $clr01;
-        
+
         & .ifActive {
             display: block;
         }
-        
-        & .heart-btn {
+
+        & .btn-heart {
             opacity: 1;
         }
     }
-    
+
 }
 
 hr {
@@ -96,7 +96,7 @@ hr {
     margin-bottom: 24px;
 }
 
-.nav-btn {
+.btn-nav {
     background-color: currentcolor;
     height: 24px;
     width: 24px;
@@ -109,7 +109,7 @@ hr {
     }
 }
 
-.heart-btn {
+.btn-heart {
     background: linear-gradient(135deg, #450af5, #c4efd9);
     opacity: 0.7;
     transition: opacity .4s;

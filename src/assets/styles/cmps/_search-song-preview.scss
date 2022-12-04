@@ -1,5 +1,5 @@
 .search-song-preview {
-    padding: 8px 10px;
+    padding: 8px 10px 8px 15px;
     display: grid;
     gap: 15px;
     border-radius: 5px;
@@ -14,7 +14,7 @@
     }
 
     .btn-like-song,
-    .btn-more-options {
+    .btn-more {
         background-color: unset;
         margin: 0;
         padding: 0;
@@ -30,7 +30,7 @@
 
     .song-index {
         font-size: rem(14px);
-        color: #a7a7a7;
+        color: $clr09;
 
         svg {
             // opacity: 0;
@@ -53,11 +53,10 @@
     }
 
     &:hover {
-        //TODO change to var
-        background-color: #2b2b2c;
+        background-color: $clr10;
 
         .btn-like-song,
-        .btn-more-options {
+        .btn-more {
             cursor: pointer;
             opacity: 1;
             pointer-events: all;
@@ -88,7 +87,7 @@
         background-color: $clr04;
 
         .btn-like-song,
-        .btn-more-options {
+        .btn-more {
             cursor: pointer;
             opacity: 1;
             pointer-events: all;
@@ -138,13 +137,11 @@
             justify-self: center;
             align-self: center;
             font-size: rem(14px);
-            //TODO change to var
-            color: #a7a7a7;
+            color: $clr09;
         }
 
         .btn-like-song.liked svg {
-            //TODO change to var
-            fill: #1ed760;
+            fill: $clrGreen;
         }
     }
 }

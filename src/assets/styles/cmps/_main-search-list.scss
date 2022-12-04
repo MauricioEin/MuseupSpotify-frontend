@@ -3,10 +3,10 @@
 
     .main-search-list-header {
         text-transform: uppercase;
-        border-bottom: 1px solid #2a2a2a;
+        border-bottom: 1px solid $clr10;
         border-radius: 0;
         margin: 0 7px 15px 0;
-        padding: 0 7px;
+        padding: 8px 10px 8px 15px;
         height: 35px;
         align-items: center;
         display: grid;
@@ -16,7 +16,7 @@
         font-size: 0.75rem;
         font-weight: 560;
         letter-spacing: 1px;
-        color: #a7a7a7;
+        color: $clr09;
 
         .list-song-index {
             // justify-self: center;

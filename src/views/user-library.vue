@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { stationService } from '../services/station.service';
+  import { stationService } from '../services/station.service'
   import stationList from '../cmps/station-list.vue'
   export default {
 
@@ -23,7 +23,7 @@
       async getUserStations(){
         const user = this.$store.getters.loggedinUser
         const userStations = user.stations.map(async(currStation) => {
-        const station = await stationService.getById(currStation._id)
+          const station = await stationService.getById(currStation._id)
           return station
         })
         const stations = await Promise.all(userStations)

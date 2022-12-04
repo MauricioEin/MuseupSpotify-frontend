@@ -51,7 +51,7 @@
         position: relative;
 
         &:hover {
-            background-color: #282828;
+            background-color: $clr06;
         }
 
 
@@ -89,22 +89,20 @@
 
         .btn-signup {
             background-color: unset;
-            //TODO change to var
-            color: #a7a7a7;
+            color: $clr09;
             width: 95px;
             height: 48px;
             padding: 5px 15px;
 
             &:hover {
-                color: #fff;
+                color: $clr01;
                 transform: scale(1.1);
             }
         }
 
         .btn-login {
-            //TODO change to var
-            background-color: #fff;
-            color: #000;
+            background-color: $clr01;
+            color: $clr08;
             width: 110px;
             height: 48px;
             border-radius: 500px;

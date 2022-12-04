@@ -1,5 +1,5 @@
 <template>
-  <header ref="header" class="app-header details-layout">
+  <header ref="header" class="app-header content-layout">
     <div class="flex">
       <nav class="flex">
         <button class="btn-go-back"><btn-go-back /></button>
@@ -20,7 +20,7 @@
         </div>
         <span>{{ loggedInUser.fullname }}</span>
         <menu-arrow-down />
-        <mini-menu @profile="goToProfile" @logout="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
+        <mini-menu @profile="goToProfile" @logOut="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
           style="transform: translateY(40%); top: 0; right: 0;" />
       </section>
       <section class="header-login-signup" v-else>
@@ -62,7 +62,6 @@ export default {
     },
     openMenu() {
       this.isMenuOpen = true
-      console.log('Hi');
     },
     closeMenu() {
       this.isMenuOpen = false

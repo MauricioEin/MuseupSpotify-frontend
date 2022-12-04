@@ -109,7 +109,7 @@ async function searchSongs(searchStr) {
         const songs = await _prepareSongSearchPreviews(res.data.items)
         return songs
     } catch (err) {
-        console.log(err);
+        console.log(err)
         ++keyIdx
         if (keyIdx >= API_KEY.length) {
             throw err
@@ -135,7 +135,7 @@ async function _prepareSongSearchPreviews(items) {
         }
         const songLength = await _getSongLength(id.videoId)
         // console.log("🚀 ~ file: station.service.js:119 ~ returnitems.map ~ songLength", songLength)
-        // console.log(_getSongLength(id.videoId));
+        // console.log(_getSongLength(id.videoId))
 
         return {
             id: id.videoId,

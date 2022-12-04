@@ -172,7 +172,7 @@ export default defineComponent({
         updateCurrTime() {
             this.timeInterval = setInterval(() => {
                 const currTime = this.$refs?.youtube?.getCurrentTime()
-                // console.log(currTime);
+                // console.log(currTime)
                 if (currTime) {
                     this.currTime = Math.floor(currTime)
                 }
@@ -186,7 +186,7 @@ export default defineComponent({
         formattedTime(time) {
             const duration = time
             const minutes = ('minutes:,', Math.floor(duration / 60))
-            var seconds = ('seconds:,', Math.floor(((duration / 60) % 1) * 60).toString());
+            var seconds = ('seconds:,', Math.floor(((duration / 60) % 1) * 60).toString())
             if (seconds.length < 2) {
                 seconds = '0' + seconds
             }

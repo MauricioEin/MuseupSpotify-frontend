@@ -60,6 +60,12 @@ button {
     background-color: $clr06;
 }
 
+input {
+    &:focus-within {
+        outline: unset;
+    }
+}
+
 /* width */
 ::-webkit-scrollbar {
     position: absolute;

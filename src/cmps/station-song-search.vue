@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import { utilService } from '../services/util.service';
-import { stationService } from '../services/station.service';
-import xBtnSvg from '../assets/svgs/x-btn-svg.vue';
+import { utilService } from '../services/util.service'
+import { stationService } from '../services/station.service'
+import xBtnSvg from '../assets/svgs/x-btn-svg.vue'
 export default {
     props:['isStationEmpty'],
     data() {

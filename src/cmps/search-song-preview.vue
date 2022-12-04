@@ -24,7 +24,7 @@
                 <heart-empty-svg />
             </button>
             <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more-options">
+            <button class="btn-more">
                 <more-options-svg />
             </button>
         </div>
@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import moreOptionsSvg from '../assets/svgs/more-options-svg.vue';
-import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue';
-import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
-import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
+import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
+import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
 
 export default {
     props: {
@@ -53,7 +53,11 @@ export default {
         },
     },
     created() {
-        window.addEventListener('click', () => this.$emit('clicked', ''));
+        window.addEventListener('click',this.emitClicked)
+    },
+    unmounted(){
+        window.removeEventListener('click',this.emitClicked)
+
     },
     computed: {
         nowPlayingSong() {
@@ -86,7 +90,11 @@ export default {
         },
         pauseSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
+        },
+        emitClicked() {
+            this.$emit('clicked', '')
         }
+
     },
     // watch: {
     //     isPlaying() {

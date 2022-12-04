@@ -1,6 +1,5 @@
 .station-song-search {
     padding-top: 30px;
-    // TODO change to var
     border-top: 1px solid #323232;
     justify-content: space-between;
     margin-block-end: 20px;
@@ -15,8 +14,7 @@
     }
 
     input {
-        // TODO change to var
-        background-color: #2a2a2a;
+        background-color: $clr10;
         color: #c0c0c0;
         border: 0;
         border-radius: 4px;

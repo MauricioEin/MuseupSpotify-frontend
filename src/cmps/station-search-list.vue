@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import stationSearchPreview from './station-search-preview.vue';
+import stationSearchPreview from './station-search-preview.vue'
 export default {
     props: {
         songs: {
