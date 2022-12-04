@@ -1,0 +1,27 @@
+.liked-songs {
+    .station-preview {
+        background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%);
+        background-color: rgb(80, 56, 160);
+
+
+        .img-container {
+            height: 192px;
+            width: 192px;
+            box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+
+        }
+
+        .mini-dashboard {
+            font-weight: 100;
+        }
+
+        .username {
+            font-weight: 600;
+        }
+    }
+
+    .song-list-container{
+        background-image: linear-gradient(rgba(0, 0, 0, .6) 0, $clr07 50%);
+        background-color: rgb(80, 56, 160);
+    }
+}

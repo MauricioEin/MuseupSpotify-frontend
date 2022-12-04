@@ -4,7 +4,8 @@
         <ul class="clean-list">
             <song-preview v-for="(song, index) in songs" @clicked="onSongClicked" @playing="id => playingSong = id"
                 :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index" :clickedSong="clickedSong"
-                :playingSong="playingSong" @play="$emit('play', index)" @songAction="action => $emit(action, song)" />
+                :playingSong="playingSong" @play="$emit('play', index)" @songAction="action => $emit(action, song)"
+                :isLikedSongs="isLikedSongs || false" />
         </ul>
     </section>
 </template>
@@ -21,7 +22,9 @@ export default {
         isClickOutside: {
             type: Boolean
         },
-        loggedInUser: { type: Object }
+        loggedInUser: { type: Object },
+        isLikedSongs: { type: Boolean }
+
     },
     components: {
         songPreview,
@@ -30,7 +33,7 @@ export default {
     data() {
         return {
             clickedSong: '',
-            playingSong: ''
+            playingSong: '',
         }
     },
 
@@ -44,6 +47,7 @@ export default {
             this.clickedSong = id
             this.$emit('songClicked')
         },
+
     }
 }
 </script>
