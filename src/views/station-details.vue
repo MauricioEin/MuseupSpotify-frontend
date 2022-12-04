@@ -264,9 +264,6 @@ export default {
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
     },
-    isPlayed(){
-      console.log('IS PLAYED CHANGED TO',this.isPlayed)
-    }
   },
   unmounted() {
     this.$store.commit({ type: 'clearCurrStation' })
