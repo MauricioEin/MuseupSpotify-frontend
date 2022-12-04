@@ -20,14 +20,14 @@
     },
 
     methods:{
-      getUserStations(){
+      async getUserStations(){
         const user = this.$store.getters.loggedinUser
         const userStations = user.stations.map(async(currStation) => {
           const station = await stationService.getById(currStation._id)
           return station
         })
-        Promise.all(userStations).then(res => {
-          this.stations = res})
+        const stations = await Promise.all(userStations)
+        this.stations = stations
       }
     },
 

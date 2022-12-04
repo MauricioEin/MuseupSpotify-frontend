@@ -47,7 +47,7 @@ export default {
   methods: {
     getStationImg(station) {
       if (station.imgUrl) return station.imgUrl
-      else if (station.songs[0]?.imgUrl) return station.songs[0]?.imgUrl.medium
+      else if (station?.songs[0]?.imgUrl) return station.songs[0]?.imgUrl.medium
       else return 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
     },
 
