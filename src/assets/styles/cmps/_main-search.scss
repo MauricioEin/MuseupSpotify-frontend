@@ -1,6 +1,14 @@
 .main-search {
     display: flex;
     width: rem(364px);
+    align-items: center;
+
+
+    svg {
+        fill: #121212;
+        position: absolute;
+        margin-inline-start: 10px;
+    }
 
     input {
         height: 40px;
