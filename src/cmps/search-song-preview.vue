@@ -4,10 +4,10 @@
         <div class="song-index">
             <img v-if="isOnPlayer && isPlayerOn" src="../assets/gifs/equaliser-animated.gif" />
             <span v-else> {{ index + 1 }} </span>
-            <div v-if="isOnPlayer && isPlayerOn" @click="pauseSong">
+            <div v-if="isOnPlayer && isPlayerOn" @click.stop="pauseSong">
                 <media-player-stop />
             </div>
-            <div v-else @click="playSong" title="Play song">
+            <div v-else @click.stop="playSong" title="Play song">
                 <play-btn-svg />
             </div>
         </div>
