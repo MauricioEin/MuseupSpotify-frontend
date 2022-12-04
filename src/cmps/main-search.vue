@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import { stationService } from '../services/station.service';
-import { utilService } from '../services/util.service';
+import { stationService } from '../services/station.service'
+import { utilService } from '../services/util.service'
 import mainSearchList from '../cmps/main-search-list.vue'
 import searchIcon from '../assets/svgs/search-icon.vue'
 

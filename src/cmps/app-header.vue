@@ -62,7 +62,6 @@ export default {
     },
     openMenu() {
       this.isMenuOpen = true
-      console.log('Hi');
     },
     closeMenu() {
       this.isMenuOpen = false

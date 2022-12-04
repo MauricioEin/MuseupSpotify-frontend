@@ -154,8 +154,11 @@ export default {
 
   },
   mounted() {
-    window.addEventListener('click', () => this.isStationMenuOpen = false);
+    window.addEventListener('click', this.closeMenu)
     this.loadStation()
+  },
+  unmounted() {
+    window.removeEventListener('click', this.closeMenu)
   },
   methods: {
     async follow() {
@@ -171,7 +174,6 @@ export default {
     async removeStation() {
       try {
         await this.$store.dispatch(getActionRemoveStation(this.station._id))
-        await this.$store.commit({type: 'removeUserStation', id: this.station._id})
         await this.$store.dispatch({type: 'updateUser', user: this.loggedInUser})
         showSuccessMsg('Station removed')
         this.$router.push('/station')
@@ -246,6 +248,9 @@ export default {
         showErrorMsg('Failed removing song from playlist')
       }
     },
+    closeMenu(){
+      this.isStationMenuOpen = false
+    }
 
   },
   watch: {

@@ -99,7 +99,7 @@ export const stationStore = {
             state.playingSongIdx = idx
             // commit('toggleIsPlayed')
             // state.isPlayed = !state.isPlayed
-            // console.log(state.isPlayed);
+            // console.log(state.isPlayed)
         },
         toggleIsPlayed(state) {
             state.isPlayed = !state.isPlayed
@@ -127,7 +127,6 @@ export const stationStore = {
         async updateStation(context, { station }) {
             try {
                 station = await stationService.save(station)
-                console.log(station);
                 context.commit(getActionUpdateStation(station))
                 return station
             } catch (err) {
@@ -148,6 +147,8 @@ export const stationStore = {
             try {
                 await stationService.remove(stationId)
                 context.commit(getActionRemoveStation(stationId))
+                context.commit({type: 'removeUserStation', id: stationId})
+
             } catch (err) {
                 console.log('stationStore: Error in removeStation', err)
                 throw err

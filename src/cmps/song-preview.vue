@@ -17,7 +17,7 @@
             <img :src="imgUrl" alt="">
         </div>
         <div class="song-title">
-            <span class="artist-name"> {{song.title.slice(0,titleBreakIdx)}}</span>
+            <span class="artist-name"> {{ song.title.slice(0, titleBreakIdx) }}</span>
             {{ song.title.slice(titleBreakIdx) }}
         </div>
         <!-- </div> -->
@@ -45,8 +45,8 @@
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
-import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
-import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
 
 import miniMenu from '../cmps/mini-menu.vue'
 
@@ -75,9 +75,12 @@ export default {
         }
     },
     created() {
-        window.addEventListener('click', () => this.$emit('clicked', ''));
+        window.addEventListener(this.emitClicked)
     },
-    computed: {
+    unmounted() {
+        window.removeEventListener(this.emitClicked)
+
+    }, computed: {
         dateAdded() {
             const d = new Date(this.song.createdAt)
             return d.toLocaleDateString('he-IL')
@@ -106,7 +109,7 @@ export default {
         titleBreakIdx() {
             var idx = this.song.title.indexOf('-')
             if (idx === -1) idx = this.song.title.indexOf('|')
-            return idx === -1? 0: idx
+            return idx === -1 ? 0 : idx
         },
 
     }, methods: {
@@ -124,7 +127,12 @@ export default {
         // },
         pauseSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
+        },
+        emitClicked() {
+            this.$emit('clicked', '')
         }
+
+        
     },
     watch: {
         isClicked() {

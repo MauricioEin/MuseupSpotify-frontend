@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import imgScreenPlay from './img-screen-play.vue';
-import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
-import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
+import imgScreenPlay from './img-screen-play.vue'
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
 
 
 export default {
@@ -58,7 +58,10 @@ export default {
         },
     },
     created() {
-        window.addEventListener('click', () => this.$emit('clicked', ''));
+        window.addEventListener(this.emitClicked)
+    },
+    unmounted() {
+        window.removeEventListener(this.emitClicked)
     },
     methods: {
         playSong() {
@@ -72,6 +75,9 @@ export default {
         addSongToStation() {
             this.$emit('addSongToStation', JSON.parse(JSON.stringify(this.song)))
         },
+        emitClicked() {
+            this.$emit('clicked', '')
+        }
     },
     components: {
         imgScreenPlay,
