@@ -1,5 +1,6 @@
 <template>
     <section class="main-search">
+        <search-icon />
         <input v-model="searchStr" type="search" placeholder="What do you want to listen to?">
     </section>
 </template>
@@ -8,6 +9,8 @@
 import { stationService } from '../services/station.service';
 import { utilService } from '../services/util.service';
 import mainSearchList from '../cmps/main-search-list.vue'
+import searchIcon from '../assets/svgs/search-icon.vue'
+
 export default {
     data() {
         return {
@@ -38,7 +41,9 @@ export default {
         }
     },
     components: {
-        mainSearchList
+        mainSearchList,
+        searchIcon
+
     }
 }
 </script>

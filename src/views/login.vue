@@ -29,7 +29,7 @@ export default {
   name: 'login',
   data() {
     return {
-      loginCred: { username: 'muki', password: '123' },
+      loginCred: { username: '', password: '' },
     }
   },
   computed: {

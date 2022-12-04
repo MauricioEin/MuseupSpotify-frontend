@@ -32,12 +32,12 @@
 </template>
 <script>
 import mainSearch from './main-search.vue'
+import miniMenu from './mini-menu.vue'
 
 import btnGoBack from '../assets/svgs/btn-go-back.vue'
 import btnGoNext from '../assets/svgs/btn-go-next.vue'
 import userPortrait from '../assets/svgs/user-portrait.vue'
 import menuArrowDown from '../assets/svgs/menu-arrow-down.vue'
-import miniMenu from './mini-menu.vue'
 
 export default {
   data() {
