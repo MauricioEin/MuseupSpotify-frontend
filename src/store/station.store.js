@@ -127,6 +127,7 @@ export const stationStore = {
         async updateStation(context, { station }) {
             try {
                 station = await stationService.save(station)
+                console.log(station);
                 context.commit(getActionUpdateStation(station))
                 return station
             } catch (err) {
