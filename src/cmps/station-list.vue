@@ -8,12 +8,16 @@
           <p class="station-title cut-text">
             {{ station.name }}
           </p>
-          <p class="station-desc cut-text">
+
+          <!-- <pre>{{ station }}</pre> -->
+          <!-- <p class="station-desc cut-text">
             {{ station.name }}
           </p>
           <p class="station-desc cut-text">
             The essential tracks, all in one playlist.
-          </p>
+          </p> -->
+          <p v-if="station.desc" class="station-desc cut-text">{{ station.desc }}</p>
+          <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
           <button class="play-playlist-btn"
             @click.stop="(!isPlayed) ? playStation(station) : toggleIsPlayed()"><pause-btn
               v-if="isCurrStationPlayed(station)" /><play-btn v-else /></button>
@@ -60,21 +64,7 @@ export default {
     },
 
     isCurrStationPlayed(station) {
-      const miniStation = station.songs.map(song => {
-        const { title, imgUrl, youtubeId } = song
-        return {
-          title,
-          imgUrl: imgUrl.medium,
-          youtubeId,
-        }
-      })
-
-      const stringedStore = (JSON.stringify(this.getPlayingStation))
-      const stringedMini = (JSON.stringify(miniStation))
-
-      if (this.isPlayed && stringedStore == stringedMini) {
-        return true
-      } return false
+        return (this.isPlayed && station._id === this.getPlayingStation._id)
     },
   },
 
@@ -85,6 +75,10 @@ export default {
 
     getPlayingStation() {
       return this.$store.getters.getPlayingStation
+    },
+
+    loggedInUser(){
+        return this.$store.getters.loggedInUser
     }
   },
 

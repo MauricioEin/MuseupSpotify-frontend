@@ -1,7 +1,7 @@
 <template>
     <section class="media-player" :class="setFull">
 
-        <img class="fit-img album " :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+        <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl" alt="">
 
 
         <div class="player-section">

@@ -149,21 +149,6 @@ export default {
     },
     isCurrStationPlayed() {
       return this.station._id === this.getPlayingStation._id
-      // const miniStation = this.station.songs.map(song => {
-      //     const { title, imgUrl, youtubeId } = song
-      //     return {
-      //         title,
-      //         imgUrl: imgUrl.medium,
-      //         youtubeId,
-      //     }
-      // })
-
-      // const stringedStore =(JSON.stringify(this.getPlayingStation))
-      // const stringedMini = (JSON.stringify(miniStation))
-
-      // if(this.isPlayed && stringedStore == stringedMini){
-      //     return true
-      // }   return false
     },
 
 
@@ -198,8 +183,12 @@ export default {
       try {
         editedStation = { ...this.station, ...editedStation }
         await this.$store.dispatch(getActionUpdateStation(editedStation))
+        await this.$store.commit({type: 'updateUsersStation', editedStation})
+
+        
         showSuccessMsg('Station updated')
         this.loadStation()
+        this.$store.dispatch({type: 'updateUser', user: this.loggedInUser})
 
       } catch (err) {
         console.log(err)

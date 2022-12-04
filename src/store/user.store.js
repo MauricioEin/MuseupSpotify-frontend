@@ -37,6 +37,10 @@ export const userStore = {
             state.users.splice(idx, 1, user)
         },
 
+        updateUsersStation(state, {editedStation}){       
+            const stationIdx = state.loggedinUser.stations.findIndex(station => station._id === editedStation._id)
+            state.loggedinUser.stations[stationIdx].name = editedStation.name
+        }
 
     },
     actions: {
@@ -130,6 +134,6 @@ export const userStore = {
             console.log('savedUserFromService:', savedUser)
             commit({ type: 'updateUser', user: savedUser })
             commit({ type: 'setLoggedinUser', user: savedUser })
-        }
+        },
     }
 }
