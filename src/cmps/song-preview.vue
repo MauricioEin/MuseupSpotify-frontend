@@ -80,7 +80,8 @@ export default {
     unmounted() {
         window.removeEventListener(this.emitClicked)
 
-    }, computed: {
+    },
+    computed: {
         dateAdded() {
             const d = new Date(this.song.createdAt)
             return d.toLocaleDateString('he-IL')
@@ -132,7 +133,7 @@ export default {
             this.$emit('clicked', '')
         }
 
-        
+
     },
     watch: {
         isClicked() {
