@@ -3,7 +3,7 @@
         :class="{ clicked: isClicked, playing: isOnPlayer }">
         <div class="song-index">
             <img v-if="isOnPlayer && isPlayerOn" src="../assets/gifs/equaliser-animated.gif" />
-            <span v-else class="artist-name"> {{ index + 1 }} </span>
+            <span v-else class="index-number"> {{ index + 1 }} </span>
             <div v-if="isOnPlayer && isPlayerOn" @click.stop="pauseSong">
                 <media-player-stop />
             </div>
@@ -52,9 +52,9 @@ export default {
             type: String
         },
     },
-created(){
-    window.addEventListener('click', () => this.$emit('clicked', ''));
-},
+    created() {
+        window.addEventListener('click', () => this.$emit('clicked', ''));
+    },
     computed: {
         nowPlayingSong() {
             return this.$store.getters.playingSong
