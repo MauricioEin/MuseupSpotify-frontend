@@ -29,8 +29,8 @@
             </button>
             <div class="song-length">{{ song.length }}
                 <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
-                    @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')" 
-                    @removeFromYourLikedSongs="onMiniMenu('saveSong')"/>
+                    @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
+                    @removeFromYourLikedSongs="onMiniMenu('saveSong')" />
 
             </div>
             <button class="btn-more" @click="toggleMiniMenu">
@@ -63,6 +63,7 @@ export default {
         clickedSong: {
             type: String
         },
+        isLikedSongs:{type:Boolean},
         // playingSong: {
         //     type: String
         // },
@@ -76,10 +77,10 @@ export default {
         }
     },
     created() {
-        window.addEventListener('click',this.emitClicked)
+        window.addEventListener('click', this.emitClicked)
     },
     unmounted() {
-        window.removeEventListener('click',this.emitClicked)
+        window.removeEventListener('click', this.emitClicked)
 
     },
     computed: {
@@ -100,7 +101,9 @@ export default {
             return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
         },
         songActions() {
-            return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
+            const songActions = ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
+            if (this.isLikedSongs) songActions.splice(3,1)
+            return songActions
         },
         nowPlayingSong() {
             return this.$store.getters.playingSong
