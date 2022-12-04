@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
 export default {
     components: {
         playBtnSvg

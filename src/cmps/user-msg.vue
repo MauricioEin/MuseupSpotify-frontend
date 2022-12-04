@@ -14,7 +14,7 @@ export default {
       this.msg = msg
       var delay = msg.delay || 2000
       this.alive = true
-      window.scrollTo({top: 0, behavior: 'smooth'});
+      window.scrollTo({top: 0, behavior: 'smooth'})
       setTimeout(() => {
         this.alive = false
       }, delay)

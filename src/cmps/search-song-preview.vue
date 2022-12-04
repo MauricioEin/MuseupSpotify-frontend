@@ -32,10 +32,10 @@
 </template>
 
 <script>
-import moreOptionsSvg from '../assets/svgs/more-options-svg.vue';
-import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue';
-import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
-import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
+import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
+import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
 
 export default {
     props: {
@@ -53,7 +53,11 @@ export default {
         },
     },
     created() {
-        window.addEventListener('click', () => this.$emit('clicked', ''));
+        window.addEventListener(this.emitClicked)
+    },
+    unmounted(){
+        window.removeEventListener(this.emitClicked)
+
     },
     computed: {
         nowPlayingSong() {
@@ -86,7 +90,11 @@ export default {
         },
         pauseSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
+        },
+        emitClicked() {
+            this.$emit('clicked', '')
         }
+
     },
     // watch: {
     //     isPlaying() {

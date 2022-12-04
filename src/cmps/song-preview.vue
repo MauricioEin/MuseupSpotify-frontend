@@ -45,8 +45,8 @@
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
-import playBtnSvg from '../assets/svgs/play-btn-svg.vue';
-import mediaPlayerStop from '../assets/svgs/media-player-stop.vue';
+import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
+import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
 
 import miniMenu from '../cmps/mini-menu.vue'
 
@@ -75,9 +75,12 @@ export default {
         }
     },
     created() {
-        window.addEventListener('click', () => this.$emit('clicked', ''));
+        window.addEventListener(this.emitClicked)
     },
-    computed: {
+    unmounted() {
+        window.removeEventListener(this.emitClicked)
+
+    }, computed: {
         dateAdded() {
             const d = new Date(this.song.createdAt)
             return d.toLocaleDateString('he-IL')
@@ -124,7 +127,12 @@ export default {
         // },
         pauseSong() {
             this.$store.commit({ type: 'toggleIsPlayed' })
+        },
+        emitClicked() {
+            this.$emit('clicked', '')
         }
+
+        
     },
     watch: {
         isClicked() {

@@ -68,7 +68,7 @@ async function login(userCred) {
     }
 }
 async function signup(userCred) {
-    // userCred.score = 10000;
+    // userCred.score = 10000
     userCred.stations = []
     userCred.likedSongs = []
     const user = await storageService.post('user', userCred)
