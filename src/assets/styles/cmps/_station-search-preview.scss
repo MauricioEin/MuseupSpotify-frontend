@@ -42,8 +42,7 @@
     }
 
     &:hover {
-        //TODO change to var
-        background-color: #2b2b2c;
+        background-color: $clr10;
 
         .img-screen-play {
             opacity: 1;
@@ -57,7 +56,6 @@
     }
 
     &.clicked {
-        //TODO change to var
         background-color: $clr04;
 
         .img-screen-play {

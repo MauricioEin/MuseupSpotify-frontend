@@ -40,7 +40,7 @@
         svg {
             height: 1rem;
             width: 1rem;
-            fill:$clr02;
+            fill: $clr02;
 
             &.liked {
                 fill: $clrGreen;
@@ -85,8 +85,7 @@
     }
 
     &:hover {
-        //TODO change to var
-        background-color: #2b2b2c;
+        background-color: $clr10;
 
         .btn-like-song,
         .btn-more-options {
@@ -112,16 +111,18 @@
             svg {
                 // opacity: 1;
                 display: block;
-                fill:$clr01;
+                fill: $clr01;
 
             }
         }
-.song-title{
-    color:$clr01;
 
-}
-        .song-created-at{
-            color:$clr01;
+        .song-title {
+            color: $clr01;
+
+        }
+
+        .song-created-at {
+            color: $clr01;
         }
     }
 

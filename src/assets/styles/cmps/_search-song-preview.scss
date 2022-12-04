@@ -30,7 +30,7 @@
 
     .song-index {
         font-size: rem(14px);
-        color: #a7a7a7;
+        color: $clr09;
 
         svg {
             // opacity: 0;
@@ -53,8 +53,7 @@
     }
 
     &:hover {
-        //TODO change to var
-        background-color: #2b2b2c;
+        background-color: $clr10;
 
         .btn-like-song,
         .btn-more-options {
@@ -138,13 +137,11 @@
             justify-self: center;
             align-self: center;
             font-size: rem(14px);
-            //TODO change to var
-            color: #a7a7a7;
+            color: $clr09;
         }
 
         .btn-like-song.liked svg {
-            //TODO change to var
-            fill: #1ed760;
+            fill: $clrGreen;
         }
     }
 }
