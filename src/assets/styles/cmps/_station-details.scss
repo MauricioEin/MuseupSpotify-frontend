@@ -8,8 +8,9 @@
         // height: 60vh;
         max-height: 380px;
         padding: 60px 35px 24px;
-        background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%);
-        background-color: $clr9;
+        background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 100%);
+        background-color: $clr04;
+
         .img-uploader-container {
             height: 192px;
             width: 192px;
@@ -58,31 +59,38 @@
             }
         }
     }
-    .song-list-container{
-        background-image: linear-gradient(rgba(0,0,0,.6) 0,$clr1 100%);
-        background-color: $clr9;
+
+    .song-list-container {
+        background-image: linear-gradient(rgba(0, 0, 0, .6) 0, $clr07 100%);
+        background-color: $clr04;
         grid-column: 1/-1;
     }
+
     .playlist-actions {
         padding: 24px 0;
-        display:flex;
+        display: flex;
         align-items: center;
 
         .btn-play-green {
             margin-inline-end: 32px;
         }
 
-        .follow-btn{
+        .follow-btn {
             margin-inline-end: 24px;
-            height:32px;width:32px;
-            svg{
-                height:32px;width:32px;
-                fill:$clr4;
-                &:hover{
-                    fill:$clr2;
+            height: 32px;
+            width: 32px;
+
+            svg {
+                height: 32px;
+                width: 32px;
+                fill: $clr02;
+
+                &:hover {
+                    fill: $clr01;
                 }
-                &.followed{
-                    fill:$clrGreen;
+
+                &.followed {
+                    fill: $clrGreen;
                 }
             }
         }
@@ -90,14 +98,14 @@
         .btn-playlist-more-options {
             background-color: unset;
             position: relative;
-            color: $clr4;
+            color: $clr02;
             margin: 0;
             padding: 0;
             display: inline-flex;
             align-items: center;
 
             :hover {
-                color: $clr2;
+                color: $clr01;
             }
         }
     }
@@ -107,12 +115,12 @@
         text-transform: uppercase;
         border-bottom: 1px solid gray;
         border-radius: 0;
-        margin: 0 7px 15px 0;
+        margin-bottom: 15px;
         padding: 0 7px;
         height: 35px;
         align-items: center;
         display: grid;
-        grid-template-columns: 40px 40px 9fr 4fr 110px;
+        grid-template-columns: 40px 40px 2fr 1fr 120px;
         gap: 10px;
         font-family: circular-light;
         font-size: 0.75rem;
@@ -120,7 +128,9 @@
         letter-spacing: 1px;
 
         .list-song-index {
-            justify-self: center;
+            justify-self: end;
+            padding-inline-end: 4px;
+
 
         }
 
@@ -154,4 +164,3 @@
         transform: translateX(-10%);
     }
 }
-

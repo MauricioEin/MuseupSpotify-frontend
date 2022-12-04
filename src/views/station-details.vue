@@ -97,7 +97,7 @@ export default {
       return this.$store.getters.stations
     },
     stationImg() {
-      return this.station.imgUrl || this.station.songs[0]?.imgUrl.high || this.station.songs[0]?.imgUrl
+      return this.station.imgUrl || this.station.songs[0]?.imgUrl.medium || this.station.songs[0]?.imgUrl
     },
     stationId() {
       const id = this.$route.params.id || this.station?._id

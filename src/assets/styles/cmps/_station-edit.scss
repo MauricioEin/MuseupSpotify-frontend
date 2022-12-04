@@ -9,7 +9,7 @@
 }
 
 .station-edit {
-    background-color: $clr6;
+    background-color: $clr06;
     border-radius: 8px;
     box-shadow: 0 4px 4px rgb(0 0 0 / 30%);
     display: flex;
@@ -44,7 +44,7 @@
             margin-inline-end: -8px;
 
             &:hover {
-                background-color: $clr7;
+                background-color: $clr05;
             }
         }
     }
@@ -65,7 +65,7 @@
             margin: 0;
             position: relative;
             width: 180px;
-            background-color: $clr7;
+            background-color: $clr05;
         }
 
         .title-container {
@@ -114,8 +114,8 @@
                 border-radius: 500px;
                 transform: translateY(-5px);
                 margin: 0;
-                background-color: $clr2;
-                color: $clr6;
+                background-color: $clr01;
+                color: $clr06;
                 padding: .8em 2em;
                 position:relative;
 

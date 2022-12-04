@@ -1,5 +1,5 @@
 .nav-container {
-    background-color: $clr3;
+    background-color: $clr08;
     padding: 24px;
     font-size: 0.8125rem;
     width: 20vw;
@@ -30,11 +30,11 @@
     }
 
     & a {
-        color: $clr4;
+        color: $clr02;
 
 
         &:hover {
-            color: $clr2;
+            color: $clr01;
             text-decoration: none;
 
             .heart-btn {
@@ -55,7 +55,7 @@
     }
     
     & .router-link-active:not(.create) {
-        color: $clr2;
+        color: $clr01;
         
         & .ifActive {
             display: block;
@@ -103,7 +103,7 @@ hr {
     border-radius: 3px;
 
     svg {
-        fill: $clr3;
+        fill: $clr08;
         height: 12px;
         width: 12px;
     }
@@ -115,7 +115,7 @@ hr {
     transition: opacity .4s;
 
     svg {
-        fill: $clr2;
+        fill: $clr01;
     }
 
 }

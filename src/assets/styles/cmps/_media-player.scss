@@ -10,10 +10,10 @@
     }
 
     svg {
-        fill: $clr4;
+        fill: $clr02;
 
         &:hover {
-            fill: $clr2;
+            fill: $clr01;
             cursor: pointer;
         }
     }
@@ -62,11 +62,11 @@
         }
 
         &::-webkit-slider-thumb:hover {
-            background-color: $clr2;
+            background-color: $clr01;
         }
 
         &::-webkit-progress-bar {
-            background-color: $clr2;
+            background-color: $clr01;
         }
 
         &::-webkit-progress-value {
@@ -119,7 +119,7 @@
         path {
             // transform: translateX(-14%);
             // transform: translateY(1%);
-            fill: $clr2;
+            fill: $clr01;
         }
     }
 }
@@ -142,14 +142,14 @@
 
     .player-song-name {
 
-        color: $clr4;
+        color: $clr02;
         font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     .player-artist-name {
-        color: $clr4;
+        color: $clr02;
         font-size: 11px;
     }
 
@@ -198,7 +198,7 @@
     }
 
     span {
-        color: $clr4;
+        color: $clr02;
     }
 
     input {

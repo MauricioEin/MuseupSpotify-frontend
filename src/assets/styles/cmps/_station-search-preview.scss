@@ -34,7 +34,7 @@
             inset: 0;
 
             svg {
-                fill: $clr2;
+                fill: $clr01;
                 height: 20px;
                 width: 20px;
             }
@@ -58,7 +58,7 @@
 
     &.clicked {
         //TODO change to var
-        background-color: $clr9;
+        background-color: $clr04;
 
         .img-screen-play {
             opacity: 1;

@@ -1,5 +1,5 @@
 <template>
-    <section class="song-list-header">
+    <section class="song-list-header light">
         <div class="list-song-index">#</div>
         <div class="list-song-title">Title</div>
         <div></div>
