@@ -20,7 +20,7 @@
         </div>
         <span>{{ loggedInUser.fullname }}</span>
         <menu-arrow-down />
-        <mini-menu @profile="goToProfile" @logout="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
+        <mini-menu @profile="goToProfile" @logOut="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
           style="transform: translateY(40%); top: 0; right: 0;" />
       </section>
       <section class="header-login-signup" v-else>
