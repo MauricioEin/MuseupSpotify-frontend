@@ -32,7 +32,7 @@ export const stationStore = {
         },
         playingSongIdx: 0,
         currStation: null,
-        isPlayed: false
+        isPlaying: false
     },
     getters: {
         stations({ stations }) { return stations },
@@ -44,8 +44,8 @@ export const stationStore = {
             return state.playingSongIdx
         },
         currStation({ currStation }) { return currStation },
-        isPlayed(state) {
-            return state.isPlayed
+        isPlaying(state) {
+            return state.isPlaying
         },
         playingSong({ playingStation, playingSongIdx }) {
             return playingStation.songs[playingSongIdx]
@@ -97,12 +97,12 @@ export const stationStore = {
 
             state.playingStation = miniStation
             state.playingSongIdx = idx
-            // commit('toggleIsPlayed')
-            // state.isPlayed = !state.isPlayed
-            // console.log(state.isPlayed)
+            // commit('toggleIsPlaying')
+            // state.isPlaying = !state.isPlaying
+            // console.log(state.isPlaying)
         },
-        toggleIsPlayed(state) {
-            state.isPlayed = !state.isPlayed
+        toggleIsPlaying(state) {
+            state.isPlaying = !state.isPlaying
         }
     },
     actions: {
@@ -128,7 +128,7 @@ export const stationStore = {
             try {
                 station = await stationService.save(station)
                 console.log(station);
-                
+
                 context.commit(getActionUpdateStation(station))
                 return station
             } catch (err) {
@@ -150,7 +150,7 @@ export const stationStore = {
             try {
                 await stationService.remove(stationId)
                 context.commit(getActionRemoveStation(stationId))
-                context.commit({type: 'removeUserStation', id: stationId})
+                context.commit({ type: 'removeUserStation', id: stationId })
 
             } catch (err) {
                 console.log('stationStore: Error in removeStation', err)

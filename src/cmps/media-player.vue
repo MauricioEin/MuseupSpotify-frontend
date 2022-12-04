@@ -31,7 +31,7 @@
                             <prev-svg />
                         </button>
                         <button @click="togglePlay" class="play-btn">
-                            <play-svg v-if="!isPlayed" />
+                            <play-svg v-if="!isPlaying" />
                             <stop-svg v-else />
                         </button>
                         <button @click="changeSong(1)">
@@ -90,7 +90,7 @@ export default defineComponent({
     //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
     data() {
         return {
-            isPlayed: false,
+            isPlaying: false,
             isMute: false,
             isLoop: false,
             isShuffled: false,
@@ -130,14 +130,14 @@ export default defineComponent({
         },
 
         togglePlay() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
-            // if (this.isPlayed) {
+            this.$store.commit({ type: 'toggleIsPlaying' })
+            // if (this.isPlaying) {
             //     this.$refs.youtube.pauseVideo()
-            //     // this.isPlayed = false
+            //     // this.isPlaying = false
             //     clearInterval(this.timeInterval)
             // } else {
             //     this.$refs.youtube.playVideo()
-            //     // this.isPlayed = true
+            //     // this.isPlaying = true
             //     this.updateCurrTime()
             // }
         },
@@ -240,7 +240,7 @@ export default defineComponent({
         },
 
         isPlayingInStore() {
-            return this.$store.getters.isPlayed
+            return this.$store.getters.isPlaying
         }
     },
 
@@ -253,18 +253,18 @@ export default defineComponent({
 
         },
         isPlayingInStore() {
-            this.isPlayed = this.isPlayingInStore
+            this.isPlaying = this.isPlayingInStore
             // this.togglePlay()
         },
 
-        isPlayed() {
-            if (this.isPlayed) {
+        isPlaying() {
+            if (this.isPlaying) {
                 this.$refs.youtube.playVideo()
-                // this.isPlayed = true
+                // this.isPlaying = true
                 this.updateCurrTime()
             } else {
                 this.$refs.youtube.pauseVideo()
-                // this.isPlayed = false
+                // this.isPlaying = false
                 clearInterval(this.timeInterval)
             }
         }

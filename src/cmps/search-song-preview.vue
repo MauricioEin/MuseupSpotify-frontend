@@ -53,10 +53,10 @@ export default {
         },
     },
     created() {
-        window.addEventListener('click',this.emitClicked)
+        window.addEventListener('click', this.emitClicked)
     },
-    unmounted(){
-        window.removeEventListener('click',this.emitClicked)
+    unmounted() {
+        window.removeEventListener('click', this.emitClicked)
 
     },
     computed: {
@@ -67,7 +67,7 @@ export default {
             return this.nowPlayingSong.youtubeId === this.song.id
         },
         isPlayerOn() {
-            return this.$store.getters.isPlayed
+            return this.$store.getters.isPlaying
         },
         isClicked() {
             return this.clickedSong === this.song.id
@@ -85,11 +85,11 @@ export default {
             this.$refs['search-like-btn'].classList.toggle('liked')
         },
         playSong() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.$store.commit({ type: 'toggleIsPlaying' })
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
         },
         pauseSong() {
-            this.$store.commit({ type: 'toggleIsPlayed' })
+            this.$store.commit({ type: 'toggleIsPlaying' })
         },
         emitClicked() {
             this.$emit('clicked', '')
@@ -98,8 +98,8 @@ export default {
     },
     // watch: {
     //     isPlaying() {
-    //         this.isPlayed = this.isPlaying
-    //         console.log('this.isPlayed', this.isPlayed)
+    //         this.isPlaying = this.isPlaying
+    //         console.log('this.isPlaying', this.isPlaying)
     //     }
     // },
     components: {
