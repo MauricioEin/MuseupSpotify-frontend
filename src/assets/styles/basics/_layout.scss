@@ -42,12 +42,17 @@
 .app-layout {
     height: calc(100vh - 90px);
 }
+
 .main-layout {
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: overlay;
     overflow-x: hidden;
     height: 100%;
     max-width: calc(100vw - $nav-width);
+
+    &:hover::-webkit-scrollbar-thumb {
+        background: rgba(136, 136, 136, 0.576);
+    }
 
 }
 

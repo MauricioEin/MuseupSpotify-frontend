@@ -1,7 +1,10 @@
 <template>
     <section class="main-search">
-        <search-icon />
-        <input v-model="searchStr" type="search" spellcheck="false" placeholder="What do you want to listen to?">
+        <h1>Search</h1>
+        <div class="input-container">
+            <search-icon />
+            <input v-model="searchStr" type="search" spellcheck="false" placeholder="What do you want to listen to?">
+        </div>
     </section>
 </template>
 
