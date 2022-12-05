@@ -1,6 +1,6 @@
 <template>
   <section v-if="station" class="station-details content-layout">
-    <section class="station-preview flex full">
+    <section class="station-preview flex full" ref="preview">
       <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
 
       <div class="station-summary">
@@ -15,7 +15,7 @@
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
-    <section class="song-list-container content-layout">
+    <section class="song-list-container content-layout" ref="list">
       <section class="playlist-actions">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
@@ -57,7 +57,7 @@
 
 
 <script>
-// import { getAverageColor } from 'fast-average-color-node'
+import { FastAverageColor } from 'fast-average-color'
 
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { stationService } from '../services/station.service'
@@ -85,8 +85,7 @@ export default {
       isStationMenuOpen: false,
       isEdit: false,
       isSearchOpen: true,
-      isImgHover: false
-
+      isImgHover: false,
     }
   },
   computed: {
@@ -97,7 +96,7 @@ export default {
       return this.$store.getters.stations
     },
     stationImg() {
-      return this.station.imgUrl || this.station.songs[0]?.imgUrl.medium || this.station.songs[0]?.imgUrl
+      return this.station?.imgUrl || this.station?.songs[0]?.imgUrl.medium || this.station?.songs[0]?.imgUrl
     },
     stationId() {
       const id = this.$route.params.id || this.station?._id
@@ -149,18 +148,11 @@ export default {
     isCurrStationPlayed() {
       return this.station._id === this.getPlayingStation._id
     },
-    avgClr() {
-      console.log(this.station)
-      // const color = getAverageColor(this.station.imgUrl)
-      // console.log('avgClr:', color)
-      // return color
-    }
-
-
   },
-  mounted() {
+  async mounted() {
     window.addEventListener('click', this.closeMenu)
-    this.loadStation()
+    await this.loadStation()
+    this.getAvgClr()
   },
   unmounted() {
     window.removeEventListener('click', this.closeMenu)
@@ -255,6 +247,30 @@ export default {
     },
     closeMenu() {
       this.isStationMenuOpen = false
+    },
+    getAvgClr() {
+      console.log('getting avg color of', this.stationImg)
+      const fac = new FastAverageColor()
+      fac.getColorAsync(this.stationImg)
+        .then(clr => {
+          console.log('clr', clr)
+          this.$refs.preview.style.backgroundColor=clr.hex
+          this.$refs.list.style.backgroundColor=clr.hex
+        
+        })
+      // .then(color => {
+
+      //   // container.style.backgroundColor = color.rgba;
+      //   // container.style.color = color.isDark ? '#fff' : '#000';
+
+      //   // console.log('Average color', color);
+      // })
+      // .catch(e => {
+      //   console.log(e);
+      // });
+      // const color = getAverageColor(this.station.imgUrl)
+      // console.log('avgClr:', color)
+      // return color
     }
 
   },
@@ -265,6 +281,10 @@ export default {
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
     },
+    stationImg(){
+      this.getAvgClr()
+
+    }
   },
   unmounted() {
     this.$store.commit({ type: 'clearCurrStation' })

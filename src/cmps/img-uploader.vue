@@ -54,7 +54,6 @@ export default {
                 // this.editedStation.imgUrl = res.url
                 this.$emit('saved', res.url)
             } catch (err) {
-                console.log('COULDNT UPDATE IMG')
                 console.dir(err)
                 throw err
             } finally {

@@ -5,7 +5,8 @@ export const utilService = {
     delay,
     debounce,
     shuffle,
-    decodeHtmlCharCodes
+    decodeHtmlCharCodes,
+    daysAgo
 }
 
 function makeId(length = 6) {
@@ -65,5 +66,20 @@ function decodeHtmlCharCodes(str) {
     })
     // Will output "The show that gained int’l reputation’!"
     // console.log(decodeHtmlCharCodes('The show that gained int&#8217;l reputation&#8217;!'));
+}
+
+function daysAgo(timestamp) {
+    const timeBetween = Date.now() - timestamp
+    const days = timeBetween / (1000 * 3600 * 24)
+    if (days <= 14) {
+        if (days < 1) return 'Today'
+        if (days < 2) return '1 day ago'
+        return `${Math.floor(days)} days ago`
+    }
+    const timestampYear = new Date(timestamp).getFullYear()
+    const currYear = new Date().getFullYear()
+    const options = (timestampYear === currYear) ? { month: 'short', day: 'numeric' }
+        : { month: 'short', day: 'numeric', year: 'numeric' }
+    return new Date(timestamp).toLocaleString('en-US', options)
 }
 

@@ -4,7 +4,8 @@
         <ul class="clean-list">
             <li v-for="(song, index) in songs" :key="song._id">
                 <search-song-preview @songSelected="songSelected" :index="index" :song="song"
-                    :playingSongId="playingSongId" :clickedSong="clickedSong" @clicked="onSongClicked" />
+                    :playingSongId="playingSongId" :clickedSong="clickedSong" :loggedInUser="loggedInUser"
+                    @clicked="onSongClicked" />
             </li>
         </ul>
     </section>
@@ -24,8 +25,12 @@ export default {
         return {
             playingSongId: '',
             clickedSong: '',
-
         }
+    },
+    computed: {
+        loggedInUser() {
+            return this.$store.getters.loggedinUser
+        },
     },
     methods: {
         songSelected(songId) {
@@ -35,9 +40,7 @@ export default {
             this.clickedSong = id
         }
     },
-    created() {
 
-    },
     components: {
         searchSongPreview,
         mainSearchListHeader

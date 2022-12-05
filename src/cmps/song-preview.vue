@@ -43,6 +43,8 @@
 </template>
 
 <script>
+import {utilService} from '../services/util.service'
+
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -85,8 +87,9 @@ export default {
     },
     computed: {
         dateAdded() {
-            const d = new Date(this.song.createdAt)
-            return d.toLocaleDateString('he-IL')
+            return utilService.daysAgo(this.song.createdAt)
+            // const d = new Date(this.song.createdAt)
+            // return d.toLocaleDateString('he-IL')
         },
         imgUrl() {
             return this.song.imgUrl.medium || this.song.imgUrl
