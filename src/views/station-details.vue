@@ -12,7 +12,7 @@
           likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
           }}</span></span></p>
       </div>
-    </section>  
+    </section>
     <!-- //:style="`background-image:url(${stationImg})`" -->
     <!-- <section ref="preview" class="mobile-station-preview flex" >
       <div class="station-summary">
@@ -45,7 +45,7 @@
             <heart-btn-svg v-if="isFollowed" class="followed" />
             <heart-empty-svg v-else />
           </div>
-  
+
           <button @click="openStationMenu" class="btn-more">
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
@@ -228,6 +228,8 @@ export default {
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Added to playlist')
         this.loadStation()
+        if (this.isCurrStationPlayed && this.isPlaying)
+          this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
 
       } catch (err) {
         console.log(err)
@@ -253,6 +255,9 @@ export default {
         await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Removed from playlist')
         this.loadStation()
+        if (this.isCurrStationPlayed && this.isPlaying)
+          this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
+
       } catch (err) {
         console.log(err)
         showErrorMsg('Failed removing song from playlist')
@@ -267,10 +272,10 @@ export default {
       this.$refs.preview.style.backgroundColor = clr.hex
       this.$refs.list.style.backgroundColor = clr.hex
     },
-    reorderSongs(reorderedStation){
+    reorderSongs(reorderedStation) {
       this.updateStation(reorderedStation)
-      if (this.isCurrStationPlayed && this.isPlaying){
-        this.$store.commit({type:'updatePlayingOrder', songs:reorderedStation.songs})
+      if (this.isCurrStationPlayed && this.isPlaying) {
+        this.$store.commit({ type: 'updatePlayingOrder', songs: reorderedStation.songs })
       }
     }
 

@@ -1,5 +1,6 @@
 <template>
     <section class="song-list-header light">
+        <span class="place-holder"></span>
         <div class="list-song-index">#</div>
         <div class="list-song-title">Title</div>
         <div></div>

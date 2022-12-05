@@ -3,15 +3,13 @@
         <song-list-header v-if="songs?.length" />
         <ul class="clean-list">
             <Container orientation="vertical" @drop="onDrop" drag-handle-selector=".column-drag-handle" :key="listKey">
-                <Draggable v-for="(song, index) in songsCopy" :key="song.youtubeId">
-                    <span class="column-drag-handle" style="float:left; padding:0 10px;">&#x2630;</span>
+                <Draggable v-for="(song, index) in songsCopy" :key="song.youtubeId" style="overflow:initial;position:relative">
                     <song-preview class="draggable-item" @clicked="onSongClicked" @playing="id => playingSong = id"
-                        :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index"
+                        :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index" :dropKey="dropKey"
                         :clickedSong="clickedSong" :playingSong="playingSong" @play="$emit('play', index)"
                         @songAction="action => $emit(action, song)" :isLikedSongs="isLikedSongs || false" />
                 </Draggable>
             </Container>
-            <span v-for="song in songsCopy">{{ song.title }} ||| </span>
         </ul>
     </section>
 </template>
@@ -55,13 +53,8 @@ export default {
             clickedSong: '',
             playingSong: '',
             songsCopy: [...this.songs],
-            items: [
-                { id: 1, data: "Princess Mononoke" },
-                { id: 2, data: "Spirited Away" },
-                { id: 3, data: "My Neighbor Totoro" },
-                { id: 4, data: "Howl's Moving Castle" }
-            ],
-            listKey: 0
+            listKey: 0,
+            dropKey:0,
 
         }
     },
@@ -75,6 +68,12 @@ export default {
             this.songsCopy = [...this.songs]
             this.listKey++
         },
+        songsCopy() {
+            if (JSON.stringify(this.songsCopy) !== JSON.stringify(this.songs)) {
+                this.$emit('reorder', { songs: this.songsCopy })
+                console.log('reordered!')
+            }
+        }
     },
     methods: {
         onSongClicked(id) {
@@ -83,6 +82,7 @@ export default {
         },
         onDrop(dropResult) {
             this.songsCopy = this.applyDrag(this.songsCopy, dropResult);
+            this.dropKey++
         },
         applyDrag(arr, dragResult) {
             const { removedIndex, addedIndex, payload } = dragResult;

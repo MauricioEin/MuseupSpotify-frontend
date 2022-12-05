@@ -74,6 +74,7 @@ export default {
         },
         addSongToStation() {
             this.$emit('addSongToStation', JSON.parse(JSON.stringify(this.song)))
+            
         },
         emitClicked() {
             this.$emit('clicked', '')

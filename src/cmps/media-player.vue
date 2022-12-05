@@ -1,7 +1,7 @@
 <template>
     <section class="media-player" :class="setFull">
 
-        <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+        <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" alt="">
 
 
         <div class="player-section">
@@ -10,9 +10,9 @@
                 @state-change="onStateChange" ref="youtube" />
 
             <div class="controls" :class="setFull">
-
                 <div class="left-controls" :class="setFull">
-                    <img class="media-img fit-img" :class="setFull" :src="currSongPlaying.imgUrl" alt="">
+                    <img class="media-img fit-img" :class="setFull"
+                        :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" :alt="currSongPlaying.title">
                     <div :class="setFull" class="artist-details">
                         <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
@@ -38,7 +38,7 @@
                             <next-svg />
                         </button>
                         <button @click="changeLoopType">
-                            <loop-song-svg class="loop-song" v-if="(loopType === 2)"/>
+                            <loop-song-svg class="loop-song" v-if="(loopType === 2)" />
                             <loop-svg v-else :style="loopStyle" />
                             <!-- {{ loopType.toString() }} -->
                         </button>
@@ -108,7 +108,7 @@ export default defineComponent({
         }
     },
 
-    created() { 
+    created() {
         this.songList = [...this.playingStation.songs]
         this.currSongIdx = this.playingSongIdx
         this.currSongPlaying = this.songList[this.currSongIdx]
@@ -125,13 +125,13 @@ export default defineComponent({
                 this.loopType !== 2) {
                 this.changeSong(1)
             }
-            else if(ev.data === 0 &&
-                    this.currSongIdx === this.songList.length - 1 &&
-                    this.loopType === 1){
+            else if (ev.data === 0 &&
+                this.currSongIdx === this.songList.length - 1 &&
+                this.loopType === 1) {
                 this.changeSong(1)
             }
             else if (ev.data === 0 &&
-                     this.loopType === 2) {
+                this.loopType === 2) {
                 this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
             }
 
@@ -159,12 +159,12 @@ export default defineComponent({
 
         changeSong(dir) {
             var newIdx = this.currSongIdx
-            if(this.isShuffled){
-                while(newIdx === this.currSongIdx){
-                   newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
+            if (this.isShuffled) {
+                while (newIdx === this.currSongIdx) {
+                    newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
                 }
             } else newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
-             
+
             // this gives us the calc for looping around the playlist
             this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
         },
@@ -207,9 +207,9 @@ export default defineComponent({
             }
         },
 
-        changeLoopType(){
+        changeLoopType() {
             this.loopType++
-            if(this.loopType === 3) this.loopType = 0
+            if (this.loopType === 3) this.loopType = 0
         },
     },
 

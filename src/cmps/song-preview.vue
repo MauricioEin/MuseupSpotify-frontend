@@ -1,6 +1,8 @@
 <template>
     <li class="song-preview" @click.stop="$emit('clicked', song.id)"
         :class="{ clicked: isClicked, playing: isOnPlayer }">
+        <span class="column-drag-handle" @mousedown="isDragged =true" @mouseup="isDragged =false" :class="{dragged:isDragged}">&#x2630;</span>
+
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">
             <img v-if="isOnPlayer && isPlayerOn" src="../assets/gifs/equaliser-animated.gif" />
@@ -43,7 +45,7 @@
 </template>
 
 <script>
-import {utilService} from '../services/util.service'
+import { utilService } from '../services/util.service'
 
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
@@ -65,16 +67,18 @@ export default {
         clickedSong: {
             type: String
         },
-        isLikedSongs:{type:Boolean},
+        isLikedSongs: { type: Boolean },
         // playingSong: {
         //     type: String
         // },
-        loggedInUser: { type: Object }
+        loggedInUser: { type: Object },
+        dropKey: { type: Number }
     },
     emits: ['clicked'],
     data() {
         return {
             isMiniMenu: false,
+            isDragged: false
             // isPlaying: false,
         }
     },
@@ -105,7 +109,7 @@ export default {
         },
         songActions() {
             const songActions = ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
-            if (this.isLikedSongs) songActions.splice(3,1)
+            if (this.isLikedSongs) songActions.splice(3, 1)
             return songActions
         },
         nowPlayingSong() {
@@ -138,6 +142,9 @@ export default {
         },
         emitClicked() {
             this.$emit('clicked', '')
+        },
+        mouseEvent() {
+            console.log('yes!')
         }
 
 
@@ -146,9 +153,8 @@ export default {
         isClicked() {
             if (!this.isClicked) this.isMiniMenu = false
         },
-        isMiniMenu() {
-            // console.log('MINI', this.$refs)
-            // if (this.isMiniMenu) this.$refs?.miniMenu?.addEventListener('click', ()=>this.isMiniMenu=false)
+        dropKey() {
+            this.isDragged = false
         }
     },
     components: {
