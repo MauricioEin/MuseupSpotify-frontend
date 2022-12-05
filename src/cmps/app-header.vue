@@ -36,7 +36,7 @@
         <button>
           <gear-svg @click="togglePhoneMenu" />
         </button>
-        <mini-menu v-if="isPhoneMenuOpen" @login="goToLogin" @logout="logout" @signup="goToSignup"
+        <mini-menu ref="phoneMenu" v-if="isPhoneMenuOpen" @login="goToLogin" @logout="logout" @signup="goToSignup"
           @profile="goToProfile" :actions="phoneActions" />
       </section>
     </section>
@@ -116,6 +116,14 @@ export default {
     },
     togglePhoneMenu() {
       this.isPhoneMenuOpen = !this.isPhoneMenuOpen
+    }
+  },
+  watch: {
+    $route() {
+      this.closePhoneMenu()
+    },
+    loggedInUser() {
+      this.closePhoneMenu()
     }
   },
   components: {
