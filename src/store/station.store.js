@@ -103,6 +103,15 @@ export const stationStore = {
         },
         toggleIsPlaying(state) {
             state.isPlaying = !state.isPlaying
+        },
+        updatePlayingOrder(state, { songs }) {
+            console.log('SONGS:', songs)
+            const playingSong = state.playingStation.songs[state.playingSongIdx]
+            console.log('PLAYINGSONG:', playingSong)
+            console.log('idx:', songs.findIndex(s => s.id === playingSong.youtubeId))
+
+            state.playingStation.songs = songs
+            // state.playingSongIdx = songs.findIndex(s => s.id === playingSong.id)
         }
     },
     actions: {

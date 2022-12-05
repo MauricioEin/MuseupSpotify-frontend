@@ -39,10 +39,9 @@
             @edit="isEdit = true" :isFollowed="isFollowed" />
         </button>
       </section>
-
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" @reorder="updateStation" />
+        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" />
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -249,12 +248,16 @@ export default {
       this.isStationMenuOpen = false
     },
     async getAvgClr() {
-      console.log('getting avg color of', this.stationImg)
       const fac = new FastAverageColor()
       const clr = await fac.getColorAsync(this.stationImg)
-      console.log('clr', clr)
       this.$refs.preview.style.backgroundColor = clr.hex
       this.$refs.list.style.backgroundColor = clr.hex
+    },
+    reorderSongs(reorderedStation){
+      this.updateStation(reorderedStation)
+      if (this.isCurrStationPlayed && this.isPlaying){
+        this.$store.commit({type:'updatePlayingOrder', songs:reorderedStation.songs})
+      }
     }
 
   },
