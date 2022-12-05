@@ -59,7 +59,11 @@
 .content-layout {
 
     display: grid;
-    grid-template-columns: 30px 1fr 30px;
+    grid-template-columns: 10px 1fr 10px;
+
+    @media (min-width: 860px) {
+        grid-template-columns: 30px 1fr 30px;
+    }
 
     >* {
         grid-column: 2;

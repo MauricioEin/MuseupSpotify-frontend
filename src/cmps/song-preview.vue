@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import {utilService} from '../services/util.service'
+import { utilService } from '../services/util.service'
 
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
@@ -65,7 +65,7 @@ export default {
         clickedSong: {
             type: String
         },
-        isLikedSongs:{type:Boolean},
+        isLikedSongs: { type: Boolean },
         // playingSong: {
         //     type: String
         // },
@@ -105,7 +105,7 @@ export default {
         },
         songActions() {
             const songActions = ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
-            if (this.isLikedSongs) songActions.splice(3,1)
+            if (this.isLikedSongs) songActions.splice(3, 1)
             return songActions
         },
         nowPlayingSong() {
