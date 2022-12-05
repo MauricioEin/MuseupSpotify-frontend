@@ -15,15 +15,18 @@ import likedSongs from './views/liked-songs.vue'
 import signup from './views/signup.vue'
 import login from './views/login.vue'
 
+
+import testDnd from './views/test-dnd.vue'
+
 const routes = [
   {
     path: '/',
     redirect: '/station'
   },
   {
-    path: '/car',
-    name: 'car-app',
-    component: carApp
+    path: '/dnd',
+    name: 'test-dnd',
+    component: testDnd
   }, {
     path: '/station',
     name: 'station-app',
