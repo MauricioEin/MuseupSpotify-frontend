@@ -1,37 +1,40 @@
 .main-search-list {
-    padding: 35px;
+    padding: 5px;
+
+    @media (min-width: 860px) {
+        padding: 35px;
+    }
+
 
     .main-search-list-header {
-        text-transform: uppercase;
-        border-bottom: 1px solid $clr10;
-        border-radius: 0;
-        margin: 0 7px 15px 0;
-        padding: 8px 10px 8px 15px;
-        height: 35px;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 15px 9fr 4fr 110px;
-        gap: 10px;
-        font-family: circular-light;
-        font-size: 0.75rem;
-        font-weight: 560;
-        letter-spacing: 1px;
-        color: $clr09;
+        display: none;
+
+        @media (min-width: 860px) {
+            display: grid;
+            grid-template-columns: 15px 9fr 4fr 110px;
+            gap: 10px;
+            border-bottom: 1px solid $clr10;
+            margin: 0 7px 15px 0;
+            padding: 8px 10px 8px 15px;
+            height: 35px;
+            align-items: center;
+            font-family: circular-light;
+            font-size: 0.75rem;
+            font-weight: 560;
+            letter-spacing: 1px;
+            color: $clr09;
+        }
 
         .list-song-index {
-            // justify-self: center;
             font-size: 1rem;
         }
 
         .list-song-title {
-            // flex-grow: 5;
-            // margin-inline-start: 50px;
+            text-transform: uppercase;
         }
 
         .list-song-length {
-            // flex-grow: 1;
             display: grid;
-            margin-inline-end: 10px;
 
             small {
                 justify-self: center;
