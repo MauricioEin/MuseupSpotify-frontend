@@ -28,6 +28,18 @@
         <button class="btn-login" @click="goToLogin">Log in</button>
       </section>
     </div>
+    <section class="s-home-header" v-if="isOnHomePage">
+      <section class="greeting">
+        Good {{ greeting }}
+      </section>
+      <section class="s-header-actions">
+        <button>
+          <gear-svg @click="togglePhoneMenu" />
+        </button>
+        <mini-menu v-if="isPhoneMenuOpen" @login="goToLogin" @logout="logout" @signup="goToSignup"
+          @profile="goToProfile" :actions="phoneActions" />
+      </section>
+    </section>
   </header>
 </template>
 <script>
@@ -38,11 +50,13 @@ import btnGoBack from '../assets/svgs/btn-go-back.vue'
 import btnGoNext from '../assets/svgs/btn-go-next.vue'
 import userPortrait from '../assets/svgs/user-portrait.vue'
 import menuArrowDown from '../assets/svgs/menu-arrow-down.vue'
+import gearSvg from '../assets/svgs/gear-svg.vue'
 
 export default {
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
+      isPhoneMenuOpen: false,
     }
   },
   computed: {
@@ -52,9 +66,23 @@ export default {
     isOnSearchPage() {
       return (this.$route.fullPath === '/search')
     },
+    isOnHomePage() {
+      return this.$route.fullPath === '/station'
+    },
     imgSrc() {
       return this.loggedInUser?.profileImg
     },
+    greeting() {
+      const d = new Date()
+      const h = d.getHours()
+      if (h < 5 || h >= 22) return 'night'
+      else if (h >= 5 && h < 12) return 'morning'
+      else if (h >= 12 && h < 18) return 'afternoon'
+      else if (h >= 18 && h < 22) return 'evening'
+    },
+    phoneActions() {
+      return this.loggedInUser ? ['Profile', 'Logout'] : ['Login', 'Signup']
+    }
   },
   methods: {
     toggleMenu() {
@@ -79,6 +107,15 @@ export default {
     goToProfile() {
       const id = this.loggedInUser._id
       this.$router.push(`/user/${id}`)
+    },
+    openPhoneMenu() {
+      this.isPhoneMenuOpen = true
+    },
+    closePhoneMenu() {
+      this.isPhoneMenuOpen = false
+    },
+    togglePhoneMenu() {
+      this.isPhoneMenuOpen = !this.isPhoneMenuOpen
     }
   },
   components: {
@@ -88,6 +125,7 @@ export default {
     userPortrait,
     menuArrowDown,
     miniMenu,
+    gearSvg
   },
 }
 </script>

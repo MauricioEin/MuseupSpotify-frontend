@@ -137,4 +137,41 @@
         }
     }
 
+    .s-home-header {
+        display: flex;
+        justify-content: space-between;
+
+        .greeting {
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .s-header-actions {
+            position: relative;
+
+            button {
+                width: 48px;
+                height: 48px;
+                display: grid;
+                background-color: unset;
+
+                svg {
+                    fill: $clr01;
+                    justify-self: center;
+                    align-self: center;
+                }
+            }
+
+            .mini-menu {
+                top: 0;
+                right: 0;
+                transform: translate(-20px, 50px);
+            }
+        }
+
+        @media (min-width: 860px) {
+            display: none;
+        }
+    }
 }
