@@ -1,11 +1,19 @@
 .app-header {
     //TODO change from full opacity to black according to scroll
-    background-color: #212121;
-    height: 64px;
+    background-color: $clr08;
     position: sticky;
     top: 0;
     z-index: 30;
     align-items: center;
+    padding: 20px 0;
+
+    @media (min-width: 860px) {
+        flex-direction: row;
+        align-items: center;
+        height: 64px;
+        padding: 0px;
+        background-color: #212121;
+    }
 
     >div {
         justify-content: space-between;
@@ -15,17 +23,26 @@
     nav {
         gap: 5px;
         align-items: center;
+        width: 100%;
+
+        @media (min-width: 860px) {
+            // width: fit-content;
+        }
 
         .btn-go-back,
         .btn-go-next {
-            display: grid;
+            display: none;
             // align-items: center;
             // justify-content: center;
             background-color: rgba(0, 0, 0, 0.4);
             border-radius: 50%;
             height: 32px;
             width: 32px;
-            cursor: not-allowed;
+            cursor: pointer;
+
+            @media (min-width: 860px) {
+                display: grid;
+            }
 
             >svg {
                 fill: #b9b9b9;
@@ -49,6 +66,11 @@
         align-items: center;
         cursor: pointer;
         position: relative;
+        display: none;
+
+        @media (min-width: 860px) {
+            display: flex;
+        }
 
         &:hover {
             background-color: $clr06;
@@ -70,6 +92,7 @@
 
         span {
             cursor: pointer;
+            white-space: nowrap;
         }
     }
 
@@ -113,4 +136,5 @@
             }
         }
     }
+
 }

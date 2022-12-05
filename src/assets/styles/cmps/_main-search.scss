@@ -1,39 +1,78 @@
 .main-search {
     display: flex;
-    width: rem(364px);
+    width: 100%;
     align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
 
-
-    svg {
-        fill: #121212;
-        position: absolute;
-        margin-inline-start: 10px;
+    @media (min-width: 860px) {
+        flex-direction: row;
+        align-items: center;
     }
 
-    input {
-        height: 40px;
-        border-radius: 500px;
-        width: 100%;
-        padding: 6px 48px;
-        border: 0;
-        color: black;
+    h1 {
+        display: block;
+        margin-block-end: 30px;
+        font-size: larger;
 
-        &::-webkit-search-cancel-button {
-            cursor: pointer;
-            -webkit-appearance: none;
-            position: relative;
-            left: 35px;
-            height: 18px;
-            width: 18px;
-            background: url('../img/x-solid.png') 50% 50% no-repeat;
-            background-size: contain;
-            opacity: 0;
-            pointer-events: none;
+        @media (min-width: 860px) {
+            display: none;
+        }
+    }
+
+
+    .input-container {
+        position: relative;
+        width: 100%;
+
+        svg {
+            fill: #121212;
+            position: absolute;
+            left: 10px;
+            top: 7px;
         }
 
-        &:focus::-webkit-search-cancel-button {
-            opacity: 1;
-            pointer-events: all;
+        input {
+            height: 40px;
+            border-radius: 4px;
+            width: 100%;
+            padding: 6px 0 6px 48px;
+            border: 0;
+            color: black;
+
+            @media (min-width: 860px) {
+                width: rem(364px);
+                border-radius: 500px;
+                padding: 6px 48px;
+
+            }
+
+            &::placeholder {
+                color: $clr04;
+                font-weight: 600;
+
+                @media (min-width: 860px) {
+                    font-weight: unset;
+                }
+            }
+
+            &::-webkit-search-cancel-button {
+                cursor: pointer;
+                -webkit-appearance: none;
+                position: relative;
+                left: 35px;
+                height: 18px;
+                width: 18px;
+                background: url('../img/x-solid.png') 50% 50% no-repeat;
+                background-size: contain;
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            &:focus::-webkit-search-cancel-button {
+                opacity: 1;
+                pointer-events: all;
+            }
         }
     }
 }

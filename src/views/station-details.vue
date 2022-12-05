@@ -1,7 +1,8 @@
-<template>
+<template >
   <section v-if="station" class="station-details content-layout">
     <section class="station-preview flex full" ref="preview">
-      <img-uploader :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
+      <img-uploader class="uploader-img" :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
+      <img class="mobile-img" :src="stationImg" alt="">
 
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
@@ -11,7 +12,18 @@
           likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
           }}</span></span></p>
       </div>
-    </section>
+    </section>  
+    <!-- //:style="`background-image:url(${stationImg})`" -->
+    <!-- <section ref="preview" class="mobile-station-preview flex" >
+      <div class="station-summary">
+        <p class="summary-title">PLAYLIST</p>
+        <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
+        <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
+        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} • {{ station.followers?.length || 0 }}
+          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
+          }}</span></span></p>
+      </div>
+    </section> -->
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
@@ -28,16 +40,18 @@
 
           <play-btn />
         </button> -->
-        <div class="btn-follow" @click="follow">
-          <heart-btn-svg v-if="isFollowed" class="followed" />
-          <heart-empty-svg v-else />
+        <div class="flex">
+          <div class="btn-follow" @click="follow">
+            <heart-btn-svg v-if="isFollowed" class="followed" />
+            <heart-empty-svg v-else />
+          </div>
+  
+          <button @click="openStationMenu" class="btn-more">
+            <more-options-svg @click.stop="toggleStationMenu" />
+            <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
+              @edit="isEdit = true" :isFollowed="isFollowed" />
+          </button>
         </div>
-
-        <button @click="openStationMenu" class="btn-more">
-          <more-options-svg @click.stop="toggleStationMenu" />
-          <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
-            @edit="isEdit = true" :isFollowed="isFollowed" />
-        </button>
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
