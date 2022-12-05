@@ -1,3 +1,4 @@
+import { showErrorMsg } from '../services/event-bus.service'
 import { userService } from '../services/user.service'
 // import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from '../services/socket.service'
 
@@ -37,16 +38,16 @@ export const userStore = {
             state.users.splice(idx, 1, user)
         },
 
-        updateUsersStation(state, {editedStation}){       
+        updateUsersStation(state, { editedStation }) {
             const stationIdx = state.loggedinUser.stations.findIndex(station => station._id === editedStation._id)
             state.loggedinUser.stations[stationIdx].name = editedStation.name
         },
 
-        updateUserImg(state, {url}){
+        updateUserImg(state, { url }) {
             state.loggedinUser.profileImg = url
         },
-        
-        removeUserStation(state, {id}){
+
+        removeUserStation(state, { id }) {
             const stationIdx = state.loggedinUser.stations.findIndex(station => station._id === id)
             state.loggedinUser.stations.splice(stationIdx, 1)
         }
@@ -144,5 +145,17 @@ export const userStore = {
             commit({ type: 'updateUser', user: savedUser })
             commit({ type: 'setLoggedinUser', user: savedUser })
         },
+        async removeUserStation({ commit, state }, { id }) {
+            try {
+                const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
+                const idx = loggedinUser.stations.indexOf(station => station._id === id)
+                loggedinUser.stations.splice(idx, 1)
+                await userService.update(loggedinUser)
+                commit({ type: 'removeUserStation', id })
+            } catch (err) {
+                console.log(err);
+                showErrorMsg('Cannot delete station')
+            }
+        }
     }
 }

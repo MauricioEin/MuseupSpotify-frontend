@@ -1,6 +1,6 @@
 <template>
   <div class="container home">
-    <h1>Playlists</h1>
+    <h1>{{ title }}</h1>
     <ul class="station-list">
       <li class="station-card" v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
         <img :src="getStationImg(station)" alt="" class="station-img">
@@ -38,6 +38,9 @@ export default {
   props: {
     stations: {
       type: Array,
+    },
+    title: {
+      type: String
     }
   },
 

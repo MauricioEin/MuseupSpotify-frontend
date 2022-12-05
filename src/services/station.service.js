@@ -276,9 +276,9 @@ async function _getSongLength(videoId) {
 //           "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670159560/90s_ffhu6w.jpg"
 //         }
 
-import MuseUp from '../demo-data/stations.json' assert {type: 'json'}
 
-// // TEST DATA
+// DEMO DATA
+import MuseUp from '../demo-data/stations.json' assert {type: 'json'}
 
 if (!localStorage.getItem(STORAGE_KEY) || !localStorage.getItem(STORAGE_KEY).length) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(MuseUp));

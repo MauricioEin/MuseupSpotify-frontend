@@ -150,7 +150,7 @@ export const stationStore = {
             try {
                 await stationService.remove(stationId)
                 context.commit(getActionRemoveStation(stationId))
-                context.commit({ type: 'removeUserStation', id: stationId })
+                context.dispatch({ type: 'removeUserStation', id: stationId })
 
             } catch (err) {
                 console.log('stationStore: Error in removeStation', err)

@@ -2,6 +2,7 @@
     {
         "name": "This Is Jay-Z",
         "desc": "This is JAY-Z. The essential tracks, all in one playlist.",
+        "category": "trending",
         "songs": [
             {
                 "id": "vk6014HuxcE",
@@ -83,6 +84,7 @@
     {
         "name": "This Is J.Cole",
         "desc": "Cole World. The very best of Jermaine.",
+        "category": "trending",
         "songs": [
             {
                 "id": "WILNIXZr2oc",
@@ -146,6 +148,7 @@
     {
         "name": "Today's Hits",
         "desc": "Selena Gomez is on top of the Hottest 50!",
+        "category": "trending",
         "songs": [
             {
                 "id": "EgT_us6AsDg",
@@ -217,6 +220,7 @@
     {
         "name": "Top Hits of 2022 ",
         "desc": "Spotify Presents....Top Hits of 2022!",
+        "category": "trending",
         "songs": [
             {
                 "id": "u5CVsCnxyXg",
@@ -304,6 +308,7 @@
     {
         "name": "Cardio Workout",
         "desc": "Upbeat dance pop to keep your heart pumping.",
+        "category": "trending",
         "songs": [
             {
                 "id": "oorVWW9ywG0",
@@ -359,6 +364,7 @@
     {
         "name": "Pop Mix",
         "desc": "Doja Cat, Central Lee, Khalid and more.",
+        "category": "bestOf",
         "songs": [
             {
                 "id": "dI3xkL7qUAc",
@@ -436,6 +442,7 @@
     {
         "name": "Rock This",
         "desc": "Metallica along with the biggest Rock songs you need to hear today!",
+        "category": "bestOf",
         "songs": [
             {
                 "id": "1w7OgIMMRc4",
@@ -521,6 +528,7 @@
     {
         "name": "90's Hip Hop",
         "desc": "Real rap music from the golden era.",
+        "category": "bestOf",
         "songs": [
             {
                 "id": "41qC3w3UUkU",
@@ -627,6 +635,7 @@
     {
         "name": "הלהיטים הגדולים של ישראל",
         "desc": "הפלייליסט הכי גדול בישראל, עם השירים הכי חמים של היום ומחר.",
+        "category": "bestOf",
         "songs": [
             {
                 "id": "qEEzKfGa1oY",
@@ -728,6 +737,7 @@
     {
         "name": "This Is JuiceWRLD",
         "desc": "This is Juice WRLD. The essential tracks, all in one playlist.",
+        "category": "bestOf",
         "songs": [
             {
                 "id": "mzB1VGEGcSU",
