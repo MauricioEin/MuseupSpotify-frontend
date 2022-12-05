@@ -158,8 +158,13 @@ export default defineComponent({
         },
 
         changeSong(dir) {
-            var newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
-            if(this.isShuffled) newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
+            var newIdx = this.currSongIdx
+            if(this.isShuffled){
+                while(newIdx === this.currSongIdx){
+                    newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
+                }
+            }else   newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
+             
             // this gives us the calc for looping around the playlist
             this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
         },
