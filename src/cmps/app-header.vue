@@ -13,7 +13,7 @@
       </section> -->
       <section @click="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
         <div class="user-img-container">
-          <img v-if="imgSrc" :src="imgSrc" alt="">
+          <img v-if="imgSrc" :src="imgSrc" class="fit-img" alt="">
           <div v-else>
             <user-portrait />
           </div>
@@ -53,7 +53,7 @@ export default {
       return (this.$route.fullPath === '/search')
     },
     imgSrc() {
-      return this.loggedInUser?.imgUrl
+      return this.loggedInUser?.profileImg
     },
   },
   methods: {

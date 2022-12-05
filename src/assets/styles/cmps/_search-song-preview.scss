@@ -3,9 +3,10 @@
     display: grid;
     gap: 15px;
     border-radius: 5px;
-    grid-template-columns: 10px 40px 1fr 150px;
+    grid-template-columns: 10px 40px 1fr 110px;
     align-items: center;
     font-family: circular-light;
+    position:relative;
 
     &.playing {
         .artist-name {
@@ -21,6 +22,9 @@
         opacity: 0;
         pointer-events: none;
         justify-self: center;
+        &.liked {
+            opacity: 1;
+        }
 
         svg {
             height: 1rem;
@@ -127,9 +131,11 @@
     }
 
     .song-preview-actions {
-        display: grid;
-        grid-template-columns: 40px 1fr 40px;
-        justify-self: flex-end;
+        display: flex;
+        width:100%;
+        // grid-template-columns: 40px 1fr 40px;
+        justify-self: center;
+        justify-content: space-between;
         margin-inline-end: 15px;
 
 
@@ -143,5 +149,11 @@
         .btn-like-song.liked svg {
             fill: $clrGreen;
         }
+    }
+
+    .mini-menu {
+        // opacity: 1;
+        top: -20px;
+        right: 20px;
     }
 }

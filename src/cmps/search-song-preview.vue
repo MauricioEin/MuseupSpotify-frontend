@@ -20,11 +20,17 @@
             {{ song.title.slice(titleBreakIdx) }}
         </div>
         <div class="song-preview-actions">
-            <button @click="toggleLike" class="btn-like-song" ref="search-like-btn">
-                <heart-empty-svg />
+            <button class="btn-like-song" @click="saveSong" :class="{ liked: isLiked }">
+                <heart-btn-svg v-if="isLiked" class="liked" />
+                <heart-empty-svg v-else />
             </button>
-            <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more">
+            <div class="song-length"> {{ song.length }}
+                <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
+                    @saveToYourLikedSongs="saveSong" 
+                    @removeFromYourLikedSongs="saveSong" />
+
+            </div>
+            <button class="btn-more" @click="toggleMiniMenu">
                 <more-options-svg />
             </button>
         </div>
@@ -34,8 +40,12 @@
 <script>
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
+import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
 import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
+
+import miniMenu from '../cmps/mini-menu.vue'
+
 
 export default {
     props: {
@@ -51,6 +61,9 @@ export default {
         clickedSong: {
             type: String
         },
+        loggedInUser: {
+            type: Object
+        },
     },
     created() {
         window.addEventListener('click', this.emitClicked)
@@ -58,6 +71,12 @@ export default {
     unmounted() {
         window.removeEventListener('click', this.emitClicked)
 
+    },
+    data() {
+        return {
+            isMiniMenu: false,
+
+        }
     },
     computed: {
         nowPlayingSong() {
@@ -77,13 +96,14 @@ export default {
             if (idx === -1) idx = this.song.title.indexOf('|')
             return idx === -1 ? 0 : idx
         },
-
-
+        isLiked() {
+            return this.loggedInUser.likedSongs.some(song => song.id === this.song.id)
+        },
+        songActions() {
+            return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Share']
+        },
     },
     methods: {
-        toggleLike() {
-            this.$refs['search-like-btn'].classList.toggle('liked')
-        },
         playSong() {
             this.$store.commit({ type: 'toggleIsPlaying' })
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
@@ -93,20 +113,30 @@ export default {
         },
         emitClicked() {
             this.$emit('clicked', '')
-        }
+        },
+        saveSong() {
+            this.$store.dispatch({ type: 'saveSong', song: this.song })
+        },
+        toggleMiniMenu() {
+            this.isMiniMenu = !this.isMiniMenu
+        },
+
+
 
     },
-    // watch: {
-    //     isPlaying() {
-    //         this.isPlaying = this.isPlaying
-    //         console.log('this.isPlaying', this.isPlaying)
-    //     }
-    // },
+    watch: {
+        isClicked() {
+            if (!this.isClicked) this.isMiniMenu = false
+        },
+
+    },
     components: {
         moreOptionsSvg,
         heartEmptySvg,
+        heartBtnSvg,
         playBtnSvg,
         mediaPlayerStop,
+        miniMenu,
     }
 }
 </script>
