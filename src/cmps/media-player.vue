@@ -37,8 +37,10 @@
                         <button @click="changeSong(1)">
                             <next-svg />
                         </button>
-                        <button @click="(isLoop = !isLoop)">
-                            <loop-svg :style="loopStyle" />
+                        <button @click="changeLoopType">
+                            <loop-song-svg class="loop-song" v-if="(loopType === 2)"/>
+                            <loop-svg v-else :style="loopStyle" />
+                            <!-- {{ loopType.toString() }} -->
                         </button>
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
@@ -85,6 +87,7 @@ import heartSvg from '../assets/svgs/media-player-heart.vue'
 import loopSvg from '../assets/svgs/media-player-loop.vue'
 import fullSvg from '../assets/svgs/media-player-full.vue'
 import minimizeSvg from '../assets/svgs/media-player-minimize.vue'
+import loopSongSvg from '../assets/svgs/media-player-loop-song.vue'
 
 export default defineComponent({
     //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
@@ -92,7 +95,6 @@ export default defineComponent({
         return {
             isPlaying: false,
             isMute: false,
-            isLoop: false,
             isShuffled: false,
             isFullscreen: false,
             volume: 50,
@@ -102,7 +104,8 @@ export default defineComponent({
             currTime: 0,
             duration: null,
             timeInterval: '',
-            currSongPlaying: {}
+            loopType: 0,
+            currSongPlaying: {},
         }
     },
 
@@ -121,9 +124,18 @@ export default defineComponent({
                 this.getDuration()
             }
 
-            if (ev.data === 0 && !this.isLoop) {
+            if (ev.data === 0 &&
+                this.currSongIdx !== this.songList.length - 1 &&
+                this.loopType !== 2) {
                 this.changeSong(1)
-            } else if (ev.data === 0 && this.isLoop) {
+            }
+            else if(ev.data === 0 &&
+                    this.currSongIdx === this.songList.length - 1 &&
+                    this.loopType === 1){
+                this.changeSong(1)
+            }
+            else if (ev.data === 0 &&
+                     this.loopType === 2) {
                 this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
             }
 
@@ -216,7 +228,12 @@ export default defineComponent({
             if (!this.isPlayingInStore) {
                 this.togglePlay()
             }
-        }
+        },
+
+        changeLoopType(){
+            this.loopType++
+            if(this.loopType === 3) this.loopType = 0
+        },
     },
 
     computed: {
@@ -225,7 +242,7 @@ export default defineComponent({
         },
 
         loopStyle() {
-            return (this.isLoop) ? { fill: '#1ED760' } : {}
+            return (this.loopType === 1) ? { fill: '#1ED760' } : {}
         },
 
         setFull() {
@@ -282,7 +299,8 @@ export default defineComponent({
         heartSvg,
         loopSvg,
         fullSvg,
-        minimizeSvg
+        minimizeSvg,
+        loopSongSvg
     },
 })
 </script>

@@ -1,5 +1,5 @@
 .container {
-    max-width: 1500px;
+    max-width: calc(100vw - $nav-width);
     padding: 10px;
 }
 
@@ -48,6 +48,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     height: 100%;
+    max-width: calc(100vw - $nav-width);
+
 }
 
 .content-layout {
