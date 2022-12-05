@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="right-controls" :class="setFull">
-                    <button @click="toggleMute">
+                    <button class="sound-btn" @click="toggleMute">
                         <sound-svg v-if="!isMute" />
                         <muted-svg v-else />
                     </button>
