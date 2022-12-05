@@ -11,7 +11,7 @@
         background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 100%);
         background-color: $clr04;
 
-        .mobile-img{
+        .mobile-img {
             display: none;
         }
 
@@ -39,7 +39,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            
+
             // gap: 20px;
 
             h1 {
@@ -125,7 +125,7 @@
 
     .song-list-header {
         text-transform: uppercase;
-        border-bottom: 1px solid $clr10;
+        border-bottom: 1px solid hsla(0, 0%, 100%, .1);
         border-radius: 0;
         margin-bottom: 15px;
         height: 35px;
@@ -184,57 +184,62 @@
 //             font-size: 50px !important;
 //         }
 //     }
-   
+
 // }
 
-@media (max-width:1027px){
+@media (max-width:1027px) {
     .station-summary {
-    h1.pointer{
-        margin-top: 30px !important; 
-        font-size: 40px !important;
+        h1.pointer {
+            margin-top: 30px !important;
+            font-size: 40px !important;
+        }
     }
 }
-}
-@media (max-width:820px){
+
+@media (max-width:820px) {
     .station-summary {
         display: block;
+    }
 }
-}
-@media (max-width:757px){
-    .station-details-page{
-        width: 100vw;
-    }   
 
-    .station-summary{
+@media (max-width:757px) {
+    .station-details-page {
+        width: 100vw;
+    }
+
+    .station-summary {
         align-items: center;
     }
-   
-    .uploader-img{
+
+    .uploader-img {
         display: block;
     }
-    
-    .song-list-container.content-layout{
-        grid-template-columns: 10px 1fr 10px ;
-        
-        .station-song-search{
+
+    .song-list-container.content-layout {
+        grid-template-columns: 10px 1fr 10px;
+
+        .station-song-search {
             margin-left: 6px;
-            button{
+
+            button {
                 padding-right: 0;
             }
-        }   
-        .song-preview{
+        }
+
+        .song-preview {
             grid-template-columns: 22px 40px 2fr 1fr 73px !important;
         }
-        .playlist-actions{
+
+        .playlist-actions {
             justify-content: space-between;
         }
-    
-        .song-list-header{
+
+        .song-list-header {
             display: none !important;
         }
 
-        .mini-menu{
-           right: 0;
+        .mini-menu {
+            right: 0;
         }
     }
 
@@ -243,17 +248,17 @@
         align-items: center !important;
         justify-content: center;
 
-        h1{
+        h1 {
             display: none;
         }
 
-        p.summary-title{
+        p.summary-title {
             display: none;
         }
 
-        p.station-desc{
+        p.station-desc {
             text-align: center;
         }
-}
+    }
 
 }

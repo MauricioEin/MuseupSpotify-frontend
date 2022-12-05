@@ -19,7 +19,7 @@
           <p v-if="station.desc" class="station-desc cut-text">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
           <button v-if="(station.songs.length)" class="btn-play-playlist"
-            @click.stop="(!isPlaying) ? playStation(station) : toggleIsPlaying()"><pause-btn
+            @click.stop="toggleStation(station)"><pause-btn
               v-if="isCurrStationPlayed(station)" /><play-btn v-else /></button>
 
         </div>
@@ -30,7 +30,7 @@
 </template>
   
 <script>
-
+//@click.stop="(!isPlaying) ? playStation(station) : toggleIsPlaying()"><pause-btn
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import pauseBtn from '../assets/svgs/media-player-stop.vue'
 export default {
@@ -48,6 +48,13 @@ export default {
     this.$store.dispatch({ type: 'loadStations' })
   },
   methods: {
+    toggleStation(station){
+      if(!this.isCurrStationPlayed(station) && this.isPlaying ||
+         !this.isCurrStationPlayed(station) && !this.isPlaying){
+        this.playStation(station)
+      } else this.toggleIsPlaying() 
+    },
+
     getStationImg(station) {
       if (station.imgUrl) return station.imgUrl
       else if (station?.songs[0]?.imgUrl) return station.songs[0]?.imgUrl.medium

@@ -19,7 +19,11 @@ html {
 body {
     font-size: rem(18px);
     margin: 0;
+
+    // background-color: $clr08;
+    // @media (min-width: 860px) {
     background-color: $clr07;
+    // }
 }
 
 h1,
