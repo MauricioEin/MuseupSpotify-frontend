@@ -69,7 +69,7 @@ export default {
   methods: {
     async createStation() {
       console.log('creating!')
-      const newStation = { name: 'My Playlist #' + (this.stations.length + 1), songs: [], followers: [] }
+      const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
       this.$router.push('/station/' + savedStation._id)
     },
