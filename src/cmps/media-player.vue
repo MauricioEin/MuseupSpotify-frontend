@@ -24,7 +24,7 @@
 
                 <div class="center-controls" :class="setFull">
                     <div class="top-center-controls">
-                        <button @click="(isShuffled) ? restoreOriginalList() : shuffleList()">
+                        <button @click="isShuffled = !isShuffled">
                             <random-svg :style="shuffleStyle" />
                         </button>
                         <button @click="changeSong(-1)">
@@ -99,7 +99,6 @@ export default defineComponent({
             isFullscreen: false,
             volume: 50,
             currSongIdx: this.playingSongIdx,
-            originalList: [],
             songList: [],
             currTime: 0,
             duration: null,
@@ -109,12 +108,9 @@ export default defineComponent({
         }
     },
 
-    created() {
-        // const station = this.$store.getters.getPlayingStation
-        // const songIdx = this.$store.getters.playingSongIdx
-        this.originalList = this.songList = this.playingStation.songs
+    created() { 
+        this.songList = [...this.playingStation.songs]
         this.currSongIdx = this.playingSongIdx
-        // console.log(this.currSongIdx);
         this.currSongPlaying = this.songList[this.currSongIdx]
     },
 
@@ -143,15 +139,6 @@ export default defineComponent({
 
         togglePlay() {
             this.$store.commit({ type: 'toggleIsPlaying' })
-            // if (this.isPlaying) {
-            //     this.$refs.youtube.pauseVideo()
-            //     // this.isPlaying = false
-            //     clearInterval(this.timeInterval)
-            // } else {
-            //     this.$refs.youtube.playVideo()
-            //     // this.isPlaying = true
-            //     this.updateCurrTime()
-            // }
         },
 
         toggleMute() {
@@ -171,7 +158,8 @@ export default defineComponent({
         },
 
         changeSong(dir) {
-            const newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
+            var newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
+            if(this.isShuffled) newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
             // this gives us the calc for looping around the playlist
             this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
         },
@@ -203,22 +191,6 @@ export default defineComponent({
                 seconds = '0' + seconds
             }
             return minutes.toString() + ':' + seconds
-        },
-
-        shuffleList() {
-            const formatted = Array.from(this.songList)
-            const shuffled = utilService.shuffle(formatted)
-            this.songList = shuffled
-            this.isShuffled = true
-        },
-
-        restoreOriginalList() {
-            this.songList = this.originalList
-            this.isShuffled = false
-        },
-
-        setFullscreen() {
-
         },
 
         updateCurrStation() {
