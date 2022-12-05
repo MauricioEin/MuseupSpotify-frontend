@@ -13,6 +13,37 @@
         grid-template-columns: 10px 40px 1fr 110px;
         margin-inline-end: 0;
 
+        &:hover {
+            background-color: $clr10;
+
+            .btn-like-song,
+            .btn-more {
+                cursor: pointer;
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .song-index {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    // opacity: 0;
+                    display: none;
+                }
+
+                svg {
+                    // opacity: 1;
+                    display: block;
+                }
+
+                img {
+                    display: none;
+                }
+            }
+        }
+
     }
 
     &.playing {
@@ -27,9 +58,14 @@
         background-color: unset;
         margin: 0;
         padding: 0;
-        opacity: 0;
-        pointer-events: none;
         justify-self: center;
+
+        @media (min-width: 860px) {
+            opacity: 0;
+            pointer-events: none;
+
+        }
+
 
         &.liked {
             opacity: 1;
@@ -71,41 +107,14 @@
         text-overflow: ellipsis;
     }
 
-    &:hover {
-        background-color: $clr10;
 
-        .btn-like-song,
-        .btn-more {
-            cursor: pointer;
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .song-index {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            span {
-                // opacity: 0;
-                display: none;
-            }
-
-            svg {
-                // opacity: 1;
-                display: block;
-            }
-
-            img {
-                display: none;
-            }
-        }
-    }
 
     &.clicked {
-        background-color: $clr04;
 
-        @media (min-width: 860px) {}
+        @media (min-width: 860px) {
+            background-color: $clr04;
+
+        }
 
         .btn-like-song,
         .btn-more {
