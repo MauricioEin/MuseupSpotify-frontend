@@ -2,8 +2,8 @@
   <header ref="header" class="app-header content-layout">
     <div class="flex">
       <nav class="flex">
-        <button class="btn-go-back"><btn-go-back /></button>
-        <button class="btn-go-next"><btn-go-next /></button>
+        <button class="btn-go-back" @click="this.$router.go(-1)"><btn-go-back /></button>
+        <button class="btn-go-next" @click="this.$router.go(1)"><btn-go-next /></button>
         <main-search v-if="isOnSearchPage" />
       </nav>
       <!-- <section class="loggedin-user" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
