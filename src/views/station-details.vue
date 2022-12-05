@@ -42,7 +42,7 @@
 
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" />
+        @removeSong="removeSong" @play="playStation" @reorder="updateStation" />
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -248,29 +248,13 @@ export default {
     closeMenu() {
       this.isStationMenuOpen = false
     },
-    getAvgClr() {
+    async getAvgClr() {
       console.log('getting avg color of', this.stationImg)
       const fac = new FastAverageColor()
-      fac.getColorAsync(this.stationImg)
-        .then(clr => {
-          console.log('clr', clr)
-          this.$refs.preview.style.backgroundColor=clr.hex
-          this.$refs.list.style.backgroundColor=clr.hex
-        
-        })
-      // .then(color => {
-
-      //   // container.style.backgroundColor = color.rgba;
-      //   // container.style.color = color.isDark ? '#fff' : '#000';
-
-      //   // console.log('Average color', color);
-      // })
-      // .catch(e => {
-      //   console.log(e);
-      // });
-      // const color = getAverageColor(this.station.imgUrl)
-      // console.log('avgClr:', color)
-      // return color
+      const clr = await fac.getColorAsync(this.stationImg)
+      console.log('clr', clr)
+      this.$refs.preview.style.backgroundColor = clr.hex
+      this.$refs.list.style.backgroundColor = clr.hex
     }
 
   },
@@ -281,7 +265,7 @@ export default {
     station() {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
     },
-    stationImg(){
+    stationImg() {
       this.getAvgClr()
 
     }
