@@ -37,3 +37,13 @@
         }
     }
 }
+
+@media (max-width:830px){
+    .main-search{
+        width: rem(240px);
+        input{
+            width: 220px;
+            height: 35px;
+        }
+    }
+}
