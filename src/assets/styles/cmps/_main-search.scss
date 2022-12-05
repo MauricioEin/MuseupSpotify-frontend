@@ -13,6 +13,7 @@
     h1 {
         display: block;
         margin-block-end: 30px;
+        font-size: larger;
 
         @media (min-width: 860px) {
             display: none;
@@ -72,16 +73,6 @@
                 opacity: 1;
                 pointer-events: all;
             }
-        }
-    }
-}
-
-@media (max-width:830px){
-    .main-search{
-        width: rem(240px);
-        input{
-            width: 220px;
-            height: 35px;
         }
     }
 }
