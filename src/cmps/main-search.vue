@@ -1,7 +1,7 @@
 <template>
     <section class="main-search">
         <search-icon />
-        <input v-model="searchStr" type="search" placeholder="What do you want to listen to?">
+        <input v-model="searchStr" type="search" spellcheck="false" placeholder="What do you want to listen to?">
     </section>
 </template>
 
