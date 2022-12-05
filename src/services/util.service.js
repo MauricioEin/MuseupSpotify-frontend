@@ -56,9 +56,23 @@ function debounce(func, wait = 500) {
     }
 }
 
-function shuffle(array) {
+function shuffle2(array) {
     return array.sort(() => Math.random() - 0.5)
 }
+
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+    
+        // Generate random number
+        var j = Math.floor(Math.random() * (i + 1));
+                    
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+        
+    return array;
+ }
 
 function decodeHtmlCharCodes(str) {
     return str.replace(/(&#(\d+);)/g, function (match, capture, charCode) {
@@ -70,11 +84,14 @@ function decodeHtmlCharCodes(str) {
 
 function daysAgo(timestamp) {
     const timeBetween = Date.now() - timestamp
-    const days = timeBetween / (1000 * 3600 * 24)
+    var days = timeBetween / (1000 * 3600 * 24)
     if (days <= 14) {
+        const timeStampDay = new Date(timestamp).getDay()
+        const currDay = new Date().getDay()
+        days = currDay - timeStampDay
         if (days < 1) return 'Today'
-        if (days < 2) return '1 day ago'
-        return `${Math.floor(days)} days ago`
+        if (days < 2) return 'Yesterday'
+        return `${days} days ago`
     }
     const timestampYear = new Date(timestamp).getFullYear()
     const currYear = new Date().getFullYear()
