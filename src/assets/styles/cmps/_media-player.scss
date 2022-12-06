@@ -9,14 +9,22 @@
     button {
         background-color: transparent;
         cursor: pointer;
+
     }
 
     svg {
         fill: $clr02;
+        
 
         &:hover {
             fill: $clr01;
             cursor: pointer;
+        }
+
+        &.liked{
+            fill:$clrGreen;
+            height:16px;
+            width:16px;
         }
     }
 
@@ -387,6 +395,15 @@
         button {
             position: absolute;
             right: 50px;
+
+            &.liked {
+
+                // svg {
+                //     fill: red;
+
+                // }
+            }
+
         }
 
         .media-img {
@@ -396,5 +413,7 @@
         .player-song-name {
             font-size: 12px;
         }
+
+
     }
 }
