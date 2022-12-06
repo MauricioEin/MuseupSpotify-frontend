@@ -28,7 +28,7 @@
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="song-list-container content-layout" ref="list">
-      <section class="playlist-actions">
+      <section class="playlist-actions" :style="btnsStyle(station)">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
           <pause-btn v-if="isCurrStationPlayed && isPlaying" />
@@ -40,7 +40,7 @@
 
           <play-btn />
         </button> -->
-        <div class="flex">
+        <div class="flex option-btns">
           <div class="btn-follow" @click="follow">
             <heart-btn-svg v-if="isFollowed" class="followed" />
             <heart-empty-svg v-else />
@@ -171,6 +171,11 @@ export default {
     window.removeEventListener('click', this.closeMenu)
   },
   methods: {
+
+    btnsStyle(station){
+      if(station.songs.length) return {justifyContent: 'space-between'}
+      return {justifyContent: 'end'}
+    },
     async follow() {
       const actionStr = this.isFollowed ? 'unfollow' : 'follow'
       try {

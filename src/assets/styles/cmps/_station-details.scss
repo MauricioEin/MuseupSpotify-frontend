@@ -146,16 +146,7 @@
 
         }
 
-        .list-song-title {
-            // flex-grow: 5;
-            // margin-inline-start: 50px;
-        }
-
-        .list-song-date {
-            // flex-grow: 2;
-            // padding-inline-start: 50px;
-        }
-
+        
         .list-song-length {
             // flex-grow: 1;
             display: grid;
@@ -226,9 +217,6 @@
             }
         }
 
-        .song-preview {
-            grid-template-columns: 22px 40px 2fr 1fr 73px !important;
-        }
 
         .playlist-actions {
             justify-content: space-between;
