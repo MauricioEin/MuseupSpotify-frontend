@@ -1,18 +1,25 @@
 .home-page {
 
+    row-gap: 24px;
+
+    @media(min-width: 860px) {
+        padding-top: 24px;
+
+    }
 
     .s-home-header {
+
         display: none;
 
-
-        @media (max-width: 860px) {
+        // Phone only
+        @media (max-width: 859px) {
             display: flex;
             justify-content: space-between;
             background-color: $clr08;
             padding: 20px;
 
             .greeting {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 display: flex;
                 align-items: center;
             }
@@ -38,6 +45,19 @@
                     right: 0;
                     transform: translate(-20px, 50px);
                 }
+            }
+        }
+    }
+
+    .user-cards {
+
+        .greeting {
+            padding-inline-start: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+
+            @media(max-width: 859px) {
+                display: none;
             }
         }
     }

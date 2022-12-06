@@ -6,7 +6,7 @@
     height: 100vh;
     width: 100%;
     overflow: hidden;
-    z-index: 31;
+    z-index: 400;
     // display: none;
     // display: block;
 }
@@ -93,6 +93,21 @@
 
         svg {
             fill: white;
+        }
+
+        .play-btn {
+            background-color: $clr01;
+            border-radius: 500px;
+            height: 32px;
+            width: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                fill: $clr07;
+                overflow: visible;
+            }
         }
     }
 

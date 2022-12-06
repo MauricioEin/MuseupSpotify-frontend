@@ -1,5 +1,7 @@
 .media-player {
 
+    pointer-events: all;
+
     iframe {
         display: none;
     }
@@ -119,6 +121,24 @@
 }
 
 .top-center-controls {
+
+    @media (min-width:$narrow-breakpoint) {
+        .play-btn {
+            background-color: $clr01;
+            border-radius: 500px;
+            height: 32px;
+            width: 32px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                fill: $clr07;
+                overflow: visible;
+            }
+        }
+    }
+
     .btn-play {
         // background-color: #fff;
         // border-radius: 50%;
@@ -228,6 +248,32 @@
     }
 
 
+    &:hover {
+        @media (max-width:$narrow-breakpoint) {
+            input {
+                display: none;
+                // position: absolute;
+            }
+
+            progress {
+                display: block;
+            }
+
+            .full & {
+                input {
+                    display: block;
+                    // position: absolute;
+                }
+
+                progress {
+                    display: none;
+                }
+            }
+
+        }
+    }
+
+
 }
 
 .artist-details {
@@ -303,6 +349,8 @@
             align-items: flex-end;
         }
 
+
+
     }
 
     .center-controls {
@@ -311,11 +359,17 @@
 
     .bottom-center-controls {
         progress {
-            height: 1px;
+            height: 3px;
+            position: relative;
+            top: 7px;
+
+            .full & {
+                top: 0;
+            }
         }
 
         input {
-            height: 1px;
+            height: 3px;
         }
 
         position: absolute;
