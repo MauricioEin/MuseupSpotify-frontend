@@ -17,7 +17,7 @@
                         <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
-                    <button>
+                    <button @click.stop="">
                         <heart-svg />
                     </button>
                 </div>
@@ -30,7 +30,7 @@
                         <button @click="changeSong(-1)">
                             <prev-svg />
                         </button>
-                        <button @click="togglePlay" class="play-btn">
+                        <button @click.stop="togglePlay" class="play-btn">
                             <play-svg v-if="!isPlaying" />
                             <stop-svg v-else />
                         </button>
