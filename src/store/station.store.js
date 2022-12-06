@@ -112,7 +112,38 @@ export const stationStore = {
         },
         onUpdateWhilePlaying(context, {newIdx}){
             // this.
-        }
+        },
+
+        queueSong(state, {song}){
+            console.log(state.playingStation);
+            state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
+            console.log(state.playingStation);
+        },
+        
+        queueStation(state, {station}){
+            console.log(station);
+            console.log(state.playingStation);
+            var idx = {...state.playingSongIdx}
+            station.forEach(song => {
+                state.playingStation.songs.splice(idx + 1, 0, song)
+                idx++
+            })
+            console.log(state.playingStation);
+        },
+        
+        removeQueue(state, {item}){
+            console.log(item);
+            if(item.youtubeId){
+                const idx = state.playingStation.songs.findIndex(s => s.youtubeId === item.youtubeId)
+                state.playingStation.songs.splice(idx, 1)
+                console.log(state.playingStation);
+            }else{
+                item.forEach(s => {
+                    const idx = state.playingStation.songs.findIndex(song=> song.youtubeId === s.youtubeId)
+                    state.playingStation.songs.splice(idx, 1)        
+                })
+            }
+        },
     },
     actions: {
         async addStation(context, { station }) {

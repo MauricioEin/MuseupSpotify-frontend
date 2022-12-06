@@ -32,7 +32,8 @@
             <div class="song-length">{{ song.length }}
                 <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
-                    @removeFromYourLikedSongs="onMiniMenu('saveSong')" />
+                    @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
+                    @removeFromQueue="onMiniMenu('removeQueue')" />
 
             </div>
             <button class="btn-more" @click="toggleMiniMenu">
@@ -78,7 +79,8 @@ export default {
     data() {
         return {
             isMiniMenu: false,
-            isDragged: false
+            isDragged: false,
+            isQueued: false,
             // isPlaying: false,
         }
     },
@@ -110,6 +112,7 @@ export default {
         songActions() {
             const songActions = ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
             if (this.isLikedSongs) songActions.splice(3, 1)
+            if(this.isQueued) songActions.splice(0, 1, 'Remove from queue')
             return songActions
         },
         nowPlayingSong() {
@@ -130,8 +133,11 @@ export default {
         },
         onMiniMenu(action) {
             this.isMiniMenu = false
+            console.log(this.isQueued);
             console.log(action)
             this.$emit('songAction', action)
+            if(action = 'addToQueue') this.isQueued = !this.isQueued
+            console.log(this.isQueued);
         },
         // playSong() {
         //     this.$store.commit({ type: 'toggleIsPlaying' })

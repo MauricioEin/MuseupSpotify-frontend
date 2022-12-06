@@ -48,14 +48,14 @@
 
           <button @click="openStationMenu" class="btn-more">
             <more-options-svg @click.stop="toggleStationMenu" />
-            <station-menu v-if="isStationMenuOpen" @queue="" @remove="removeStation" @follow="follow"
-              @edit="isEdit = true" :isFollowed="isFollowed" />
+            <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
+              @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed" :isQueued="isStationQueued"/>
           </button>
         </div>
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" />
+        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @queueSong="queueSong" @removeQueue="removeQueue"/>
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -99,6 +99,7 @@ export default {
       isEdit: false,
       isSearchOpen: true,
       isImgHover: false,
+      isStationQueued:false,
     }
   },
   computed: {
@@ -171,6 +172,29 @@ export default {
     window.removeEventListener('click', this.closeMenu)
   },
   methods: {
+    removeQueue(item){
+      console.log(item);
+      if(!item.songs){
+        this.$store.commit({type:'removeQueue', item})
+      }else{
+        console.log('heree');
+        this.isStationQueued = !this.isStationQueued
+        this.$store.commit({type:'removeQueue', item: item.songs})
+      }
+    },
+    queueStation(){
+      this.isStationQueued = !this.isStationQueued
+      this.$store.commit({type:'queueStation', station: this.station.songs})
+    },  
+    queueSong(song){
+      console.log(song);
+      try{
+        this.$store.commit({type:'queueSong', song})
+        showSuccessMsg('Queued')
+      }catch(err){
+        console.log(err);
+      }
+    },
     async follow() {
       const actionStr = this.isFollowed ? 'unfollow' : 'follow'
       try {
