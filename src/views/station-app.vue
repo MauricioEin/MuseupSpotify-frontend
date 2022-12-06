@@ -1,6 +1,6 @@
 <template>
-  <section class="home-page">
-    <section class="s-home-header" v-if="isOnHomePage">
+  <section class="home-page content-layout">
+    <section class="s-home-header full" v-if="isOnHomePage">
       <section class="greeting">
         Good {{ greeting }}
       </section>
@@ -12,6 +12,14 @@
           @profile="goToProfile" :actions="phoneActions" />
       </section>
     </section>
+    <section class="user-cards" v-if="(loggedinUser._id !== 'demo')">
+      <section class="greeting">
+        Good {{ greeting }}
+      </section>
+    </section>
+    <!-- <section class="greeting">
+      Good {{ greeting }}
+    </section> -->
     <station-list :stations="stationsWithGenre('trending')" :title="'Trending now'" />
     <station-list :stations="stationsWithGenre('bestOf')" :title="'Best of 2022'" />
     <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="userStations"

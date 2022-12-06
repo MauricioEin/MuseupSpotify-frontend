@@ -1,5 +1,7 @@
 .media-player {
 
+    pointer-events: all;
+
     iframe {
         display: none;
     }

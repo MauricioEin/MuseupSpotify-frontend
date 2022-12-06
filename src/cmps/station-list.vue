@@ -1,8 +1,13 @@
 <template>
   <div class="station-list-container">
-    <h1>{{ title }}</h1>
+    <div class="station-list-head">
+      <h1>{{ title }}</h1>
+      <button v-if="isIntersecting">Show all</button>
+    </div>
+
     <ul class="station-list">
-      <li class="station-card" v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
+      <li ref="stationCard" class="station-card" v-for="station in stations" :key="station._id"
+        @click="goToStation(station._id)">
         <img :src="getStationImg(station)" alt="" class="station-img">
         <div class="card-details">
           <p class="station-title cut-text">
@@ -44,8 +49,16 @@ export default {
     }
   },
 
-  created() {
-    this.$store.dispatch({ type: 'loadStations' })
+  data() {
+    return {
+      isIntersecting: false,
+
+    }
+  },
+
+  async created() {
+    await this.$store.dispatch({ type: 'loadStations' })
+    this.resizeList()
   },
   methods: {
     toggleStation(station) {
@@ -76,6 +89,27 @@ export default {
     isCurrStationPlayed(station) {
       return (this.isPlaying && station._id === this.getPlayingStation._id)
     },
+    resizeList() {
+      if (screen.width < 860) {
+        this.isIntersecting = false
+        this.$refs.stationCard.forEach(elStation => {
+          elStation.style.display = 'list-item'
+        })
+      } else {
+        this.isIntersecting = false
+
+        this.$refs.stationCard.forEach(elStation => {
+
+          elStation.style.display = 'list-item'
+          const rect = elStation.getClientRects()[0]
+
+          if (rect.right > screen.width - 14) {
+            this.isIntersecting = true
+            elStation.style.display = 'none'
+          }
+        })
+      }
+    },
   },
 
   computed: {
@@ -94,6 +128,14 @@ export default {
     stationDesc() {
 
     }
+  },
+
+  mounted() {
+    window.addEventListener('resize', this.resizeList)
+  },
+
+  unmounted() {
+    window.removeEventListener('resize', this.resizeList)
   },
 
   components: {
