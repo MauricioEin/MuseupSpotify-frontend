@@ -87,11 +87,12 @@ export const stationStore = {
             const miniStation = (Array.isArray(station)) ?
                 { _id: '' } : { _id: station._id }
             miniStation.songs = station.songs?.map(song => {
-                const { title, imgUrl, youtubeId } = song
+                const { title, imgUrl, youtubeId, length, createdAt, id } = song
                 return {
                     title,
                     imgUrl: imgUrl.medium || imgUrl,
                     youtubeId,
+                    length, createdAt, id
                 }
             }) || station
 
@@ -106,11 +107,11 @@ export const stationStore = {
         },
         updatePlayingOrder(state, { songs }) {
             const playingSong = state.playingStation.songs[state.playingSongIdx]
-            const newIdx= songs.findIndex(s => s.id === playingSong.youtubeId)
+            const newIdx = songs.findIndex(s => s.id === playingSong.youtubeId)
             state.playingStation.songs = songs
             state.playingSongIdx = newIdx
         },
-        onUpdateWhilePlaying(context, {newIdx}){
+        onUpdateWhilePlaying(context, { newIdx }) {
             // this.
         },
 
@@ -156,7 +157,7 @@ export const stationStore = {
 
                 context.commit(getActionAddStation(station))
                 const { name, desc, _id, imgUrl, owner } = station
-                context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner.username } })
+                context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner._id } })
 
                 return station
             } catch (err) {

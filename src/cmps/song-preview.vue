@@ -33,7 +33,8 @@
                 <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
                     @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
-                    @removeFromQueue="onMiniMenu('removeQueue')" />
+                    @removeFromQueue="onMiniMenu('removeQueue')" 
+                    @AddToAPlaylist="onMiniMenu('addToPlaylist')" />
 
             </div>
             <button class="btn-more" @click="toggleMiniMenu">
