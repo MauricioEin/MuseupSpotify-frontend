@@ -67,9 +67,8 @@
     .controls.full {
         display: block;
         justify-content: center;
-        height: 50px;
+        height: 0px;
         padding: 2px;
-        bottom: 10px;
     }
 
     .right-controls {
@@ -98,7 +97,7 @@
     }
 
     .bottom-center-controls.full {
-        bottom: 70px;
+        bottom: 28px;
 
         span {
             display: inline;
@@ -108,7 +107,7 @@
     .left-controls.full {
         width: 98%;
         position: absolute;
-        bottom: 95px;
+        bottom: 64px;
         left: 16px;
 
         button {
