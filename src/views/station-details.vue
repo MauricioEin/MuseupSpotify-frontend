@@ -197,9 +197,8 @@ export default {
       try {
         editedStation = { ...this.station, ...editedStation }
         await this.$store.dispatch(getActionUpdateStation(editedStation))
-        await this.$store.commit({ type: 'updateUsersStation', editedStation })
-
-
+        if (this.station.name !== editedStation.name)
+          await this.$store.commit({ type: 'updateUsersStation', editedStation })
         showSuccessMsg('Station updated')
         this.loadStation()
         this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
