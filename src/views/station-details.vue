@@ -59,7 +59,7 @@
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
-        @closeSearch="closeSearch" />
+        @closeSearch="closeSearch" :key="stationId" />
       <button v-else @click="openSearch" class="btn-find-more">Find more</button>
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
@@ -267,9 +267,14 @@ export default {
     },
     async getAvgClr() {
       const fac = new FastAverageColor()
-      const clr = await fac.getColorAsync(this.stationImg)
-      this.$refs.preview.style.backgroundColor = clr.hex
-      this.$refs.list.style.backgroundColor = clr.hex
+      var clr = {hex: '#535353'}
+      try{
+        clr = await fac.getColorAsync(this.stationImg)
+      } catch (err){console.log(err)}
+      finally{
+        this.$refs.preview.style.backgroundColor = clr.hex
+        this.$refs.list.style.backgroundColor = clr.hex
+      }
     },
     reorderSongs(reorderedStation) {
       this.updateStation(reorderedStation)
