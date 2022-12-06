@@ -14,6 +14,7 @@ import userCollection from './views/user-library.vue'
 import likedSongs from './views/liked-songs.vue'
 import signup from './views/signup.vue'
 import login from './views/login.vue'
+import stationLibrary from './views/station-library.vue'
 
 
 import testDnd from './views/test-dnd.vue'
@@ -46,6 +47,11 @@ const routes = [
     path: '/collection/tracks',
     name: 'liked-songs',
     component: likedSongs
+  },
+  {
+    path: '/collection/all',
+    name: 'station-library',
+    component: stationLibrary
   },
   {
     path: '/station/:id',

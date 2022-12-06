@@ -2,7 +2,7 @@
   <div class="station-list-container">
     <div class="station-list-head">
       <h1>{{ title }}</h1>
-      <button v-if="isIntersecting">Show all</button>
+      <button @click.stop="goToStationLibrary" v-if="isIntersecting">Show all</button>
     </div>
 
     <ul class="station-list">
@@ -79,6 +79,10 @@ export default {
       this.$router.push({ path: `/station/${id}` })
     },
 
+    goToStationLibrary() {
+      this.$router.push({ path: 'collection/all' })
+    },
+
     playStation(station) {
       this.$store.commit({ type: 'playStation', station })
     },
@@ -126,9 +130,6 @@ export default {
       return this.$store.getters.loggedInUser
     },
 
-    stationDesc() {
-
-    }
   },
 
   mounted() {
