@@ -126,7 +126,7 @@ export const stationStore = {
 
                 context.commit(getActionAddStation(station))
                 const { name, desc, _id, imgUrl, owner } = station
-                context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner.username } })
+                context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner._id } })
 
                 return station
             } catch (err) {

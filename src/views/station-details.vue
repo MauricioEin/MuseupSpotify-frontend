@@ -55,7 +55,7 @@
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" />
+        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @addToPlaylist="isPickerOpen=true" />
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -64,7 +64,7 @@
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     <!-- </section> -->
-
+<station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen=false"/>
   </section>
 </template>
 
@@ -82,6 +82,7 @@ import stationEdit from '../cmps/station-edit.vue'
 import stationSongSearch from '../cmps/station-song-search.vue'
 import stationSearchList from '../cmps/station-search-list.vue'
 import imgUploader from '../cmps/img-uploader.vue'
+import stationPicker from '../cmps/station-picker.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -99,6 +100,7 @@ export default {
       isEdit: false,
       isSearchOpen: true,
       isImgHover: false,
+      isPickerOpen: false
     }
   },
   computed: {
@@ -307,6 +309,7 @@ export default {
     imgUploader,
     stationSongSearch,
     stationSearchList,
+    stationPicker,
     moreOptionsSvg,
     pencilSvg,
     musicNoteSvg,
