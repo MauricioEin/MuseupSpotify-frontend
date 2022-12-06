@@ -40,6 +40,7 @@ export const userStore = {
 
         updateUsersStation(state, { editedStation }) {
             const stationIdx = state.loggedinUser.stations.findIndex(station => station._id === editedStation._id)
+            if (stationIdx < 0) return
             state.loggedinUser.stations[stationIdx].name = editedStation.name
         },
 

@@ -11,7 +11,6 @@
 <script>
 import { stationService } from '../services/station.service'
 import { utilService } from '../services/util.service'
-import mainSearchList from '../cmps/main-search-list.vue'
 import searchIcon from '../assets/svgs/search-icon.vue'
 
 export default {
@@ -44,13 +43,7 @@ export default {
         }
     },
     components: {
-        mainSearchList,
         searchIcon
-
     }
 }
 </script>
-
-<style lang="scss" scoped>
-
-</style>

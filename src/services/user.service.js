@@ -83,11 +83,8 @@ async function logout() {
 }
 
 async function followStation(miniStation, isToFollow, user) {
-    console.log('service ministation:', miniStation)
     const loggedinUser = getLoggedinUser() || user
-    console.log('FOLLOWSTATION loggedinUser:', loggedinUser)
-
-    isToFollow ? loggedinUser.stations.push(miniStation)
+    isToFollow ? loggedinUser.stations.unshift(miniStation)
         : loggedinUser.stations = loggedinUser.stations.filter(station => station._id !== miniStation._id)
     return update(loggedinUser)
 }
