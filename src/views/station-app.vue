@@ -1,5 +1,5 @@
 <template>
-  <section class="home-page content-layout">
+  <section class="home-page">
     <section class="s-home-header full" v-if="isOnHomePage">
       <section class="greeting">
         Good {{ greeting }}
