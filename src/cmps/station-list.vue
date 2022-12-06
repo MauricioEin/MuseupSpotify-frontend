@@ -23,9 +23,10 @@
           </p> -->
           <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
-          <button v-if="(station.songs.length)" class="btn-play-playlist"
-            @click.stop="toggleStation(station)"><pause-btn v-if="isCurrStationPlayed(station)" /><play-btn
-              v-else /></button>
+          <button v-if="(station.songs.length)" class="btn-play-playlist" @click.stop="toggleStation(station)">
+            <pause-btn v-if="isCurrStationPlayed(station)" />
+            <play-btn v-else />
+          </button>
 
         </div>
       </li>
