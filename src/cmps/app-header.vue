@@ -1,16 +1,13 @@
 <template>
   <header ref="header" class="app-header content-layout">
     <div class="flex">
+
       <nav class="flex">
         <button class="btn-go-back" @click="this.$router.go(-1)"><btn-go-back /></button>
         <button class="btn-go-next" @click="this.$router.go(1)"><btn-go-next /></button>
         <main-search v-if="isOnSearchPage" />
       </nav>
-      <!-- <section class="loggedin-user" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
-        <router-link :to="`/user/${loggedInUser._id}`">
-          {{ loggedInUser.fullname }}
-        </router-link>
-      </section> -->
+
       <section @click="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
         <div class="user-img-container">
           <img v-if="imgSrc" :src="imgSrc" class="fit-img" alt="">
@@ -23,23 +20,13 @@
         <mini-menu @profile="goToProfile" @logOut="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
           style="transform: translateY(40%); top: 0; right: 0;" />
       </section>
+
       <section class="header-login-signup" v-else>
         <button class="btn-signup" @click="goToSignup">Sign up</button>
         <button class="btn-login" @click="goToLogin">Log in</button>
       </section>
+
     </div>
-    <section class="s-home-header" v-if="isOnHomePage">
-      <section class="greeting">
-        Good {{ greeting }}
-      </section>
-      <section class="s-header-actions">
-        <button>
-          <gear-svg @click="togglePhoneMenu" />
-        </button>
-        <mini-menu ref="phoneMenu" v-if="isPhoneMenuOpen" @login="goToLogin" @logout="logout" @signup="goToSignup"
-          @profile="goToProfile" :actions="phoneActions" />
-      </section>
-    </section>
   </header>
 </template>
 <script>
@@ -56,7 +43,6 @@ export default {
   data() {
     return {
       isMenuOpen: false,
-      isPhoneMenuOpen: false,
     }
   },
   computed: {
@@ -72,17 +58,7 @@ export default {
     imgSrc() {
       return this.loggedInUser?.profileImg
     },
-    greeting() {
-      const d = new Date()
-      const h = d.getHours()
-      if (h < 5 || h >= 22) return 'night'
-      else if (h >= 5 && h < 12) return 'morning'
-      else if (h >= 12 && h < 18) return 'afternoon'
-      else if (h >= 18 && h < 22) return 'evening'
-    },
-    phoneActions() {
-      return this.loggedInUser ? ['Profile', 'Logout'] : ['Login', 'Signup']
-    }
+
   },
   methods: {
     toggleMenu() {
@@ -108,23 +84,7 @@ export default {
       const id = this.loggedInUser._id
       this.$router.push(`/user/${id}`)
     },
-    openPhoneMenu() {
-      this.isPhoneMenuOpen = true
-    },
-    closePhoneMenu() {
-      this.isPhoneMenuOpen = false
-    },
-    togglePhoneMenu() {
-      this.isPhoneMenuOpen = !this.isPhoneMenuOpen
-    }
-  },
-  watch: {
-    $route() {
-      this.closePhoneMenu()
-    },
-    loggedInUser() {
-      this.closePhoneMenu()
-    }
+
   },
   components: {
     mainSearch,

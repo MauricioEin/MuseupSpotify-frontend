@@ -1,0 +1,13 @@
+.station-search {
+
+
+    .station-search-header {
+        padding: 20px;
+        background-color: $clr08;
+        display: none;
+
+        @media (max-width: 860px) {
+            display: block;
+        }
+    }
+}
