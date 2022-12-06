@@ -1,0 +1,20 @@
+.mobile-nav{
+
+    background-color: transparent;
+    height:$mobile-nav-height;
+    position:absolute;
+    inset: auto 0 0;
+    text-align: center;
+    // z-index:100;
+    @media (min-width:$narrow-breakpoint){
+        display:none;
+    }
+}
+
+.app-footer{
+    background: linear-gradient(transparent 0,rgba(0,0,0) 87%);
+    height:200px;
+    width:100%;
+    position:fixed;
+    inset: auto 0 0;
+}

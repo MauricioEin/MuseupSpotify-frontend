@@ -1,5 +1,5 @@
 <template>
-  <div class="container home">
+  <div class="station-list-container">
     <h1>{{ title }}</h1>
     <ul class="station-list">
       <li class="station-card" v-for="station in stations" :key="station._id" @click="goToStation(station._id)">
