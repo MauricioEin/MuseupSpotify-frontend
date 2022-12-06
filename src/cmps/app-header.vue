@@ -43,6 +43,7 @@ export default {
   data() {
     return {
       isMenuOpen: false,
+      // headerObserver: null,
     }
   },
   computed: {
@@ -84,8 +85,21 @@ export default {
       const id = this.loggedInUser._id
       this.$router.push(`/user/${id}`)
     },
+    // onHeaderObserved(entries) {
+    //   entries.forEach((entry) => {
+    //     console.log('Intersection:', entry.isIntersecting);
+    //   });
+    // },
 
   },
+
+  // mounted() {
+  //   this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
+  //     rootMargin: "100px 0px 0px",
+  //   });
+  //   this.headerObserver.observe(this.$refs.header);
+  // },
+
   components: {
     mainSearch,
     btnGoBack,
