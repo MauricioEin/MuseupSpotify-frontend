@@ -16,6 +16,7 @@
     }
     a {
         color: $clr02;
+        font-size:0.7rem;
 
         &:hover {
             color: $clr01;
@@ -44,8 +45,8 @@
 }
 
 .app-footer {
-    background: linear-gradient(transparent 0, rgba(0, 0, 0) 87%);
-    height: 200px;
+    background: linear-gradient(transparent 0, rgba(0,0,0,0.5) 20%, rgb(0, 0, 0) 85%);
+    height: 180px;
     width: 100%;
     position: fixed;
     inset: auto 0 0;
