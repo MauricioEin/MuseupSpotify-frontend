@@ -91,7 +91,7 @@ export default {
       return (this.isPlaying && station._id === this.getPlayingStation._id)
     },
     resizeList() {
-      if (screen.width < 860) {
+      if (window.innerWidth < 860) {
         this.isIntersecting = false
         this.$refs.stationCard.forEach(elStation => {
           elStation.style.display = 'list-item'
@@ -104,7 +104,7 @@ export default {
           elStation.style.display = 'list-item'
           const rect = elStation.getClientRects()[0]
 
-          if (rect.right > screen.width - 14) {
+          if (rect.right > window.innerWidth - 14) {
             this.isIntersecting = true
             elStation.style.display = 'none'
           }
