@@ -2,14 +2,14 @@
     <section class="media-player" :class="setFull">
 
         <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" alt="">
-
+        <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)"><btn-down-svg/></button>
 
         <div class="player-section">
 
             <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
                 @state-change="onStateChange" ref="youtube" />
 
-            <div class="controls" :class="setFull">
+            <div class="controls" :class="setFull" @click="setFullInMobile">
                 <div class="left-controls" :class="setFull">
                     <img class="media-img fit-img" :class="setFull"
                         :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" :alt="currSongPlaying.title">
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="center-controls" :class="setFull">
-                    <div class="top-center-controls">
+                    <div class="top-center-controls" :class="setFull">
                         <button @click="isShuffled = !isShuffled">
                             <random-svg :style="shuffleStyle" />
                         </button>
@@ -88,6 +88,7 @@ import loopSvg from '../assets/svgs/media-player-loop.vue'
 import fullSvg from '../assets/svgs/media-player-full.vue'
 import minimizeSvg from '../assets/svgs/media-player-minimize.vue'
 import loopSongSvg from '../assets/svgs/media-player-loop-song.vue'
+import btnDownSvg from '../assets/svgs/btn-down-svg.vue'
 
 export default defineComponent({
     //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
@@ -211,6 +212,12 @@ export default defineComponent({
             this.loopType++
             if (this.loopType === 3) this.loopType = 0
         },
+
+        setFullInMobile(){
+            if(window.innerWidth < 750){
+                this.isFullscreen = true
+            }
+        }
     },
 
     computed: {
@@ -277,7 +284,8 @@ export default defineComponent({
         loopSvg,
         fullSvg,
         minimizeSvg,
-        loopSongSvg
+        loopSongSvg,
+        btnDownSvg
     },
 })
 </script>

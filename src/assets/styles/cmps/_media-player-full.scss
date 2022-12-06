@@ -57,3 +57,82 @@
 .player-section:first-child{
 display:none;
 }
+
+@media(max-width:750px){
+.media-player.full{
+    background-color: rgb(24, 23, 23);
+}
+.controls.full{
+    display: block;
+    justify-content: center;
+    height: 50px;
+    padding: 2px;
+}
+.right-controls {
+    display: none;
+}
+.center-controls.full{
+    button{
+        display: block;
+    }
+}
+
+.top-center-controls.full{
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    button{
+        display: block;
+        align-items: flex-end;
+    }
+    
+    svg{
+        fill: white;
+    }
+}
+
+.bottom-center-controls.full{
+    bottom: 70px;
+    span{
+        display: inline;
+    }
+}
+
+.left-controls.full{
+    width: 98%;
+    position: absolute;
+    bottom: 95px;
+    left: 16px;
+    button{
+        position: static;
+    }
+
+    .media-img{
+        display: none;
+    }
+
+    .player-song-name{
+        font-size: 17px;
+        color: white;
+    }
+}
+
+.album.full{
+    height: 340px;
+    width: 340px;
+    filter: brightness(100%);
+    opacity: 1;
+    transition: opacity .4s;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: 12%;
+    text-align: center;
+}
+
+.close-full-mobile{
+    margin-top: 11px;
+}
+}
