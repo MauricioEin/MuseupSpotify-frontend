@@ -12,9 +12,6 @@
     }
 
     .column-drag-handle {
-        // float: left;
-        // padding: 14px 0px 0;
-        // position:absolute;
         left:-6px;
         top:14px;
         z-index:20;
@@ -22,14 +19,15 @@
         cursor:grab;
         height:20px;
         width:20px;
+        // color:lightblue;
 
         &:active{
             cursor: grabbing;
+            // color:red;
         }
-
-        &.dragged{
-            cursor: grabbing;
-        }
+        // &.dragged{
+        //     cursor: grabbing;
+        // }
 
     }
 }

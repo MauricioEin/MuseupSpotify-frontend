@@ -22,14 +22,16 @@ export const store = Vuex.createStore({
   actions: {
     async followStation({ state, commit }, { station, isToFollow }) {
       try {
+        const loggedInUser = JSON.parse(JSON.stringify(state.userStore.loggedinUser))
+
         const miniUser = {
-          _id: state.userStore.loggedinUser._id,
-          username: state.userStore.loggedinUser.username
+          _id: loggedInUser._id,
+          username: loggedInUser.username,
         }
-        const miniStation = {_id:station._id, name: station.name}
+        const miniStation = { _id: station._id, name: station.name }
 
         const savedStation = await stationService.updateFollowers(station, miniUser, isToFollow)
-        const savedUser = await userService.followStation(miniStation, isToFollow)
+        const savedUser = await userService.followStation(miniStation, isToFollow, loggedInUser)
         commit({ type: 'updateStation', station: savedStation })
         commit({ type: 'updateUser', user: savedUser })
         commit({ type: 'setLoggedinUser', user: savedUser })

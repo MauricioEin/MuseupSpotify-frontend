@@ -5,7 +5,10 @@
     <section class="main-layout">
       <app-header />
       <router-view />
-      <media-player />
+      <footer class="app-footer">
+        <media-player />
+        <mobile-nav />
+      </footer>
     </section>
   </section>
 </template>
@@ -16,6 +19,7 @@
 import { store } from './store/store'
 import appHeader from './cmps/app-header.vue'
 import appNav from './cmps/app-nav.vue'
+import mobileNav from './cmps/mobile-nav.vue'
 import userMsg from './cmps/user-msg.vue'
 import { userService } from './services/user.service'
 import mediaPlayer from './cmps/media-player.vue'
@@ -33,6 +37,7 @@ export default {
     appHeader,
     userMsg,
     appNav,
+    mobileNav,
     mediaPlayer,
   },
 }
