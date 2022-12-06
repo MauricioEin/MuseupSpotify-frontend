@@ -1,8 +1,11 @@
 <template>
     <section class="media-player" :class="setFull">
 
-        <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" alt="">
-        <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)"><btn-down-svg/></button>
+        <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl"
+            alt="">
+        <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)">
+            <btn-down-svg />
+        </button>
 
         <div class="player-section">
 
@@ -17,8 +20,9 @@
                         <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
-                    <button @click.stop="">
-                        <heart-svg />
+                    <button class="btn-like-song" @click="saveSong" :class="{ liked: isLiked }">
+                        <heart-btn-svg v-if="isLiked" class="liked" />
+                        <heart-empty-svg v-else />
                     </button>
                 </div>
 
@@ -83,7 +87,8 @@ import prevSvg from '../assets/svgs/media-player-prev.vue'
 import randomSvg from '../assets/svgs/media-player-random.vue'
 import soundSvg from '../assets/svgs/media-player-sound.vue'
 import mutedSvg from '../assets/svgs/media-player-muted.vue'
-import heartSvg from '../assets/svgs/media-player-heart.vue'
+import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
+import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import loopSvg from '../assets/svgs/media-player-loop.vue'
 import fullSvg from '../assets/svgs/media-player-full.vue'
 import minimizeSvg from '../assets/svgs/media-player-minimize.vue'
@@ -213,10 +218,14 @@ export default defineComponent({
             if (this.loopType === 3) this.loopType = 0
         },
 
-        setFullInMobile(){
-            if(window.innerWidth < 750){
+        setFullInMobile() {
+            if (window.innerWidth < 750) {
                 this.isFullscreen = true
             }
+        },
+        saveSong(){
+            this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
+
         }
     },
 
@@ -242,7 +251,14 @@ export default defineComponent({
 
         isPlayingInStore() {
             return this.$store.getters.isPlaying
-        }
+        },
+        loggedInUser() {
+            return this.$store.getters.loggedinUser
+        },
+        isLiked() {
+            return this.loggedInUser.likedSongs.some(song => song.youtubeId === this.currSongPlaying.youtubeId)
+        },
+
     },
 
     watch: {
@@ -280,7 +296,8 @@ export default defineComponent({
         randomSvg,
         soundSvg,
         mutedSvg,
-        heartSvg,
+        heartEmptySvg,
+        heartBtnSvg,
         loopSvg,
         fullSvg,
         minimizeSvg,
