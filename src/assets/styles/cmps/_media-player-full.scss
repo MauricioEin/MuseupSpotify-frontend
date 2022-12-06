@@ -1,6 +1,6 @@
 .media-player.full{
     // background-image: url(https://assets.fontsinuse.com/static/use-media-items/52/51196/full-1500x1500/58f577f9/C9H8-PWUIAAzbQ2-jpg-large-e.jpeg);
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
@@ -65,7 +65,7 @@ display:none;
 .controls.full{
     display: block;
     justify-content: center;
-    height: 50px;
+    height: 0px;
     padding: 2px;
 }
 .right-controls {
@@ -92,7 +92,7 @@ display:none;
 }
 
 .bottom-center-controls.full{
-    bottom: 70px;
+    bottom: 28px;
     span{
         display: inline;
     }
@@ -101,7 +101,7 @@ display:none;
 .left-controls.full{
     width: 98%;
     position: absolute;
-    bottom: 95px;
+    bottom: 64px;
     left: 16px;
     button{
         position: static;
