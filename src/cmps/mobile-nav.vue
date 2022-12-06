@@ -1,6 +1,23 @@
 <template><section class="mobile-nav">
 
-  preparation for mobile nav
+  <!-- preparation for mobile nav -->
+  <ul class="clean-list flex">
+        <li>
+          <router-link to="/station">
+            <home-btn-svg />
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/search">
+            <search-btn-svg />
+          </router-link>
+        </li>
+        <li>
+          <router-link to="/collection">
+            <library-btn-svg />
+          </router-link>
+        </li>
+      </ul>
 </section>
   <!-- <section class="">
     <div class="logo pointer" @click="$router.push('/station')">

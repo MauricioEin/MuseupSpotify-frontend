@@ -1,4 +1,4 @@
-.media-player.full{
+.media-player.full {
     // background-image: url(https://assets.fontsinuse.com/static/use-media-items/52/51196/full-1500x1500/58f577f9/C9H8-PWUIAAzbQ2-jpg-large-e.jpeg);
     position: fixed;
     top: 0;
@@ -11,22 +11,22 @@
     // display: block;
 }
 
-.album{
+.album {
     height: 0vh;
     opacity: 0;
     transition: opacity .6s;
     z-index: 1;
 }
 
-.album.full{
+.album.full {
     height: 100vh;
     filter: brightness(20%);
     opacity: 1;
     transition: opacity .4s;
-   
+
 }
 
-.bottom-center-controls.full{
+.bottom-center-controls.full {
     position: absolute;
     width: 100%;
     left: 0px;
@@ -34,105 +34,112 @@
     padding: 0 16px;
 }
 
-.controls.full{
+.controls.full {
     background-color: transparent;
     border: 0;
     justify-content: space-between;
 }
 
-.left-controls.full{
+.left-controls.full {
     /* position: absolute;
     left: 0;
     padding-left: 16px; */
     width: 230px;
 }
 
-.heart-svg.full{
+.heart-svg.full {
     padding-left: 0;
 }
-.full-svg.full{
+
+.full-svg.full {
     padding-right: 0;
 }
 
-.player-section:first-child{
-display:none;
-}
-
-@media(max-width:750px){
-.media-player.full{
-    background-color: rgb(24, 23, 23);
-}
-.controls.full{
-    display: block;
-    justify-content: center;
-    height: 0px;
-    padding: 2px;
-}
-.right-controls {
+.player-section:first-child {
     display: none;
 }
-.center-controls.full{
-    button{
+
+@media(max-width:750px) {
+    .media-player.full {
+        background-color: rgb(24, 23, 23);
+    }
+
+    .controls.full {
         display: block;
-    }
-}
-
-.top-center-controls.full{
-    width: 100%;
-    justify-content: space-between;
-    display: flex;
-    button{
-        display: block;
-        align-items: flex-end;
-    }
-    
-    svg{
-        fill: white;
-    }
-}
-
-.bottom-center-controls.full{
-    bottom: 28px;
-    span{
-        display: inline;
-    }
-}
-
-.left-controls.full{
-    width: 98%;
-    position: absolute;
-    bottom: 64px;
-    left: 16px;
-    button{
-        position: static;
+        justify-content: center;
+        height: 0px;
+        padding: 2px;
     }
 
-    .media-img{
+    .right-controls {
         display: none;
     }
 
-    .player-song-name{
-        font-size: 17px;
-        color: white;
+    .center-controls.full {
+        button {
+            display: block;
+        }
     }
-}
 
-.album.full{
-    height: 340px;
-    width: 340px;
-    filter: brightness(100%);
-    opacity: 1;
-    transition: opacity .4s;
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: 12%;
-    text-align: center;
-}
+    .top-center-controls.full {
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
 
-.close-full-mobile{
-    margin-top: 11px;
-}
+        button {
+            display: block;
+            align-items: flex-end;
+        }
+
+        svg {
+            fill: white;
+        }
+    }
+
+    .bottom-center-controls.full {
+        bottom: 28px;
+
+        span {
+            display: inline;
+        }
+    }
+
+    .left-controls.full {
+        width: 98%;
+        position: absolute;
+        bottom: 64px;
+        left: 16px;
+
+        button {
+            position: static;
+        }
+
+        .media-img {
+            display: none;
+        }
+
+        .player-song-name {
+            font-size: 17px;
+            color: white;
+        }
+    }
+
+    .album.full {
+        height: 340px;
+        width: 340px;
+        filter: brightness(100%);
+        opacity: 1;
+        transition: opacity .4s;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 12%;
+        text-align: center;
+    }
+
+    .close-full-mobile {
+        margin-top: 11px;
+    }
 }
