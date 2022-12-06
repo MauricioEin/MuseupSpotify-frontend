@@ -3,18 +3,21 @@
   <!-- preparation for mobile nav -->
   <ul class="clean-list flex">
         <li>
-          <router-link to="/station">
+          <router-link to="/station" class="flex column align-center">
             <home-btn-svg />
+            <span class="light">Home</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/search">
+          <router-link to="/search" class="flex column align-center">
             <search-btn-svg />
+            <span class="light">Search</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/collection">
+          <router-link to="/collection" class="flex column align-center">
             <library-btn-svg />
+            <span class="light">Your Library</span>
           </router-link>
         </li>
       </ul>
