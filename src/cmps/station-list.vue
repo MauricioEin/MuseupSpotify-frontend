@@ -16,11 +16,11 @@
           <p class="station-desc cut-text">
             The essential tracks, all in one playlist.
           </p> -->
-          <p v-if="station.desc" class="station-desc cut-text">{{ station.desc }}</p>
+          <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
           <button v-if="(station.songs.length)" class="btn-play-playlist"
-            @click.stop="toggleStation(station)"><pause-btn
-              v-if="isCurrStationPlayed(station)" /><play-btn v-else /></button>
+            @click.stop="toggleStation(station)"><pause-btn v-if="isCurrStationPlayed(station)" /><play-btn
+              v-else /></button>
 
         </div>
       </li>
@@ -48,11 +48,11 @@ export default {
     this.$store.dispatch({ type: 'loadStations' })
   },
   methods: {
-    toggleStation(station){
-      if(!this.isCurrStationPlayed(station) && this.isPlaying ||
-         !this.isCurrStationPlayed(station) && !this.isPlaying){
+    toggleStation(station) {
+      if (!this.isCurrStationPlayed(station) && this.isPlaying ||
+        !this.isCurrStationPlayed(station) && !this.isPlaying) {
         this.playStation(station)
-      } else this.toggleIsPlaying() 
+      } else this.toggleIsPlaying()
     },
 
     getStationImg(station) {
@@ -89,6 +89,10 @@ export default {
 
     loggedInUser() {
       return this.$store.getters.loggedInUser
+    },
+
+    stationDesc() {
+
     }
   },
 
