@@ -10,6 +10,10 @@
         display: flex;
         justify-content: space-between;
 
+    @media(max-width:750px){
+        margin-inline-start: 13px;
+    }
+
         h1 {
             margin-top: 16px;
             font-size: 24px;
@@ -46,6 +50,10 @@
     padding: 0 15px;
     margin: 0;
     // background-color: beige;
+
+    @media(max-width:750px){
+        gap:unset;
+    }    
 
     li {
         list-style-type: none;
@@ -151,4 +159,28 @@
     height: 20px;
     white-space: nowrap;
 
+}
+
+@media (max-width:750px){
+    .station-card{
+        background-color: transparent;
+
+    &:hover{
+        background-color: unset;
+        button{
+            display: none;
+        }
+    }
+
+        .station-img{
+            border-radius: 0;
+        }
+
+        .station-title{
+            // display: none;
+            margin: 0;
+            opacity: 0;
+            height: 0;
+        }
+    }
 }
