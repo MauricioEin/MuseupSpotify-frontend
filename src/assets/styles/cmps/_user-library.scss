@@ -57,12 +57,34 @@
         // background-color: beige;
 
         @media(max-width:750px) {
-            gap: unset;
-            padding: 10px 15px 150px;
+            gap: 10px;
+            padding: 10px 15px;
+
+            .station-card {
+                gap: 10px;
+                padding: 0;
+
+                .card-details {
+                    gap: 10px;
+
+                    .station-desc {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
         }
 
         li {
             list-style-type: none;
+
+            @media (max-width:750px) {
+                display: grid;
+                grid-template-columns: 40px 1fr;
+
+
+            }
+
         }
 
         img {

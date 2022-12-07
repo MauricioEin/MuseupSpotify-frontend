@@ -115,6 +115,7 @@ export default {
         },
         saveSong() {
             this.$store.dispatch({ type: 'saveSong', song: this.song })
+            this.isMiniMenu = false
         },
         toggleMiniMenu() {
             this.isMiniMenu = !this.isMiniMenu

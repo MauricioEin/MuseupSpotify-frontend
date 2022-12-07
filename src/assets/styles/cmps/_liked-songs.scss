@@ -1,7 +1,8 @@
 .liked-songs {
     .station-preview {
-        background: linear-gradient(transparent 0,rgba(0,0,0,.5) 100%);
+        background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 100%);
         background-color: rgb(80, 56, 160);
+
 
 
         .img-container {
@@ -9,6 +10,16 @@
             width: 192px;
             box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
 
+        }
+
+        .station-summary {
+            h1 {
+
+                @media(max-width: 750px) {
+                    // padding-top: 80px;
+                    font-size: 1rem;
+                }
+            }
         }
 
         .mini-dashboard {
@@ -20,7 +31,7 @@
         }
     }
 
-    .song-list-container{
+    .song-list-container {
         min-height: 230px;
         // background-image: linear-gradient(rgba(0, 0, 0, .6) 0, $clr07 50%);
         background-image: linear-gradient(rgba(0, 0, 0, 0.6) 0, #121212 230px);
