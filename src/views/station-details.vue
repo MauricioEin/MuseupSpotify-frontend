@@ -1,5 +1,5 @@
 <template >
-  <section v-if="station && !isPickerOpen" class="station-details content-layout">
+  <section v-if="station" class="station-details content-layout">
     <section class="station-preview flex full" ref="preview">
       <img-uploader class="uploader-img" :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
       <img class="mobile-img" :src="stationImg" alt="">
@@ -69,10 +69,13 @@
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     <!-- </section> -->
-    <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen = false" />
+    <!-- <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen = false" /> -->
+
+    <station-picker v-if="isPickerOpen" :isOpen="isPickerOpen" :user="loggedInUser" :song="songToAdd"
+      @close="isPickerOpen = false" />
+    <div @click.stop="isPickerOpen = false" class="picker-screen" :class="{ 'shown': isPickerOpen }"></div>
 
   </section>
-  <station-picker v-if="isPickerOpen" :user="loggedInUser" :song="songToAdd" @close="isPickerOpen = false" />
   <!-- <pre>{{ station }}</pre> -->
 </template>
 

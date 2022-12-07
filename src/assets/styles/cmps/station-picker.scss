@@ -1,4 +1,30 @@
 .station-picker {
+    padding: 30px;
+    overflow-y: scroll;
+
+    @media (max-width: 750px) {
+        position: fixed;
+        inset: 0;
+        height: unset;
+        background-color: $clr08;
+        z-index: 50;
+
+
+    }
+
+    @media (min-width: 750px) {
+        position: absolute;
+        z-index: 60;
+        background-color: $clr07;
+        height: 600px;
+        width: 500px;
+        outline: white 1px solid;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 7px;
+    }
+
     .picker-header {
         margin-bottom: 10px;
         display: grid;
@@ -8,10 +34,10 @@
 
     .search-input {
         position: relative;
-        width:100%;
+        width: 100%;
 
         input {
-            width:100%;
+            width: 100%;
             background-color: $clr06;
             color: $clr01;
             border: none;
@@ -21,8 +47,9 @@
             height: 40px;
             margin: 10px 0;
 
-            
+
         }
+
         svg {
             fill: #c0c0c0;
             position: absolute;
@@ -45,22 +72,33 @@
 
     }
 
-    li{
+    li {
         margin-top: 15px;
-        gap:10px;
-        *{
-            margin:0;
+        gap: 10px;
+
+        * {
+            margin: 0;
         }
-       .img-container{
-        width:60px;
-        height:60px;
-       } 
-       h4{
-        font-size: 1rem;
-       }
-       p{
-        font-size: 0.875rem;
-        color:$clr02;
-       }
+
+        .img-container {
+            width: 60px;
+            height: 60px;
+        }
+
+        h4 {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 0.875rem;
+            color: $clr02;
+        }
+
+        @media (min-width: 750px) {
+
+            &:hover {
+                background-color: $clr04;
+            }
+        }
     }
 }
