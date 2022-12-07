@@ -55,11 +55,8 @@
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-<<<<<<< HEAD
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @queueSong="queueSong" @removeQueue="removeQueue"/>
-=======
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @addToPlaylist="isPickerOpen=true" />
->>>>>>> 75016f042a3d14568c7f2a6a4a5af7f5d9c12ad9
+        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @addToPlaylist="isPickerOpen=true" @queueSong="queueSong" @removeQueue="removeQueue"/>
+
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
@@ -68,7 +65,8 @@
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     <!-- </section> -->
-<station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen=false"/>
+    <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen=false"/>
+
   </section>
 </template>
 
@@ -86,7 +84,6 @@ import stationEdit from '../cmps/station-edit.vue'
 import stationSongSearch from '../cmps/station-song-search.vue'
 import stationSearchList from '../cmps/station-search-list.vue'
 import imgUploader from '../cmps/img-uploader.vue'
-import stationPicker from '../cmps/station-picker.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -104,11 +101,7 @@ export default {
       isEdit: false,
       isSearchOpen: true,
       isImgHover: false,
-<<<<<<< HEAD
       isStationQueued:false,
-=======
-      isPickerOpen: false
->>>>>>> 75016f042a3d14568c7f2a6a4a5af7f5d9c12ad9
     }
   },
   computed: {
@@ -186,7 +179,6 @@ export default {
       if(!item.songs){
         this.$store.commit({type:'removeQueue', item})
       }else{
-        console.log('heree');
         this.isStationQueued = !this.isStationQueued
         this.$store.commit({type:'removeQueue', item: item.songs})
       }
@@ -340,7 +332,6 @@ export default {
     imgUploader,
     stationSongSearch,
     stationSearchList,
-    stationPicker,
     moreOptionsSvg,
     pencilSvg,
     musicNoteSvg,

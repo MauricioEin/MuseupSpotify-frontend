@@ -134,7 +134,7 @@ export const stationStore = {
         
         removeQueue(state, {item}){
             console.log(item);
-            if(item.youtubeId){
+            if(item?.youtubeId){
                 const idx = state.playingStation.songs.findIndex(s => s.youtubeId === item.youtubeId)
                 state.playingStation.songs.splice(idx, 1)
                 console.log(state.playingStation);
