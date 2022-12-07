@@ -1,5 +1,5 @@
 <template>
-  <section class="user-collection">
+  <section class="user-collection content-layout">
     <section class="user-library-header">
       <div class="flex align-center">
         <div class="user-img-container">
