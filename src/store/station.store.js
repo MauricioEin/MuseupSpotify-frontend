@@ -87,12 +87,13 @@ export const stationStore = {
             const miniStation = (Array.isArray(station)) ?
                 { _id: '' } : { _id: station._id }
             miniStation.songs = station.songs?.map(song => {
-                const { title, imgUrl, youtubeId, length, createdAt, id } = song
+                const { title, imgUrl, youtubeId, length, createdAt, id,  } = song
                 return {
                     title,
                     imgUrl: imgUrl.medium || imgUrl,
                     youtubeId,
-                    length, createdAt, id
+                    length, createdAt, id,
+                    // isQueued: isQueued || false
                 }
             }) || station
 
@@ -117,6 +118,7 @@ export const stationStore = {
 
         queueSong(state, {song}){
             console.log(state.playingStation);
+            // song.isQueued = true
             state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
             console.log(state.playingStation);
         },
@@ -126,6 +128,7 @@ export const stationStore = {
             console.log(state.playingStation);
             var idx = {...state.playingSongIdx}
             station.forEach(song => {
+                // song.isQueued = true
                 state.playingStation.songs.splice(idx + 1, 0, song)
                 idx++
             })
@@ -145,6 +148,12 @@ export const stationStore = {
                 })
             }
         },
+
+        // removeAllQueued(state){
+        //     state.playingStation.songs.forEach((song, idx)=>{
+        //         if(song.isQueued) state.playingStation.songs.splice(idx, 1)
+        //     })
+        // }
     },
     actions: {
         async addStation(context, { station }) {
