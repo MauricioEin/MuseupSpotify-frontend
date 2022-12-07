@@ -1,5 +1,5 @@
 <template>
-  <section class="user-collection">
+  <section class="user-collection content-layout">
     <section class="user-library-header">
       <div class="flex align-center">
         <div class="user-img-container">
@@ -19,9 +19,9 @@
       </div>
 
     </section>
-    <!-- <liked-songs-card /> -->
     <!-- <station-list :stations="stations" /> -->
     <ul class="station-library-list">
+      <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations.length" />
       <station-preview v-for="station in stations" :station="station" :key="station._id" />
     </ul>
   </section>
@@ -31,6 +31,7 @@
 import { stationService } from '../services/station.service'
 import stationList from '../cmps/station-list.vue'
 import stationPreview from '../cmps/station-preview.vue'
+import likedSongsCard from '../cmps/liked-songs-card.vue'
 
 import searchIcon from '../assets/svgs/search-icon.vue'
 import plusBtnSvg from '../assets/svgs/plus-btn-svg.vue'
@@ -71,7 +72,8 @@ export default {
     searchIcon,
     plusBtnSvg,
     userPortrait,
-    stationPreview
+    stationPreview,
+    likedSongsCard
   },
 
   computed: {

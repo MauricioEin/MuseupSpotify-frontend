@@ -94,7 +94,9 @@ const routes = [
 export const router = createRouter({
   routes,
   history: createWebHashHistory(),
-
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0, behavior: 'smooth' }
+  }
   // base: process.env.BASE_URL,
 })
 

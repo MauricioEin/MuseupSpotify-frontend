@@ -136,4 +136,7 @@ hr {
             font-weight: 900;
         }
     }
+    &:hover::-webkit-scrollbar-thumb {
+        background: rgba(136, 136, 136, 0.576);
+    }
 }
