@@ -6,14 +6,16 @@
     </div>
     <button class="create-btn" @click="createStation">New Playlist</button>
     <div class="search-input">
-      <input v-model="searchStr" type="search" placeholder="Find playlist">
+      <input v-model="searchStr" @input="filterStations" type="search" placeholder="Find playlist">
       <search-icon />
     </div>
     <ul class="clean-list">
       <li v-for="station in stations" :key="station._id" @click="addToStation(station._id)"
         class="flex align-center pointer">
         <div class="img-container">
-          <img :src="station.imgUrl || station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl" class="fit-img" />
+          <img
+            :src="station.imgUrl || station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'"
+            class="fit-img" />
         </div>
         <div>
           <h4>{{ station.name }}</h4>
@@ -30,17 +32,22 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import searchIcon from '../assets/svgs/search-icon.vue'
 
 export default {
-  name: 'login',
+  name: 'station-picker',
   props: ['user', 'song'],
   components: { searchIcon },
   data() {
     return {
+      searchStr: '',
     }
   },
   computed: {
     stations() {
-      const userStations = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
-      return this.$store.getters.stations.filter(s => userStations.includes(s._id))
+      const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
+      const userStations = this.$store.getters.stations.filter(s => userStationsIds.includes(s._id))
+      const regex = new RegExp(this.searchStr, 'i')
+      return userStations.filter(s => {
+        return regex.test(s.name) || regex.test(s.desc)
+      })
     },
   },
   created() {
@@ -50,10 +57,10 @@ export default {
       try {
         const editedStation = JSON.parse(JSON.stringify(this.stations.find(s => s._id === stationId)))
         editedStation.songs.push(this.song)
-        await this.$store.dispatch({type:'updateStation',station:editedStation})
+        await this.$store.dispatch({ type: 'updateStation', station: editedStation })
         showSuccessMsg('Added to playlist')
         this.$emit('close')
-
+        this.$router.push(`/station/${stationId}`)
         // this.loadStation()
         // if (this.isCurrStationPlayed && this.isPlaying)
         //   this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
@@ -71,8 +78,13 @@ export default {
       this.$router.push('/station/' + savedStation._id)
       this.$emit('close')
 
-    }
-  }
+    },
+  },
+  // watch: {
+  //   searchStr() {
+
+  //   }
+  // }
 }
 
 </script>

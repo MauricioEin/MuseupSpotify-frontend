@@ -1,7 +1,8 @@
 <template>
     <li class="song-preview" @click.stop="$emit('clicked', song.id)"
         :class="{ clicked: isClicked, playing: isOnPlayer }">
-        <span class="column-drag-handle" @mousedown="isDragged =true" @mouseup="isDragged =false" :class="{dragged:isDragged}">&#x2630;</span>
+        <span class="column-drag-handle" @mousedown="isDragged = true" @mouseup="isDragged = false"
+            :class="{ dragged: isDragged }">&#x2630;</span>
 
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">
@@ -29,16 +30,13 @@
                 <heart-btn-svg v-if="isLiked" class="liked" />
                 <heart-empty-svg v-else />
             </button>
-            <div class="song-length">{{ song.length }}
+            <div class="song-length">{{ song.length }}</div>
+            <button class="btn-more" @click="toggleMiniMenu">
+                <more-options-svg />
                 <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
                     @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
-                    @removeFromQueue="onMiniMenu('removeQueue')" 
-                    @AddToAPlaylist="onMiniMenu('addToPlaylist')" />
-
-            </div>
-            <button class="btn-more" @click="toggleMiniMenu">
-                <more-options-svg />
+                    @removeFromQueue="onMiniMenu('removeQueue')" @AddToAPlaylist="onMiniMenu('addToPlaylist')" />
             </button>
         </div>
     </li>
@@ -113,7 +111,7 @@ export default {
         songActions() {
             const songActions = ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Remove from playlist', 'Share']
             if (this.isLikedSongs) songActions.splice(3, 1)
-            if(this.isQueued) songActions.splice(0, 1, 'Remove from queue')
+            if (this.isQueued) songActions.splice(0, 1, 'Remove from queue')
             return songActions
         },
         nowPlayingSong() {
@@ -134,10 +132,12 @@ export default {
         },
         onMiniMenu(action) {
             this.isMiniMenu = false
+            this.toggleMiniMenu()
+
             console.log(this.isQueued);
             console.log(action)
             this.$emit('songAction', action)
-            if(action = 'addToQueue') this.isQueued = !this.isQueued
+            if (action = 'addToQueue') this.isQueued = !this.isQueued
             console.log(this.isQueued);
         },
         // playSong() {

@@ -17,9 +17,9 @@
             .mini-menu {
                 height: 300px;
                 width: 300px;
+                right: 0;
             }
         }
-
 
         .mobile-img {
             display: none;
@@ -33,7 +33,7 @@
             // display: grid;
             position: relative;
 
-            box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
+            box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
 
             img {
                 height: 192px;
@@ -60,7 +60,7 @@
                 // text-size-adjust: auto;
 
                 font-size: 65px;
-                margin-top: 20px;
+                margin: 20px 0;
                 font-weight: 900;
                 transform: translateY(-15%);
             }
@@ -71,7 +71,7 @@
             }
 
             .station-desc {
-                margin: 0;
+                margin: 0 0 10px;
             }
 
             .mini-dashboard {
@@ -176,6 +176,21 @@
         justify-self: end;
         transform: translateX(-10%);
     }
+
+    .picker-screen {
+        display: none;
+
+        @media (min-width: 860px) {
+
+            &.shown {
+                display: block;
+                position: fixed;
+                background-color: rgba(0, 0, 0, 0.7);
+                inset: 0;
+                z-index: 50;
+            }
+        }
+    }
 }
 
 // @media (max-width:1255px){
@@ -238,7 +253,7 @@
 
 
         .playlist-actions {
-            justify-content: space-between;
+            // justify-content: space-between;
         }
 
         .song-list-header {
@@ -267,5 +282,4 @@
             text-align: center;
         }
     }
-
 }

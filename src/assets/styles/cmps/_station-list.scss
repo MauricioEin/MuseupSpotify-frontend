@@ -179,8 +179,12 @@
         .station-title {
             // display: none;
             margin: 0;
-            opacity: 0;
-            height: 0;
+            // opacity: 0;
+            // height: 0;
+        }
+
+        .station-desc {
+            display: none;
         }
     }
 }

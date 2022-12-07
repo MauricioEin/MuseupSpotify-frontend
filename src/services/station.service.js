@@ -214,9 +214,6 @@ async function _getSongLength(videoId) {
 }
 
 
-
-
-// DEMO DATA
 import MuseUp from '../demo-data/stations.json' assert {type: 'json'}
 
 if (!localStorage.getItem(STORAGE_KEY) || !localStorage.getItem(STORAGE_KEY).length) {

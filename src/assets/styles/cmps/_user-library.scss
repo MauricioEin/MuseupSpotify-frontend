@@ -6,7 +6,7 @@
         display: none;
 
         @media(max-width: 859px) {
-            padding: 20px;
+            padding: 20px 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -59,6 +59,7 @@
         @media(max-width:750px) {
             gap: 10px;
             padding: 10px 5px;
+            grid-template-columns: repeat(auto-fill, 100%);
 
             .station-card {
                 gap: 10px;
@@ -66,10 +67,12 @@
 
                 .card-details {
                     gap: 10px;
+                    align-self: center;
+                    color: $clr02;
 
                     .station-desc {
-                        display: flex;
-                        align-items: center;
+                        // display: flex;
+                        // align-items: center;
                     }
                 }
             }

@@ -49,7 +49,7 @@
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
                         <span class="time-progress">{{ formattedTime(currTime) }}</span>
-                        <input class="timestamp" @input="setTimestamp" type="range" :value="currTime" min="0"
+                        <input class="timestamp" id="fontController" @input="setTimestamp" type="range" :value="currTime" min="0"
                             :max='duration'>
                         <progress :value="currTime" type="progress" min="0" :max='duration'></progress>
                         <span class="time-progress">{{ formattedTime(duration) }}</span>
@@ -125,6 +125,11 @@ export default defineComponent({
             if (ev.data === 1) {
                 this.getDuration()
             }
+            
+            // if (ev.data === 0 &&
+            //     this.currSongIdx === this.songList.length - 1){
+            //     this.$store.commit({type:'removeAllQueued'})
+            // }
 
             if (ev.data === 0 &&
                 this.currSongIdx !== this.songList.length - 1 &&

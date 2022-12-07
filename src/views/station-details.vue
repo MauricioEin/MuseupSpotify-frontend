@@ -1,5 +1,5 @@
 <template >
-  <section v-if="station && !isPickerOpen" class="station-details content-layout">
+  <section v-if="station" class="station-details content-layout">
     <section class="station-preview flex full" ref="preview">
       <img-uploader class="uploader-img" :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
       <img class="mobile-img" :src="stationImg" alt="">
@@ -28,7 +28,8 @@
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="song-list-container content-layout" ref="list">
-      <section class="playlist-actions" :class="{'flex justify-end': !station.songs.length }">
+      <section class="playlist-actions"
+        :class="{ 'flex justify-end': !station.songs.length, 'flex space-between': station.songs.length }">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
           <pause-btn v-if="isCurrStationPlayed && isPlaying" />
@@ -40,7 +41,7 @@
 
           <play-btn />
         </button> -->
-        <div class="flex option-btns">
+        <div v-if="station" class="flex option-btns">
           <div class="btn-follow" @click="follow">
             <heart-btn-svg v-if="isFollowed" class="followed" />
             <heart-empty-svg v-else />
@@ -68,10 +69,14 @@
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     <!-- </section> -->
-    <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen = false" />
+    <!-- <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen = false" /> -->
+
+    <station-picker v-if="isPickerOpen" :isOpen="isPickerOpen" :user="loggedInUser" :song="songToAdd"
+      @close="isPickerOpen = false" />
+    <div @click.stop="isPickerOpen = false" class="picker-screen" :class="{ 'shown': isPickerOpen }"></div>
 
   </section>
-  <station-picker v-if="isPickerOpen" :user="loggedInUser" :song="songToAdd" @close="isPickerOpen = false" />
+  <!-- <pre>{{ station }}</pre> -->
 </template>
 
 
@@ -171,6 +176,13 @@ export default {
     isCurrStationPlayed() {
       return this.station._id === this.getPlayingStation._id
     },
+    // getStyle() {
+    //   // if (window.innerWidth < 750) return
+
+    //   const prop = this.station?.length ? 'space-between' : 'end'
+    //   debugger
+    //   return { 'justify-content': prop }
+    // }
   },
   async mounted() {
     window.addEventListener('click', this.closeMenu)

@@ -33,7 +33,7 @@ export const stationStore = {
         playingSongIdx: 0,
         currStation: null,
         isPlaying: false,
-        filteredStations:{},
+        filteredStations: {},
     },
     getters: {
         stations({ stations }) { return stations },
@@ -51,7 +51,7 @@ export const stationStore = {
         playingSong({ playingStation, playingSongIdx }) {
             return playingStation.songs[playingSongIdx]
         },
-        filteredStations(state) {return state.filteredStations}
+        filteredStations(state) { return state.filteredStations }
     },
     mutations: {
         setStations(state, { stations }) {
@@ -89,12 +89,13 @@ export const stationStore = {
             const miniStation = (Array.isArray(station)) ?
                 { _id: '' } : { _id: station._id }
             miniStation.songs = station.songs?.map(song => {
-                const { title, imgUrl, youtubeId, length, createdAt, id } = song
+                const { title, imgUrl, youtubeId, length, createdAt, id, } = song
                 return {
                     title,
                     imgUrl: imgUrl.medium || imgUrl,
                     youtubeId,
-                    length, createdAt, id
+                    length, createdAt, id,
+                    // isQueued: isQueued || false
                 }
             }) || station
 
@@ -117,9 +118,19 @@ export const stationStore = {
             state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
         },
 
-        queueStation(state, { station }) {
-            var idx = { ...state.playingSongIdx }
+        queueSong(state, {song}){
+            console.log(state.playingStation);
+            // song.isQueued = true
+            state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
+            console.log(state.playingStation);
+        },
+
+        queueStation(state, {station}){
+            console.log(station);
+            console.log(state.playingStation);
+            var idx = {...state.playingSongIdx}
             station.forEach(song => {
+                // song.isQueued = true
                 state.playingStation.songs.splice(idx + 1, 0, song)
                 idx++
             })
@@ -139,6 +150,11 @@ export const stationStore = {
         }, filterStations(state, { filteredStations }) {
             state.filteredStations = filteredStations
         }
+        // removeAllQueued(state){
+        //     state.playingStation.songs.forEach((song, idx)=>{
+        //         if(song.isQueued) state.playingStation.songs.splice(idx, 1)
+        //     })
+        // }
     },
     actions: {
         filterStations(context, { categories }) {
@@ -147,7 +163,7 @@ export const stationStore = {
 
             try {
                 categories.forEach(async category => {
-                    if (category==='user') {
+                    if (category === 'user') {
                         filteredStations.user = await stationService.query({ owner: context.getters.loggedinUser._id })
                     }
                     else if (category === 'others') {
