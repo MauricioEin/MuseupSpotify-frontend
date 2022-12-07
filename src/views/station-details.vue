@@ -1,5 +1,5 @@
 <template >
-  <section v-if="station" class="station-details content-layout">
+  <section v-if="station && !isPickerOpen" class="station-details content-layout">
     <section class="station-preview flex full" ref="preview">
       <img-uploader class="uploader-img" :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
       <img class="mobile-img" :src="stationImg" alt="">
@@ -28,7 +28,7 @@
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="song-list-container content-layout" ref="list">
-      <section class="playlist-actions" :class="{'flex justify-end': !station.songs.length}">
+      <section class="playlist-actions" :class="{ 'flex justify-end': !station.songs.length }">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
           <pause-btn v-if="isCurrStationPlayed && isPlaying" />
@@ -55,7 +55,7 @@
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @addToPlaylist="isPickerOpen=true" @queueSong="queueSong" @removeQueue="removeQueue"/>
+        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }" @queueSong="queueSong" @removeQueue="removeQueue"/>
 
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
@@ -68,6 +68,7 @@
     <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen=false"/>
 
   </section>
+  <station-picker v-if="isPickerOpen" :user="loggedInUser" :song="songToAdd" @close="isPickerOpen = false" />
 </template>
 
 
@@ -102,6 +103,8 @@ export default {
       isSearchOpen: true,
       isImgHover: false,
       isStationQueued:false,
+      isPickerOpen: false,
+      songToAdd:{}
     }
   },
   computed: {
@@ -292,11 +295,11 @@ export default {
     },
     async getAvgClr() {
       const fac = new FastAverageColor()
-      var clr = {hex: '#535353'}
-      try{
+      var clr = { hex: '#535353' }
+      try {
         clr = await fac.getColorAsync(this.stationImg)
-      } catch (err){console.log(err)}
-      finally{
+      } catch (err) { console.log(err) }
+      finally {
         this.$refs.preview.style.backgroundColor = clr.hex
         this.$refs.list.style.backgroundColor = clr.hex
       }

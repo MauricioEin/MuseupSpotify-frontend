@@ -20,13 +20,17 @@
 
     </section>
     <!-- <liked-songs-card /> -->
-    <station-list :stations="stations" />
+    <!-- <station-list :stations="stations" /> -->
+    <ul class="station-library-list">
+      <station-preview v-for="station in stations" :station="station" :key="station._id" />
+    </ul>
   </section>
 </template>
 
 <script>
 import { stationService } from '../services/station.service'
 import stationList from '../cmps/station-list.vue'
+import stationPreview from '../cmps/station-preview.vue'
 
 import searchIcon from '../assets/svgs/search-icon.vue'
 import plusBtnSvg from '../assets/svgs/plus-btn-svg.vue'
@@ -67,6 +71,7 @@ export default {
     searchIcon,
     plusBtnSvg,
     userPortrait,
+    stationPreview
   },
 
   computed: {

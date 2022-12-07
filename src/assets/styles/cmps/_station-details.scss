@@ -131,7 +131,7 @@
         height: 35px;
         align-items: center;
         display: grid;
-        grid-template-columns:0 40px 40px 2fr 1fr 120px;
+        grid-template-columns: 0 40px 40px 2fr 1fr 120px;
         gap: 10px;
         font-family: circular-light;
         font-size: 0.75rem;
@@ -146,7 +146,7 @@
 
         }
 
-        
+
         .list-song-length {
             // flex-grow: 1;
             display: grid;
@@ -182,6 +182,15 @@
     .station-summary {
         h1.pointer {
             margin-top: 30px !important;
+            font-size: 40px !important;
+        }
+    }
+}
+
+@media (max-width:750px) {
+    .station-summary {
+        h1.pointer {
+            margin: 0 !important;
             font-size: 40px !important;
         }
     }
@@ -237,7 +246,7 @@
         justify-content: center;
 
         h1 {
-            display: none;
+            // margin: 0 !important;
         }
 
         p.summary-title {
