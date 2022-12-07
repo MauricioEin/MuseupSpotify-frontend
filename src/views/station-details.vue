@@ -49,13 +49,16 @@
           <button @click="openStationMenu" class="btn-more">
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
-              @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed" :isQueued="isStationQueued"/>
+              @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
+              :isQueued="isStationQueued" />
           </button>
         </div>
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs" @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }" @queueSong="queueSong" @removeQueue="removeQueue"/>
+        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs"
+        @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }" @queueSong="queueSong"
+        @removeQueue="removeQueue" />
 
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
@@ -65,7 +68,7 @@
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
     <!-- </section> -->
-    <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen=false"/>
+    <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen = false" />
 
   </section>
   <station-picker v-if="isPickerOpen" :user="loggedInUser" :song="songToAdd" @close="isPickerOpen = false" />
@@ -85,6 +88,7 @@ import stationEdit from '../cmps/station-edit.vue'
 import stationSongSearch from '../cmps/station-song-search.vue'
 import stationSearchList from '../cmps/station-search-list.vue'
 import imgUploader from '../cmps/img-uploader.vue'
+import stationPicker from '../cmps/station-picker.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -102,9 +106,9 @@ export default {
       isEdit: false,
       isSearchOpen: true,
       isImgHover: false,
-      isStationQueued:false,
+      isStationQueued: false,
       isPickerOpen: false,
-      songToAdd:{}
+      songToAdd: {}
     }
   },
   computed: {
@@ -177,25 +181,25 @@ export default {
     window.removeEventListener('click', this.closeMenu)
   },
   methods: {
-    removeQueue(item){
+    removeQueue(item) {
       console.log(item);
-      if(!item.songs){
-        this.$store.commit({type:'removeQueue', item})
-      }else{
+      if (!item.songs) {
+        this.$store.commit({ type: 'removeQueue', item })
+      } else {
         this.isStationQueued = !this.isStationQueued
-        this.$store.commit({type:'removeQueue', item: item.songs})
+        this.$store.commit({ type: 'removeQueue', item: item.songs })
       }
     },
-    queueStation(){
+    queueStation() {
       this.isStationQueued = !this.isStationQueued
-      this.$store.commit({type:'queueStation', station: this.station.songs})
-    },  
-    queueSong(song){
+      this.$store.commit({ type: 'queueStation', station: this.station.songs })
+    },
+    queueSong(song) {
       console.log(song);
-      try{
-        this.$store.commit({type:'queueSong', song})
+      try {
+        this.$store.commit({ type: 'queueSong', song })
         showSuccessMsg('Queued')
-      }catch(err){
+      } catch (err) {
         console.log(err);
       }
     },
@@ -342,6 +346,7 @@ export default {
     heartBtnSvg,
     playBtn,
     pauseBtn,
+    stationPicker
   }
 
 

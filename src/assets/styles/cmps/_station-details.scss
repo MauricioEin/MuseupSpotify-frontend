@@ -7,9 +7,19 @@
         align-items: flex-end;
         // height: 60vh;
         max-height: 380px;
-        padding: 60px 35px 24px;
         background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 100%);
         background-color: $clr04;
+        padding: 60px 35px 24px;
+
+        @media (max-width:860px) {
+            padding: 60px 10px 24px;
+
+            .mini-menu {
+                height: 300px;
+                width: 300px;
+            }
+        }
+
 
         .mobile-img {
             display: none;
