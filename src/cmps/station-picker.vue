@@ -13,7 +13,9 @@
       <li v-for="station in stations" :key="station._id" @click="addToStation(station._id)"
         class="flex align-center pointer">
         <div class="img-container">
-          <img :src="station.imgUrl || station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl" class="fit-img" />
+          <img
+            :src="station.imgUrl || station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'"
+            class="fit-img" />
         </div>
         <div>
           <h4>{{ station.name }}</h4>
@@ -58,7 +60,7 @@ export default {
         await this.$store.dispatch({ type: 'updateStation', station: editedStation })
         showSuccessMsg('Added to playlist')
         this.$emit('close')
-
+        this.$router.push(`/station/${stationId}`)
         // this.loadStation()
         // if (this.isCurrStationPlayed && this.isPlaying)
         //   this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
