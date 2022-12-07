@@ -1,0 +1,66 @@
+.station-picker {
+    .picker-header {
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 40px 1fr 40px;
+        text-align: center;
+    }
+
+    .search-input {
+        position: relative;
+        width:100%;
+
+        input {
+            width:100%;
+            background-color: $clr06;
+            color: $clr01;
+            border: none;
+            outline: none;
+            border-radius: 4px;
+            padding: 0.5rem 2rem;
+            height: 40px;
+            margin: 10px 0;
+
+            
+        }
+        svg {
+            fill: #c0c0c0;
+            position: absolute;
+            height: 16px;
+            width: 16px;
+            top: 21px;
+            left: 0;
+            margin-inline-start: 10px;
+        }
+    }
+
+    .create-btn {
+        background-color: $clrGreen;
+        border-radius: 555px;
+        color: $clr08;
+        padding: .2em 1em;
+        display: block;
+        width: fit-content;
+        margin: auto;
+
+    }
+
+    li{
+        margin-top: 15px;
+        gap:10px;
+        *{
+            margin:0;
+        }
+       .img-container{
+        width:60px;
+        height:60px;
+       } 
+       h4{
+        font-size: 1rem;
+       }
+       p{
+        font-size: 0.875rem;
+        color:$clr02;
+       }
+    }
+}
