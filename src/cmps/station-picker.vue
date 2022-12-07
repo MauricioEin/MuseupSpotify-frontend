@@ -43,9 +43,7 @@ export default {
       const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
       const userStations = this.$store.getters.stations.filter(s => userStationsIds.includes(s._id))
       const regex = new RegExp(this.searchStr, 'i')
-      debugger
       return userStations.filter(s => {
-        debugger
         return regex.test(s.name) || regex.test(s.desc)
       })
     },
