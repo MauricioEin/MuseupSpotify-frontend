@@ -15,7 +15,6 @@ export default {
         makeEventName(action) {
             var words = action.split(' ')
             words = [words[0].toLowerCase(), ...words.slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())]
-            console.log(words.join(''))
             return words.join('')
         }
 

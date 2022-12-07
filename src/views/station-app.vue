@@ -17,9 +17,6 @@
         Good {{ greeting }}
       </section>
     </section>
-    <!-- <section class="greeting">
-      Good {{ greeting }}
-    </section> -->
     <station-list :stations="stationsWithGenre('trending')" :title="'Trending now'" />
     <station-list :stations="stationsWithGenre('bestOf')" :title="'Best of 2022'" />
     <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="userStations"
@@ -41,6 +38,8 @@ export default {
   data() {
     return {
       isPhoneMenuOpen: false,
+      categories: ['user', 'others', 'trending', 'bestOf'],
+      filteredStations: {}
 
     }
   },
@@ -50,17 +49,19 @@ export default {
       return this.$store.getters.stations
     },
     userStations() {
-      return this.$store.getters.stations.filter(station => {
-        return station.owner._id === this.$store.getters.loggedinUser._id
-      })
+      // return this.$store.getters.userStations
+      return this.$store.getters.stations//.filter(station => {
+      //   return station.owner._id === this.$store.getters.loggedinUser._id
+      // })
     },
     otherUserStation() {
-      return this.$store.getters.stations.filter(station => {
-        return (
-          station.owner.username !== this.$store.getters.loggedinUser?.username &&
-          station.owner.username !== 'MuseUp'
-        )
-      })
+      // return this.$store.getters.otherUserStations
+      return this.$store.getters.stations //.filter(station => {
+      //   return (
+      //     station.owner.username !== this.$store.getters.loggedinUser?.username &&
+      //     station.owner.username !== 'MuseUp'
+      //   )
+      // })
     },
     loggedinUser() {
       return this.$store.getters.loggedinUser
@@ -82,8 +83,14 @@ export default {
   },
 
   methods: {
+
+    async loadHomeStations() {
+      await this.$store.dispatch({ type: 'filterStations', categories: this.categories })
+      this.filteredStations = this.$store.getters.filteredStations
+    },
     stationsWithGenre(genre) {
-      return this.$store.getters.stations.filter(station => station.category === genre)
+      // this.$store.dispatch({ type: 'filterGenre', genre })
+      return this.$store.getters.stations//.filter(station => station.category === genre)
     },
     openPhoneMenu() {
       this.isPhoneMenuOpen = true
@@ -108,6 +115,9 @@ export default {
       const id = this.loggedinUser._id
       this.$router.push(`/user/${id}`)
     },
+  },
+  created() {
+    this.loadHomeStations()
   },
 
   watch: {

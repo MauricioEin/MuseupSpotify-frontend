@@ -2,6 +2,8 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
+import { httpService } from './http.service.js'
+
 import { getActionRemoveStation, getActionAddStation, getActionUpdateStation } from '../store/station.store.js'
 import { store } from '../store/store'
 import axios from 'axios'
@@ -13,7 +15,7 @@ const API_KEY = [
   'AIzaSyBVyzOPEOZa2Y4CTbf_JpQhnO5L53IxYjU',
 ]
 let keyIdx = 0
-// This file MuseUpnstrates how to use a BroadcastChannel to notify other browser tabs 
+// This file demonstrates how to use a BroadcastChannel to notify other browser tabs 
 
 const STORAGE_KEY = 'station'
 // const stationChannel = new BroadcastChannel('stationChannel')
@@ -37,40 +39,85 @@ export const stationService = {
 window.stationService = stationService
 
 
-async function query(filterBy = { txt: '', price: 0 }) {
-  var stations = await storageService.query(STORAGE_KEY)
-  if (filterBy.txt) {
-    const regex = new RegExp(filterBy.txt, 'i')
-    stations = stations.filter(station => regex.test(station.name) || regex.test(station.description))
-  }
-  // if (filterBy.price) {
-  //     stations = stations.filter(station => station.price <= filterBy.price)
-  // }
-  return stations
 
+
+
+
+// CRUDL:
+
+// LIST
+async function query(filterBy = { txt: '', owner: '' }) {
+  // var stations = await storageService.query(STORAGE_KEY)
+  // if (filterBy.txt) {
+  //   const regex = new RegExp(filterBy.txt, 'i')
+  //   stations = stations.filter(station => regex.test(station.name) || regex.test(station.description))
+  // }
+  // return stations
+  const stations = await httpService.get('station', filterBy)
+  return stations
 }
+
+// READ
 function getById(stationId) {
-  return storageService.get(STORAGE_KEY, stationId)
+  // return storageService.get(STORAGE_KEY, stationId)
+  return httpService.get('station/' + stationId)
   // return axios.get(`/api/station/${stationId}`)
 }
+
+// DELETE
 async function remove(stationId) {
   await storageService.remove(STORAGE_KEY, stationId)
+  return httpService.delete('station/' + stationId)
   // stationChannel.postMessage(getActionRemoveStation(stationId))
 }
-async function save(station) {
-  var savedStation
-  if (station._id) {
-    savedStation = await storageService.put(STORAGE_KEY, station)
-    // stationChannel.postMessage(getActionUpdateStation(savedStation))
 
-  } else {
-    // Later, owner is set by the backend
-    station.owner = userService.getLoggedinUser() || station.owner
-    savedStation = await storageService.post(STORAGE_KEY, station) //**this is unshifting- pay attention when moving to httpSerice
-    // stationChannel.postMessage(getActionAddStation(savedStation))
-  }
-  return JSON.parse(JSON.stringify(savedStation))
+// UPDATE/CREATE
+function save(station) {
+  console.log('saving:', station)
+  return station._id ? _update(station) : _add(station)
 }
+
+function _update(updatedStation) {
+  return httpService.put('station/', updatedStation)
+  // return storageService.put(STATION_KEY, updatedStation)
+}
+
+function _add(addedStation) {
+  console.log('adding:', addedStation)
+
+  const newStation = _createStation(addedStation)
+  return httpService.post('station/', newStation)
+  // return storageService.post(STATION_KEY, newStation)
+}
+
+function _createStation(station) {
+  // console.log('creating by:', s)
+  return {
+    // _id: utilService.makeId(),
+    name: station.name,
+    owner: { id: station.owner._id, username: station.owner.username },
+    songs: station.songs || [],
+    followers: [],
+    imgUrl: station.imgUrl || ''
+  }
+}
+
+
+
+// async function save(station) {
+//   var savedStation
+//   if (station._id) {
+//     savedStation = await storageService.put(STORAGE_KEY, station)
+//     // stationChannel.postMessage(getActionUpdateStation(savedStation))
+
+//   } else {
+//     // Later, owner is set by the backend
+//     station.owner = userService.getLoggedinUser() || station.owner
+//     savedStation = await storageService.post(STORAGE_KEY, station) //**this is unshifting- pay attention when moving to httpSerice
+//     // stationChannel.postMessage(getActionAddStation(savedStation))
+//   }
+//   return JSON.parse(JSON.stringify(savedStation))
+// }
 
 function getEmptyStation() {
   return {
@@ -134,8 +181,6 @@ async function _prepareSongSearchPreviews(items) {
       imgUrls[size] = snippet.thumbnails[size].url
     }
     const songLength = await _getSongLength(id.videoId)
-    // console.log("🚀 ~ file: station.service.js:119 ~ returnitems.map ~ songLength", songLength)
-    // console.log(_getSongLength(id.videoId))
 
     return {
       id: id.videoId,
@@ -169,112 +214,6 @@ async function _getSongLength(videoId) {
 }
 
 
-// var MuseUp1 = 
-//         {
-//           "name": "90's Hip Hop",
-//           "songs": [
-//             {
-//               "id": "41qC3w3UUkU",
-//               "title": "2Pac - Hit 'Em Up (Dirty) (Music Video) HD",
-//               "youtubeId": "41qC3w3UUkU",
-//               "imgUrl": {
-//                 "default": "https://i.ytimg.com/vi/41qC3w3UUkU/default.jpg",
-//                 "medium": "https://i.ytimg.com/vi/41qC3w3UUkU/mqdefault.jpg",
-//                 "high": "https://i.ytimg.com/vi/41qC3w3UUkU/hqdefault.jpg"
-//               },
-//               "addedBy": {},
-//               "createdAt": 1670159732093,
-//               "length": "5:23"
-//             },
-//             {
-//               "id": "Mb1ZvUDvLDY",
-//               "title": "2Pac - Dear Mama",
-//               "youtubeId": "Mb1ZvUDvLDY",
-//               "imgUrl": {
-//                 "default": "https://i.ytimg.com/vi/Mb1ZvUDvLDY/default.jpg",
-//                 "medium": "https://i.ytimg.com/vi/Mb1ZvUDvLDY/mqdefault.jpg",
-//                 "high": "https://i.ytimg.com/vi/Mb1ZvUDvLDY/hqdefault.jpg"
-//               },
-//               "addedBy": {},
-//               "createdAt": 1670159732108,
-//               "length": "4:36"
-//             },
-//             {
-//               "id": "eXvBjCO19QY",
-//               "title": "2Pac - Changes ft. Talent",
-//               "youtubeId": "eXvBjCO19QY",
-//               "imgUrl": {
-//                 "default": "https://i.ytimg.com/vi/eXvBjCO19QY/default.jpg",
-//                 "medium": "https://i.ytimg.com/vi/eXvBjCO19QY/mqdefault.jpg",
-//                 "high": "https://i.ytimg.com/vi/eXvBjCO19QY/hqdefault.jpg"
-//               },
-//               "addedBy": {},
-//               "createdAt": 1670159732115,
-//               "length": "4:31"
-//             },
-//             {
-//               "id": "_JZom_gVfuw",
-//               "title": "The Notorious B.I.G. - Juicy (Official Video) [4K]",
-//               "youtubeId": "_JZom_gVfuw",
-//               "imgUrl": {
-//                 "default": "https://i.ytimg.com/vi/_JZom_gVfuw/default.jpg",
-//                 "medium": "https://i.ytimg.com/vi/_JZom_gVfuw/mqdefault.jpg",
-//                 "high": "https://i.ytimg.com/vi/_JZom_gVfuw/hqdefault.jpg"
-//               },
-//               "addedBy": {},
-//               "createdAt": 1670159745514,
-//               "length": "4:13"
-//             },
-//             {
-//               "id": "TbSm6HsX_ek",
-//               "title": "The Notorious B.I.G. - Warning (Official Music Video) [HD]",
-//               "youtubeId": "TbSm6HsX_ek",
-//               "imgUrl": {
-//                 "default": "https://i.ytimg.com/vi/TbSm6HsX_ek/default.jpg",
-//                 "medium": "https://i.ytimg.com/vi/TbSm6HsX_ek/mqdefault.jpg",
-//                 "high": "https://i.ytimg.com/vi/TbSm6HsX_ek/hqdefault.jpg"
-//               },
-//               "addedBy": {},
-//               "createdAt": 1670159745500,
-//               "length": "3:32"
-//             },
-//             {
-//               "id": "phaJXp_zMYM",
-//               "title": "The Notorious B.I.G. - Big Poppa (Official Music Video) [HD]",
-//               "youtubeId": "phaJXp_zMYM",
-//               "imgUrl": {
-//                 "default": "https://i.ytimg.com/vi/phaJXp_zMYM/default.jpg",
-//                 "medium": "https://i.ytimg.com/vi/phaJXp_zMYM/mqdefault.jpg",
-//                 "high": "https://i.ytimg.com/vi/phaJXp_zMYM/hqdefault.jpg"
-//               },
-//               "addedBy": {},
-//               "createdAt": 1670159745505,
-//               "length": "4:22"
-//             }
-//           ],
-//           "followers": [],
-//           "owner": {
-//             "username": "MuseUp",
-//             "password": "123",
-//             "fullname": "MuseUp",
-//             "stations": [
-//               {
-//                 "_id": "SkAsV",
-//                 "name": "This Is JuiceWRLD",
-//                 "owner": "MuseUp"
-//               },
-//               {
-//                 "_id": "TNm4g",
-//                 "name": "הלהיטים הגדולים של ישראל",
-//                 "owner": "MuseUp"
-//               }
-//             ],
-//             "likedSongs": [],
-//             "_id": "kiH1V"
-//           },
-//           "_id": "nxB4r",
-//           "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670159560/90s_ffhu6w.jpg"
-//         }
 
 
 // DEMO DATA

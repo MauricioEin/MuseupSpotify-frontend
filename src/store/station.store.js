@@ -32,7 +32,8 @@ export const stationStore = {
         },
         playingSongIdx: 0,
         currStation: null,
-        isPlaying: false
+        isPlaying: false,
+        filteredStations:{},
     },
     getters: {
         stations({ stations }) { return stations },
@@ -49,7 +50,8 @@ export const stationStore = {
         },
         playingSong({ playingStation, playingSongIdx }) {
             return playingStation.songs[playingSongIdx]
-        }
+        },
+        filteredStations(state) {return state.filteredStations}
     },
     mutations: {
         setStations(state, { stations }) {
@@ -111,42 +113,57 @@ export const stationStore = {
             state.playingStation.songs = songs
             state.playingSongIdx = newIdx
         },
-        onUpdateWhilePlaying(context, { newIdx }) {
-            // this.
+        queueSong(state, { song }) {
+            state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
         },
 
-        queueSong(state, {song}){
-            console.log(state.playingStation);
-            state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
-            console.log(state.playingStation);
-        },
-        
-        queueStation(state, {station}){
-            console.log(station);
-            console.log(state.playingStation);
-            var idx = {...state.playingSongIdx}
+        queueStation(state, { station }) {
+            var idx = { ...state.playingSongIdx }
             station.forEach(song => {
                 state.playingStation.songs.splice(idx + 1, 0, song)
                 idx++
             })
-            console.log(state.playingStation);
         },
-        
-        removeQueue(state, {item}){
+
+        removeQueue(state, { item }) {
             console.log(item);
-            if(item?.youtubeId){
+            if (item?.youtubeId) {
                 const idx = state.playingStation.songs.findIndex(s => s.youtubeId === item.youtubeId)
                 state.playingStation.songs.splice(idx, 1)
-                console.log(state.playingStation);
-            }else{
+            } else {
                 item.forEach(s => {
-                    const idx = state.playingStation.songs.findIndex(song=> song.youtubeId === s.youtubeId)
-                    state.playingStation.songs.splice(idx, 1)        
+                    const idx = state.playingStation.songs.findIndex(song => song.youtubeId === s.youtubeId)
+                    state.playingStation.songs.splice(idx, 1)
                 })
             }
-        },
+        }, filterStations(state, { filteredStations }) {
+            state.filteredStations = filteredStations
+        }
     },
     actions: {
+        filterStations(context, { categories }) {
+            const filteredStations = {}
+            console.log('dispatch', categories)
+
+            try {
+                categories.forEach(async category => {
+                    if (category==='user') {
+                        filteredStations.user = await stationService.query({ owner: context.getters.loggedinUser._id })
+                    }
+                    else if (category === 'others') {
+                        filteredStations.others = await stationService.query({ others: context.getters.loggedinUser._id })
+                    }
+                    else filteredStations[category] = await stationService.query({ category })
+                })
+                console.log('filteredStations:', filteredStations)
+                context.commit({ type: 'filterStations', filteredStations })
+            } catch (err) {
+                console.log('stationStore: Error in filterStations', err)
+                throw err
+            }
+
+        }
+        ,
         async addStation(context, { station }) {
             try {
                 const user = { ...context.getters.loggedinUser }
@@ -168,7 +185,6 @@ export const stationStore = {
         async updateStation(context, { station }) {
             try {
                 station = await stationService.save(station)
-                console.log(station);
 
                 context.commit(getActionUpdateStation(station))
                 return station

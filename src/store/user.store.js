@@ -19,6 +19,7 @@ export const userStore = {
     mutations: {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
+            console.log('USER',user)
             state.loggedinUser = (user) ? { ...user, stations: [...user.stations], likedSongs: [...user.likedSongs] } : null
         },
         setWatchedUser(state, { user }) {
@@ -30,9 +31,7 @@ export const userStore = {
         removeUser(state, { userId }) {
             state.users = state.users.filter(user => user._id !== userId)
         },
-        setUserScore(state, { score }) {
-            state.loggedinUser.score = score
-        },
+
         updateUser(state, { user }) {
             const idx = state.users.findIndex(u => u._id === user._id)
             state.users.splice(idx, 1, user)
@@ -58,6 +57,8 @@ export const userStore = {
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred)
+                console.log('loggedInUser Action',user)
+
                 commit({ type: 'setLoggedinUser', user })
                 return user
             } catch (err) {
@@ -124,18 +125,14 @@ export const userStore = {
             }
 
         },
-        async increaseScore({ commit }) {
-            try {
-                const score = await userService.changeScore(100)
-                commit({ type: 'setUserScore', score })
-            } catch (err) {
-                console.log('userStore: Error in increaseScore', err)
-                throw err
-            }
-        },
+
         async addStationToLibrary({ commit, state }, { miniStation }) {
             const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
+            console.log('loggedInUser 131',loggedinUser)
+
             const savedUser = await userService.followStation(miniStation, true, loggedinUser)
+            console.log('savedUser134',savedUser)
+
             commit({ type: 'updateUser', user: savedUser })
             commit({ type: 'setLoggedinUser', user: savedUser })
         },

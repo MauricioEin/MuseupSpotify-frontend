@@ -28,7 +28,7 @@
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
     <section class="song-list-container content-layout" ref="list">
-      <section class="playlist-actions" :class="{ 'flex justify-end': !station.songs.length }">
+      <section class="playlist-actions" :class="{'flex justify-end': !station.songs.length }">
         <button class="btn-play-green" v-if="station.songs.length"
           @click.stop="(isCurrStationPlayed && isPlaying) ? toggleIsPlaying() : playStation()">
           <pause-btn v-if="isCurrStationPlayed && isPlaying" />

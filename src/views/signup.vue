@@ -16,17 +16,6 @@
 
       <button>Signup</button>
     </form>
-    <!-- <details>
-      <summary>
-        Admin Section
-      </summary>
-      <ul>
-        <li v-for="user in users" :key="user._id">
-          <pre>{{ user }}</pre>
-          <button @click="removeUser(user._id)">x</button>
-        </li>
-      </ul>
-    </details> -->
   </section>
 </template>
 
