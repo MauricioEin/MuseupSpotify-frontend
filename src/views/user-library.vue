@@ -19,10 +19,9 @@
       </div>
 
     </section>
-    <!-- <liked-songs-card /> -->
     <!-- <station-list :stations="stations" /> -->
     <ul class="station-library-list">
-      <liked-songs-card v-if="stations.length" />
+      <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations.length" />
       <station-preview v-for="station in stations" :station="station" :key="station._id" />
     </ul>
   </section>
