@@ -21,7 +21,6 @@
             }
         }
 
-
         .mobile-img {
             display: none;
         }
@@ -61,7 +60,7 @@
                 // text-size-adjust: auto;
 
                 font-size: 65px;
-                margin-top: 20px;
+                margin: 20px 0;
                 font-weight: 900;
                 transform: translateY(-15%);
             }
@@ -72,7 +71,7 @@
             }
 
             .station-desc {
-                margin: 0;
+                margin: 0 0 10px;
             }
 
             .mini-dashboard {

@@ -48,37 +48,10 @@
         "owner": {
             "_id": "MuseUp",
             "username": "MuseUp",
-            "fullname": "Guest",
+            "fullname": "MuseUp",
             "likedSongs": [],
-            "stations": [
-                {
-                    "_id": "15o32",
-                    "name": "Cardio Workout",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "qTbm5",
-                    "name": "Top Hits of 2022 ",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "TlZAR",
-                    "name": "My Playlist #8",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "ExSZY",
-                    "name": "Today's Hits",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "pLHzE",
-                    "name": "This Is J.Cole",
-                    "owner": "MuseUp"
-                }
-            ]
+            "stations": []
         },
-        "_id": "GXaEd",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169977/jz_uofaf0.jpg"
     },
     {
@@ -117,32 +90,10 @@
         "owner": {
             "_id": "MuseUp",
             "username": "MuseUp",
-            "fullname": "Guest",
+            "fullname": "MuseUp",
             "likedSongs": [],
-            "stations": [
-                {
-                    "_id": "15o32",
-                    "name": "Cardio Workout",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "qTbm5",
-                    "name": "Top Hits of 2022 ",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "TlZAR",
-                    "name": "My Playlist #8",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "ExSZY",
-                    "name": "Today's Hits",
-                    "owner": "MuseUp"
-                }
-            ]
+            "stations": []
         },
-        "_id": "pLHzE",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169895/jc_oblpna.jpg"
     },
     {
@@ -194,27 +145,10 @@
         "owner": {
             "_id": "MuseUp",
             "username": "MuseUp",
-            "fullname": "Guest",
+            "fullname": "MuseUp",
             "likedSongs": [],
-            "stations": [
-                {
-                    "_id": "15o32",
-                    "name": "Cardio Workout",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "qTbm5",
-                    "name": "Top Hits of 2022 ",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "TlZAR",
-                    "name": "My Playlist #8",
-                    "owner": "MuseUp"
-                }
-            ]
+            "stations": []
         },
-        "_id": "ExSZY",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169686/todayshits_tlbenp.jpg"
     },
     {
@@ -292,17 +226,10 @@
         "owner": {
             "_id": "MuseUp",
             "username": "MuseUp",
-            "fullname": "Guest",
+            "fullname": "MuseUp",
             "likedSongs": [],
-            "stations": [
-                {
-                    "_id": "15o32",
-                    "name": "Cardio Workout",
-                    "owner": "MuseUp"
-                }
-            ]
+            "stations": []
         },
-        "_id": "qTbm5",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169494/top22_dvslqm.jpg"
     },
     {
@@ -354,11 +281,10 @@
         "owner": {
             "_id": "MuseUp",
             "username": "MuseUp",
-            "fullname": "Guest",
+            "fullname": "MuseUp",
             "likedSongs": [],
             "stations": []
         },
-        "_id": "15o32",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670169383/cardio_afvxhi.jpg"
     },
     {
@@ -411,32 +337,10 @@
             "username": "MuseUp",
             "password": "123",
             "fullname": "MuseUp",
-            "stations": [
-                {
-                    "_id": "SkAsV",
-                    "name": "This Is JuiceWRLD",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "TNm4g",
-                    "name": "הלהיטים הגדולים של ישראל",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "nxB4r",
-                    "name": "90's Hip Hop",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "dkGpG",
-                    "name": "Rock This",
-                    "owner": "MuseUp"
-                }
-            ],
+            "stations": [],
             "likedSongs": [],
             "_id": "kiH1V"
         },
-        "_id": "azGoq",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670160072/pop_m9arlo.jpg"
     },
     {
@@ -502,27 +406,10 @@
             "username": "MuseUp",
             "password": "123",
             "fullname": "MuseUp",
-            "stations": [
-                {
-                    "_id": "SkAsV",
-                    "name": "This Is JuiceWRLD",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "TNm4g",
-                    "name": "הלהיטים הגדולים של ישראל",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "nxB4r",
-                    "name": "90's Hip Hop",
-                    "owner": "MuseUp"
-                }
-            ],
+            "stations": [],
             "likedSongs": [],
             "_id": "kiH1V"
         },
-        "_id": "dkGpG",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670159870/rock_d83acp.jpg"
     },
     {
@@ -614,22 +501,10 @@
             "username": "MuseUp",
             "password": "123",
             "fullname": "MuseUp",
-            "stations": [
-                {
-                    "_id": "SkAsV",
-                    "name": "This Is JuiceWRLD",
-                    "owner": "MuseUp"
-                },
-                {
-                    "_id": "TNm4g",
-                    "name": "הלהיטים הגדולים של ישראל",
-                    "owner": "MuseUp"
-                }
-            ],
+            "stations": [],
             "likedSongs": [],
             "_id": "kiH1V"
         },
-        "_id": "nxB4r",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670159560/90s_ffhu6w.jpg"
     },
     {
@@ -721,17 +596,10 @@
             "username": "MuseUp",
             "password": "123",
             "fullname": "MuseUp",
-            "stations": [
-                {
-                    "_id": "SkAsV",
-                    "name": "This Is JuiceWRLD",
-                    "owner": "MuseUp"
-                }
-            ],
+            "stations": [],
             "likedSongs": [],
             "_id": "kiH1V"
         },
-        "_id": "TNm4g",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670159423/%D7%9C%D7%94%D7%99%D7%98%D7%99%D7%99%D7%A9%D7%A8%D7%90%D7%9C_nsow1a.jpg"
     },
     {
@@ -775,7 +643,1375 @@
             "likedSongs": [],
             "_id": "kiH1V"
         },
-        "_id": "SkAsV",
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670148061/jw_f796t2.jpg"
+    },
+    {
+        "name": "Back in Time",
+        "category": "popular",
+        "songs": [
+            {
+                "id": "M7R7MX3tvpA",
+                "title": "Here We Go",
+                "youtubeId": "M7R7MX3tvpA",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/M7R7MX3tvpA/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/M7R7MX3tvpA/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/M7R7MX3tvpA/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670427611139,
+                "length": "3:38"
+            },
+            {
+                "id": "PxvCUlFwgOE",
+                "title": "Swing Republic - Back In Time // Electro Swing",
+                "youtubeId": "PxvCUlFwgOE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/PxvCUlFwgOE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/PxvCUlFwgOE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/PxvCUlFwgOE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670427590192,
+                "length": "3:22"
+            },
+            {
+                "id": "KF_3UWsxyww",
+                "title": "The Big Band Theory",
+                "youtubeId": "KF_3UWsxyww",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/KF_3UWsxyww/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/KF_3UWsxyww/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/KF_3UWsxyww/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670427673180,
+                "length": "3:30"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        }
+    },
+    {
+        "name": "Self Portrait in 3 Colors",
+        "category": "popular",
+        "songs": [
+            {
+                "id": "9XebeEN8dNI",
+                "title": "Next Level",
+                "youtubeId": "9XebeEN8dNI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/9XebeEN8dNI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/9XebeEN8dNI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/9XebeEN8dNI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428559869,
+                "length": "1:20"
+            },
+            {
+                "id": "88mo_f2wfq0",
+                "title": "High Roller",
+                "youtubeId": "88mo_f2wfq0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/88mo_f2wfq0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/88mo_f2wfq0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/88mo_f2wfq0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428586154,
+                "length": "3:46"
+            },
+            {
+                "id": "NEqhBaXuHO8",
+                "title": "Party People",
+                "youtubeId": "NEqhBaXuHO8",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/NEqhBaXuHO8/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/NEqhBaXuHO8/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/NEqhBaXuHO8/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428611838,
+                "length": "3:41"
+            },
+            {
+                "id": "Ddnpke1DyiU",
+                "title": "Hot Style",
+                "youtubeId": "Ddnpke1DyiU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Ddnpke1DyiU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Ddnpke1DyiU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Ddnpke1DyiU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428611885,
+                "length": "4:07"
+            },
+            {
+                "id": "4Wcjhix9pYg",
+                "title": "Tiger Rag",
+                "youtubeId": "4Wcjhix9pYg",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/4Wcjhix9pYg/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/4Wcjhix9pYg/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/4Wcjhix9pYg/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428611850,
+                "length": "3:02"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        }
+    },
+    {
+        "name": "Remote",
+        "category": "popular",
+        "songs": [
+            {
+                "id": "4dyQj9Z-VKE",
+                "title": "Baby Lone",
+                "youtubeId": "4dyQj9Z-VKE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/4dyQj9Z-VKE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/4dyQj9Z-VKE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/4dyQj9Z-VKE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428809437,
+                "length": "3:49"
+            },
+            {
+                "id": "4CtNOlyU5XE",
+                "title": "That's Right!",
+                "youtubeId": "4CtNOlyU5XE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/4CtNOlyU5XE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/4CtNOlyU5XE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/4CtNOlyU5XE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428854926,
+                "length": "3:18"
+            },
+            {
+                "id": "tgZniOG2Xh0",
+                "title": "Frank",
+                "youtubeId": "tgZniOG2Xh0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/tgZniOG2Xh0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/tgZniOG2Xh0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/tgZniOG2Xh0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428870007,
+                "length": "4:22"
+            },
+            {
+                "id": "-aRLQfYfM14",
+                "title": "Django",
+                "youtubeId": "-aRLQfYfM14",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/-aRLQfYfM14/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/-aRLQfYfM14/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/-aRLQfYfM14/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428876740,
+                "length": "3:43"
+            },
+            {
+                "id": "cRoFi8UWr_E",
+                "title": "Break Out",
+                "youtubeId": "cRoFi8UWr_E",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/cRoFi8UWr_E/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/cRoFi8UWr_E/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/cRoFi8UWr_E/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670428890550,
+                "length": "3:24"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": ""
+    },
+    {
+        "name": "One Thing At a Time",
+        "category": "popular",
+        "songs": [
+            {
+                "id": "aKA4wH3Mg7Y",
+                "title": "One Thing At A Time",
+                "youtubeId": "aKA4wH3Mg7Y",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/aKA4wH3Mg7Y/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/aKA4wH3Mg7Y/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/aKA4wH3Mg7Y/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429271936,
+                "length": "3:27"
+            },
+            {
+                "id": "Gb6HKZmElxs",
+                "title": "Days That End In Why",
+                "youtubeId": "Gb6HKZmElxs",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Gb6HKZmElxs/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Gb6HKZmElxs/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Gb6HKZmElxs/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429307183,
+                "length": "2:43"
+            },
+            {
+                "id": "qyi1DaFZzXQ",
+                "title": "Tennessee Fan",
+                "youtubeId": "qyi1DaFZzXQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/qyi1DaFZzXQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/qyi1DaFZzXQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/qyi1DaFZzXQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429326274,
+                "length": "3:19"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        }
+    },
+    {
+        "name": "Rock Classics",
+        "category": "popular",
+        "songs": [
+            {
+                "id": "WjFG03kS7nQ",
+                "title": "Guns N' Roses - November Rain",
+                "youtubeId": "WjFG03kS7nQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/WjFG03kS7nQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/WjFG03kS7nQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/WjFG03kS7nQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429556788,
+                "length": "8:56"
+            },
+            {
+                "id": "QeglgSWKSIY",
+                "title": "The Rolling Stones - Gimme Shelter",
+                "youtubeId": "QeglgSWKSIY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/QeglgSWKSIY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/QeglgSWKSIY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/QeglgSWKSIY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429581221,
+                "length": "4:31"
+            },
+            {
+                "id": "kEAp_Z9cpZ4",
+                "title": "AC/DC - Back in black",
+                "youtubeId": "kEAp_Z9cpZ4",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/kEAp_Z9cpZ4/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/kEAp_Z9cpZ4/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/kEAp_Z9cpZ4/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429606552,
+                "length": "4:15"
+            },
+            {
+                "id": "fAuT8_dboWo",
+                "title": "Radiohead - Creep",
+                "youtubeId": "fAuT8_dboWo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/fAuT8_dboWo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/fAuT8_dboWo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/fAuT8_dboWo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429637357,
+                "length": "4:00"
+            },
+            {
+                "id": "CuUefy9bT9U",
+                "title": "Bon Jovi - Livin' On A Prayer",
+                "youtubeId": "CuUefy9bT9U",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/CuUefy9bT9U/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/CuUefy9bT9U/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/CuUefy9bT9U/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429656559,
+                "length": "4:10"
+            },
+            {
+                "id": "3feIWI9WrWE",
+                "title": "Eagles - Hotel California",
+                "youtubeId": "3feIWI9WrWE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/3feIWI9WrWE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/3feIWI9WrWE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/3feIWI9WrWE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670429677903,
+                "length": "9:30"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Rock legends & epic songs that continue to inspire generations. "
+    },
+    {
+        "name": "Mood Booster",
+        "category": "mood",
+        "songs": [
+            {
+                "id": "H5v3kku4y6Q",
+                "title": "Harry Styles - As It Was",
+                "youtubeId": "H5v3kku4y6Q",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/H5v3kku4y6Q/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/H5v3kku4y6Q/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/H5v3kku4y6Q/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430104249,
+                "length": "2:46"
+            },
+            {
+                "id": "Ef8T0jUdPzw",
+                "title": "Rosa Linn - Snap",
+                "youtubeId": "Ef8T0jUdPzw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Ef8T0jUdPzw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Ef8T0jUdPzw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Ef8T0jUdPzw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430154961,
+                "length": "4:04"
+            },
+            {
+                "id": "QFkUlwl_2N0",
+                "title": "Nicky Youre, dazy - Sunroof",
+                "youtubeId": "QFkUlwl_2N0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/QFkUlwl_2N0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/QFkUlwl_2N0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/QFkUlwl_2N0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430178605,
+                "length": "2:44"
+            },
+            {
+                "id": "1imWezhl2T0",
+                "title": "Taylor Swift - Karma",
+                "youtubeId": "1imWezhl2T0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/1imWezhl2T0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/1imWezhl2T0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/1imWezhl2T0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430197477,
+                "length": "3:25"
+            },
+            {
+                "id": "mRD0-GxqHVo",
+                "title": "Glass Animals - Heat Waves",
+                "youtubeId": "mRD0-GxqHVo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/mRD0-GxqHVo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/mRD0-GxqHVo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/mRD0-GxqHVo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430224426,
+                "length": "3:56"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Get happy with today's dose of feel-good songs!",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670430053/moodbooster_ohnjxa.png"
+    },
+    {
+        "name": "Dark & Stormy",
+        "category": "mood",
+        "songs": [
+            {
+                "id": "Te11UaHOHMQ",
+                "title": "Lana Del Rey - Young and Beautiful",
+                "youtubeId": "Te11UaHOHMQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Te11UaHOHMQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Te11UaHOHMQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Te11UaHOHMQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430469915,
+                "length": "3:56"
+            },
+            {
+                "id": "LDWqZwrrGEc",
+                "title": "Kate Bush - Running Up That Hill",
+                "youtubeId": "LDWqZwrrGEc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/LDWqZwrrGEc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/LDWqZwrrGEc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/LDWqZwrrGEc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430508554,
+                "length": "5:01"
+            },
+            {
+                "id": "p1LqnTuQNHc",
+                "title": "Phoebe Bridgers - Garden Song",
+                "youtubeId": "p1LqnTuQNHc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/p1LqnTuQNHc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/p1LqnTuQNHc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/p1LqnTuQNHc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430543578,
+                "length": "3:42"
+            },
+            {
+                "id": "rlt1PaIhitI",
+                "title": "Lucy Dacus - Night Shift",
+                "youtubeId": "rlt1PaIhitI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/rlt1PaIhitI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/rlt1PaIhitI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/rlt1PaIhitI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430594259,
+                "length": "6:32"
+            },
+            {
+                "id": "PVjiKRfKpPI",
+                "title": "Hozier - Take Me To Church",
+                "youtubeId": "PVjiKRfKpPI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/PVjiKRfKpPI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/PVjiKRfKpPI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/PVjiKRfKpPI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430628913,
+                "length": "4:17"
+            },
+            {
+                "id": "KB_AQXtcQyU",
+                "title": "Ben Howard -  In Dreams",
+                "youtubeId": "KB_AQXtcQyU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/KB_AQXtcQyU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/KB_AQXtcQyU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/KB_AQXtcQyU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670430682846,
+                "length": "3:34"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Beautifully dark, dramatic tracks.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670430463/darkstormy_noaj9b.png"
+    },
+    {
+        "name": "You & Me",
+        "category": "mood",
+        "songs": [
+            {
+                "id": "qVdPh2cBTN0",
+                "title": "flora cash - You're Somebody Else",
+                "youtubeId": "qVdPh2cBTN0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/qVdPh2cBTN0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/qVdPh2cBTN0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/qVdPh2cBTN0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431295592,
+                "length": "3:43"
+            },
+            {
+                "id": "K-htm8S85gA",
+                "title": "Sam Fender - Call Me Lover",
+                "youtubeId": "K-htm8S85gA",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/K-htm8S85gA/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/K-htm8S85gA/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/K-htm8S85gA/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431345434,
+                "length": "3:22"
+            },
+            {
+                "id": "jCSvOtUaI8s",
+                "title": "The Neighbourhood - You Get Me So High",
+                "youtubeId": "jCSvOtUaI8s",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/jCSvOtUaI8s/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/jCSvOtUaI8s/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/jCSvOtUaI8s/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431363861,
+                "length": "2:38"
+            },
+            {
+                "id": "1OBpw372fIU",
+                "title": "Amber Run - I Found",
+                "youtubeId": "1OBpw372fIU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/1OBpw372fIU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/1OBpw372fIU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/1OBpw372fIU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431398791,
+                "length": "4:35"
+            },
+            {
+                "id": "ImKY6TZEyrI",
+                "title": "Mazzy Star - Fade Into You",
+                "youtubeId": "ImKY6TZEyrI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ImKY6TZEyrI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ImKY6TZEyrI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ImKY6TZEyrI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431416151,
+                "length": "4:22"
+            },
+            {
+                "id": "6o6qzuc9PZw",
+                "title": "Amy Shark - Adore",
+                "youtubeId": "6o6qzuc9PZw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/6o6qzuc9PZw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/6o6qzuc9PZw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/6o6qzuc9PZw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431462330,
+                "length": "3:05"
+            },
+            {
+                "id": "W7nmB20qJv4",
+                "title": "Paramore - All I Wanted",
+                "youtubeId": "W7nmB20qJv4",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/W7nmB20qJv4/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/W7nmB20qJv4/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/W7nmB20qJv4/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431481412,
+                "length": "3:46"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "It's just us—and this awesome alt soundtrack.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670431287/youandme_vhr1jb.png"
+    },
+    {
+        "name": "Feel Good Piano",
+        "category": "mood",
+        "songs": [
+            {
+                "id": "xabXtwVmdD4",
+                "title": "Eugene Goh - Lilt",
+                "youtubeId": "xabXtwVmdD4",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/xabXtwVmdD4/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/xabXtwVmdD4/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/xabXtwVmdD4/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431852881,
+                "length": "2:22"
+            },
+            {
+                "id": "RPP_pK-mEqg",
+                "title": "Egor Grushin - Vejez",
+                "youtubeId": "RPP_pK-mEqg",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/RPP_pK-mEqg/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/RPP_pK-mEqg/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/RPP_pK-mEqg/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431906121,
+                "length": "2:19"
+            },
+            {
+                "id": "B1nsqIQsNOQ",
+                "title": "Becky Ainge - Seashells",
+                "youtubeId": "B1nsqIQsNOQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/B1nsqIQsNOQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/B1nsqIQsNOQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/B1nsqIQsNOQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670431971235,
+                "length": "1:18"
+            },
+            {
+                "id": "DVlj4WDEnlE",
+                "title": "Yana Couto - Ottilia",
+                "youtubeId": "DVlj4WDEnlE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/DVlj4WDEnlE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/DVlj4WDEnlE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/DVlj4WDEnlE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432011375,
+                "length": "2:30"
+            },
+            {
+                "id": "LxTR3CXWf0w",
+                "title": "Alfred Mizzi - Vivendi",
+                "youtubeId": "LxTR3CXWf0w",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/LxTR3CXWf0w/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/LxTR3CXWf0w/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/LxTR3CXWf0w/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432026755,
+                "length": "2:14"
+            },
+            {
+                "id": "CWSTpwyzWGY",
+                "title": "Moleno - Mandeville",
+                "youtubeId": "CWSTpwyzWGY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/CWSTpwyzWGY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/CWSTpwyzWGY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/CWSTpwyzWGY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432039921,
+                "length": "2:57"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Happy vibes for an upbeat morning.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670431801/fellgood_ocjwff.png"
+    },
+    {
+        "name": "Coding Mode",
+        "category": "focus",
+        "songs": [
+            {
+                "id": "ckXxPUvP5Ug",
+                "title": "Jon Hopkins - Candles",
+                "youtubeId": "ckXxPUvP5Ug",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ckXxPUvP5Ug/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ckXxPUvP5Ug/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ckXxPUvP5Ug/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432562622,
+                "length": "2:29"
+            },
+            {
+                "id": "32LYH714EmM",
+                "title": "Brian Eno - Emerald and Stone",
+                "youtubeId": "32LYH714EmM",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/32LYH714EmM/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/32LYH714EmM/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/32LYH714EmM/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432591910,
+                "length": "2:13"
+            },
+            {
+                "id": "8pVsL6IIkdY",
+                "title": "Mind Trap - Train from Paris",
+                "youtubeId": "8pVsL6IIkdY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/8pVsL6IIkdY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/8pVsL6IIkdY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/8pVsL6IIkdY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432619434,
+                "length": "4:29"
+            },
+            {
+                "id": "_APttcyLB1M",
+                "title": "Lama House - Cotton Spheres",
+                "youtubeId": "_APttcyLB1M",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/_APttcyLB1M/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/_APttcyLB1M/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/_APttcyLB1M/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432634734,
+                "length": "2:55"
+            },
+            {
+                "id": "DITy3T2BgbI",
+                "title": "Hans Zimmer - Day One",
+                "youtubeId": "DITy3T2BgbI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/DITy3T2BgbI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/DITy3T2BgbI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/DITy3T2BgbI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432646821,
+                "length": "3:22"
+            },
+            {
+                "id": "xMV6l2y67rk",
+                "title": "The xx - Intro",
+                "youtubeId": "xMV6l2y67rk",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/xMV6l2y67rk/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/xMV6l2y67rk/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/xMV6l2y67rk/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432691293,
+                "length": "2:08"
+            },
+            {
+                "id": "GnFblgz5Ty0",
+                "title": "Sun of They - Winter Sun",
+                "youtubeId": "GnFblgz5Ty0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/GnFblgz5Ty0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/GnFblgz5Ty0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/GnFblgz5Ty0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432709459,
+                "length": "2:42"
+            },
+            {
+                "id": "vC1l0ZHU8_o",
+                "title": "Actress - Fire and Light",
+                "youtubeId": "vC1l0ZHU8_o",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/vC1l0ZHU8_o/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/vC1l0ZHU8_o/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/vC1l0ZHU8_o/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670432768441,
+                "length": "1:17"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Dedicated to all the programmers out there.\n",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670432545/codingmode_gimoit.png"
+    },
+    {
+        "name": "Deep Focus",
+        "category": "focus",
+        "songs": [
+            {
+                "id": "zmku51EUgBU",
+                "title": "Imala Zir - Apricity",
+                "youtubeId": "zmku51EUgBU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/zmku51EUgBU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/zmku51EUgBU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/zmku51EUgBU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433034745,
+                "length": "2:38"
+            },
+            {
+                "id": "28F22teyrfw",
+                "title": "Imber Sun - Solatium",
+                "youtubeId": "28F22teyrfw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/28F22teyrfw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/28F22teyrfw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/28F22teyrfw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433050036,
+                "length": "2:07"
+            },
+            {
+                "id": "20V2nYfb3sY",
+                "title": "Josef Briem - Gather My Thoughts",
+                "youtubeId": "20V2nYfb3sY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/20V2nYfb3sY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/20V2nYfb3sY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/20V2nYfb3sY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433066467,
+                "length": "3:04"
+            },
+            {
+                "id": "orFKpskiSpc",
+                "title": "Shape Of Our Dreams - Fresh Paint",
+                "youtubeId": "orFKpskiSpc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/orFKpskiSpc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/orFKpskiSpc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/orFKpskiSpc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433091100,
+                "length": "2:35"
+            },
+            {
+                "id": "JSI44tr0Xuw",
+                "title": "PLACID - Borealis",
+                "youtubeId": "JSI44tr0Xuw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/JSI44tr0Xuw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/JSI44tr0Xuw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/JSI44tr0Xuw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433103417,
+                "length": "1:46"
+            },
+            {
+                "id": "0TEKXXHfDVs",
+                "title": "Isaak Young - Tidal Waves",
+                "youtubeId": "0TEKXXHfDVs",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/0TEKXXHfDVs/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/0TEKXXHfDVs/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/0TEKXXHfDVs/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433115144,
+                "length": "3:11"
+            },
+            {
+                "id": "JotYhzzNaRg",
+                "title": "Joy Parade - waveforms",
+                "youtubeId": "JotYhzzNaRg",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/JotYhzzNaRg/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/JotYhzzNaRg/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/JotYhzzNaRg/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433152043,
+                "length": "2:44"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Keep calm and focus with ambient and post-rock music.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670433015/deepfocus_tjfhzw.png"
+    },
+    {
+        "name": "Chill lofi study beats",
+        "category": "focus",
+        "songs": [
+            {
+                "id": "Yf1msPO_zgY",
+                "title": "Hoodeeny - hand-me-downs",
+                "youtubeId": "Yf1msPO_zgY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Yf1msPO_zgY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Yf1msPO_zgY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Yf1msPO_zgY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433420765,
+                "length": "2:05"
+            },
+            {
+                "id": "nWXpSASKhbQ",
+                "title": "Dasunny - DaSpritzers",
+                "youtubeId": "nWXpSASKhbQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/nWXpSASKhbQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/nWXpSASKhbQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/nWXpSASKhbQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433436002,
+                "length": "2:25"
+            },
+            {
+                "id": "x2JdGSfSIXg",
+                "title": "peerless - Smoking at Sundown",
+                "youtubeId": "x2JdGSfSIXg",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/x2JdGSfSIXg/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/x2JdGSfSIXg/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/x2JdGSfSIXg/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433474390,
+                "length": "2:13"
+            },
+            {
+                "id": "k7mPzxHfFyY",
+                "title": "Earium - Foemeo",
+                "youtubeId": "k7mPzxHfFyY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/k7mPzxHfFyY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/k7mPzxHfFyY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/k7mPzxHfFyY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433517047,
+                "length": "2:16"
+            },
+            {
+                "id": "ug2D0xIP0co",
+                "title": "Olivier Abeille - Chapman",
+                "youtubeId": "ug2D0xIP0co",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ug2D0xIP0co/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ug2D0xIP0co/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ug2D0xIP0co/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670433541528,
+                "length": "2:10"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "The perfect study beats. Find your focus, crush your productivity.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670433374/lofi_qbtpzp.png"
+    },
+    {
+        "name": "Creative Focus",
+        "songs": [
+            {
+                "id": "h-UjhzvDSa8",
+                "title": "Max Richter - Vladimir's Blues 2018",
+                "youtubeId": "h-UjhzvDSa8",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/h-UjhzvDSa8/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/h-UjhzvDSa8/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/h-UjhzvDSa8/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670439946396,
+                "length": "1:30"
+            },
+            {
+                "id": "YoEOvSjopxY",
+                "title": "Serenade for Strings in C major, Op. 48: II. Walzer: Moderato, tempo di valse",
+                "youtubeId": "YoEOvSjopxY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/YoEOvSjopxY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/YoEOvSjopxY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/YoEOvSjopxY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440067048,
+                "length": "3:30"
+            },
+            {
+                "id": "xetRvKhHQbU",
+                "title": "Fanny Mendelssohn - Schwanenlied",
+                "youtubeId": "xetRvKhHQbU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/xetRvKhHQbU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/xetRvKhHQbU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/xetRvKhHQbU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440101544,
+                "length": "2:31"
+            },
+            {
+                "id": "xpZgtFhDbss",
+                "title": "Ólafur Arnalds - saman (Sunrise Session II)",
+                "youtubeId": "xpZgtFhDbss",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/xpZgtFhDbss/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/xpZgtFhDbss/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/xpZgtFhDbss/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440121080,
+                "length": "2:36"
+            },
+            {
+                "id": "bD41vnoPK1M",
+                "title": "Bizet: Carmen Suite No. 1 - Intermezzo",
+                "youtubeId": "bD41vnoPK1M",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/bD41vnoPK1M/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/bD41vnoPK1M/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/bD41vnoPK1M/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440197044,
+                "length": "2:36"
+            }
+        ],
+        "category": "focus",
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Get your creative juices flowing with these instrumental masterpieces.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670439908/creative_ixwkoi.png"
+    },
+    {
+        "name": "Calm Before the Storm",
+        "category": "focus",
+        "songs": [
+            {
+                "id": "cdiY6kijYHE",
+                "title": "Explosions in the Sky - Your Hand in Mine",
+                "youtubeId": "cdiY6kijYHE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/cdiY6kijYHE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/cdiY6kijYHE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/cdiY6kijYHE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440409275,
+                "length": "8:18"
+            },
+            {
+                "id": "zhfELOALVc0",
+                "title": "Hammock - I Can Almost See You",
+                "youtubeId": "zhfELOALVc0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/zhfELOALVc0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/zhfELOALVc0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/zhfELOALVc0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440430397,
+                "length": "4:14"
+            },
+            {
+                "id": "vMfLKuyL3HE",
+                "title": "Tristeza - Balabaristas",
+                "youtubeId": "vMfLKuyL3HE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/vMfLKuyL3HE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/vMfLKuyL3HE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/vMfLKuyL3HE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440460103,
+                "length": "6:12"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "Aerial post-rock sounds to take you somewhere else.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670440391/calm_nyzcg6.png"
+    },
+    {
+        "name": "היפ הופ ישראלי",
+        "songs": [
+            {
+                "id": "fLWCs07_FRY",
+                "title": "אקו - מושלמת",
+                "youtubeId": "fLWCs07_FRY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/fLWCs07_FRY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/fLWCs07_FRY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/fLWCs07_FRY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440841092,
+                "length": "2:59"
+            },
+            {
+                "id": "Ha-hMGb91LU",
+                "title": "ג'ימבו ג'יי ולהקת ספא עם שיר הדס מאיר - תביאו חטיפים",
+                "youtubeId": "Ha-hMGb91LU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Ha-hMGb91LU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Ha-hMGb91LU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Ha-hMGb91LU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440894332,
+                "length": "3:02"
+            },
+            {
+                "id": "36PXZD-lHs4",
+                "title": "שחר סאול - חכי דקה",
+                "youtubeId": "36PXZD-lHs4",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/36PXZD-lHs4/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/36PXZD-lHs4/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/36PXZD-lHs4/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440908159,
+                "length": "2:07"
+            },
+            {
+                "id": "DQ810WqIaLA",
+                "title": "טליס - מי רוצה להיות מאושר",
+                "youtubeId": "DQ810WqIaLA",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/DQ810WqIaLA/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/DQ810WqIaLA/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/DQ810WqIaLA/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440934324,
+                "length": "4:18"
+            },
+            {
+                "id": "hj6bix89-sg",
+                "title": "אקו - קארמה",
+                "youtubeId": "hj6bix89-sg",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/hj6bix89-sg/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/hj6bix89-sg/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/hj6bix89-sg/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440953859,
+                "length": "2:51"
+            },
+            {
+                "id": "ga8f5EIh4gM",
+                "title": "סולג'יי עם רביד פלוטניק - תעביר את זה הלאה",
+                "youtubeId": "ga8f5EIh4gM",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ga8f5EIh4gM/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ga8f5EIh4gM/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ga8f5EIh4gM/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670440969681,
+                "length": "3:08"
+            }
+        ],
+        "category": "trending",
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "כל ההיפ הופ הישראלי במקום אחד.",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670440829/hiphop_eo8dk2.png"
+    },
+    {
+        "name": "מצב הרוק",
+        "category": "trending",
+        "songs": [
+            {
+                "id": "dxMlGRr_tvI",
+                "title": "אפרת גוש - הבא שנוגע בי מת",
+                "youtubeId": "dxMlGRr_tvI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/dxMlGRr_tvI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/dxMlGRr_tvI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/dxMlGRr_tvI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441313950,
+                "length": "3:32"
+            },
+            {
+                "id": "UbVHqo9uAqI",
+                "title": "דודו טסה - שדים שדים",
+                "youtubeId": "UbVHqo9uAqI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/UbVHqo9uAqI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/UbVHqo9uAqI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/UbVHqo9uAqI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441338358,
+                "length": "3:50"
+            },
+            {
+                "id": "hdukxbb8zYc",
+                "title": "שי להב - טבריה 1986",
+                "youtubeId": "hdukxbb8zYc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/hdukxbb8zYc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/hdukxbb8zYc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/hdukxbb8zYc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441351113,
+                "length": "4:06"
+            },
+            {
+                "id": "wpFFf8xvK1k",
+                "title": "ריקי גל - אתה בא",
+                "youtubeId": "wpFFf8xvK1k",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/wpFFf8xvK1k/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/wpFFf8xvK1k/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/wpFFf8xvK1k/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441359452,
+                "length": "3:08"
+            },
+            {
+                "id": "1pACgDUzQqo",
+                "title": "Full Trunk - ממותה",
+                "youtubeId": "1pACgDUzQqo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/1pACgDUzQqo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/1pACgDUzQqo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/1pACgDUzQqo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441376064,
+                "length": "3:27"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "username": "MuseUp",
+            "password": "123",
+            "fullname": "MuseUp",
+            "stations": [],
+            "likedSongs": [],
+            "_id": "kiH1V"
+        },
+        "desc": "רוק ישראלי עכשווי מהמרכז לאלטרנטיב. ",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670441292/rock_gediyc.png"
     }
 ]

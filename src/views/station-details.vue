@@ -73,6 +73,7 @@
 
   </section>
   <station-picker v-if="isPickerOpen" :user="loggedInUser" :song="songToAdd" @close="isPickerOpen = false" />
+  <!-- <pre>{{ station }}</pre> -->
 </template>
 
 
