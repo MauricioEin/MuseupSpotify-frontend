@@ -8,7 +8,7 @@
     <div><div class="skeleton-7b7uvxywsks"></div></div>
     <div><div class="skeleton-7b7uvxywsks"></div></div>
   </div>
-  <div class="station-list-container" v-if="stations">
+  <div class="station-list-container" v-if="(stations && stations.length)">
     <div class="station-list-head">
       <h1>{{ title }}</h1>
       <button @click.stop="goToStationLibrary" v-if="isIntersecting">Show all</button>
