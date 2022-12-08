@@ -29,26 +29,26 @@
                 <div class="center-controls" :class="setFull">
                     <div class="top-center-controls" :class="setFull">
                         <button @click="isShuffled = !isShuffled">
-                            <random-svg :style="shuffleStyle" />
+                            <random-svg class="random-btn" :style="shuffleStyle" />
                         </button>
                         <button @click="changeSong(-1)">
                             <prev-svg />
                         </button>
                         <button @click.stop="togglePlay" class="play-btn">
-                            <play-svg v-if="!isPlaying" />
-                            <stop-svg v-else />
+                            <play-svg class="play-svg" v-if="!isPlaying" />
+                            <stop-svg class="stop-svg" v-else />
                         </button>
                         <button @click="changeSong(1)">
                             <next-svg />
                         </button>
                         <button @click="changeLoopType">
                             <loop-song-svg class="loop-song" v-if="(loopType === 2)" />
-                            <loop-svg v-else :style="loopStyle" />
+                            <loop-svg class="loop-song" v-else :style="loopStyle" />
                             <!-- {{ loopType.toString() }} -->
                         </button>
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
-                        <span class="time-progress">{{ formattedTime(currTime) }}</span>
+                        <span class="time-progress-1">{{ formattedTime(currTime) }}</span>
 
                         <div class="progress-container">
                             <progress class="prog progress-bar"  type="progress" :value="currTime" min="0" :max="duration"></progress>
@@ -56,7 +56,7 @@
                                 :value="currTime" min="0" :max="duration" />
                         </div>
 
-                        <span class="time-progress">{{ formattedTime(duration) }}</span>
+                        <span class="time-progress-2">{{ formattedTime(duration) }}</span>
                     </div>
                 </div>
 
