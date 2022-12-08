@@ -19,8 +19,6 @@
       </section>
     </section>
     <section class="categories" >
-      <div v-if="!filteredStations.trending">WAIT</div>
-
       <station-list :stations="filteredStations.trending" :title="'Trending now'" />
       <station-list :stations="filteredStations.bestOf" :title="'Best of 2022'" />
       <station-list :stations="filteredStations.mood" :title="'Mood'" />

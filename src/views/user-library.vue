@@ -22,7 +22,7 @@
     <!-- <station-list :stations="stations" /> -->
     <ul class="station-library-list">
       <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations.length" />
-      <station-preview v-for="station in stations" :station="station" :key="station._id" />
+      <station-preview v-for="station in stations" :station="station" :key="station?._id || 'error'" />
     </ul>
   </section>
 </template>
@@ -57,6 +57,7 @@ export default {
         return station
       })
       const stations = await Promise.all(userStations)
+      console.log('stations', stations)
       this.stations = stations
     },
     async createStation() {
