@@ -95,7 +95,7 @@ function _createStation(station) {
   return {
     // _id: utilService.makeId(),
     name: station.name,
-    owner: { id: station.owner._id, username: station.owner.username },
+    owner: { _id: station.owner._id, username: station.owner.username },
     songs: station.songs || [],
     followers: [],
     imgUrl: station.imgUrl || ''

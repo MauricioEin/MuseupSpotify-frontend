@@ -17,8 +17,11 @@
         Good {{ greeting }}
       </section>
     </section>
-    <station-list :stations="stationsWithGenre('trending')" :title="'Trending now'" />
-    <station-list :stations="stationsWithGenre('bestOf')" :title="'Best of 2022'" />
+    <station-list :stations="filteredStations.trending" :title="'Trending now'" />
+    <station-list :stations="filteredStations.bestOf" :title="'Best of 2022'" />
+    <station-list :stations="filteredStations.mood" :title="'Mood'" />
+    <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
+    <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
     <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="userStations"
       :title="'Your playlists'" />
     <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="otherUserStation"
@@ -38,7 +41,7 @@ export default {
   data() {
     return {
       isPhoneMenuOpen: false,
-      categories: ['user', 'others', 'trending', 'bestOf'],
+      categories: ['user', 'others', 'trending', 'bestOf','focus', 'mood','popular'],
       filteredStations: {}
 
     }
