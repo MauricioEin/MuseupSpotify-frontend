@@ -31,7 +31,8 @@
                 <more-options-svg />
             </button>
             <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
-                @saveToYourLikedSongs="saveSong" @removeFromYourLikedSongs="saveSong" />
+                @saveToYourLikedSongs="saveSong" @removeFromYourLikedSongs="saveSong"
+                @addToAPlaylist="() => { isMiniMenu = false; $emit('addToStation') }" />
         </div>
     </section>
 </template>
@@ -103,6 +104,7 @@ export default {
         },
     },
     methods: {
+
         playSong() {
             this.$store.commit({ type: 'toggleIsPlaying' })
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })

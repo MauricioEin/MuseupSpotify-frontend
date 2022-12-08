@@ -132,8 +132,6 @@ export default {
         },
         onMiniMenu(action) {
             this.isMiniMenu = false
-            this.toggleMiniMenu()
-
             console.log(this.isQueued);
             console.log(action)
             this.$emit('songAction', action)

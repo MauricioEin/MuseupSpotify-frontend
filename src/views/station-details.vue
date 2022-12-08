@@ -13,17 +13,7 @@
           }}</span></span></p>
       </div>
     </section>
-    <!-- //:style="`background-image:url(${stationImg})`" -->
-    <!-- <section ref="preview" class="mobile-station-preview flex" >
-      <div class="station-summary">
-        <p class="summary-title">PLAYLIST</p>
-        <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
-        <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
-        <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} • {{ station.followers?.length || 0 }}
-          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
-          }}</span></span></p>
-      </div>
-    </section> -->
+
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
 
@@ -36,11 +26,6 @@
           <play-btn v-else />
         </button>
 
-        <!-- <button class="btn-play-green" v-if="station.songs.length" @click.stop="(!isPlaying) ? playStation() :  toggleIsPlaying()" ><play-btn v-if="!isPlaying"/><pause-btn v-else/></button> -->
-        <!-- <button @click="playStation" class="btn-play-green" v-if="station.songs.length">
-
-          <play-btn />
-        </button> -->
         <div v-if="station" class="flex option-btns">
           <div class="btn-follow" @click="follow">
             <heart-btn-svg v-if="isFollowed" class="followed" />

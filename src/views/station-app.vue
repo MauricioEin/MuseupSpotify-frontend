@@ -22,9 +22,9 @@
     <station-list :stations="filteredStations.mood" :title="'Mood'" />
     <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
     <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
-    <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="userStations"
+    <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="filteredStations.user"
       :title="'Your playlists'" />
-    <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="otherUserStation"
+    <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="filteredStations.others"
       :title="'Playlists by other users'" />
   </section>
 </template>

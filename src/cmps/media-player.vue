@@ -20,7 +20,7 @@
                         <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</a>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
-                    <button class="btn-like-song" @click="saveSong" :class="{ liked: isLiked }">
+                    <button class="btn-like-song" @click.stop="saveSong" :class="{ liked: isLiked }">
                         <heart-btn-svg v-if="isLiked" class="liked" />
                         <heart-empty-svg v-else />
                     </button>
@@ -49,9 +49,13 @@
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
                         <span class="time-progress">{{ formattedTime(currTime) }}</span>
-                        <input class="timestamp" id="fontController" @input="setTimestamp" type="range" :value="currTime" min="0"
-                            :max='duration'>
-                        <progress :value="currTime" type="progress" min="0" :max='duration'></progress>
+
+                        <div class="progress-container">
+                            <progress class="prog progress-bar"  type="progress" :value="currTime" min="0" :max="duration"></progress>
+                            <input class="prog input-bar timestamp" id="fontController" type="range" @input="setTimestamp"
+                                :value="currTime" min="0" :max="duration" />
+                        </div>
+
                         <span class="time-progress">{{ formattedTime(duration) }}</span>
                     </div>
                 </div>
@@ -61,8 +65,10 @@
                         <sound-svg v-if="!isMute" />
                         <muted-svg v-else />
                     </button>
-                    <input class="volume" @input="setVolume" type="range" min="0" max="100">
-                    <progress class="prog" :value="volume" min="0" max="100"></progress>
+                    <div class="progress-container">
+                        <progress class="prog progress-bar" :value="volume" max="100"></progress>
+                        <input class="prog input-bar" type="range" @input="setVolume" max="100" />
+                    </div>
                     <button @click="(isFullscreen = !isFullscreen)">
                         <full-svg v-if="!isFullscreen" />
                         <minimize-svg v-else />
@@ -125,7 +131,7 @@ export default defineComponent({
             if (ev.data === 1) {
                 this.getDuration()
             }
-            
+
             // if (ev.data === 0 &&
             //     this.currSongIdx === this.songList.length - 1){
             //     this.$store.commit({type:'removeAllQueued'})
@@ -182,6 +188,7 @@ export default defineComponent({
 
         setTimestamp(ev) {
             const timeStamp = ev.target.value
+            this.currTime = timeStamp
             this.$refs.youtube.seekTo(timeStamp)
         },
 
@@ -228,7 +235,7 @@ export default defineComponent({
                 this.isFullscreen = true
             }
         },
-        saveSong(){
+        saveSong() {
             this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
 
         }

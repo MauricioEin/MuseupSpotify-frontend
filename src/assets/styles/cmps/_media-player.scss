@@ -1,5 +1,6 @@
 .media-player {
     pointer-events: all;
+
     iframe {
         display: none;
     }
@@ -7,64 +8,66 @@
     button {
         background-color: transparent;
         cursor: pointer;
-
     }
 
     svg {
         fill: $clr02;
-        
+
 
         &:hover {
             fill: $clr01;
             cursor: pointer;
         }
 
-        &.liked{
-            fill:$clrGreen;
-            height:16px;
-            width:16px;
+        &.liked {
+            fill: $clrGreen;
+            height: 16px;
+            width: 16px;
         }
     }
 
-    progress {
-        height: 4px;
-        border: 0.5px rgb(139, 139, 139) solid;
-        appearance: none;
-        background: gray;
-        width: 100%;
-        margin: 5px;
-        border-radius: 8px;
-        transition: 0.2s ease;
-        background-color: #5e5e5e;
 
-        &::-webkit-progress-bar {
-            border-radius: 20px;
-            background-color: #323232;
-        }
 
-        &::-webkit-progress-value {
-            background-color: white;
-            border-radius: 20px;
-        }
 
-    }
-    input {
-        width:100%;
-        padding:0px;
-        margin:5px;
-        accent-color:white;
-        height: 4px;
-        border: 0;
-        &::-webkit-slider-thumb{
-            background-color: red;
-        }
-      }
-      
+    // progress {
+    //     height: 4px;
+    //     border: 0.5px rgb(139, 139, 139) solid;
+    //     appearance: none;
+    //     background: gray;
+    //     width: 100%;
+    //     margin: 5px;
+    //     border-radius: 8px;
+    //     transition: 0.2s ease;
+    //     background-color: #5e5e5e;
+
+    //     &::-webkit-progress-bar {
+    //         border-radius: 20px;
+    //         background-color: #323232;
+    //     }
+
+    //     &::-webkit-progress-value {
+    //         background-color: white;
+    //         border-radius: 20px;
+    //     }
+
+    // }
+    // input {
+    //     width:100%;
+    //     padding:0px;
+    //     margin:5px;
+    //     accent-color:white;
+    //     height: 4px;
+    //     border: 0;
+    //     &::-webkit-slider-thumb{
+    //         background-color: red;
+    //     }
+    //   }
+
 
     // input {
     //     height: 4px;
     //     // appearance: none;
-        
+
     //     background: gray;
     //     width: 100%;
     //     margin: 5px;
@@ -85,7 +88,7 @@
     //         cursor: pointer;
     //     }
 
-        
+
 
     //     &::-webkit-slider-thumb:hover {
     //         background-color: $clr01;
@@ -130,12 +133,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-basis: 40%;    
+    flex-basis: 40%;
 
-    .loop-song{
+    .loop-song {
         fill: $clrGreen;
     }
-    .loop-song:hover{
+
+    .loop-song:hover {
         fill: $clrGreen;
     }
 
@@ -191,24 +195,24 @@
     align-items: center;
     flex-basis: 20%;
 
-    input {
-        display: none;
-    }
+    // input {
+    //     display: none;
+    // }
 
-    progress {
-        display: block;
-        width: 100%;
-    }
+    // progress {
+    //     display: block;
+    //     width: 100%;
+    // }
 
-    &:hover {
-        input {
-            display: block;
-        }
+    // &:hover {
+    //     input {
+    //         display: block;
+    //     }
 
-        progress {
-            display: none;
-        }
-    }
+    //     progress {
+    //         display: none;
+    //     }
+    // }
 }
 
 .bottom-center-controls {
@@ -216,9 +220,9 @@
     width: 100%;
     align-items: center;
 
-    input {
-        width: 100%;
-    }
+    // input {
+    //     width: 100%;
+    // }
 
     .time-progress {
         font-size: 11px;
@@ -229,7 +233,7 @@
     }
 
     input {
-        display: none;
+        // display: none;
         // position: absolute;
         // width: 35%;
         // transform: translateX(5%);
@@ -237,15 +241,15 @@
     }
 
     &:hover {
-        input {
-            display: block;
-            // position: absolute;
-        }
+        // input {
+        //     display: block;
+        //     // position: absolute;
+        // }
 
-        progress {
-            display: none;
-            
-        }
+        // progress {
+        //     display: none;
+
+        // }
     }
 
 
@@ -262,86 +266,89 @@
     // justify-content: center;
 }
 
-@media(max-width:750px){
-    
-// .right-controls {
-//     .sound-btn{
-//         // margin-top: 60px;
-//     }
+@media(max-width:750px) {
 
-//     .sound-input-padding{
-//         background-color: green;
-//         width: 20px;
-//     }
-//     input {
-//         display: none;
-//         width: 10%;
-//         position: absolute;
-//         transform: rotate(270deg);
-//         top: -10px;
-//         right: 66px;
+    // .right-controls {
+    //     .sound-btn{
+    //         // margin-top: 60px;
+    //     }
 
-//     }
+    //     .sound-input-padding{
+    //         background-color: green;
+    //         width: 20px;
+    //     }
+    //     input {
+    //         display: none;
+    //         width: 10%;
+    //         position: absolute;
+    //         transform: rotate(270deg);
+    //         top: -10px;
+    //         right: 66px;
 
-//     progress {
-//         display: none;
-//         // width: 10%;
-//         // position: absolute;
-//         // transform: rotate(270deg);
-//         // top: -30px;
-//         // right: 67px;
-        
-//     }
+    //     }
 
-//     &:hover {
-//         input {
-//             display: block;
-//         }
+    //     progress {
+    //         display: none;
+    //         // width: 10%;
+    //         // position: absolute;
+    //         // transform: rotate(270deg);
+    //         // top: -30px;
+    //         // right: 67px;
+
+    //     }
+
+    //     &:hover {
+    //         input {
+    //             display: block;
+    //         }
 
 
-//         progress {
-//             display: none;
-//         }
-//     }
-// }
-.controls{
-    height: 80px;
-    border: 0;
-    border-radius: 10px;
-    bottom: 65px;
-    background-color: #212121;
-}
-.right-controls {
-    display: none;
-}
-.top-center-controls{
-    button:not(.play-btn){
+    //         progress {
+    //             display: none;
+    //         }
+    //     }
+    // }
+    .controls {
+        height: 80px;
+        border: 0;
+        border-radius: 10px;
+        bottom: 65px;
+        background-color: #212121;
+    }
+
+    .right-controls {
         display: none;
+    }
+
+    .top-center-controls {
+        button:not(.play-btn) {
+            display: none;
+            align-items: flex-end;
+        }
+
+    }
+
+    .center-controls {
         align-items: flex-end;
     }
-    
-}
 
-.center-controls{
-    align-items: flex-end;
-}
+    .bottom-center-controls {
+        // progress{
+        //     height: 3px;
+        // }
+        // input{
+        //     height: 3px;
+        // }
+        position: absolute;
+        bottom: 2px;
+        width: 98%;
+        left: 5px;
+        padding: 0;
 
-.bottom-center-controls{
-    progress{
-        height: 3px;
+        span {
+            display: none;
+        }
     }
-    input{
-        height: 3px;
-    }
-    position: absolute;
-    bottom: 2px;
-    width: 98%;
-    left: 5px;
-    padding: 0;
-    span{
-        display: none;
-    }
-}
 
     .left-controls {
         button {
@@ -349,12 +356,73 @@
             right: 50px;
         }
 
-    .media-img{
-        height: 50px;
-    }
+        .media-img {
+            height: 50px;
+        }
 
         .player-song-name {
             font-size: 12px;
+        }
+    }
+}
+
+
+.progress-container {
+    pointer-events: none;
+
+    height: 10px;
+    width: 100%;
+    position: relative;
+
+
+    .prog {
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    input[type='range'] {
+        height: 5px;
+        appearance: none;
+        background: transparent;
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: transparent;
+        }
+    }
+
+    progress[value] {
+        appearance: none;
+        border: none;
+        height: 5px;
+
+        &::-webkit-progress-bar {
+            background-color: rgb(154, 154, 154); // change to spotify
+            border-radius: 2px;
+        }
+
+        &::-webkit-progress-value {
+            background: white;
+            border-radius: 2px;
+        }
+    }
+
+    @media (min-width:$narrow-breakpoint) {
+        pointer-events: all;
+
+        &:hover progress[value]::-webkit-progress-value {
+            background: $clrGreen; // change to spotify
+        }
+
+        &:hover input[type='range']::-webkit-slider-thumb {
+            background: #fff;
         }
     }
 }

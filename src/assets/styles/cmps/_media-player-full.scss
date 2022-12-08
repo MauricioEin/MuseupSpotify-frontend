@@ -7,8 +7,23 @@
     width: 100%;
     overflow: hidden;
     z-index: 400;
-    // display: none;
-    // display: block;
+
+    .progress-container {
+        pointer-events: all;
+
+
+        @media (max-width:$narrow-breakpoint) {
+            
+
+            input[type='range']::-webkit-slider-thumb {
+                background-color: white;
+            }
+
+            progress[value]::-webkit-progress-value {
+                background: #fff; // change to spotify
+            }
+        }
+    }
 }
 
 .album {

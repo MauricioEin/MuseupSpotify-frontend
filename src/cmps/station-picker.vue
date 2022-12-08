@@ -2,7 +2,7 @@
   <div class="picker-background"></div>
   <section class="station-picker">
     <div class="picker-header">
-      <span class="pointer" @click="$emit('close')">back </span> <span> Add to playlist </span><span></span>
+      <span class="pointer" @click="$emit('close')"><left-arrow-svg /></span> <span> Add to playlist </span><span></span>
     </div>
     <button class="create-btn" @click="createStation">New Playlist</button>
     <div class="search-input">
@@ -30,11 +30,13 @@
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 import searchIcon from '../assets/svgs/search-icon.vue'
+import leftArrowSvg from '../assets/svgs/left-arrow-svg.vue'
+
 
 export default {
   name: 'station-picker',
   props: ['user', 'song'],
-  components: { searchIcon },
+  components: { searchIcon, leftArrowSvg },
   data() {
     return {
       searchStr: '',
