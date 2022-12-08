@@ -1,5 +1,5 @@
 <template>
-  <div class="station-list-container" v-if="stations.length">
+  <div class="station-list-container" v-if="stations">
     <div class="station-list-head">
       <h1>{{ title }}</h1>
       <button @click.stop="goToStationLibrary" v-if="isIntersecting">Show all</button>
@@ -114,6 +114,7 @@ export default {
           }
         })
       }
+      this.$emit('doneResize')
     },
   },
 
@@ -146,6 +147,10 @@ watch:{
   }
 }
   ,
+
+  // watch: {
+  //   station
+  // }
 
   components: {
     playBtn,

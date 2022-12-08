@@ -4,7 +4,7 @@
         <ul class="clean-list">
             <Container orientation="vertical" @drop="onDrop" drag-handle-selector=".column-drag-handle" :key="listKey">
                 <Draggable v-for="(song, index) in songsCopy" :key="song.youtubeId" style="overflow:initial;position:relative">
-                    <song-preview class="draggable-item" @clicked="onSongClicked" @playing="id => playingSong = id"
+                    <song-preview class="draggable-item" @songClicked="onSongClicked(index)" @playing="id => playingSong = id"
                         :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index" :dropKey="dropKey"
                         :clickedSong="clickedSong" :playingSong="playingSong" @play="$emit('play', index)"
                         @songAction="action => $emit(action, song)" :isLikedSongs="isLikedSongs || false" />
@@ -76,9 +76,13 @@ export default {
         }
     },
     methods: {
-        onSongClicked(id) {
-            this.clickedSong = id
-            this.$emit('songClicked')
+        onSongClicked(idx) {
+            // this.clickedSong = id
+            this.$emit('songClicked', idx)
+            // console.log(index);
+            // console.log(id);
+            // console.log('hi', song);
+            // this.$emit('play', index)
         },
         onDrop(dropResult) {
             this.songsCopy = this.applyDrag(this.songsCopy, dropResult);

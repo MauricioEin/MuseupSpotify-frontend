@@ -118,17 +118,17 @@ export const stationStore = {
             state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
         },
 
-        queueSong(state, {song}){
+        queueSong(state, { song }) {
             console.log(state.playingStation);
             // song.isQueued = true
             state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
             console.log(state.playingStation);
         },
 
-        queueStation(state, {station}){
+        queueStation(state, { station }) {
             console.log(station);
             console.log(state.playingStation);
-            var idx = {...state.playingSongIdx}
+            var idx = { ...state.playingSongIdx }
             station.forEach(song => {
                 // song.isQueued = true
                 state.playingStation.songs.splice(idx + 1, 0, song)

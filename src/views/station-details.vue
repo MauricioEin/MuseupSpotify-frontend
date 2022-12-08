@@ -41,7 +41,7 @@
         </div>
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
-        :loggedInUser="loggedInUser" @songClicked="isStationMenuOpen = false" @saveSong="saveSong"
+        :loggedInUser="loggedInUser" @songClicked="songClicked" @saveSong="saveSong"
         @removeSong="removeSong" @play="playStation" @reorder="reorderSongs"
         @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }" @queueSong="queueSong"
         @removeQueue="removeQueue" />
@@ -178,6 +178,12 @@ export default {
     window.removeEventListener('click', this.closeMenu)
   },
   methods: {
+    songClicked(idx){
+      this.isStationMenuOpen = false
+      if(window.innerWidth < 750){
+        this.playStation(idx)
+      }
+    },  
     removeQueue(item) {
       console.log(item);
       if (!item.songs) {

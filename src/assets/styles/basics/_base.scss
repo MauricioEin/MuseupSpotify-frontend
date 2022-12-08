@@ -101,5 +101,7 @@ input {
         // background: #555;
     }
 
-  
+    @media(max-width:750px){
+        display: none;
+    }
 }

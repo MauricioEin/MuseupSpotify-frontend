@@ -1,4 +1,5 @@
 <template>
+  <!-- <section class="home-page" v-if="isLoaded"> -->
   <section class="home-page">
     <section class="s-home-header full" v-if="isOnHomePage">
       <section class="greeting">
@@ -27,6 +28,10 @@
     <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="filteredStations.others"
       :title="'Playlists by other users'" />
   </section>
+  <!-- <section class="loader" v-else>
+    Loading...
+    <img src="../assets/gifs/loader3.gif" alt="">
+  </section> -->
 </template>
 
 <script>
@@ -41,9 +46,8 @@ export default {
   data() {
     return {
       isPhoneMenuOpen: false,
-      categories: ['user', 'others', 'trending', 'bestOf','focus', 'mood','popular'],
-      filteredStations: {}
-
+      categories: ['user', 'others', 'trending', 'bestOf', 'focus', 'mood', 'popular'],
+      filteredStations: {},
     }
   },
 
@@ -81,15 +85,29 @@ export default {
       else if (h >= 18 && h < 22) return 'evening'
     },
     phoneActions() {
-      return this.loggedinUser ? ['Profile', 'Logout'] : ['Login', 'Signup']
+      return this.loggedinUser?._id !== 'demo' ? ['Profile', 'Logout'] : ['Login', 'Signup']
     },
+
+    isLoaded() {
+      return (this.filteredStations.trending?.length) ? false : true
+    },
+
+    // filteredStations() {
+    //   return this.$store.getters.filteredStations
+    // },
   },
 
   methods: {
+    test() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(), 3000)
+      })
+    },
 
-    async loadHomeStations() {
-      await this.$store.dispatch({ type: 'filterStations', categories: this.categories })
+    loadHomeStations() {
+      this.$store.dispatch({ type: 'filterStations', categories: this.categories })
       this.filteredStations = this.$store.getters.filteredStations
+      // console.log('Hello', this.isLoaded, this.filteredStations);
     },
     stationsWithGenre(genre) {
       // this.$store.dispatch({ type: 'filterGenre', genre })
@@ -112,7 +130,7 @@ export default {
     },
     logout() {
       this.$store.dispatch({ type: 'logout' })
-      this.$router.push('/')
+      this.$router.go()
     },
     goToProfile() {
       const id = this.loggedinUser._id

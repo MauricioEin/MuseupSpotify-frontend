@@ -1,5 +1,5 @@
 <template>
-    <li class="song-preview" @click.stop="$emit('clicked', song.id)"
+    <li class="song-preview" @click.prevent.stop="$emit('songClicked', song.id)"
         :class="{ clicked: isClicked, playing: isOnPlayer }">
         <span class="column-drag-handle" @mousedown="isDragged = true" @mouseup="isDragged = false"
             :class="{ dragged: isDragged }">&#x2630;</span>

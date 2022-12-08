@@ -1,5 +1,5 @@
 <template>
-    <section class="search-song-preview" @click.stop="$emit('clicked', song.id)"
+    <section class="search-song-preview" @click.stop="songClick(song)"
         :class="{ clicked: isClicked, playing: isOnPlayer }">
         <div class="song-index">
             <img v-if="isOnPlayer && isPlayerOn" src="../assets/gifs/equaliser-animated.gif" />
@@ -104,7 +104,12 @@ export default {
         },
     },
     methods: {
-
+        songClick(song){
+            this.$emit('clicked', song.id)
+            if(window.innerWidth < 750){
+                this.playSong()
+            }
+        },
         playSong() {
             this.$store.commit({ type: 'toggleIsPlaying' })
             this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(this.song)) })
