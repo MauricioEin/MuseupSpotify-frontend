@@ -18,15 +18,19 @@
         Good {{ greeting }}
       </section>
     </section>
-    <station-list :stations="filteredStations.trending" :title="'Trending now'" />
-    <station-list :stations="filteredStations.bestOf" :title="'Best of 2022'" />
-    <station-list :stations="filteredStations.mood" :title="'Mood'" />
-    <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
-    <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
-    <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="filteredStations.user"
-      :title="'Your playlists'" />
-    <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="filteredStations.others"
-      :title="'Playlists by other users'" />
+    <section class="categories" >
+      <div v-if="!filteredStations.trending">WAIT</div>
+
+      <station-list :stations="filteredStations.trending" :title="'Trending now'" />
+      <station-list :stations="filteredStations.bestOf" :title="'Best of 2022'" />
+      <station-list :stations="filteredStations.mood" :title="'Mood'" />
+      <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
+      <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
+      <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="filteredStations.user"
+        :title="'Your playlists'" />
+      <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="filteredStations.others"
+        :title="'Playlists by other users'" />
+    </section>
   </section>
   <!-- <section class="loader" v-else>
     Loading...
@@ -104,9 +108,12 @@ export default {
       })
     },
 
-    loadHomeStations() {
-      this.$store.dispatch({ type: 'filterStations', categories: this.categories })
-      this.filteredStations = this.$store.getters.filteredStations
+    async loadHomeStations() {
+      await this.$store.dispatch({ type: 'filterStations', categories: this.categories })
+      setTimeout(() => {
+        this.filteredStations = this.$store.getters.filteredStations
+        console.log('this stations:', this.filteredStations)
+      }, 500)
       // console.log('Hello', this.isLoaded, this.filteredStations);
     },
     stationsWithGenre(genre) {

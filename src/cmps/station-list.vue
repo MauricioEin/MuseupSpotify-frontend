@@ -1,4 +1,13 @@
 <template>
+  <div class="skeleton-7b7uvxywsk" v-if="!stations"></div>
+  <div class="card-loader flex" v-if="!stations">
+    <div><div class="skeleton-7b7uvxywsks"></div></div>
+    <div><div class="skeleton-7b7uvxywsks"></div></div>
+    <div><div class="skeleton-7b7uvxywsks"></div></div>
+    <div><div class="skeleton-7b7uvxywsks"></div></div>
+    <div><div class="skeleton-7b7uvxywsks"></div></div>
+    <div><div class="skeleton-7b7uvxywsks"></div></div>
+  </div>
   <div class="station-list-container" v-if="stations">
     <div class="station-list-head">
       <h1>{{ title }}</h1>
@@ -97,11 +106,13 @@ export default {
     resizeList() {
       if (window.innerWidth < 860) {
         this.isIntersecting = false
+        if (!this.$refs.stationCard?.length) return
         this.$refs.stationCard.forEach(elStation => {
           elStation.style.display = 'list-item'
         })
       } else {
         this.isIntersecting = false
+        if (!this.$refs.stationCard?.length) return
 
         this.$refs.stationCard.forEach(elStation => {
 
@@ -140,12 +151,12 @@ export default {
   unmounted() {
     window.removeEventListener('resize', this.resizeList)
   },
-watch:{
-  stations(){
-    if (!this.stations.length) return
-    this.resizeList()
+  watch: {
+    stations() {
+      if (!this.stations.length) return
+      this.resizeList()
+    }
   }
-}
   ,
 
   // watch: {
