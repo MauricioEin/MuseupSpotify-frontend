@@ -3,6 +3,7 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 import { httpService } from './http.service.js'
+import { socketService } from './socket.service.js'
 
 import { getActionRemoveStation, getActionAddStation, getActionUpdateStation } from '../store/station.store.js'
 import { store } from '../store/store'
@@ -73,8 +74,13 @@ async function remove(stationId) {
 
 // UPDATE/CREATE
 function save(station) {
-  console.log('saving:', station)
-  return station._id ? _update(station) : _add(station)
+  try {
+    // socketService.emit('update-station', station)
+    console.log('saving:', station)
+    return station._id ? _update(station) : _add(station)
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function _update(updatedStation) {

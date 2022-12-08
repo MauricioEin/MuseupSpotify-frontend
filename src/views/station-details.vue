@@ -41,10 +41,9 @@
         </div>
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
-        :loggedInUser="loggedInUser" @songClicked="songClicked" @saveSong="saveSong"
-        @removeSong="removeSong" @play="playStation" @reorder="reorderSongs"
-        @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }" @queueSong="queueSong"
-        @removeQueue="removeQueue" />
+        :loggedInUser="loggedInUser" @songClicked="songClicked" @saveSong="saveSong" @removeSong="removeSong"
+        @play="playStation" @reorder="reorderSongs" @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }"
+        @queueSong="queueSong" @removeQueue="removeQueue" />
 
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
@@ -87,6 +86,7 @@ import musicNoteSvg from '../assets/svgs/music-note-svg.vue'
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import pauseBtn from '../assets/svgs/media-player-stop.vue'
+import { socketService } from '../services/socket.service'
 
 export default {
   data() {
@@ -170,20 +170,31 @@ export default {
     // }
   },
   async mounted() {
+    socketService.on('song-added', station => {
+      // console.log('newStation', station)
+      // this.$store.commit({ type: 'updateStation', station })
+      this.loadStation()
+    })
+
     window.addEventListener('click', this.closeMenu)
     await this.loadStation()
     this.getAvgClr()
+    socketService.on('update-station', station => {
+      this.$store.commit({ type: 'updateStation', station })
+      console.log('Station updated by someone else', station);
+    })
   },
   unmounted() {
     window.removeEventListener('click', this.closeMenu)
+    // socketService.on('add-song', song)
   },
   methods: {
-    songClicked(idx){
+    songClicked(idx) {
       this.isStationMenuOpen = false
-      if(window.innerWidth < 750){
+      if (window.innerWidth < 750) {
         this.playStation(idx)
       }
-    },  
+    },
     removeQueue(item) {
       console.log(item);
       if (!item.songs) {
@@ -259,8 +270,12 @@ export default {
       try {
         const editedStation = JSON.parse(JSON.stringify(this.station))
         editedStation.songs.push(song)
-        await this.$store.dispatch(getActionUpdateStation(editedStation))
+        const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
         showSuccessMsg('Added to playlist')
+
+        console.log('Emitting from front');
+        socketService.emit('add-song', res)
+
         this.loadStation()
         if (this.isCurrStationPlayed && this.isPlaying)
           this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
