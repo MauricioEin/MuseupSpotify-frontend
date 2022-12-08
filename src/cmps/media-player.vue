@@ -1,6 +1,6 @@
 <template>
     <section class="media-player" :class="setFull">
-
+        <!-- <p v-if="isFullscreen">Playing From {{ currSongPlaying }}</p> -->
         <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl"
             alt="">
         <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)">
@@ -17,7 +17,7 @@
                     <img class="media-img fit-img" :class="setFull"
                         :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" :alt="currSongPlaying.title">
                     <div :class="setFull" class="artist-details">
-                        <a href="" class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</a>
+                        <span class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</span>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
                     <button class="btn-like-song" @click="saveSong" :class="{ liked: isLiked }">

@@ -85,14 +85,30 @@
         width: 100%;
         justify-content: space-between;
         display: flex;
-
+        position: absolute;
+        bottom: 75px;
+        button.play-btn{
+            width: 43px;
+            height: 43px;
+        }
+        .play{
+            height: 18px;
+            width: 15px;
+        }
         button {
             display: block;
             align-items: flex-end;
+           
+            svg.play{
+                // width: 20px;
+                // height: 20px;
+            }
         }
-
+        
         svg {
             fill: white;
+            width: 20px;
+            height: 20px;
         }
 
         .play-btn {
@@ -112,7 +128,7 @@
     }
 
     .bottom-center-controls.full {
-        bottom: 28px;
+        bottom: 150px;
 
         span {
             display: inline;
@@ -122,7 +138,7 @@
     .left-controls.full {
         width: 98%;
         position: absolute;
-        bottom: 64px;
+        bottom: 195px;
         left: 16px;
 
         button {
