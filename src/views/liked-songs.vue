@@ -8,7 +8,11 @@
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1>Liked Songs</h1>
-        <p class="mini-dashboard"> <span class="username">{{ user.username }} </span> • {{ user.likedSongs.length }} songs </p>
+        <p class="mini-dashboard"> 
+          <img :src="user.profileImg || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGtpKU-n3W5Y0oRANR315ajWyGdwkdd7LjEF3Wf9Y6tLC7ntswFQXyT5SoGNoZQNVpMLo&usqp=CAU'" class="liked-songs-img" alt="">
+           <span class="username">{{ user.username }} </span> 
+           • {{ user.likedSongs.length }} songs
+        </p>
       </div>
     </section>
 
