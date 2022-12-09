@@ -42,6 +42,7 @@ export default {
         isLikedSongs: { type: Boolean }
 
     },
+    emits:['songClicked'],
     components: {
         songPreview,
         songListHeader,
