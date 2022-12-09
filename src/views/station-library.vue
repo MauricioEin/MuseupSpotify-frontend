@@ -21,7 +21,8 @@ export default {
 
     computed: {
         stations() {
-            return this.$store.getters.stations.filter(station => station.owner.username === 'MuseUp')
+            // return this.$store.getters.stations.filter(station => station.owner.username === 'MuseUp')
+            return this.$store.getters.stations
         }
     },
 

@@ -1,0 +1,868 @@
+[
+    {
+        "name": "מצב הרוק",
+        "category": "trending",
+        "songs": [
+            {
+                "id": "dxMlGRr_tvI",
+                "title": "אפרת גוש - הבא שנוגע בי מת",
+                "youtubeId": "dxMlGRr_tvI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/dxMlGRr_tvI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/dxMlGRr_tvI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/dxMlGRr_tvI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441313950,
+                "length": "3:32"
+            },
+            {
+                "id": "UbVHqo9uAqI",
+                "title": "דודו טסה - שדים שדים",
+                "youtubeId": "UbVHqo9uAqI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/UbVHqo9uAqI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/UbVHqo9uAqI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/UbVHqo9uAqI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441338358,
+                "length": "3:50"
+            },
+            {
+                "id": "hdukxbb8zYc",
+                "title": "שי להב - טבריה 1986",
+                "youtubeId": "hdukxbb8zYc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/hdukxbb8zYc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/hdukxbb8zYc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/hdukxbb8zYc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441351113,
+                "length": "4:06"
+            },
+            {
+                "id": "wpFFf8xvK1k",
+                "title": "ריקי גל - אתה בא",
+                "youtubeId": "wpFFf8xvK1k",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/wpFFf8xvK1k/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/wpFFf8xvK1k/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/wpFFf8xvK1k/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441359452,
+                "length": "3:08"
+            },
+            {
+                "id": "1pACgDUzQqo",
+                "title": "Full Trunk - ממותה",
+                "youtubeId": "1pACgDUzQqo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/1pACgDUzQqo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/1pACgDUzQqo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/1pACgDUzQqo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670441376064,
+                "length": "3:27"
+            }
+        ],
+        "followers": [],
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "desc": "רוק ישראלי עכשווי מהמרכז לאלטרנטיב. ",
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670441292/rock_gediyc.png"
+    },
+    {
+        "_id": "6393a54902015f278c087081",
+        "name": "Happy Birthday",
+        "category": "trending",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "3GwjfUFyY6M",
+                "title": "Kool & The Gang - Celebration",
+                "youtubeId": "3GwjfUFyY6M",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/3GwjfUFyY6M/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/3GwjfUFyY6M/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/3GwjfUFyY6M/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620637485,
+                "length": "4:18"
+            },
+            {
+                "id": "RcVZfJO01NI",
+                "title": "Stevie Wonder - Happy Birthday",
+                "youtubeId": "RcVZfJO01NI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/RcVZfJO01NI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/RcVZfJO01NI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/RcVZfJO01NI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620666896,
+                "length": "5:58"
+            },
+            {
+                "id": "-DNlEisqSkc",
+                "title": "Katy Perry - Birthday",
+                "youtubeId": "-DNlEisqSkc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/-DNlEisqSkc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/-DNlEisqSkc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/-DNlEisqSkc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620687605,
+                "length": "3:38"
+            },
+            {
+                "id": "MpfSEZLuWxY",
+                "title": "Owl City, Carly Rae Jepsen - Good Time",
+                "youtubeId": "MpfSEZLuWxY",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/MpfSEZLuWxY/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/MpfSEZLuWxY/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/MpfSEZLuWxY/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620761133,
+                "length": "3:22"
+            },
+            {
+                "id": "RglMIKG0GFw",
+                "title": "Michael Bublé - It's A Beautiful Day",
+                "youtubeId": "RglMIKG0GFw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/RglMIKG0GFw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/RglMIKG0GFw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/RglMIKG0GFw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620841021,
+                "length": "3:19"
+            },
+            {
+                "id": "ORemUrv6jJ4",
+                "title": "Kygo - Happy Birthday (ft. John Legend)",
+                "youtubeId": "ORemUrv6jJ4",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ORemUrv6jJ4/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ORemUrv6jJ4/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ORemUrv6jJ4/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620871834,
+                "length": "4:11"
+            },
+            {
+                "id": "GYQsTvaPraE",
+                "title": "Madonna - Celebration",
+                "youtubeId": "GYQsTvaPraE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/GYQsTvaPraE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/GYQsTvaPraE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/GYQsTvaPraE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670620886914,
+                "length": "3:36"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670620586/birthday_mzaqoz.png",
+        "desc": "Great songs for your birthday! Let's celebrate!"
+    },
+    {
+        "_id": "6393a80e02015f278c087082",
+        "name": "Birthday Mix",
+        "category": "popular",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "2Abk1jAONjw",
+                "title": "Lady Gaga - Just Dance ft. Colby O'Donis",
+                "youtubeId": "2Abk1jAONjw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/2Abk1jAONjw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/2Abk1jAONjw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/2Abk1jAONjw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621260561,
+                "length": "4:07"
+            },
+            {
+                "id": "ZaTEdi9tKDM",
+                "title": "B. B. King - Happy Birthday Blues",
+                "youtubeId": "ZaTEdi9tKDM",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ZaTEdi9tKDM/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ZaTEdi9tKDM/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ZaTEdi9tKDM/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621282999,
+                "length": "3:14"
+            },
+            {
+                "id": "0QqOdz8zjuk",
+                "title": "AJR - Birthday Party",
+                "youtubeId": "0QqOdz8zjuk",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/0QqOdz8zjuk/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/0QqOdz8zjuk/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/0QqOdz8zjuk/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621304176,
+                "length": "3:45"
+            },
+            {
+                "id": "PLEQRIisP_Q",
+                "title": "will.i.am - I Like To Move It",
+                "youtubeId": "PLEQRIisP_Q",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/PLEQRIisP_Q/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/PLEQRIisP_Q/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/PLEQRIisP_Q/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621352408,
+                "length": "3:42"
+            },
+            {
+                "id": "7Ya2U8XN_Zw",
+                "title": "Mark Ronson - Uptown Funk ft. Bruno Mars",
+                "youtubeId": "7Ya2U8XN_Zw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/7Ya2U8XN_Zw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/7Ya2U8XN_Zw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/7Ya2U8XN_Zw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621389579,
+                "length": "4:31"
+            },
+            {
+                "id": "vdVnnMOTe3Q",
+                "title": "Yums - Rats Birthday Mixtape",
+                "youtubeId": "vdVnnMOTe3Q",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/vdVnnMOTe3Q/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/vdVnnMOTe3Q/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/vdVnnMOTe3Q/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621415814,
+                "length": "3:13"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670621249/mix_mpl0t1.png",
+        "desc": "Birthday music picked just for you"
+    },
+    {
+        "_id": "6393a9a602015f278c087083",
+        "name": "להיטים ישראליים",
+        "category": "bestOf",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "Lwc3CFw5ylo",
+                "title": "שירה מרגלית - אחותי כבר לא סובלת אותך",
+                "youtubeId": "Lwc3CFw5ylo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Lwc3CFw5ylo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Lwc3CFw5ylo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Lwc3CFw5ylo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621673779,
+                "length": "3:02"
+            },
+            {
+                "id": "gPCCYMeXin0",
+                "title": "Meghan Trainor - Made You Look",
+                "youtubeId": "gPCCYMeXin0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/gPCCYMeXin0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/gPCCYMeXin0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/gPCCYMeXin0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621692840,
+                "length": "2:55"
+            },
+            {
+                "id": "R-W2pClUlzQ",
+                "title": "ענבל רז - שלוותה (Prod. By Roby Fayer)",
+                "youtubeId": "R-W2pClUlzQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/R-W2pClUlzQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/R-W2pClUlzQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/R-W2pClUlzQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621711458,
+                "length": "2:55"
+            },
+            {
+                "id": "NN1f066QTMU",
+                "title": "David Guetta & Bebe Rexha - I'm Good (Blue)",
+                "youtubeId": "NN1f066QTMU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/NN1f066QTMU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/NN1f066QTMU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/NN1f066QTMU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621737875,
+                "length": "2:57"
+            },
+            {
+                "id": "mTf0XXsU2zM",
+                "title": "נונו & טוקסיק - סיוופלה",
+                "youtubeId": "mTf0XXsU2zM",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/mTf0XXsU2zM/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/mTf0XXsU2zM/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/mTf0XXsU2zM/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621765406,
+                "length": "2:51"
+            },
+            {
+                "id": "bcuRKDY0Rz0",
+                "title": "אנה זק - מי זאת",
+                "youtubeId": "bcuRKDY0Rz0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/bcuRKDY0Rz0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/bcuRKDY0Rz0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/bcuRKDY0Rz0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621793925,
+                "length": "2:40"
+            },
+            {
+                "id": "VFwmKL5OL-Q",
+                "title": "Lady Gaga - Bloody Mary",
+                "youtubeId": "VFwmKL5OL-Q",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/VFwmKL5OL-Q/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/VFwmKL5OL-Q/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/VFwmKL5OL-Q/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670621820345,
+                "length": "4:05"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670621664/viral_ytokbq.png",
+        "desc": "כל מה שרותח בישראל! 🔥"
+    },
+    {
+        "_id": "6393abf302015f278c087084",
+        "name": "אינדי ישראלי",
+        "category": "bestOf",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "JK9zbVspza8",
+                "title": "van Rijn - Join My Dream",
+                "youtubeId": "JK9zbVspza8",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/JK9zbVspza8/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/JK9zbVspza8/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/JK9zbVspza8/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622598613,
+                "length": "2:38"
+            },
+            {
+                "id": "Nqo_cc7kYcE",
+                "title": "Omri - i wanna say",
+                "youtubeId": "Nqo_cc7kYcE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Nqo_cc7kYcE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Nqo_cc7kYcE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Nqo_cc7kYcE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622613930,
+                "length": "3:08"
+            },
+            {
+                "id": "9gK0PaqkKiQ",
+                "title": "Roni Alter - Carry me home",
+                "youtubeId": "9gK0PaqkKiQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/9gK0PaqkKiQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/9gK0PaqkKiQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/9gK0PaqkKiQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622631333,
+                "length": "5:09"
+            },
+            {
+                "id": "GMbWR2cwnrw",
+                "title": "Tomer Sade - Forgiveness",
+                "youtubeId": "GMbWR2cwnrw",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/GMbWR2cwnrw/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/GMbWR2cwnrw/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/GMbWR2cwnrw/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622644266,
+                "length": "3:01"
+            },
+            {
+                "id": "at5-zZZCIXo",
+                "title": "Lola Marsh - Shot Shot Cherry",
+                "youtubeId": "at5-zZZCIXo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/at5-zZZCIXo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/at5-zZZCIXo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/at5-zZZCIXo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622663026,
+                "length": "2:37"
+            },
+            {
+                "id": "Lirpqa7GuJQ",
+                "title": "Yael Deckelbaum - Warriors of Peace Ft. Joss Stone",
+                "youtubeId": "Lirpqa7GuJQ",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Lirpqa7GuJQ/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Lirpqa7GuJQ/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Lirpqa7GuJQ/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622728284,
+                "length": "4:10"
+            },
+            {
+                "id": "sqi2VaFZxYc",
+                "title": "Noga Erez - NAILS",
+                "youtubeId": "sqi2VaFZxYc",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/sqi2VaFZxYc/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/sqi2VaFZxYc/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/sqi2VaFZxYc/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670622754308,
+                "length": "2:54"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670622295/indie_cfcmzz.png",
+        "desc": "מהמועדונים של תל אביב ועד לבמות הגדולות של פסטיבלים בעולם, האינדי הישראלי שעושה הבדל."
+    },
+    {
+        "_id": "6393af6202015f278c087085",
+        "name": "Funk Outta Here",
+        "category": "popular",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "QS8FxHsw0U0",
+                "title": "James Brown - Get Up Offa That Thing",
+                "youtubeId": "QS8FxHsw0U0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/QS8FxHsw0U0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/QS8FxHsw0U0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/QS8FxHsw0U0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623115056,
+                "length": "6:15"
+            },
+            {
+                "id": "MDZsNksbw2Q",
+                "title": "Wild Cherry - Play That Funky Music",
+                "youtubeId": "MDZsNksbw2Q",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/MDZsNksbw2Q/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/MDZsNksbw2Q/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/MDZsNksbw2Q/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623152355,
+                "length": "4:15"
+            },
+            {
+                "id": "4Sm9n-6hy6M",
+                "title": "King Curtis - Memphis Soul Stew",
+                "youtubeId": "4Sm9n-6hy6M",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/4Sm9n-6hy6M/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/4Sm9n-6hy6M/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/4Sm9n-6hy6M/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623171613,
+                "length": "2:59"
+            },
+            {
+                "id": "4gazNwzC4H0",
+                "title": "Prince - Controversy",
+                "youtubeId": "4gazNwzC4H0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/4gazNwzC4H0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/4gazNwzC4H0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/4gazNwzC4H0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623208222,
+                "length": "3:45"
+            },
+            {
+                "id": "XYclWyC4qQo",
+                "title": "Tom Browne - Funkin' for Jamaica",
+                "youtubeId": "XYclWyC4qQo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/XYclWyC4qQo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/XYclWyC4qQo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/XYclWyC4qQo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623226604,
+                "length": "3:53"
+            },
+            {
+                "id": "cwCf2XlB1Hs",
+                "title": "Betty Wright - Clean up Woman",
+                "youtubeId": "cwCf2XlB1Hs",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/cwCf2XlB1Hs/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/cwCf2XlB1Hs/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/cwCf2XlB1Hs/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623257373,
+                "length": "2:50"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670623099/funk_uibztl.png",
+        "desc": "Funk to these good ol' funky soul classics!"
+    },
+    {
+        "_id": "6393b11402015f278c087086",
+        "name": "בדרך",
+        "category": "trending",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "JdJMwubahVo",
+                "title": "Noga Erez - NO news on TV ft. ROUSSO",
+                "youtubeId": "JdJMwubahVo",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/JdJMwubahVo/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/JdJMwubahVo/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/JdJMwubahVo/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623566860,
+                "length": "3:23"
+            },
+            {
+                "id": "a2anKPZmFdU",
+                "title": "Freedom Fry - Stayin' Alive",
+                "youtubeId": "a2anKPZmFdU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/a2anKPZmFdU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/a2anKPZmFdU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/a2anKPZmFdU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623589805,
+                "length": "4:02"
+            },
+            {
+                "id": "P3QS83ubhHE",
+                "title": "Stromae - Santé",
+                "youtubeId": "P3QS83ubhHE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/P3QS83ubhHE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/P3QS83ubhHE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/P3QS83ubhHE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623608732,
+                "length": "3:25"
+            },
+            {
+                "id": "M7Z2tgJo8Hg",
+                "title": "Stromae - Fils de joie",
+                "youtubeId": "M7Z2tgJo8Hg",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/M7Z2tgJo8Hg/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/M7Z2tgJo8Hg/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/M7Z2tgJo8Hg/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623608729,
+                "length": "3:57"
+            },
+            {
+                "id": "zN5Id6_P-Qk",
+                "title": "Lola Marsh - Only For A Moment",
+                "youtubeId": "zN5Id6_P-Qk",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/zN5Id6_P-Qk/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/zN5Id6_P-Qk/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/zN5Id6_P-Qk/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623666135,
+                "length": "3:04"
+            },
+            {
+                "id": "bEeaS6fuUoA",
+                "title": "Bill Withers - Lovely Day",
+                "youtubeId": "bEeaS6fuUoA",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/bEeaS6fuUoA/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/bEeaS6fuUoA/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/bEeaS6fuUoA/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623697389,
+                "length": "4:16"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670623532/way_k0xlbs.png",
+        "desc": "מוזיקה שתעשה לכם נעים בדרכים"
+    },
+    {
+        "_id": "6393b24f02015f278c087087",
+        "name": "להיטים שמחים",
+        "category": "bestOf",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "VFZNvj-HfBU",
+                "title": "Daði Freyr - Think About Things",
+                "youtubeId": "VFZNvj-HfBU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/VFZNvj-HfBU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/VFZNvj-HfBU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/VFZNvj-HfBU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623933686,
+                "length": "4:06"
+            },
+            {
+                "id": "9dSha9wzenM",
+                "title": "Jubël - Weekend Vibe",
+                "youtubeId": "9dSha9wzenM",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/9dSha9wzenM/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/9dSha9wzenM/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/9dSha9wzenM/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623958545,
+                "length": "2:55"
+            },
+            {
+                "id": "M7WG-1ZYzl8",
+                "title": "דולי ופן עם נועה קירל ופלד - שחרר אותי",
+                "youtubeId": "M7WG-1ZYzl8",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/M7WG-1ZYzl8/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/M7WG-1ZYzl8/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/M7WG-1ZYzl8/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623968995,
+                "length": "2:36"
+            },
+            {
+                "id": "bV7r1AFVRTI",
+                "title": "bbno$, Diplo - pogo",
+                "youtubeId": "bV7r1AFVRTI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/bV7r1AFVRTI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/bV7r1AFVRTI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/bV7r1AFVRTI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670623993239,
+                "length": "3:31"
+            },
+            {
+                "id": "xfLom4iv2GE",
+                "title": "Remi Wolf - Hello Hello Hello",
+                "youtubeId": "xfLom4iv2GE",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/xfLom4iv2GE/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/xfLom4iv2GE/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/xfLom4iv2GE/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624011338,
+                "length": "2:53"
+            },
+            {
+                "id": "ZOf7aMbzQAM",
+                "title": "נועה קירל - פנתרה",
+                "youtubeId": "ZOf7aMbzQAM",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ZOf7aMbzQAM/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ZOf7aMbzQAM/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ZOf7aMbzQAM/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624023506,
+                "length": "3:04"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670623846/happy_b4ckmi.png",
+        "desc": "להיטים שעושים מצב רוח. באחריות!"
+    },
+    {
+        "_id": "6393b3f202015f278c087088",
+        "name": "Dance Party",
+        "category": "trending",
+        "owner": {
+            "_id": "6390f9ab2262a41548c64166",
+            "username": "MuseUp"
+        },
+        "songs": [
+            {
+                "id": "c5I2mChmZb0",
+                "title": "Laidback Luke & DJs From Mars - Call It House",
+                "youtubeId": "c5I2mChmZb0",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/c5I2mChmZb0/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/c5I2mChmZb0/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/c5I2mChmZb0/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624344329,
+                "length": "2:03"
+            },
+            {
+                "id": "joim-MlBOF4",
+                "title": "Purple Disco Machine - Wake Up!",
+                "youtubeId": "joim-MlBOF4",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/joim-MlBOF4/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/joim-MlBOF4/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/joim-MlBOF4/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624373862,
+                "length": "0:30"
+            },
+            {
+                "id": "Nq-uUKTmoU8",
+                "title": "Rêve - Tongue",
+                "youtubeId": "Nq-uUKTmoU8",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/Nq-uUKTmoU8/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/Nq-uUKTmoU8/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/Nq-uUKTmoU8/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624401542,
+                "length": "2:14"
+            },
+            {
+                "id": "bV7r1AFVRTI",
+                "title": "bbno$ & Diplo - pogo (Official Video)",
+                "youtubeId": "bV7r1AFVRTI",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/bV7r1AFVRTI/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/bV7r1AFVRTI/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/bV7r1AFVRTI/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624412262,
+                "length": "3:31"
+            },
+            {
+                "id": "keoE3l9_61c",
+                "title": "Wuki - We Like To Wuki",
+                "youtubeId": "keoE3l9_61c",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/keoE3l9_61c/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/keoE3l9_61c/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/keoE3l9_61c/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624427056,
+                "length": "2:42"
+            },
+            {
+                "id": "QO-4dnOJL7Q",
+                "title": "Sofi Tukker - Summer In New York",
+                "youtubeId": "QO-4dnOJL7Q",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/QO-4dnOJL7Q/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/QO-4dnOJL7Q/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/QO-4dnOJL7Q/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624444184,
+                "length": "2:38"
+            },
+            {
+                "id": "ZckaCTKFBXU",
+                "title": "Kungs - Clap Your Hands",
+                "youtubeId": "ZckaCTKFBXU",
+                "imgUrl": {
+                    "default": "https://i.ytimg.com/vi/ZckaCTKFBXU/default.jpg",
+                    "medium": "https://i.ytimg.com/vi/ZckaCTKFBXU/mqdefault.jpg",
+                    "high": "https://i.ytimg.com/vi/ZckaCTKFBXU/hqdefault.jpg"
+                },
+                "addedBy": {},
+                "createdAt": 1670624477640,
+                "length": "3:23"
+            }
+        ],
+        "followers": [],
+        "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670624268/dance_og78a6.png",
+        "desc": "Move your feet!"
+    }
+]

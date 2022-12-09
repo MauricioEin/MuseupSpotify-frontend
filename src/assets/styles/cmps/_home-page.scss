@@ -98,7 +98,7 @@
         position: absolute;
         bottom: 0;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, 20%);
 
         @media (max-width: 750px) {
             display: none;

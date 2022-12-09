@@ -28,11 +28,11 @@ export default {
             required: true
         }
     },
-data(){
-    return{
-        isLoading:true
-    }
-},
+    data() {
+        return {
+            isLoading: true
+        }
+    },
     methods: {
         toggleStation(station) {
             if (!this.isCurrStationPlayed(station) && this.isPlaying ||
@@ -42,8 +42,7 @@ data(){
         },
 
         getStationImg(station) {
-            return station.imgUrl || station?.firstSong?.imgUrl.medium ||
-                station?.songs[0]?.imgUrl?.medium || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
+            return station.imgUrl || station?.firstSong?.imgUrl.medium || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
         },
 
         goToStation(id) {
