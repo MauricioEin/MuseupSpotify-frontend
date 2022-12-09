@@ -5,7 +5,7 @@
             <li v-for="(song, index) in songs" :key="song._id">
                 <search-song-preview @songSelected="songSelected" :index="index" :song="song"
                     :playingSongId="playingSongId" :clickedSong="clickedSong" :loggedInUser="loggedInUser"
-                    @clicked="onSongClicked" @addToStation="$emit('addToStation', song)" />
+                    @songClick="onSongClicked" @addToStation="$emit('addToStation', song)" />
             </li>
         </ul>
     </section>
