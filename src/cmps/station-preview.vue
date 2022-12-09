@@ -7,7 +7,7 @@
             </p>
             <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
             <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
-            <button v-if="(station.songs.length)" class="btn-play-playlist" @click.stop="toggleStation(station)">
+            <button v-if="(station.firstSong)" class="btn-play-playlist" @click.stop="toggleStation(station)">
                 <pause-btn v-if="isCurrStationPlayed(station)" />
                 <play-btn v-else />
             </button>
@@ -38,9 +38,10 @@ export default {
         },
 
         getStationImg(station) {
-            if (station.imgUrl) return station.imgUrl
-            else if (station?.songs[0]?.imgUrl) return station.songs[0]?.imgUrl.medium
-            else return 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
+            // if (station.imgUrl) return station.imgUrl
+            // else if (station.firstSong.imgUrl) return station.firstSong.imgUrl.medium
+            // else return 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
+            return station.imgUrl || station.firstSong.imgUrl.medium || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
         },
 
         goToStation(id) {
