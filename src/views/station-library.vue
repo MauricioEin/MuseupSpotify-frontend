@@ -5,6 +5,7 @@
             <h1>All stations</h1>
         </header>
         <ul class="station-library-list">
+
             <station-preview v-for="station in stations" :station="station" :key="station._id" />
         </ul>
     </section>

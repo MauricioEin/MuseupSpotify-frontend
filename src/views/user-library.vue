@@ -22,6 +22,16 @@
     <!-- <station-list :stations="stations" /> -->
     <ul class="station-library-list">
       <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations.length" />
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
       <station-preview v-for="station in stations" :station="station" :key="station?._id || 'error'" />
     </ul>
   </section>
