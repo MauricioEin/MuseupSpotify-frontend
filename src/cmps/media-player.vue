@@ -20,9 +20,13 @@
                         <span class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</span>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
-                    <button class="btn-like-song" @click.stop="saveSong" :class="{ liked: isLiked }">
+                    <button class="flex justify-center align-center" @click.stop="saveSong" :class="{ liked: isLiked }">
                         <heart-btn-svg v-if="isLiked" class="liked" />
                         <heart-empty-svg v-else />
+                    </button>
+                    <button v-if="songLyrics" class="flex justify-center align-center" >
+                        <lyrics-btn-svg @click="isLyrics = !isLyrics"
+                        :class="{ liked: isLyrics }" />
                     </button>
                 </div>
 
@@ -49,11 +53,11 @@
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
                         <span class="time-progress-1">{{ formattedTime(currTime) }}</span>
-
                         <div class="progress-container">
-                            <progress class="prog progress-bar"  type="progress" :value="currTime" min="0" :max="duration"></progress>
-                            <input class="prog input-bar timestamp" id="fontController" type="range" @input="setTimestamp"
-                                :value="currTime" min="0" :max="duration" />
+                            <progress class="prog progress-bar" type="progress" :value="currTime" min="0"
+                                :max="duration"></progress>
+                            <input class="prog input-bar timestamp" id="fontController" type="range"
+                                @input="setTimestamp" :value="currTime" min="0" :max="duration" />
                         </div>
 
                         <span class="time-progress-2">{{ formattedTime(duration) }}</span>
@@ -61,7 +65,7 @@
                 </div>
 
                 <div class="right-controls" :class="setFull">
-                    <!-- <button @click="getLyrics">lyrics</button> -->
+
                     <button class="sound-btn" @click="toggleMute">
                         <sound-svg v-if="!isMute" />
                         <muted-svg v-else />
@@ -79,6 +83,7 @@
             </div>
 
         </div>
+        <song-lyrics v-if="songLyrics && isLyrics" :lyrics="songLyrics"/>
     </section>
 </template>
 
@@ -102,6 +107,8 @@ import fullSvg from '../assets/svgs/media-player-full.vue'
 import minimizeSvg from '../assets/svgs/media-player-minimize.vue'
 import loopSongSvg from '../assets/svgs/media-player-loop-song.vue'
 import btnDownSvg from '../assets/svgs/btn-down-svg.vue'
+import lyricsBtnSvg from '../assets/svgs/lyrics-btn-svg.vue'
+import songLyrics from './song-lyrics.vue'
 
 export default defineComponent({
     //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
@@ -119,6 +126,8 @@ export default defineComponent({
             timeInterval: '',
             loopType: 0,
             currSongPlaying: {},
+            songLyrics: '',
+            isLyrics: false
         }
     },
 
@@ -212,13 +221,14 @@ export default defineComponent({
             return minutes.toString() + ':' + seconds
         },
 
-        updateCurrStation() {
+        async updateCurrStation() {
             this.originalList = this.songList = this.playingStation.songs
             this.currSongIdx = this.playingSongIdx
             this.currSongPlaying = this.songList[this.currSongIdx]
             if (!this.isPlayingInStore) {
                 this.togglePlay()
             }
+            this.songLyrics = await getLyrics(this.currSongPlaying.title)
         },
 
         changeLoopType() {
@@ -235,9 +245,6 @@ export default defineComponent({
             this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
 
         },
-        getLyrics(){
-            console.log(getLyrics(this.currSongPlaying.title))
-        }
     },
 
     computed: {
@@ -282,7 +289,6 @@ export default defineComponent({
         },
         isPlayingInStore() {
             this.isPlaying = this.isPlayingInStore
-            // this.togglePlay()
         },
 
         isPlaying() {
@@ -295,6 +301,9 @@ export default defineComponent({
                 // this.isPlaying = false
                 clearInterval(this.timeInterval)
             }
+        },
+        songLyrics(){
+            if (!this.songLyrics) this.isLyrics=false 
         }
     },
 
@@ -313,7 +322,9 @@ export default defineComponent({
         fullSvg,
         minimizeSvg,
         loopSongSvg,
-        btnDownSvg
+        btnDownSvg,
+        lyricsBtnSvg,
+        songLyrics
     },
 })
 </script>

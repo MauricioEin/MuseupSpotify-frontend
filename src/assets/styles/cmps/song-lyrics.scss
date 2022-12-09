@@ -1,0 +1,32 @@
+.song-lyrics {
+    position: fixed;
+    inset: 64px 0 90px $nav-width;
+    background-color: rgba(36, 141, 153, 0.95);
+    background-image: linear-gradient(190deg, #1ed76066, transparent 50%);
+    // z-index: ;
+    padding-inline-start: 148px;
+    overflow-y: auto;
+    text-shadow: -2px 2px 2px black;
+
+    pre {
+        font-size: 1.5rem;
+        font-family: circular, rubik;
+    }
+
+    .full &{
+        background-color: rgba(1, 1, 1, 0.406);
+        inset:0;
+        padding-bottom: 150px;
+        overflow-y: hidden;
+        pointer-events: none;
+
+        
+        pre{
+            height:calc(100vh - 160px);
+            overflow-y: auto;
+            pointer-events: all;
+    
+        }
+
+    }
+}
