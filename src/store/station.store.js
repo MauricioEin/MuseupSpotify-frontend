@@ -82,12 +82,12 @@ export const stationStore = {
         },
         playSong(state, { song }) {
             const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
-            state.playingStation = { _id: '', songs: [songCopy] }
+            state.playingStation = { _id: '', songs: [songCopy], name: '' }
             state.playingSongIdx = 0
         },
         playStation(state, { station, idx = 0 }) {
             const miniStation = (Array.isArray(station)) ?
-                { _id: '' } : { _id: station._id }
+                { _id: '', name: '' } : { _id: station._id, name: station.name }
             miniStation.songs = station.songs?.map(song => {
                 const { title, imgUrl, youtubeId, length, createdAt, id, } = song
                 return {
