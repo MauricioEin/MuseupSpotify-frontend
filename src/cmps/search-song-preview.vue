@@ -105,7 +105,7 @@ export default {
     },
     methods: {
         songClick(song){
-            this.$emit('clicked', song.id)
+            this.$emit('songClick', song.id)
             if(window.innerWidth < 750){
                 this.playSong()
             }
