@@ -68,7 +68,7 @@
                     </button>
                     <div class="progress-container">
                         <progress class="prog progress-bar" :value="volume" max="100"></progress>
-                        <input class="prog input-bar" type="range" @input="setVolume" max="100" />
+                        <input class="prog input-bar sound" type="range" @input="setVolume" max="100" />
                     </div>
                     <button @click="(isFullscreen = !isFullscreen)">
                         <full-svg v-if="!isFullscreen" />
