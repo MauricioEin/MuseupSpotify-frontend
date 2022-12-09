@@ -8,7 +8,12 @@
 
     .category-container {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-        gap: 24px;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+
+        @media (min-width: 750px) {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 24px;
+        }
     }
 }
