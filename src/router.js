@@ -1,11 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 import homePage from './views/home-page.vue'
-// import chat from './views/chat.vue'
-import carApp from './views/car-app.vue'
 import stationApp from './views/station-app.vue'
-import reviewApp from './views/review-app.vue'
-// import loginSignup from './views/login-signup.vue'
 import userDetails from './views/user-details.vue'
 import stationDetails from './views/station-details.vue'
 import mediaPlayer from './cmps/media-player.vue'
@@ -60,16 +56,6 @@ const routes = [
     name: 'station-details',
     component: stationDetails
   },
-  {
-    path: '/review',
-    name: 'review',
-    component: reviewApp
-  },
-  // {
-  //   path: '/chat',
-  //   name: 'chat',
-  //   component: chat
-  // },
   {
     path: '/login',
     name: 'login',
