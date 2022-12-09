@@ -2,7 +2,7 @@
     <section class="search-category-list content-layout">
         <h1>Browse all</h1>
         <div class="category-container">
-            <search-category-card v-for="i in 24" :key="i" :style="{ 'background-color': colors[i - 1] }"
+            <search-category-card v-for="i in 25" :key="i" :style="{ 'background-color': colors[i - 1] }"
                 :label="labels[i - 1]" :imgIdx="i" />
         </div>
     </section>

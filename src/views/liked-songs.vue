@@ -8,7 +8,15 @@
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1>Liked Songs</h1>
-        <p class="mini-dashboard"> <span class="username">{{ user.username }} </span> • {{ user.likedSongs.length }} songs </p>
+        <p class="mini-dashboard">
+        <div v-if="user?.profileImg" class="user-img-container">
+          <img class="fit-img" :src="userImg" alt="">
+        </div>
+
+        <span class="username">{{ user.username }}</span>
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        {{ songsCount }}
+        </p>
       </div>
     </section>
 
@@ -67,6 +75,13 @@ export default {
     },
     station() {
       return { _id: this.user._id, songs: [...this.user.likedSongs] }
+    },
+    songsCount() {
+      const count = this.user.likedSongs.length
+      return `${count} ${count === 1 ? 'song' : 'songs'}`
+    },
+    userImg() {
+      return this.user.profileImg || './src/assets/svgs/user-portrait.vue'
     }
   },
   methods: {

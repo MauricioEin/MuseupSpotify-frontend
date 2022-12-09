@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import home from './views/home.vue'
+import homePage from './views/home-page.vue'
 // import chat from './views/chat.vue'
 import carApp from './views/car-app.vue'
 import stationApp from './views/station-app.vue'
@@ -22,7 +22,9 @@ import testDnd from './views/test-dnd.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/station'
+    // redirect: '/station'
+    name: 'home-page',
+    component: homePage
   },
   {
     path: '/dnd',

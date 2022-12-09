@@ -48,7 +48,7 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: "login", userCred: this.loginCred })
-        this.$router.push('/')
+        this.$router.push('/station')
         showSuccessMsg('Welcome back!')
       } catch (err) {
         console.log(err)

@@ -69,6 +69,7 @@
     .song-index {
         display: none;
 
+
         @media (min-width:860px) {
             // padding: 0 20px;
             // padding-top: 2px;
@@ -89,11 +90,13 @@
             display: none;
             height: 15px;
             width: 15px;
+            transform: translateX(3px);
         }
 
         img {
             height: 16px;
             width: 16px;
+            transform: translateX(5px);
         }
 
     }

@@ -18,7 +18,7 @@
         Good {{ greeting }}
       </section>
     </section>
-    <section class="categories" >
+    <section class="categories">
       <station-list :stations="filteredStations.trending" :title="'Trending now'" />
       <station-list :stations="filteredStations.bestOf" :title="'Best of 2022'" />
       <station-list :stations="filteredStations.mood" :title="'Mood'" />
@@ -135,7 +135,7 @@ export default {
     },
     logout() {
       this.$store.dispatch({ type: 'logout' })
-      this.$router.go()
+      this.$router.go('/station')
     },
     goToProfile() {
       const id = this.loggedinUser._id
