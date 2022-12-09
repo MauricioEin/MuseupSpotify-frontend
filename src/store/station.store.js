@@ -80,9 +80,9 @@ export const stationStore = {
         clearCurrStation(state) {
             state.currStation = null
         },
-        playSong(state, { song }) {
+        playSong(state, { song, stationId = '' }) {
             const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
-            state.playingStation = { _id: '', songs: [songCopy], name: '' }
+            state.playingStation = { _id: stationId, songs: [songCopy], name: '' }
             state.playingSongIdx = 0
         },
         playStation(state, { station, idx = 0 }) {
@@ -149,7 +149,8 @@ export const stationStore = {
             }
         }, filterStations(state, { filteredStations }) {
             state.filteredStations = filteredStations
-        }
+        },
+
         // removeAllQueued(state){
         //     state.playingStation.songs.forEach((song, idx)=>{
         //         if(song.isQueued) state.playingStation.songs.splice(idx, 1)
@@ -229,6 +230,16 @@ export const stationStore = {
                 throw err
             }
         },
+        async playFromHomePage(context, { station }) {
+            try {
+                const fullStation = await stationService.getById(station._id)
+                context.commit({ type: 'playStation' , station: fullStation})
+
+            } catch (err) {
+                console.log('stationStore: Error in getting station', err)
+                throw err
+            }
+        }
 
     }
 }

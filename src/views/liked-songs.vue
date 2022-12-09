@@ -81,7 +81,7 @@ export default {
       return `${count} ${count === 1 ? 'song' : 'songs'}`
     },
     userImg() {
-      return this.user.profileImg || './src/assets/svgs/user-portrait.vue'
+      return this.user.profileImg || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGtpKU-n3W5Y0oRANR315ajWyGdwkdd7LjEF3Wf9Y6tLC7ntswFQXyT5SoGNoZQNVpMLo&usqp=CAU'
     }
   },
   methods: {

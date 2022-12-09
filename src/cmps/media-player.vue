@@ -61,13 +61,14 @@
                 </div>
 
                 <div class="right-controls" :class="setFull">
+                    <!-- <button @click="getLyrics">lyrics</button> -->
                     <button class="sound-btn" @click="toggleMute">
                         <sound-svg v-if="!isMute" />
                         <muted-svg v-else />
                     </button>
                     <div class="progress-container">
                         <progress class="prog progress-bar" :value="volume" max="100"></progress>
-                        <input class="prog input-bar" type="range" @input="setVolume" max="100" />
+                        <input class="prog input-bar sound" type="range" @input="setVolume" max="100" />
                     </div>
                     <button @click="(isFullscreen = !isFullscreen)">
                         <full-svg v-if="!isFullscreen" />
@@ -85,6 +86,7 @@
 import { defineComponent } from 'vue'
 import YouTube from 'vue3-youtube'
 import { utilService } from '../services/util.service'
+import { getLyrics } from '../services/lyrics.service'
 
 import playSvg from '../assets/svgs/media-player-play.vue'
 import stopSvg from '../assets/svgs/media-player-stop.vue'
@@ -131,12 +133,6 @@ export default defineComponent({
             if (ev.data === 1) {
                 this.getDuration()
             }
-
-            // if (ev.data === 0 &&
-            //     this.currSongIdx === this.songList.length - 1){
-            //     this.$store.commit({type:'removeAllQueued'})
-            // }
-
             if (ev.data === 0 &&
                 this.currSongIdx !== this.songList.length - 1 &&
                 this.loopType !== 2) {
@@ -238,6 +234,9 @@ export default defineComponent({
         saveSong() {
             this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
 
+        },
+        getLyrics(){
+            console.log(getLyrics(this.currSongPlaying.title))
         }
     },
 

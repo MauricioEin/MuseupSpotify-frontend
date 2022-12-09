@@ -197,13 +197,9 @@
 
     // input {
     //     display: none;
-    // }
-
-    // progress {
-    //     display: block;
-    //     width: 100%;
-    // }
-
+        button{
+            padding-bottom: 0;
+        }
     // &:hover {
     //     input {
     //         display: block;
@@ -224,7 +220,10 @@
     //     width: 100%;
     // }
 
-    .time-progress {
+    .time-progress-1 {
+        font-size: 11px;
+    }
+    .time-progress-2 {
         font-size: 11px;
     }
 
@@ -344,7 +343,6 @@
         width: 98%;
         left: 5px;
         padding: 0;
-
         span {
             display: none;
         }
@@ -376,7 +374,7 @@
 
 
     .prog {
-        width: 100%;
+        width: 97%;
         margin: 0;
         position: absolute;
         top: 50%;
@@ -385,7 +383,7 @@
     }
 
     input[type='range'] {
-        height: 5px;
+        height: 4px;
         appearance: none;
         background: transparent;
 
@@ -401,8 +399,8 @@
     progress[value] {
         appearance: none;
         border: none;
-        height: 5px;
-
+        height: 4px;
+        
         &::-webkit-progress-bar {
             background-color: rgb(154, 154, 154); // change to spotify
             border-radius: 2px;
@@ -412,6 +410,8 @@
             background: white;
             border-radius: 2px;
         }
+
+        
     }
 
     @media (min-width:$narrow-breakpoint) {

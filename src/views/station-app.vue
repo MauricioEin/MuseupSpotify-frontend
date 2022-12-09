@@ -107,11 +107,11 @@ export default {
     },
 
     async loadHomeStations() {
-      await this.$store.dispatch({ type: 'filterStations', categories: this.categories })
+      const delay = this.$store.getters.filteredStations.trending ? 0 : 500
       setTimeout(() => {
         this.filteredStations = this.$store.getters.filteredStations
         console.log('this stations:', this.filteredStations)
-      }, 500)
+      }, delay)
       // console.log('Hello', this.isLoaded, this.filteredStations);
     },
     stationsWithGenre(genre) {
