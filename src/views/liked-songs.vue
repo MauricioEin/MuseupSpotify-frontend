@@ -8,10 +8,14 @@
       <div class="station-summary">
         <p class="summary-title">PLAYLIST</p>
         <h1>Liked Songs</h1>
-        <p class="mini-dashboard"> 
-          <img :src="user.profileImg || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGtpKU-n3W5Y0oRANR315ajWyGdwkdd7LjEF3Wf9Y6tLC7ntswFQXyT5SoGNoZQNVpMLo&usqp=CAU'" class="liked-songs-img" alt="">
-           <span class="username">{{ user.username }} </span> 
-           • {{ user.likedSongs.length }} songs
+        <p class="mini-dashboard">
+        <div v-if="user?.profileImg" class="user-img-container">
+          <img class="fit-img" :src="userImg" alt="">
+        </div>
+
+        <span class="username">{{ user.username }}</span>
+        &nbsp;&nbsp;•&nbsp;&nbsp;
+        {{ songsCount }}
         </p>
       </div>
     </section>
@@ -71,6 +75,13 @@ export default {
     },
     station() {
       return { _id: this.user._id, songs: [...this.user.likedSongs] }
+    },
+    songsCount() {
+      const count = this.user.likedSongs.length
+      return `${count} ${count === 1 ? 'song' : 'songs'}`
+    },
+    userImg() {
+      return this.user.profileImg || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGtpKU-n3W5Y0oRANR315ajWyGdwkdd7LjEF3Wf9Y6tLC7ntswFQXyT5SoGNoZQNVpMLo&usqp=CAU'
     }
   },
   methods: {

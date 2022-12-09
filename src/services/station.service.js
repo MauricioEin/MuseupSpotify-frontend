@@ -208,15 +208,20 @@ async function _getSongLength(videoId) {
   // data returned: PT3H46M32S
   let hours
   let mins
+  let secs
   if (data.includes('H')) {
     hours = data.slice(2, data.indexOf('H'))
     mins = data.slice(data.indexOf('H') + 1, data.indexOf('M'))
-  } else {
+    secs = data.slice(data.indexOf('M') + 1, data.indexOf('S'))
+  } else if (data.includes('M')) {
     mins = data.slice(2, data.indexOf('M'))
+    secs = data.slice(data.indexOf('M') + 1, data.indexOf('S'))
+  } else {
+    secs = data.slice(2, data.indexOf('S'))
   }
-  const secs = data.slice(data.indexOf('M') + 1, data.indexOf('S'))
   if (hours) return `${hours}:${mins.padStart(2, 0)}:${secs.padStart(2, 0)}`
-  else return `${mins}:${secs.padStart(2, 0)}`
+  else if (mins) return `${mins}:${secs.padStart(2, 0)}`
+  else return `0:${secs.padStart(2, 0)}`
 }
 
 

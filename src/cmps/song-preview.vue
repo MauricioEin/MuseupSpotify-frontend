@@ -31,9 +31,9 @@
                 <heart-empty-svg v-else />
             </button>
             <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more" @click="toggleMiniMenu">
+            <button class="btn-more" @click.stop="toggleMiniMenu">
                 <more-options-svg />
-                <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
+                <mini-menu v-if="isMiniMenu" ref="miniMenu" :actions="songActions"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
                     @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
                     @removeFromQueue="onMiniMenu('removeQueue')" @AddToAPlaylist="onMiniMenu('addToPlaylist')" />

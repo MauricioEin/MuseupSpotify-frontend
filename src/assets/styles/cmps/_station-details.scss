@@ -4,7 +4,7 @@
 
     .station-preview {
         gap: 25px;
-        align-items: flex-end;
+        // align-items: flex-end;
         // height: 60vh;
         max-height: 380px;
         background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 100%);
@@ -259,8 +259,8 @@
     }
 
     .station-preview {
-        flex-direction: column !important;
-        align-items: center !important;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
 
         h1 {

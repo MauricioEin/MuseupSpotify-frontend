@@ -26,7 +26,7 @@ export default {
   name: 'signup',
   data() {
     return {
-      signupCred: { username: '', password: '', fullname: '', profileImg: ''},
+      signupCred: { username: '', password: '', fullname: '', profileImg: '' },
     }
   },
   created() {
@@ -39,7 +39,7 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: "login", userCred: this.loginCred })
-        this.$router.push('/')
+        this.$router.push('/station')
       } catch (err) {
         console.log(err)
         this.msg = 'Failed to login'
@@ -51,7 +51,7 @@ export default {
         return
       }
       await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
-      this.$router.push('/')
+      this.$router.push('/station')
 
     },
     loadUsers() {
@@ -67,32 +67,32 @@ export default {
     },
 
     handleFile(ev) {
-            console.log('ev', ev)
-            let file
-            if (ev.type === 'change') file = ev.target.files[0]
-            console.log('file', file)
-            this.onUploadFile(file)
-        },
-        async onUploadFile(file) {
-            // this.isLoading = true
-            console.log('loading...')
-            try {
-                const res = await uploadImg(file)
-                console.log('res.url', res.url)
-                // this.editedStation.imgUrl = res.url
-                // this.$emit('saved', res.url)
-                this.signupCred.profileImg = res.url
-            } catch (err) {
-                console.log('COULDNT UPDATE IMG')
-                console.dir(err)
-                throw err
-            } finally {
-                this.isLoading = false
-            }
-        },
+      console.log('ev', ev)
+      let file
+      if (ev.type === 'change') file = ev.target.files[0]
+      console.log('file', file)
+      this.onUploadFile(file)
+    },
+    async onUploadFile(file) {
+      // this.isLoading = true
+      console.log('loading...')
+      try {
+        const res = await uploadImg(file)
+        console.log('res.url', res.url)
+        // this.editedStation.imgUrl = res.url
+        // this.$emit('saved', res.url)
+        this.signupCred.profileImg = res.url
+      } catch (err) {
+        console.log('COULDNT UPDATE IMG')
+        console.dir(err)
+        throw err
+      } finally {
+        this.isLoading = false
+      }
+    },
   },
 
-  components:{
+  components: {
     imgUploader
   }
 }

@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="right-controls" :class="setFull">
-                    <button @click="getLyrics">lyrics</button>
+                    <!-- <button @click="getLyrics">lyrics</button> -->
                     <button class="sound-btn" @click="toggleMute">
                         <sound-svg v-if="!isMute" />
                         <muted-svg v-else />

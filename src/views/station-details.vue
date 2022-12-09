@@ -170,7 +170,7 @@ export default {
     // }
   },
   async mounted() {
-    socketService.on('song-added', station => {
+    socketService.on('station-updated', station => {
       // console.log('newStation', station)
       // this.$store.commit({ type: 'updateStation', station })
       this.loadStation()
@@ -186,6 +186,7 @@ export default {
   },
   unmounted() {
     window.removeEventListener('click', this.closeMenu)
+    this.$store.commit({ type: 'clearCurrStation' })
     // socketService.on('add-song', song)
   },
   methods: {
@@ -242,13 +243,14 @@ export default {
     async updateStation(editedStation) {
       try {
         editedStation = { ...this.station, ...editedStation }
-        await this.$store.dispatch(getActionUpdateStation(editedStation))
+        const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
+        socketService.emit('update-station', res)
+
         if (this.station.name !== editedStation.name)
           await this.$store.commit({ type: 'updateUsersStation', editedStation })
         showSuccessMsg('Station updated')
         this.loadStation()
         this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
-
       } catch (err) {
         console.log(err)
         showErrorMsg('Cannot update station')
@@ -271,10 +273,10 @@ export default {
         const editedStation = JSON.parse(JSON.stringify(this.station))
         editedStation.songs.push(song)
         const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
+        socketService.emit('update-station', res)
         showSuccessMsg('Added to playlist')
 
         console.log('Emitting from front');
-        socketService.emit('add-song', res)
 
         this.loadStation()
         if (this.isCurrStationPlayed && this.isPlaying)
@@ -301,7 +303,8 @@ export default {
         const editedStation = JSON.parse(JSON.stringify(this.station))
         const idx = editedStation.songs.findIndex(s => s.id === song.id)
         editedStation.songs.splice(idx, 1)
-        await this.$store.dispatch(getActionUpdateStation(editedStation))
+        const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
+        socketService.emit('update-station', res)
         showSuccessMsg('Removed from playlist')
         this.loadStation()
         if (this.isCurrStationPlayed && this.isPlaying)
@@ -345,9 +348,6 @@ export default {
       this.getAvgClr()
 
     }
-  },
-  unmounted() {
-    this.$store.commit({ type: 'clearCurrStation' })
   },
   components: {
     songList,

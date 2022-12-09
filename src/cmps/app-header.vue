@@ -79,7 +79,7 @@ export default {
     },
     logout() {
       this.$store.dispatch({ type: 'logout' })
-      this.$router.push('/')
+      this.$router.push('/station')
     },
     goToProfile() {
       const id = this.loggedInUser._id
