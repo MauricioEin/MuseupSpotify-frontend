@@ -34,14 +34,6 @@
           <p class="station-title cut-text">
             {{ station.name }}
           </p>
-
-          <!-- <pre>{{ station }}</pre> -->
-          <!-- <p class="station-desc cut-text">
-            {{ station.name }}
-          </p>
-          <p class="station-desc cut-text">
-            The essential tracks, all in one playlist.
-          </p> -->
           <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
           <button v-if="(station.firstSong)" class="btn-play-playlist" @click.stop="toggleStation(station)">
@@ -74,10 +66,8 @@ export default {
   data() {
     return {
       isIntersecting: false,
-
     }
   },
-
   async created() {
     await this.$store.dispatch({ type: 'loadStations' })
     this.resizeList()
@@ -106,7 +96,7 @@ export default {
 
     playStation(station) {
       this.$store.commit({ type: 'toggleIsPlaying' })
-      this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId:station._id })
+      this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id })
       this.$store.dispatch({ type: 'playFromHomePage', station })
     },
 

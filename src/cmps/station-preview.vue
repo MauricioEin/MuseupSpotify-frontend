@@ -1,5 +1,5 @@
 <template>
-    <li ref="stationCard" class="station-card" @click="goToStation(station._id)">
+    <li v-if="station" ref="stationCard" class="station-card" @click="goToStation(station._id)">
         <img :src="getStationImg(station)" alt="" class="station-img">
         <div class="card-details">
             <p class="station-title cut-text">
@@ -7,7 +7,7 @@
             </p>
             <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
             <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
-            <button v-if="(station.songs.length)" class="btn-play-playlist" @click.stop="toggleStation(station)">
+            <button v-if="(station.firstSong)" class="btn-play-playlist" @click.stop="toggleStation(station)">
                 <pause-btn v-if="isCurrStationPlayed(station)" />
                 <play-btn v-else />
             </button>
@@ -28,7 +28,11 @@ export default {
             required: true
         }
     },
-
+data(){
+    return{
+        isLoading:true
+    }
+},
     methods: {
         toggleStation(station) {
             if (!this.isCurrStationPlayed(station) && this.isPlaying ||
@@ -38,9 +42,8 @@ export default {
         },
 
         getStationImg(station) {
-            if (station.imgUrl) return station.imgUrl
-            else if (station?.songs[0]?.imgUrl) return station.songs[0]?.imgUrl.medium
-            else return 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
+            return station.imgUrl || station?.firstSong?.imgUrl.medium ||
+                station?.songs[0]?.imgUrl?.medium || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
         },
 
         goToStation(id) {
@@ -48,7 +51,9 @@ export default {
         },
 
         playStation(station) {
-            this.$store.commit({ type: 'playStation', station })
+            this.$store.commit({ type: 'toggleIsPlaying' })
+            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id })
+            this.$store.dispatch({ type: 'playFromHomePage', station })
         },
 
         toggleIsPlaying() {
