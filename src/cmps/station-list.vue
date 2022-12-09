@@ -1,12 +1,24 @@
 <template>
   <div class="skeleton-7b7uvxywsk" v-if="!stations"></div>
   <div class="card-loader flex" v-if="!stations">
-    <div><div class="skeleton-7b7uvxywsks"></div></div>
-    <div><div class="skeleton-7b7uvxywsks"></div></div>
-    <div><div class="skeleton-7b7uvxywsks"></div></div>
-    <div><div class="skeleton-7b7uvxywsks"></div></div>
-    <div><div class="skeleton-7b7uvxywsks"></div></div>
-    <div><div class="skeleton-7b7uvxywsks"></div></div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
   </div>
   <div class="station-list-container" v-if="(stations && stations.length)">
     <div class="station-list-head">
@@ -32,7 +44,7 @@
           </p> -->
           <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
           <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
-          <button v-if="(station.songs.length)" class="btn-play-playlist" @click.stop="toggleStation(station)">
+          <button v-if="(station.firstSong)" class="btn-play-playlist" @click.stop="toggleStation(station)">
             <pause-btn v-if="isCurrStationPlayed(station)" />
             <play-btn v-else />
           </button>
@@ -80,7 +92,7 @@ export default {
 
     getStationImg(station) {
       if (station.imgUrl) return station.imgUrl
-      else if (station?.songs[0]?.imgUrl) return station.songs[0]?.imgUrl.medium
+      else if (station?.firstSong?.imgUrl) return station.firstSong?.imgUrl.medium
       else return 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
     },
 
@@ -93,7 +105,9 @@ export default {
     },
 
     playStation(station) {
-      this.$store.commit({ type: 'playStation', station })
+      this.$store.commit({ type: 'toggleIsPlaying' })
+      this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId:station._id })
+      this.$store.dispatch({ type: 'playFromHomePage', station })
     },
 
     toggleIsPlaying() {
@@ -104,6 +118,8 @@ export default {
       return (this.isPlaying && station._id === this.getPlayingStation._id)
     },
     resizeList() {
+      // if(this.title !== 'Trending now') return
+      // console.log('RESIZING',this.title, 'num of stations:', this.stations.length)
       if (window.innerWidth < 860) {
         this.isIntersecting = false
         if (!this.$refs.stationCard?.length) return
@@ -112,7 +128,10 @@ export default {
         })
       } else {
         this.isIntersecting = false
+        // console.log('hi1', this.isIntersecting)
+        // console.log('stationcard:', this.$refs.stationCard)
         if (!this.$refs.stationCard?.length) return
+        // console.log('hi2')
 
         this.$refs.stationCard.forEach(elStation => {
 
@@ -124,6 +143,8 @@ export default {
             elStation.style.display = 'none'
           }
         })
+        // console.log('hi3')
+
       }
       this.$emit('doneResize')
     },
