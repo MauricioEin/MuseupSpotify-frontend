@@ -78,8 +78,8 @@
                         <minimize-svg v-else />
                     </button>
                 </div>
-                <div class="mobile-lyrics-container">
-                    <song-lyrics v-if="isFullscreen" class="mobile-lyrics" :lyrics="songLyrics" />
+                <div class="mobile-lyrics-container" v-if="isFullscreen">
+                    <song-lyrics class="mobile-lyrics" :lyrics="songLyrics" />
                 </div>
             </div>
 
