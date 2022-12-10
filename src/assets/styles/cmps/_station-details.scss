@@ -196,6 +196,7 @@
         }
     }
 }
+
 @media (max-width:860px) {
     // .song-list-header {
     //     display: flex;
@@ -205,7 +206,7 @@
     // }
 }
 
-@media (max-width:750px) {
+@media (max-width:$narrow-breakpoint) {
     .station-summary {
         h1.pointer {
             margin: 0 !important;

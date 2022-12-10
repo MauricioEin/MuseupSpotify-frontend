@@ -65,7 +65,7 @@
             cursor: pointer;
             transition: background-color .3s, transform .3s;
 
-            @media (max-width: 750px) {
+            @media (max-width: $narrow-breakpoint) {
                 height: 48px;
                 font-size: 1rem;
             }
@@ -78,7 +78,7 @@
 
         }
 
-        @media (max-width: 750px) {
+        @media (max-width: $narrow-breakpoint) {
             white-space: unset;
 
             h1 {
@@ -100,7 +100,7 @@
         left: 50%;
         transform: translate(-50%, 20%);
 
-        @media (max-width: 750px) {
+        @media (max-width: $narrow-breakpoint) {
             display: none;
         }
     }
@@ -111,7 +111,7 @@
         left: 50%;
         transform: translate(-50%, 30%) scale(0.5);
 
-        @media (min-width: 750px) {
+        @media (min-width: $narrow-breakpoint) {
             display: none;
         }
     }

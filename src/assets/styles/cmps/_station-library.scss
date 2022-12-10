@@ -20,7 +20,7 @@
         margin: 0;
         // background-color: beige;
 
-        @media(max-width:750px) {
+        @media(max-width:$narrow-breakpoint) {
             padding: 10px 0 150px;
             gap: unset;
         }

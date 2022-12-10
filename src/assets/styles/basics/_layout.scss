@@ -60,7 +60,7 @@
     @media (max-width:$narrow-breakpoint) {
         width: 100%;
         max-width: 100%;
-        padding-bottom:170px;
+        padding-bottom: 170px;
 
     }
 
@@ -84,8 +84,8 @@
     }
 }
 
-@media(max-width:750px){
-    .home-page{
+@media(max-width:$narrow-breakpoint) {
+    .home-page {
         background-color: black;
     }
 }

@@ -4,13 +4,13 @@
     gap: 10px;
     cursor: pointer;
 
-    @media (max-width: 750px) {
+    @media (max-width: $narrow-breakpoint) {
         height: 42px;
     }
 
 
 
-    @media (min-width: 750px) {
+    @media (min-width: $narrow-breakpoint) {
         display: flex;
         grid-column: span 2;
         padding: 20px;
@@ -21,7 +21,7 @@
     .liked-songs-previews {
         display: none;
 
-        @media (min-width: 750px) {
+        @media (min-width: $narrow-breakpoint) {
             margin: 30px 0;
             font-size: 14px;
             display: -webkit-box;
@@ -36,12 +36,12 @@
     .img-container {
         display: block;
 
-        @media (min-width: 750px) {
+        @media (min-width: $narrow-breakpoint) {
             display: none;
         }
 
         img {
-            @media (min-width: 750px) {}
+            @media (min-width: $narrow-breakpoint) {}
         }
 
     }
@@ -51,7 +51,7 @@
         flex-direction: column;
         justify-content: center;
 
-        @media (min-width: 750px) {
+        @media (min-width: $narrow-breakpoint) {
             justify-content: space-around;
         }
 
@@ -60,7 +60,7 @@
             font-weight: 300;
             color: $clr02;
 
-            @media (min-width: 750px) {
+            @media (min-width: $narrow-breakpoint) {
                 color: $clr01;
                 font-weight: 600;
                 font-size: rem(32px);
@@ -72,7 +72,7 @@
             font-size: 0.875rem;
             color: $clr03;
 
-            @media (min-width: 750px) {
+            @media (min-width: $narrow-breakpoint) {
                 color: $clr01;
             }
         }

@@ -20,7 +20,7 @@
         .station-summary {
             h1 {
 
-                @media(max-width: 750px) {
+                @media(max-width: $narrow-breakpoint) {
                     // padding-top: 80px;
                     font-size: 2rem;
                     align-self: flex-start;

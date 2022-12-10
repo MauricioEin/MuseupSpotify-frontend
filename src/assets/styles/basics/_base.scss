@@ -55,7 +55,7 @@ a:hover {
     text-decoration: underline;
 }
 
-footer{
+footer {
     z-index: 31;
 }
 
@@ -63,7 +63,7 @@ button {
     font-family: circular, gotham, rubik;
 }
 
-input{
+input {
     font-family: circular, rubik;
 }
 
@@ -101,7 +101,7 @@ input {
         // background: #555;
     }
 
-    @media(max-width:750px){
+    @media(max-width:$narrow-breakpoint) {
         display: none;
     }
 }

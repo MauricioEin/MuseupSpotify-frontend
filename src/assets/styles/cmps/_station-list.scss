@@ -10,7 +10,7 @@
         display: flex;
         justify-content: space-between;
 
-        @media(max-width:750px) {
+        @media(max-width:$narrow-breakpoint) {
             margin-inline-start: 13px;
         }
 
@@ -51,7 +51,7 @@
     margin: 0;
     // background-color: beige;
 
-    @media(max-width:750px) {
+    @media(max-width:$narrow-breakpoint) {
         gap: unset;
     }
 
@@ -161,7 +161,7 @@
 
 }
 
-@media (max-width:750px) {
+@media (max-width:$narrow-breakpoint) {
     .station-card {
         background-color: transparent;
 

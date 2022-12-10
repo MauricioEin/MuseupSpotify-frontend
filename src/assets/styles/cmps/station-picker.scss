@@ -2,8 +2,8 @@
     padding: 30px;
     overflow-y: scroll;
 
-    @media (max-width: 750px) {
-        padding-top:50px;
+    @media (max-width: $narrow-breakpoint) {
+        padding-top: 50px;
         position: fixed;
         inset: 0;
         height: unset;
@@ -11,7 +11,7 @@
         z-index: 50;
     }
 
-    @media (min-width: 750px) {
+    @media (min-width: $narrow-breakpoint) {
         position: absolute;
         z-index: 60;
         background-color: $clr07;
@@ -70,8 +70,8 @@
         width: fit-content;
         margin: auto;
         font-size: 1.25rem;
-        margin-bottom:15px;
-        cursor:pointer;
+        margin-bottom: 15px;
+        cursor: pointer;
 
     }
 
@@ -97,7 +97,7 @@
             color: $clr02;
         }
 
-        @media (min-width: 750px) {
+        @media (min-width: $narrow-breakpoint) {
 
             &:hover {
                 background-color: $clr04;

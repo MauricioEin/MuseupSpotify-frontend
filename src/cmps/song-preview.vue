@@ -2,7 +2,9 @@
     <li class="song-preview" @click.prevent.stop="$emit('songClicked', song.id)"
         :class="{ clicked: isClicked, playing: isOnPlayer }">
         <span class="column-drag-handle" @mousedown="isDragged = true" @mouseup="isDragged = false"
-            :class="{ dragged: isDragged }">&#x2630;</span>
+            :class="{ dragged: isDragged }">
+            <grip-svg />
+        </span>
 
         <!-- <div class="song-preview-info"> -->
         <div class="song-index">
@@ -52,6 +54,7 @@ import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
 import playBtnSvg from '../assets/svgs/play-btn-svg.vue'
 import mediaPlayerStop from '../assets/svgs/media-player-stop.vue'
+import gripSvg from '../assets/svgs/grip.vue'
 
 import miniMenu from '../cmps/mini-menu.vue'
 
@@ -168,7 +171,7 @@ export default {
         moreOptionsSvg,
         playBtnSvg,
         mediaPlayerStop,
-
+        gripSvg,
         miniMenu
     }
 }

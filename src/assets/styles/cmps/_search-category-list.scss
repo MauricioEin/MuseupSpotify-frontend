@@ -11,7 +11,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 10px;
 
-        @media (min-width: 750px) {
+        @media (min-width: $narrow-breakpoint) {
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 24px;
         }

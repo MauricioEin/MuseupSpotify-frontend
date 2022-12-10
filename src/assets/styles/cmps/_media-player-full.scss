@@ -11,10 +11,10 @@
     .progress-container {
         pointer-events: all;
 
-   
+
 
         @media (max-width:$narrow-breakpoint) {
-            
+
 
             input[type='range']::-webkit-slider-thumb {
                 background-color: white;
@@ -49,7 +49,7 @@
     bottom: 90px;
     padding: 0 16px;
 
- 
+
 }
 
 .controls.full {
@@ -77,12 +77,12 @@
     display: none;
 }
 
-@media(max-width:750px) {
-    .media-player.full {    
+@media(max-width:$narrow-breakpoint) {
+    .media-player.full {
         background: linear-gradient(180.6deg, rgb(57, 57, 57) 1.2%, rgba(21, 20, 20, 0.93) 68.9%);
         background-color: rgb(24, 23, 23);
         padding: 2vw;
-       
+
     }
 
     .controls.full {
@@ -101,7 +101,7 @@
             display: block;
         }
     }
-    
+
     .top-center-controls.full {
         width: 100%;
         padding: 10px;
@@ -109,42 +109,46 @@
         display: flex;
         position: absolute;
         bottom: -2vw;
+
         // padding-left: 3px;
-        button.play-btn{
+        button.play-btn {
             width: 43px;
             height: 43px;
         }
-        .play{
+
+        .play {
             height: 18px;
             width: 15px;
         }
-        
+
         button {
             display: block;
             align-items: flex-end;
-           
-            svg.play{
+
+            svg.play {
                 // width: 20px;
                 // height: 20px;
             }
         }
-        
+
         svg:not(.stop-svg, .play-svg) {
             fill: white;
             width: 8vw;
             height: 8vw;
-            &.loop-song{
+
+            &.loop-song {
                 margin-top: 1vw;
                 width: 6vw;
                 height: 6vw;
             }
-            &.random-btn{
+
+            &.random-btn {
                 margin-top: 1vw;
                 width: 6vw;
                 height: 6vw;
             }
- 
-          
+
+
         }
 
         .play-btn {
@@ -174,13 +178,14 @@
         }
     }
 
-    .time-progress-1{
+    .time-progress-1 {
         position: absolute;
         top: 20px;
         left: 22px;
         font-size: 11px;
     }
-    .time-progress-2{
+
+    .time-progress-2 {
         position: absolute;
         top: 20px;
         right: 22px;
@@ -193,6 +198,7 @@
         bottom: 38vw;
         left: 16px;
         padding: 0 5px;
+
         button {
             position: static;
         }
