@@ -78,7 +78,6 @@
         "imgUrl": "http://res.cloudinary.com/casep22/image/upload/v1670441292/rock_gediyc.png"
     },
     {
-        "_id": "6393a54902015f278c087081",
         "name": "Happy Birthday",
         "category": "trending",
         "owner": {
@@ -183,7 +182,6 @@
         "desc": "Great songs for your birthday! Let's celebrate!"
     },
     {
-        "_id": "6393a80e02015f278c087082",
         "name": "Birthday Mix",
         "category": "popular",
         "owner": {
@@ -275,7 +273,6 @@
         "desc": "Birthday music picked just for you"
     },
     {
-        "_id": "6393a9a602015f278c087083",
         "name": "להיטים ישראליים",
         "category": "bestOf",
         "owner": {
@@ -380,7 +377,6 @@
         "desc": "כל מה שרותח בישראל! 🔥"
     },
     {
-        "_id": "6393abf302015f278c087084",
         "name": "אינדי ישראלי",
         "category": "bestOf",
         "owner": {
@@ -485,7 +481,6 @@
         "desc": "מהמועדונים של תל אביב ועד לבמות הגדולות של פסטיבלים בעולם, האינדי הישראלי שעושה הבדל."
     },
     {
-        "_id": "6393af6202015f278c087085",
         "name": "Funk Outta Here",
         "category": "popular",
         "owner": {
@@ -577,7 +572,6 @@
         "desc": "Funk to these good ol' funky soul classics!"
     },
     {
-        "_id": "6393b11402015f278c087086",
         "name": "בדרך",
         "category": "trending",
         "owner": {
@@ -669,7 +663,6 @@
         "desc": "מוזיקה שתעשה לכם נעים בדרכים"
     },
     {
-        "_id": "6393b24f02015f278c087087",
         "name": "להיטים שמחים",
         "category": "bestOf",
         "owner": {
@@ -761,7 +754,6 @@
         "desc": "להיטים שעושים מצב רוח. באחריות!"
     },
     {
-        "_id": "6393b3f202015f278c087088",
         "name": "Dance Party",
         "category": "trending",
         "owner": {

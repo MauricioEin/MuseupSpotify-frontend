@@ -2,7 +2,8 @@
   <section class="song-lyrics">
     <div class="lyrics-container">
       <pre>{{ lyrics.substring(0, lyrics.length - 70) }}
-            
+
+**** Beta-version partial lyrics ****             
 Lyrics provided by Musixmatch</pre>
     </div>
   </section>

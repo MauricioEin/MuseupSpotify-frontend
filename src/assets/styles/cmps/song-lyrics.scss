@@ -14,7 +14,9 @@
     }
 
     .full &{
-        background-color: rgba(1, 1, 1, 0.406);
+        background-color: rgba(1, 1, 1, 0.106);
+        background-image: linear-gradient(190deg, #1ed76066,  rgba(36, 141, 153, 0.35) 50%, transparent 100%);
+
         inset:0;
         padding-bottom: 150px;
         overflow-y: hidden;
