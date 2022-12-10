@@ -27,13 +27,14 @@
         </div>
         <!-- </div> -->
         <div class="song-created-at">{{ dateAdded }}</div>
+
         <div class="song-preview-actions">
             <button class="btn-like-song" @click="onMiniMenu('saveSong')" :class="{ liked: isLiked }">
                 <heart-btn-svg v-if="isLiked" class="liked" />
                 <heart-empty-svg v-else />
             </button>
             <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more" @click.stop="toggleMiniMenu">
+            <button class="btn-more" @click="toggleMiniMenu">
                 <more-options-svg />
                 <mini-menu v-if="isMiniMenu" ref="miniMenu" :actions="songActions"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
@@ -77,7 +78,7 @@ export default {
         loggedInUser: { type: Object },
         dropKey: { type: Number }
     },
-    emits: ['clicked'],
+    emits: ['songClicked'],
     data() {
         return {
             isMiniMenu: false,
@@ -131,6 +132,7 @@ export default {
 
     }, methods: {
         toggleMiniMenu() {
+            console.log('minimenu! isMiniMenu?',this.isMiniMenu)
             this.isMiniMenu = !this.isMiniMenu
         },
         onMiniMenu(action) {

@@ -3,11 +3,13 @@
         <song-list-header v-if="songs?.length" />
         <ul class="clean-list">
             <Container orientation="vertical" @drop="onDrop" drag-handle-selector=".column-drag-handle" :key="listKey">
-                <Draggable v-for="(song, index) in songsCopy" :key="song.youtubeId" style="overflow:initial;position:relative">
-                    <song-preview class="draggable-item" @songClicked="onSongClicked(index)" @playing="id => playingSong = id"
-                        :key="song._id" :song="song" :loggedInUser="loggedInUser" :index="index" :dropKey="dropKey"
-                        :clickedSong="clickedSong" :playingSong="playingSong" @play="$emit('play', index)"
-                        @songAction="action => $emit(action, song)" :isLikedSongs="isLikedSongs || false" />
+                <Draggable v-for="(song, index) in songsCopy" :key="song.youtubeId"
+                    style="overflow:initial;position:relative">
+                    <song-preview class="draggable-item" @songClicked="(id)=>onSongClicked(id,index)"
+                        @playing="id => playingSong = id" :key="song._id" :song="song" :loggedInUser="loggedInUser"
+                        :index="index" :dropKey="dropKey" :clickedSong="clickedSong" :playingSong="playingSong"
+                        @play="$emit('play', index)" @songAction="action => $emit(action, song)"
+                        :isLikedSongs="isLikedSongs || false" />
                 </Draggable>
             </Container>
         </ul>
@@ -42,7 +44,7 @@ export default {
         isLikedSongs: { type: Boolean }
 
     },
-    emits:['songClicked'],
+    emits: ['songClicked'],
     components: {
         songPreview,
         songListHeader,
@@ -55,11 +57,14 @@ export default {
             playingSong: '',
             songsCopy: [...this.songs],
             listKey: 0,
-            dropKey:0,
+            dropKey: 0,
 
         }
     },
+    mounted() {
+        window.addEventListener('click', this.unClick)
 
+    },
     watch: {
         isClickOutside() {
             if (this.isClickOutside) this.clickedSong = ''
@@ -77,8 +82,9 @@ export default {
         }
     },
     methods: {
-        onSongClicked(idx) {
-            // this.clickedSong = id
+        onSongClicked(id, idx) {
+            console.log('ID', id)
+            this.clickedSong = id
             this.$emit('songClicked', idx)
             // console.log(index);
             // console.log(id);
@@ -103,7 +109,11 @@ export default {
                 result.splice(addedIndex, 0, itemToAdd);
             }
             return result;
-        }
+        },
+        unClick() {
+            this.clickedSong = ''
+        },
+
 
 
     }
