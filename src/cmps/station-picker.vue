@@ -10,12 +10,12 @@
       <input v-model="searchStr" @input="filterStations" type="search" placeholder="Find playlist">
       <search-icon />
     </div>
-    <ul class="clean-list">
+    <ul class="clean-list" v-if="stations.length" :key="listKey">
       <li v-for="station in stations" :key="station._id" @click="addToStation(station._id)"
         class="flex align-center pointer">
         <div class="img-container">
           <img
-            :src="station.imgUrl?.medium || station.imgUrl || station.songs? (station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl): 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'"
+            :src="station.imgUrl?.medium || station.imgUrl || station.songs ? (station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl) : 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'"
             class="fit-img" />
         </div>
         <div>
@@ -32,6 +32,7 @@ import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 import searchIcon from '../assets/svgs/search-icon.vue'
 import leftArrowSvg from '../assets/svgs/left-arrow-svg.vue'
+import { stationService } from '../services/station.service'
 
 
 export default {
@@ -41,16 +42,18 @@ export default {
   data() {
     return {
       searchStr: '',
+      listKey:0
     }
   },
   computed: {
-    stations() {
+    async stations() {
       const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
-      const userStations = this.$store.getters.stations.filter(s => userStationsIds.includes(s._id))
+      const userStationPrms = userStationsIds.map(id => stationService.getById(id))
+      const userStations = await Promise.all(userStationPrms)
+      console.log('stations:',userStations)
+      // const userStations = this.$store.getters.stations.filter(s => userStationsIds.includes(s._id))
       const regex = new RegExp(this.searchStr, 'i')
-      return userStations.filter(s => {
-        return regex.test(s.name) || regex.test(s.desc)
-      })
+      return userStations.filter(s => s && (regex.test(s.name) || regex.test(s.desc)))
     },
   },
   created() {
@@ -58,6 +61,8 @@ export default {
   methods: {
     async addToStation(stationId) {
       try {
+        console.log('ID:', stationId)
+        console.log('stations:', this.stations)
         const editedStation = JSON.parse(JSON.stringify(this.stations.find(s => s._id === stationId)))
         editedStation.songs.push(this.song)
         await this.$store.dispatch({ type: 'updateStation', station: editedStation })
@@ -83,11 +88,12 @@ export default {
 
     },
   },
-  // watch: {
-  //   searchStr() {
+  watch: {
+    stations() {
+      this.listKey++
 
-  //   }
-  // }
+    }
+  }
 }
 
 </script>
