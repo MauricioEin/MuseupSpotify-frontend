@@ -1,25 +1,52 @@
 .mini-menu {
-
-    background-color: $clr06;
-    padding: 5px;
-    position: absolute;
     display: flex;
-    // display: none;
-    box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+
     flex-direction: column;
-    transform: translate(0, 35%);
-    width: 150px;
-    min-width: fit-content;
-    top: -24px;
+
     align-items: flex-start;
-    border-radius: 5px;
-    z-index: 4000;
-    right: 0;
+
+    @media(min-width:$narrow-breakpoint) {
+        background-color: $clr06;
+        padding: 5px;
+        position: absolute;
+        // display: none;
+        box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        transform: translate(0, 35%);
+        width: 150px;
+        min-width: fit-content;
+        top: -24px;
+        border-radius: 5px;
+        z-index: 4000;
+        right: 0;
+    }
+
+    @media(max-width:$narrow-breakpoint) {
+        padding-top: 50px;
+        position: fixed;
+        inset: 0;
+        background-color: $clr08;
+        z-index: 50;
+        width: 100%;
+    }
 
     hr {
         width: 90%;
         background-color: #3e3e3e;
         size: 5px;
+    }
+
+    .song-data {
+        align-self: center; // text-align: center;
+        .artist{
+            font-weight: bold;
+            color:$clrGreen;
+        }
+    }
+
+    .img-container {
+        width: 120px;
+        height: 120px;
+        margin: 20px auto;
     }
 
     button {
@@ -36,4 +63,6 @@
             background-color: #3e3e3e;
         }
     }
+
+
 }

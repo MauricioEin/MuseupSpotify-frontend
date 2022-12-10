@@ -1,5 +1,5 @@
 <template>
-    <li class="song-preview" @click.prevent.stop="$emit('songClicked', song.id)"
+    <li class="song-preview" @click.stop="$emit('songClicked', song.id)"
         :class="{ clicked: isClicked, playing: isOnPlayer }">
         <span class="column-drag-handle" @mousedown="isDragged = true" @mouseup="isDragged = false"
             :class="{ dragged: isDragged }">
@@ -29,17 +29,19 @@
         <div class="song-created-at">{{ dateAdded }}</div>
 
         <div class="song-preview-actions">
-            <button class="btn-like-song" @click="onMiniMenu('saveSong')" :class="{ liked: isLiked }">
+            <button class="btn-like-song" @click.stop="onMiniMenu('saveSong')" :class="{ liked: isLiked }">
                 <heart-btn-svg v-if="isLiked" class="liked" />
                 <heart-empty-svg v-else />
             </button>
             <div class="song-length">{{ song.length }}</div>
-            <button class="btn-more" @click="toggleMiniMenu">
+            <button class="btn-more" @click.stop="toggleMiniMenu">
                 <more-options-svg />
                 <mini-menu v-if="isMiniMenu" ref="miniMenu" :actions="songActions"
+                    :songData="{ imgUrl, artist: song.title.slice(0, titleBreakIdx), title: song.title.slice(titleBreakIdx+1) }"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
                     @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
-                    @removeFromQueue="onMiniMenu('removeQueue')" @AddToAPlaylist="onMiniMenu('addToPlaylist')" />
+                    @removeFromQueue="onMiniMenu('removeQueue')" @AddToAPlaylist="onMiniMenu('addToPlaylist')"
+                    @closeMenu="toggleMiniMenu" />
             </button>
         </div>
     </li>
@@ -78,7 +80,7 @@ export default {
         loggedInUser: { type: Object },
         dropKey: { type: Number }
     },
-    emits: ['songClicked'],
+    emits: ['songClicked', 'songAction'],
     data() {
         return {
             isMiniMenu: false,
@@ -132,16 +134,17 @@ export default {
 
     }, methods: {
         toggleMiniMenu() {
-            console.log('minimenu! isMiniMenu?',this.isMiniMenu)
+            console.log('TOGGLE')
             this.isMiniMenu = !this.isMiniMenu
+            if (window.innerWidth >= 860) {
+                this.$emit('songClicked', this.song.id)
+            }
         },
         onMiniMenu(action) {
             this.isMiniMenu = false
-            console.log(this.isQueued);
             console.log(action)
             this.$emit('songAction', action)
-            if (action = 'addToQueue') this.isQueued = !this.isQueued
-            console.log(this.isQueued);
+            if (action === 'addToQueue') this.isQueued = !this.isQueued
         },
         // playSong() {
         //     this.$store.commit({ type: 'toggleIsPlaying' })

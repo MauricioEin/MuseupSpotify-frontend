@@ -1,8 +1,9 @@
 <template>
-  <div class="picker-background"></div>
+  <div class="picker-screen"></div>
   <section class="station-picker">
     <div class="picker-header">
-      <span class="pointer" @click="$emit('close')"><left-arrow-svg /></span> <span> Add to playlist </span><span></span>
+      <span class="pointer" @click="$emit('close')"><left-arrow-svg /></span> <span> Add to playlist
+      </span><span></span>
     </div>
     <button class="create-btn" @click="createStation">New Playlist</button>
     <div class="search-input">
@@ -14,7 +15,7 @@
         class="flex align-center pointer">
         <div class="img-container">
           <img
-            :src="station.imgUrl || station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'"
+            :src="station.imgUrl?.medium || station.imgUrl || station.songs? (station.songs[0]?.imgUrl?.medium || station.songs[0]?.imgUrl): 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'"
             class="fit-img" />
         </div>
         <div>
