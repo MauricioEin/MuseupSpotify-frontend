@@ -24,7 +24,7 @@ export const stationStore = {
         stations: [],
         searchedSongs: [],
         playingStation: {
-            _id: '', songs: [
+            _id: '', name: 'Morning Energy', songs: [
                 { title: 'Coldplay - Universe', imgUrl: 'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubeId: 'bZYPI4mYwhw' },
                 { title: 'Bruno Mars -Talking to the moon', imgUrl: 'https://i.pinimg.com/originals/a1/32/76/a132762c036cb572aa225017df24d842.jpg', youtubeId: 'DeqZkLJYreI' },
                 { title: 'Gunz N Roses - Dont Cry', imgUrl: 'https://d1x7zurbps6occ.cloudfront.net/product/xlarge/783278-206345.jpg', youtubeId: '-DPomaw9Sl0' }
@@ -51,7 +51,8 @@ export const stationStore = {
         playingSong({ playingStation, playingSongIdx }) {
             return playingStation.songs[playingSongIdx]
         },
-        filteredStations(state) { return state.filteredStations }
+        filteredStations(state) { return state.filteredStations },
+
     },
     mutations: {
         setStations(state, { stations }) {
@@ -239,7 +240,7 @@ export const stationStore = {
                 console.log('stationStore: Error in getting station', err)
                 throw err
             }
-        }
+        },
 
     }
 }

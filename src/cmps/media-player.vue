@@ -1,17 +1,20 @@
 <template>
     <section class="media-player" :class="setFull">
-        <!-- <p v-if="isFullscreen">Playing From {{ currSongPlaying }}</p> -->
+        <div class="playing-from" v-if="isFullscreen">
+            <span>Playing From</span>
+            <span class="playlist-name">{{ playingStation.name }}</span> 
+        </div>
         <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl"
-            alt="">
+        alt="">
         <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)">
             <btn-down-svg />
         </button>
-
+        
         <div class="player-section">
-
+            
             <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
-                @state-change="onStateChange" ref="youtube" />
-
+            @state-change="onStateChange" ref="youtube" />
+            
             <div class="controls" :class="setFull" @click="setFullInMobile">
                 <div class="left-controls" :class="setFull">
                     <img class="media-img fit-img" :class="setFull"
@@ -48,7 +51,6 @@
                         <button @click="changeLoopType">
                             <loop-song-svg class="loop-song" v-if="(loopType === 2)" />
                             <loop-svg class="loop-song" v-else :style="loopStyle" />
-                            <!-- {{ loopType.toString() }} -->
                         </button>
                     </div>
                     <div class="bottom-center-controls" :class="setFull">
@@ -127,7 +129,8 @@ export default defineComponent({
             loopType: 0,
             currSongPlaying: {},
             songLyrics: '',
-            isLyrics: false
+            isLyrics: false,
+            station: "",
         }
     },
 
@@ -245,6 +248,8 @@ export default defineComponent({
             this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
 
         },
+
+        
     },
 
     computed: {
@@ -253,7 +258,7 @@ export default defineComponent({
         },
 
         loopStyle() {
-            return (this.loopType === 1) ? { fill: '#1ED760' } : {}
+            return (!this.loopType) ? { fill: '#b3b3b3' } : {}
         },
 
         setFull() {
