@@ -39,6 +39,7 @@
 
 <script>
 import { stationService } from '../services/station.service'
+import { socketService } from '../services/socket.service'
 import stationList from '../cmps/station-list.vue'
 import stationPreview from '../cmps/station-preview.vue'
 import likedSongsCard from '../cmps/liked-songs-card.vue'
@@ -74,6 +75,7 @@ export default {
       console.log('creating!')
       const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
+      socketService.emit('station-added', savedStation)
       this.$router.push('/station/' + savedStation._id)
     },
   },

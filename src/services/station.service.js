@@ -190,7 +190,7 @@ async function _prepareSongSearchPreviews(items) {
 
     return {
       id: id.videoId,
-      title: utilService.decodeHtmlCharCodes(snippet.title),
+      title: utilService.decodeHtmlCharCodes(snippet.title).replaceAll('&amp;', '&'),
       youtubeId: id.videoId,
       imgUrl: imgUrls,
       addedBy: {},

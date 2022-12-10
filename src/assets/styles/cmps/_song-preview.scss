@@ -32,7 +32,7 @@
     .btn-like-song,
     .btn-more {
         background-color: unset;
-        pointer-events: none;
+        // pointer-events: none;
         justify-self: center;
         padding: 0;
         margin: 0;
@@ -151,7 +151,10 @@
     }
 
     &.clicked {
-        background-color: $clr04;
+        @media(min-width:$narrow-breakpoint) {
+            
+            background-color: $clr04;
+        }
 
         .btn-like-song,
         .btn-more {

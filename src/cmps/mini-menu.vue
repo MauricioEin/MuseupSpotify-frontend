@@ -1,6 +1,14 @@
 <template>
     <section class="mini-menu">
-        <button v-for="action in actions" :key="action" @click="$emit(makeEventName(action))">
+        <button v-if="isFull">Close menu</button>
+        <div v-if="isFull && songData" class="song-data">
+            <div class="img-container">
+                <img :src="songData.imgUrl" class="fit-img"/>
+            </div>
+        <p class="artist">{{songData.artist}}</p>
+        <p>{{songData.title}}</p>
+        </div>
+        <button v-for="action in actions" :key="action" @click.stop="$emit(makeEventName(action))">
             {{ action }}
         </button>
     </section>
@@ -10,15 +18,19 @@
 import { withModifiers } from 'vue';
 
 export default {
-    props: ['actions'],
+    props: ['actions', 'songData'],
     methods: {
         makeEventName(action) {
             var words = action.split(' ')
             words = [words[0].toLowerCase(), ...words.slice(1).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())]
             return words.join('')
         }
+    },
+    computed:{
+        isFull(){
+            return window.innerWidth < 860 
 
-
+        }
     }
 }
 </script> 

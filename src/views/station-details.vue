@@ -192,6 +192,7 @@ export default {
   methods: {
     songClicked(idx) {
       this.isStationMenuOpen = false
+      console.log('playing')
       if (window.innerWidth < 860) {
         this.playStation(idx)
       }

@@ -64,6 +64,9 @@ export default {
     mounted() {
         window.addEventListener('click', this.unClick)
 
+    },    unmounted() {
+        window.removeEventListener('click', this.unClick)
+
     },
     watch: {
         isClickOutside() {

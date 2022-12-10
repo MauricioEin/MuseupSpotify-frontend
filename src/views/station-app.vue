@@ -41,6 +41,7 @@ import stationList from '../cmps/station-list.vue'
 import miniMenu from '../cmps/mini-menu.vue'
 
 import gearSvg from '../assets/svgs/gear-svg.vue'
+import { socketService } from '../services/socket.service'
 
 
 export default {
@@ -142,8 +143,12 @@ export default {
       this.$router.push(`/user/${id}`)
     },
   },
-  created() {
-    this.loadHomeStations()
+  async created() {
+    await this.loadHomeStations()
+    socketService.on('station-created', (savedStation) => {
+      console.log('savedStation', savedStation)
+      this.$store.commit({ type: 'addFilteredStation', station: savedStation })
+    })
   },
 
   watch: {
