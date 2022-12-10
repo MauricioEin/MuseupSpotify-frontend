@@ -25,6 +25,12 @@
         }
     }
 
+    @media (max-width:$narrow-breakpoint) {
+        min-height: 100vh;
+        overflow-y: scroll;
+    }
+
+
     .progress-container {
         pointer-events: all;
 
