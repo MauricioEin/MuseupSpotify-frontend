@@ -151,6 +151,11 @@ export const stationStore = {
             state.filteredStations = filteredStations
         },
 
+        addFilteredStation(state, { station }) {
+            // console.log(state.filteredStations)
+            state.filteredStations.others.unshift(station)
+        }
+
         // removeAllQueued(state){
         //     state.playingStation.songs.forEach((song, idx)=>{
         //         if(song.isQueued) state.playingStation.songs.splice(idx, 1)
@@ -233,7 +238,7 @@ export const stationStore = {
         async playFromHomePage(context, { station }) {
             try {
                 const fullStation = await stationService.getById(station._id)
-                context.commit({ type: 'playStation' , station: fullStation})
+                context.commit({ type: 'playStation', station: fullStation })
 
             } catch (err) {
                 console.log('stationStore: Error in getting station', err)

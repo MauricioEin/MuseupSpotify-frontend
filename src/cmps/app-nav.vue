@@ -55,6 +55,7 @@ import homeBtnSvg from '../assets/svgs/home-btn-svg.vue'
 import libraryBtnSvg from '../assets/svgs/library-btn-svg.vue'
 import plusBtnSvg from '../assets/svgs/plus-btn-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
+import { socketService } from '../services/socket.service'
 
 export default {
   components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg },
@@ -71,6 +72,7 @@ export default {
       console.log('creating!')
       const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
+      socketService.emit('station-added', savedStation)
       this.$router.push('/station/' + savedStation._id)
     },
 
