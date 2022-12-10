@@ -1,15 +1,15 @@
 .song-lyrics {
     position: fixed;
     inset: 64px 0 90px $nav-width;
-    background-color: rgba(36, 141, 153, 0.95);
+    background-color: rgba(36, 141, 153);
     background-image: linear-gradient(190deg, #1ed76066, transparent 50%);
     // z-index: ;
     padding-inline-start: 148px;
     overflow-y: auto;
-    text-shadow: -2px 2px 2px black;
+    // text-shadow: -2px 2px 2px black;
 
     pre {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-family: circular, rubik;
     }
 
