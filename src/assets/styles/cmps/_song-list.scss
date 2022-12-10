@@ -30,6 +30,12 @@
             // color:red;
         }
 
+        svg {
+            height: 20px;
+            width: 10px;
+            transform: translateX(10px);
+        }
+
         // &.dragged{
         //     cursor: grabbing;
         // }
