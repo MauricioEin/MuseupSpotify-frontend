@@ -24,9 +24,8 @@
                         <heart-btn-svg v-if="isLiked" class="liked" />
                         <heart-empty-svg v-else />
                     </button>
-                    <button v-if="songLyrics" class="flex justify-center align-center lyrics-btn" >
-                        <lyrics-btn-svg @click="isLyrics = !isLyrics"
-                        :class="{ liked: isLyrics }" />
+                    <button v-if="songLyrics" class="flex justify-center align-center lyrics-btn">
+                        <lyrics-btn-svg @click="isLyrics = !isLyrics" :class="{ liked: isLyrics }" />
                     </button>
                 </div>
 
@@ -79,11 +78,13 @@
                         <minimize-svg v-else />
                     </button>
                 </div>
-
+                <div class="mobile-lyrics-container">
+                    <song-lyrics v-if="isFullscreen" class="mobile-lyrics" :lyrics="songLyrics" />
+                </div>
             </div>
 
         </div>
-        <song-lyrics v-if="songLyrics && isLyrics" :lyrics="songLyrics"/>
+        <song-lyrics v-if="songLyrics && isLyrics" :lyrics="songLyrics" />
     </section>
 </template>
 
@@ -302,8 +303,8 @@ export default defineComponent({
                 clearInterval(this.timeInterval)
             }
         },
-        songLyrics(){
-            if (!this.songLyrics) this.isLyrics=false 
+        songLyrics() {
+            if (!this.songLyrics) this.isLyrics = false
         }
     },
 
