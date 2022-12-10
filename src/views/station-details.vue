@@ -230,6 +230,10 @@ export default {
       }
     },
     async removeStation() {
+      if (this.station.owner._id !== this.loggedInUser._id) {
+        showErrorMsg('Not your station')
+        return
+      }
       try {
         await this.$store.dispatch(getActionRemoveStation(this.station._id))
         await this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
