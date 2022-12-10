@@ -34,14 +34,15 @@
         flex-direction: column;
         align-items: center;
         position: absolute;
-        top: 20%;
+        top: 15%;
         left: 50%;
         transform: translateX(-50%);
         white-space: nowrap;
 
         h1 {
             font-family: circular-light;
-            font-size: 5rem;
+            font-size: 10vh;
+            margin-bottom: 2vh;
 
 
             span {
@@ -51,14 +52,19 @@
         }
 
         p {
-            font-size: 1.5rem;
+            font-size: 4vh;
             color: $clr02;
+            margin-bottom: 2vh;
         }
 
         .btn-get-started {
-            height: 60px;
-            font-size: 1.5rem;
-            padding: 15px;
+            height: 70px;
+            max-height: 7vh;
+            font-size: 4vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 25px;
             background-color: $clrGreen;
             color: $clr08;
             border-radius: 500px;
@@ -80,6 +86,8 @@
 
         @media (max-width: $narrow-breakpoint) {
             white-space: unset;
+            top:20%;
+
 
             h1 {
                 font-size: 2rem;
@@ -98,7 +106,8 @@
         position: absolute;
         bottom: 0;
         left: 50%;
-        transform: translate(-50%, 20%);
+        transform: translate(-50%, );
+        max-height:50vh;
 
         @media (max-width: $narrow-breakpoint) {
             display: none;
