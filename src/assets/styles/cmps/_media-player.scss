@@ -315,6 +315,8 @@
         border-radius: 10px;
         bottom: 65px;
         background-color: #212121;
+        margin: 0 12px;
+        width: calc(100% - 24px);
     }
 
     .right-controls {
@@ -349,6 +351,7 @@
         span {
             display: none;
         }
+
     }
 
     .left-controls {
@@ -364,6 +367,10 @@
         .player-song-name {
             font-size: 12px;
         }
+    }
+
+    .lyrics-btn {
+        display: none;
     }
 }
 
