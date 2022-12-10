@@ -12,7 +12,7 @@
     }
 
     .song-list-header {
-        padding-inline-start: 10px;
+        // padding-inline-start: 10px;
     }
 
     .column-drag-handle {
@@ -28,6 +28,12 @@
         &:active {
             cursor: grabbing;
             // color:red;
+        }
+
+        svg {
+            height: 20px;
+            width: 10px;
+            transform: translateX(10px);
         }
 
         // &.dragged{
