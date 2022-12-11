@@ -56,8 +56,16 @@
 
                 background-color: black;
 
+                .lyrics-container{
+                    height:100vh;
+                    overflow-y: auto;
+
+                }
+
                 pre {
                     height: 100%;
+                    overflow-y:auto;
+
                 }
             }
         }
@@ -66,4 +74,7 @@
 
 .mobile-lyrics-container {
     padding-bottom: 15px;
+    @media(min-width: $narrow-breakpoint){
+        display: none;
+    }
 }

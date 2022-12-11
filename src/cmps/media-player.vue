@@ -2,19 +2,19 @@
     <section class="media-player" :class="setFull">
         <div class="playing-from" v-if="isFullscreen">
             <span>Playing From</span>
-            <span class="playlist-name">{{ playingStation.name }}</span> 
+            <span class="playlist-name">{{ playingStation.name }}</span>
         </div>
         <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl"
-        alt="">
+            alt="">
         <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)">
             <btn-down-svg />
         </button>
-        
+
         <div class="player-section">
-            
+
             <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
-            @state-change="onStateChange" ref="youtube" />
-            
+                @state-change="onStateChange" ref="youtube" />
+
             <div class="controls" :class="setFull" @click="setFullInMobile">
                 <div class="left-controls" :class="setFull">
                     <img class="media-img fit-img" :class="setFull"
@@ -80,7 +80,7 @@
                         <minimize-svg v-else />
                     </button>
                 </div>
-                <div class="mobile-lyrics-container" v-if="isFullscreen">
+                <div class="mobile-lyrics-container" v-if="mobileFullScreen">
                     <song-lyrics class="mobile-lyrics" :lyrics="songLyrics" />
                 </div>
             </div>
@@ -251,7 +251,7 @@ export default defineComponent({
 
         },
 
-        
+
     },
 
     computed: {
@@ -283,6 +283,9 @@ export default defineComponent({
         isLiked() {
             return this.loggedInUser.likedSongs.some(song => song.youtubeId === this.currSongPlaying.youtubeId)
         },
+        mobileFullScreen() {
+            return this.isFullscreen && window.innerWidth < 860
+        }
 
     },
 
