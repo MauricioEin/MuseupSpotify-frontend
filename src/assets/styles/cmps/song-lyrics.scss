@@ -53,6 +53,7 @@
                 position: fixed;
                 height: 100vh;
                 z-index: 50;
+                margin-top:0;
 
                 background-color: black;
 
@@ -74,6 +75,8 @@
 
 .mobile-lyrics-container {
     padding-bottom: 15px;
+
+
     @media(min-width: $narrow-breakpoint){
         display: none;
     }

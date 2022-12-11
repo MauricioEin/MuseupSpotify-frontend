@@ -2,7 +2,7 @@
     <section class="station-library content-layout">
 
         <header class="station-library-header">
-            <h1>All stations</h1>
+            <h1>All playlists</h1>
         </header>
         <ul class="station-library-list">
 

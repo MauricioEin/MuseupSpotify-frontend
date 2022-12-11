@@ -332,7 +332,7 @@ export default {
       finally {
         this.$refs.preview.style.backgroundColor = clr.hex
         this.$refs.list.style.backgroundColor = clr.hex
-        // this.$store.commit({ type: 'setAvgClr', clr })
+        // this.$store.action({ type: 'setStationClr', clr, station:this.station })
       }
     },
     reorderSongs(reorderedStation) {

@@ -103,8 +103,15 @@
 @media(max-width:$narrow-breakpoint) {
     .media-player.full {
         // background-image: url(../img/lp-bg4.png);
-        background: linear-gradient(180.6deg, rgb(57, 57, 57) 1.2%, rgba(21, 20, 20, 0.93) 68.9%);
-        background-color: rgb(24, 23, 23);
+
+        // background: linear-gradient(180.6deg, rgb(57, 57, 57) 1.2%, rgba(21, 20, 20, 0.93) 68.9%);
+        // background-color: rgb(24, 23, 23);
+        background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 100%);
+        background-color: $clr04;
+
+
+        // background: linear-gradient(180.6deg, rgba(220, 220, 220, 0.3) 1.2%, rgba(69, 68, 68, 0.351) 68.9%);
+        // background-color: rgb(247, 154, 154);
         padding: 2vw;
 
     }

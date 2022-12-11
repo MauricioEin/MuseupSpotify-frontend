@@ -285,6 +285,9 @@ export default defineComponent({
         },
         mobileFullScreen() {
             return this.isFullscreen && window.innerWidth < 860
+        },
+        stationClr(){
+            return this.$store.getters.stationClr
         }
 
     },

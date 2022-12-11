@@ -34,6 +34,7 @@ export const stationStore = {
         currStation: null,
         isPlaying: false,
         filteredStations: {},
+        currStationClr: ''
     },
     getters: {
         stations({ stations }) { return stations },
@@ -52,6 +53,7 @@ export const stationStore = {
             return playingStation.songs[playingSongIdx]
         },
         filteredStations(state) { return state.filteredStations },
+        stationClr(state) {return state.currStationClr},
 
     },
     mutations: {
@@ -155,6 +157,9 @@ export const stationStore = {
         addFilteredStation(state, { station }) {
             // console.log(state.filteredStations)
             state.filteredStations.others.unshift(station)
+        },
+        setStationClr(state, {clr}){
+            state.currStationClr = clr
         }
 
         // removeAllQueued(state){

@@ -57,8 +57,8 @@ export default {
             } else this.toggleIsPlaying()
         },
 
-        getStationImg(station) {
-            return this.station?.imgUrl || this.station?.songs[0]?.imgUrl.medium || this.station?.songs[0]?.imgUrl
+        getStationImg() {
+            return this.station?.imgUrl || this.station?.firstSong?.imgUrl?.medium || this.station?.firstSong?.imgUrl || this.station?.songs?.at(0)?.imgUrl.medium || this.station?.songs?.at(0)?.imgUrl || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
         },
 
         goToStation(id) {
