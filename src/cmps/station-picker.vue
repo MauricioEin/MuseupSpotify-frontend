@@ -51,7 +51,6 @@ export default {
       const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
       const userStationPrms = userStationsIds.map(id => stationService.getById(id))
       const userStations = await Promise.all(userStationPrms)
-      console.log('stations:',userStations)
       // const userStations = this.$store.getters.stations.filter(s => userStationsIds.includes(s._id))
       const regex = new RegExp(this.searchStr, 'i')
       return userStations.filter(s => s && (regex.test(s.name) || regex.test(s.desc)))
@@ -63,7 +62,6 @@ export default {
     async addToStation(stationId) {
       try {
         console.log('ID:', stationId)
-        console.log('stations:', this.stations)
         const editedStation = JSON.parse(JSON.stringify(this.stations.find(s => s._id === stationId)))
         editedStation.songs.push(this.song)
         await this.$store.dispatch({ type: 'updateStation', station: editedStation })

@@ -67,7 +67,7 @@ export default {
 
         playStation(station) {
             this.$store.commit({ type: 'toggleIsPlaying' })
-            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id })
+            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id, stationClr: station.clr })
             this.$store.dispatch({ type: 'playFromHomePage', station })
         },
 

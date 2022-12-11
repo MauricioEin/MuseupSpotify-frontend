@@ -15,7 +15,7 @@ export function getActionAddStation(station) {
 export function getActionUpdateStation(station) {
     return {
         type: 'updateStation',
-        station
+        station,
     }
 }
 
@@ -53,7 +53,7 @@ export const stationStore = {
             return playingStation.songs[playingSongIdx]
         },
         filteredStations(state) { return state.filteredStations },
-        stationClr(state) {return state.currStationClr},
+        stationClr(state) { return state.currStationClr },
 
     },
     mutations: {
@@ -83,14 +83,14 @@ export const stationStore = {
         clearCurrStation(state) {
             state.currStation = null
         },
-        playSong(state, { song, stationId = '' }) {
+        playSong(state, { song, stationId = '', stationClr = '#535353' }) {
             const songCopy = { title: song.title, imgUrl: song.imgUrl.medium, youtubeId: song.youtubeId }
-            state.playingStation = { _id: stationId, songs: [songCopy], name: '' }
+            state.playingStation = { _id: stationId, songs: [songCopy], name: '', clr: stationClr }
             state.playingSongIdx = 0
         },
         playStation(state, { station, idx = 0 }) {
             const miniStation = (Array.isArray(station)) ?
-                { _id: '', name: '' } : { _id: station._id, name: station.name }
+                { _id: '', name: '' } : { _id: station._id, name: station.name, clr: station.clr }
             miniStation.songs = station.songs?.map(song => {
                 const { title, imgUrl, youtubeId, length, createdAt, id, } = song
                 return {
@@ -122,15 +122,11 @@ export const stationStore = {
         },
 
         queueSong(state, { song }) {
-            console.log(state.playingStation);
             // song.isQueued = true
             state.playingStation.songs.splice(state.playingSongIdx + 1, 0, song)
-            console.log(state.playingStation);
         },
 
         queueStation(state, { station }) {
-            console.log(station);
-            console.log(state.playingStation);
             var idx = { ...state.playingSongIdx }
             station.forEach(song => {
                 // song.isQueued = true
@@ -140,7 +136,6 @@ export const stationStore = {
         },
 
         removeQueue(state, { item }) {
-            console.log(item);
             if (item?.youtubeId) {
                 const idx = state.playingStation.songs.findIndex(s => s.youtubeId === item.youtubeId)
                 state.playingStation.songs.splice(idx, 1)
@@ -158,7 +153,7 @@ export const stationStore = {
             // console.log(state.filteredStations)
             state.filteredStations.others.unshift(station)
         },
-        setStationClr(state, {clr}){
+        setStationClr(state, { clr }) {
             state.currStationClr = clr
         }
 
@@ -171,7 +166,6 @@ export const stationStore = {
     actions: {
         filterStations(context, { categories }) {
             const filteredStations = {}
-            console.log('dispatch', categories)
 
             try {
                 categories.forEach(async category => {
@@ -213,7 +207,6 @@ export const stationStore = {
         async updateStation(context, { station }) {
             try {
                 station = await stationService.save(station)
-
                 context.commit(getActionUpdateStation(station))
                 return station
             } catch (err) {
@@ -251,6 +244,10 @@ export const stationStore = {
                 throw err
             }
         },
+        async setStationClr(context, { clr, station }) {
+            // state.currStationClr = clr
+        }
+
 
     }
 }

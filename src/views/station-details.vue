@@ -1,7 +1,8 @@
 <template >
   <section v-if="station" class="station-details content-layout">
     <section class="station-preview flex full" ref="preview">
-      <img-uploader class="uploader-img" :imgSrc="stationImg" @saved="url => updateStation({ imgUrl: url })" />
+      <img-uploader class="uploader-img" :imgSrc="stationImg"
+        @saved="async (url) => updateStation({ imgUrl: url, clr: await getAvgClr(url) })" />
       <img class="mobile-img" :src="stationImg" alt="">
 
       <div class="station-summary">
@@ -15,7 +16,8 @@
     </section>
 
 
-    <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false" @save="updateStation" />
+    <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false"
+      @save="station => updateStation({ ...station, clr: getAvgClr(station.imgUrl) })" />
 
     <section class="song-list-container content-layout" ref="list">
       <section class="playlist-actions"
@@ -98,7 +100,8 @@ export default {
       isImgHover: false,
       isStationQueued: false,
       isPickerOpen: false,
-      songToAdd: {}
+      songToAdd: {},
+      stationClr: '',
     }
   },
   computed: {
@@ -161,24 +164,14 @@ export default {
     isCurrStationPlayed() {
       return this.station._id === this.getPlayingStation._id
     },
-    // getStyle() {
-    //   // if (window.innerWidth < 750) return
-
-    //   const prop = this.station?.length ? 'space-between' : 'end'
-    //   debugger
-    //   return { 'justify-content': prop }
-    // }
   },
   async mounted() {
     socketService.on('station-updated', station => {
-      // console.log('newStation', station)
-      // this.$store.commit({ type: 'updateStation', station })
       this.loadStation()
     })
 
     window.addEventListener('click', this.closeMenu)
     await this.loadStation()
-    this.getAvgClr()
     socketService.on('update-station', station => {
       this.$store.commit({ type: 'updateStation', station })
       console.log('Station updated by someone else', station);
@@ -245,7 +238,7 @@ export default {
         showErrorMsg('Cannot remove station')
       }
     },
-    async updateStation(editedStation) {
+    async updateStation(editedStation, silent = false) {
       try {
         editedStation = { ...this.station, ...editedStation }
         const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
@@ -253,7 +246,7 @@ export default {
 
         if (this.station.name !== editedStation.name)
           await this.$store.commit({ type: 'updateUsersStation', editedStation })
-        showSuccessMsg('Station updated')
+        if (!silent) showSuccessMsg('Station updated')
         this.loadStation()
         this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
       } catch (err) {
@@ -263,6 +256,15 @@ export default {
     },
     async loadStation() {
       this.station = JSON.parse(JSON.stringify(await stationService.getById(this.stationId)))
+      var clr = this.station.clr
+      if (!clr) {
+        clr = this.station.imgUrl ? await this.getAvgClr(this.station.imgUrl) : '#535353'
+        this.updateStation({ clr }, true)
+      }
+      setTimeout(() => {
+        this.$refs.preview.style.backgroundColor = clr
+        this.$refs.list.style.backgroundColor = clr
+      }, 50)
     },
     toggleStationMenu() {
       this.isStationMenuOpen = !this.isStationMenuOpen
@@ -294,7 +296,6 @@ export default {
     },
     playStation(idx) {
       if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlaying()
-      console.log('got here with', idx, this.playingSongIdx, 'station', this.station,)
       this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
     saveSong(song) {
@@ -323,17 +324,27 @@ export default {
     closeMenu() {
       this.isStationMenuOpen = false
     },
-    async getAvgClr() {
+    async getAvgClr(url) {
+      console.log('GETTING COLOR!')
       const fac = new FastAverageColor()
       var clr = { hex: '#535353' }
       try {
-        clr = await fac.getColorAsync(this.stationImg)
+        console.log('TRYING', url)
+
+        clr = await fac.getColorAsync(url)
+        console.log('CLR:', clr.hex)
+
+        return clr.hex
       } catch (err) { console.log(err) }
-      finally {
-        this.$refs.preview.style.backgroundColor = clr.hex
-        this.$refs.list.style.backgroundColor = clr.hex
-        // this.$store.action({ type: 'setStationClr', clr, station:this.station })
-      }
+      // const fac = new FastAverageColor()
+      // var clr = { hex: '#535353' }
+      // try {
+      //   clr = await fac.getColorAsync(this.stationImg)
+      // } catch (err) { console.log(err) }
+      // finally {
+      //   this.$refs.preview.style.backgroundColor = clr.hex
+      //   this.$refs.list.style.backgroundColor = clr.hex
+      // }
     },
     reorderSongs(reorderedStation) {
       this.updateStation(reorderedStation)
@@ -351,7 +362,7 @@ export default {
       this.$store.commit({ type: 'setCurrStation', station: this.station })
     },
     stationImg() {
-      this.getAvgClr()
+      // this.getAvgClr()
 
     }
   },

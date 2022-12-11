@@ -1,5 +1,5 @@
 <template>
-    <section class="media-player" :class="setFull">
+    <section class="media-player" :class="setFull" ref="player">
         <div class="playing-from" v-if="isFullscreen">
             <span>Playing From</span>
             <span class="playlist-name">{{ playingStation.name }}</span>
@@ -80,7 +80,7 @@
                         <minimize-svg v-else />
                     </button>
                 </div>
-                <div class="mobile-lyrics-container" v-if="mobileFullScreen">
+                <div class="mobile-lyrics-container" v-if="songLyrics && mobileFullScreen">
                     <song-lyrics class="mobile-lyrics" :lyrics="songLyrics" />
                 </div>
             </div>
@@ -232,7 +232,6 @@ export default defineComponent({
             if (!this.isPlayingInStore) {
                 this.togglePlay()
             }
-            console.log(this.currSongPlaying.title);
             this.songLyrics = await getLyrics(this.currSongPlaying.title)
         },
 
@@ -286,9 +285,7 @@ export default defineComponent({
         mobileFullScreen() {
             return this.isFullscreen && window.innerWidth < 860
         },
-        stationClr(){
-            return this.$store.getters.stationClr
-        }
+
 
     },
 
@@ -317,6 +314,12 @@ export default defineComponent({
         },
         songLyrics() {
             if (!this.songLyrics) this.isLyrics = false
+        },
+        isFullscreen() {
+            console.log('STATION!', this.playingStation)
+            // if(this.isFullscreen)
+            this.$refs.player.style.backgroundColor = this.isFullscreen ?
+                this.playingStation.clr : '#535353'
         }
     },
 

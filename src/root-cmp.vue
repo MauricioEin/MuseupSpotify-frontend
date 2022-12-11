@@ -29,10 +29,8 @@ export default {
   created() {
     console.log('Vue App created')
     var user = userService.getLoggedinUser()
-    console.log('user:', user)
 
     if (!user) user = { _id: 'demo', username: 'demo', fullname: 'Guest', likedSongs: [], stations: [] }
-    console.log('user2:', user)
     this.$store.commit({ type: 'setLoggedinUser', user })
     const categories = ['user', 'others', 'trending', 'bestOf', 'focus', 'mood', 'popular']
 
