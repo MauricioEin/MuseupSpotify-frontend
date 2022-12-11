@@ -33,6 +33,22 @@ export default {
             isLoading: true
         }
     },
+
+    computed: {
+        isPlaying() {
+            return this.$store.getters.isPlaying
+        },
+
+        getPlayingStation() {
+            return this.$store.getters.getPlayingStation
+        },
+
+        loggedInUser() {
+            return this.$store.getters.loggedInUser
+        },
+
+    },
+
     methods: {
         toggleStation(station) {
             if (!this.isCurrStationPlayed(station) && this.isPlaying ||
@@ -42,7 +58,7 @@ export default {
         },
 
         getStationImg(station) {
-            return station.imgUrl || station?.firstSong?.imgUrl.medium || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg'
+            return this.station?.imgUrl || this.station?.songs[0]?.imgUrl.medium || this.station?.songs[0]?.imgUrl
         },
 
         goToStation(id) {
@@ -64,20 +80,6 @@ export default {
         },
     },
 
-    computed: {
-        isPlaying() {
-            return this.$store.getters.isPlaying
-        },
-
-        getPlayingStation() {
-            return this.$store.getters.getPlayingStation
-        },
-
-        loggedInUser() {
-            return this.$store.getters.loggedInUser
-        },
-
-    },
 
     components: {
         playBtn,
