@@ -18,7 +18,6 @@ import testDnd from './views/test-dnd.vue'
 const routes = [
   {
     path: '/',
-    // redirect: '/station'
     name: 'home-page',
     component: homePage
   },

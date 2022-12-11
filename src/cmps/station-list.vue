@@ -19,6 +19,15 @@
     <div>
       <div class="skeleton-7b7uvxywsks"></div>
     </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
   </div>
   <div class="station-list-container" v-if="(stations && stations.length)">
     <div class="station-list-head">

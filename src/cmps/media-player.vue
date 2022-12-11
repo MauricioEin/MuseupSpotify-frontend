@@ -319,7 +319,7 @@ export default defineComponent({
             console.log('STATION!', this.playingStation)
             // if(this.isFullscreen)
             this.$refs.player.style.backgroundColor = this.isFullscreen ?
-                this.playingStation.clr : '#535353'
+                this.playingStation.clr : 'transparent'
         }
     },
 
