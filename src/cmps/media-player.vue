@@ -80,9 +80,9 @@
                         <minimize-svg v-else />
                     </button>
                 </div>
-                <!-- <div class="mobile-lyrics-container" v-if="isFullscreen">
+                <div class="mobile-lyrics-container" v-if="isFullscreen">
                     <song-lyrics class="mobile-lyrics" :lyrics="songLyrics" />
-                </div> -->
+                </div>
             </div>
 
         </div>
@@ -232,6 +232,7 @@ export default defineComponent({
             if (!this.isPlayingInStore) {
                 this.togglePlay()
             }
+            console.log(this.currSongPlaying.title);
             this.songLyrics = await getLyrics(this.currSongPlaying.title)
         },
 
