@@ -102,6 +102,7 @@
 
 @media(max-width:$narrow-breakpoint) {
     .media-player.full {
+        // background-image: url(../img/lp-bg4.png);
         background: linear-gradient(180.6deg, rgb(57, 57, 57) 1.2%, rgba(21, 20, 20, 0.93) 68.9%);
         background-color: rgb(24, 23, 23);
         padding: 2vw;

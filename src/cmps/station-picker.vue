@@ -10,6 +10,7 @@
       <input v-model="searchStr" @input="filterStations" type="search" placeholder="Find playlist">
       <search-icon />
     </div>
+    
     <ul class="clean-list" v-if="stations.length" :key="listKey">
       <li v-for="station in stations" :key="station._id" @click="addToStation(station._id)"
         class="flex align-center pointer">
