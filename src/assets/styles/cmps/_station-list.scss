@@ -301,11 +301,16 @@
 
 
 .card-loader {
-    // flex-wrap: nowrap;
     overflow: hidden;
-    gap: 05px;
-    margin-inline-start: 25px;
     margin-bottom: 30px;
+    margin-inline-start: 40px;
+    gap:20px;
+
+
+    .skeleton-7b7uvxywsks{
+        margin:15px 0;
+        width:175px;
+    }
 }
 
 
@@ -321,6 +326,7 @@
     .skeleton-vqlfosng44v {
         display: block;
     }
+
     .skeleton-vqlfosng44v:empty {
         grid-column: span 2;
         margin: 15px auto 15px 0;

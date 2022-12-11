@@ -61,7 +61,6 @@ export default {
   methods: {
     async addToStation(stationId) {
       try {
-        console.log('ID:', stationId)
         const editedStation = JSON.parse(JSON.stringify(this.stations.find(s => s._id === stationId)))
         editedStation.songs.push(this.song)
         await this.$store.dispatch({ type: 'updateStation', station: editedStation })
