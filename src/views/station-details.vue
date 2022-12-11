@@ -253,7 +253,7 @@ export default {
 
         if (this.station.name !== editedStation.name)
           await this.$store.commit({ type: 'updateUsersStation', editedStation })
-        showSuccessMsg('Station updated')
+        // showSuccessMsg('Station updated')
         this.loadStation()
         this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
       } catch (err) {

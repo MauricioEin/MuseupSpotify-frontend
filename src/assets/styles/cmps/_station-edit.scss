@@ -57,7 +57,7 @@
             "album-image title"
             "album-image description"
             ". save-button";
-        padding: 0 24px 24px;
+        padding: 0 24px 40px;
 
         .img-uploader-container {
             grid-area: album-image;
@@ -117,14 +117,14 @@
                 background-color: $clr01;
                 color: $clr06;
                 padding: .8em 2em;
-                position:relative;
+                position: relative;
 
                 &:hover {
                     padding: .9em 2.1em;
                     transform: translateX(5.05em);
                     left: 0.05em;
-                    transform: translateY(calc( -5px - 0.05em));
-                    opacity:0.95;
+                    transform: translateY(calc(-5px - 0.05em));
+                    opacity: 0.95;
                     // font-weight: ;
 
                     // transform: translate(.05em, -.05em);
@@ -134,10 +134,10 @@
     }
 }
 
-.img-change-cover{
+.img-change-cover {
     height: 100%;
     width: 100%;
     background-color: rgba(40, 40, 40, 0.7);
-    position:absolute;
+    position: absolute;
     inset: 0;
 }
