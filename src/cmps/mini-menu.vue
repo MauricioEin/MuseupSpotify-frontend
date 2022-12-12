@@ -1,9 +1,11 @@
 <template>
     <section class="mini-menu">
-        <button v-if="isFull" class="close-menu flex" @click="$emit('closeMenu')"><x-btn-svg /></button>
-        <div v-if="isFull && visualData" class="visual-data">
-            <div class="img-container">
-                <img :src="visualData.imgUrl" class="fit-img" />
+        <button v-if="isFull" class="close-menu flex"
+         @click="$emit('closeMenu')"><x-btn-svg /></button>
+        <div v-if="isFull && visualData" class="visual-data" :class="{'search-data':isSearch}">
+            <div class="img-container" >
+                <img v-if="visualData.imgUrl" :src="visualData.imgUrl" class="fit-img" />
+                <user-portrait v-else  class="fit-img" />
             </div>
             <p class="title">{{ visualData.text1 }}</p>
             <p>{{ visualData.text2 }}</p>
@@ -17,9 +19,11 @@
 <script>
 import { withModifiers } from 'vue';
 import xBtnSvg from '../assets/svgs/x-btn-svg.vue'
+import userPortrait from '../assets/svgs/user-portrait.vue'
+
 
 export default {
-    props: ['actions', 'visualData'],
+    props: ['actions', 'visualData', 'isSearch'],
     methods: {
         makeEventName(action) {
             var words = action.split(' ')
@@ -33,7 +37,8 @@ export default {
         }
     },
     components: {
-        xBtnSvg
+        xBtnSvg,
+        userPortrait
     }
 }
 </script> 

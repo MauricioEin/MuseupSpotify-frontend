@@ -134,7 +134,6 @@ export default {
 
     }, methods: {
         toggleMiniMenu() {
-            console.log('TOGGLE')
             this.isMiniMenu = !this.isMiniMenu
             if (window.innerWidth >= 860) {
                 this.$emit('songClicked', this.song.id)

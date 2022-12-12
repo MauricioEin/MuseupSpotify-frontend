@@ -10,7 +10,8 @@
           <gear-svg @click="togglePhoneMenu" />
         </button>
         <mini-menu ref="phoneMenu" v-if="isPhoneMenuOpen" @login="goToLogin" @logout="logout" @signup="goToSignup"
-          @profile="goToProfile" :actions="phoneActions" @closeMenu="isPhoneMenuOpen=false" />
+          :visualData="visualData" @profile="goToProfile" :actions="phoneActions"
+          @closeMenu="isPhoneMenuOpen = false" />
       </section>
     </section>
     <section class="user-cards" v-if="(loggedinUser._id !== 'demo')">
@@ -24,9 +25,9 @@
       <station-list :stations="filteredStations.mood" :title="'Mood'" />
       <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
       <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
-      <station-list v-if="(loggedinUser && userStations && userStations.length)" :stations="filteredStations.user"
+      <station-list v-if="(loggedinUser && filteredStations.user?.length)" :stations="filteredStations.user"
         :title="'Your playlists'" />
-      <station-list v-if="(otherUserStation && otherUserStation.length)" :stations="filteredStations.others"
+      <station-list v-if="(filteredStations.others?.length)" :stations="filteredStations.others"
         :title="'Playlists by other users'" />
     </section>
   </section>
@@ -58,22 +59,8 @@ export default {
     stations() {
       return this.$store.getters.stations
     },
-    userStations() {
-      // return this.$store.getters.userStations
-      return this.$store.getters.stations//.filter(station => {
-      //   return station.owner._id === this.$store.getters.loggedinUser._id
-      // })
-    },
-    otherUserStation() {
-      // return this.$store.getters.otherUserStations
-      return this.$store.getters.stations //.filter(station => {
-      //   return (
-      //     station.owner.username !== this.$store.getters.loggedinUser?.username &&
-      //     station.owner.username !== 'MuseUp'
-      //   )
-      // })
-    },
     loggedinUser() {
+      console.log('USER', this.$store.getters.loggedinUser)
       return this.$store.getters.loggedinUser
     },
     isOnHomePage() {
@@ -95,9 +82,13 @@ export default {
       return (this.filteredStations.trending?.length) ? false : true
     },
 
-    // filteredStations() {
-    //   return this.$store.getters.filteredStations
-    // },
+    visualData() {
+      return {
+        imgUrl: this.loggedinUser.imgUrl,
+        text1: 'Hi ' + this.loggedinUser.username + ',',
+        text2: 'Good ' + this.greeting + '!'
+      }
+    }
   },
 
   methods: {

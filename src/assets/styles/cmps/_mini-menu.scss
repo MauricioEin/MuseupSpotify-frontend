@@ -33,13 +33,13 @@
             font-size: 1.4em;
             width: 100% !important;
             font-weight: bold;
-            height:2.4em !important;
+            height: 2.1em !important;
             // margin-bottom: 30px;
         }
 
         .close-menu {
             justify-content: end;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
 
         // margin:0;
@@ -55,6 +55,7 @@
         align-self: center; // text-align: center;
         font-size: 1rem;
         color: $clr02;
+        text-align: center;
 
 
 
@@ -63,6 +64,19 @@
             color: $clr01;
             font-size: 1.2rem;
             margin-bottom: 5px;
+        }
+
+        &.search-data {
+            p {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;   /* number of lines to show */
+                line-clamp: 1;
+                -webkit-box-orient: vertical;
+
+            }
+
         }
     }
 

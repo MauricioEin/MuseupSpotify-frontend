@@ -69,9 +69,7 @@ export default {
       this.isMenuOpen = true
     },
     closeMenu() {
-      console.log('closing, isMenuOpen?', this.isMenuOpen)
       this.isMenuOpen = false
-      console.log('closed, isMenuOpen?', this.isMenuOpen)
     },
     goToLogin() {
       this.closeMenu()

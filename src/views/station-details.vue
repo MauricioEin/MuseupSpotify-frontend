@@ -38,8 +38,7 @@
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
               @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
-              :isQueued="isStationQueued"
-              :visualData="{ imgUrl: stationImg, text1: station.name, text2: 'by ' + station.owner.username }" />
+              :isQueued="isStationQueued" :visualData="visualData" />
           </button>
         </div>
       </section>
@@ -165,6 +164,13 @@ export default {
     isCurrStationPlayed() {
       return this.station._id === this.getPlayingStation._id
     },
+    visualData() {
+      return {
+        imgUrl: this.stationImg || 'https://i.ibb.co/RChzLhY/2022-12-03-132853.jpg',
+        text1: this.station.name,
+        text2: 'by ' + this.station.owner.username
+      }
+    }
   },
   async mounted() {
     socketService.on('station-updated', station => {

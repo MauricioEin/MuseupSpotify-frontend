@@ -27,12 +27,13 @@
             <div class="song-length"> {{ song.length }}
 
             </div>
-            <button class="btn-more" @click="toggleMiniMenu">
+            <button class="btn-more" @click.stop="toggleMiniMenu">
                 <more-options-svg />
             </button>
-            <mini-menu v-if="isMiniMenu && isClicked" ref="miniMenu" :actions="songActions"
-                @saveToYourLikedSongs="saveSong" @removeFromYourLikedSongs="saveSong"
-                @addToAPlaylist="() => { isMiniMenu = false; $emit('addToStation') }" />
+            <mini-menu v-if="isMiniMenu && (isClicked || isMobile)" ref="miniMenu" :actions="songActions"
+                :visualData="visualData" @saveToYourLikedSongs="saveSong" @removeFromYourLikedSongs="saveSong"
+                @click.stop="" @addToAPlaylist="() => { isMiniMenu = false; $emit('addToStation') }"
+                @closeMenu="isMiniMenu = false" :isSearch="true"/>
         </div>
     </section>
 </template>
@@ -102,6 +103,19 @@ export default {
         songActions() {
             return ['Add to queue', this.isLiked ? 'Remove from your Liked Songs' : 'Save to your Liked Songs', 'Add to a playlist', 'Share']
         },
+        isMobile() {
+            return window.innerWidth < 860
+        },
+        visualData() {
+            const artist = this.song.title.slice(0, this.titleBreakIdx)
+            const dif = artist? 1: 0
+            const title = this.song.title.slice(this.titleBreakIdx + dif)
+            return {
+                imgUrl: this.song.imgUrl.medium,
+                text2: artist,
+                text1: title
+            }
+        }
     },
     methods: {
         songClick(song) {
@@ -126,6 +140,7 @@ export default {
         },
         toggleMiniMenu() {
             this.isMiniMenu = !this.isMiniMenu
+            this.$emit('songClicked', this.song.id)
         },
 
 
