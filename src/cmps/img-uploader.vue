@@ -15,6 +15,7 @@
                 </div>
             </div>
             <input hidden type="file" accept="image/.jpg, image/.jpeg, image/.png" @change="handleFile" />
+            <p class="subForMobile">Change image</p>
         </label>
     </div>
 </template>

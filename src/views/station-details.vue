@@ -311,7 +311,9 @@ export default {
     async addSongToStation(song) {
       try {
         const editedStation = JSON.parse(JSON.stringify(this.station))
-        editedStation.songs.push(song)
+        // if (editedStation.songs.some(s => s.youtubeId === song.youtubeId))
+
+          editedStation.songs.push(song)
         const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
         socketService.emit('update-station', res)
         showSuccessMsg('Added to playlist')

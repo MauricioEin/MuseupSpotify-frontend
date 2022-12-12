@@ -7,7 +7,8 @@
             </p>
             <p v-if="station.desc" class="station-desc">{{ station.desc }}</p>
             <p v-else class="station-desc cut-text">By {{ station.owner.username }}</p>
-            <button v-if="(station.firstSong)" class="btn-play-playlist" @click.stop="toggleStation(station)">
+            <button v-if="(station.firstSong || station.songs?.at(0))" class="btn-play-playlist"
+                @click.stop="toggleStation(station)">
                 <pause-btn v-if="isCurrStationPlayed(station)" />
                 <play-btn v-else />
             </button>
@@ -51,8 +52,9 @@ export default {
 
     methods: {
         toggleStation(station) {
-            if (!this.isCurrStationPlayed(station) && this.isPlaying ||
-                !this.isCurrStationPlayed(station) && !this.isPlaying) {
+            if (!this.isCurrStationPlayed(station))// && this.isPlaying ||
+            // !this.isCurrStationPlayed(station) && !this.isPlaying) 
+            {
                 this.playStation(station)
             } else this.toggleIsPlaying()
         },
@@ -67,8 +69,14 @@ export default {
 
         playStation(station) {
             this.$store.commit({ type: 'toggleIsPlaying' })
-            this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id, stationClr: station.clr })
-            this.$store.dispatch({ type: 'playFromHomePage', station })
+            if (station.firstSong) {
+                this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id, stationClr: station.clr })
+                this.$store.dispatch({ type: 'playFromHomePage', station })
+            }
+            else if(station.songs?.length) {
+                this.$store.commit({ type: 'playStation', station: JSON.parse(JSON.stringify(station)) })
+
+            }
         },
 
         toggleIsPlaying() {
