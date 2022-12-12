@@ -4,6 +4,7 @@ import { userStore } from './user.store.js'
 import { stationStore } from './station.store.js'
 import { userService } from '../services/user.service.js'
 import { stationService } from '../services/station.service.js'
+import { showErrorMsg } from '../services/event-bus.service.js'
 
 export const store = Vuex.createStore({
   strict: true,
@@ -33,6 +34,7 @@ export const store = Vuex.createStore({
         commit({ type: 'setLoggedinUser', user: savedUser })
       } catch (err) {
         console.error('store: Error in following/unfollowing', err)
+        showErrorMsg('Log in to like stations')
         throw err
       }
     },

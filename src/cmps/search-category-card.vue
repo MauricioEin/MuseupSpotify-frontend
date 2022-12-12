@@ -23,7 +23,7 @@ export default {
 
     methods: {
         getImgSrc(i) {
-            return require(`../assets/img/categories/${i}.jpg`)
+            return `../assets/img/categories/${i}.jpg`
         }
     }
 }

@@ -9,6 +9,8 @@
     overflow: hidden;
     z-index: 400;
     background-color: unset;
+    transition: background-color .6s;
+
     .playing-from{
         width: 100%;
         position: absolute;
@@ -111,7 +113,6 @@
         // background-color: rgb(24, 23, 23);
         background: linear-gradient(transparent, 0, rgba(0, 0, 0, .5) 70%);
         background-color: $clr04;
-
 
         // background: linear-gradient(180.6deg, rgba(220, 220, 220, 0.3) 1.2%, rgba(69, 68, 68, 0.351) 68.9%);
         // background-color: rgb(247, 154, 154);
