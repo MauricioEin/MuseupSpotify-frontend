@@ -15,12 +15,24 @@
         position: absolute;
         z-index: 60;
         background-color: $clr07;
-        height: 80vh;
+        height: fit-content;
         width: 500px;
         inset: 50vh 0 auto auto;
         transform: translate(-50%, -50%);
         box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        // box-shadow: -1px -1px 10px rgba(84, 84, 84, 0.152);
+
         border-radius: 7px;
+
+        ul{
+            margin-top:10px;
+            max-height:50vh;
+            overflow-y: auto;
+            padding-inline-end: -5px;
+            &:hover::-webkit-scrollbar-thumb{
+                background:$clr06;
+            }
+        }
     }
 
     .picker-header {
@@ -76,7 +88,7 @@
     }
 
     li {
-        margin-top: 15px;
+        // margin-top: 15px;
         gap: 10px;
 
         * {
@@ -98,9 +110,12 @@
         }
 
         @media (min-width: $narrow-breakpoint) {
+            height: 80px;
+            padding-inline-start: 10px;
+            border-radius: 5px;
 
             &:hover {
-                background-color: $clr04;
+                background-color: #59595934;
             }
         }
     }

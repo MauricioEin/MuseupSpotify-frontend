@@ -1,8 +1,8 @@
 <template>
-  <div class="picker-screen"></div>
+  <div class="picker-screen"> </div>
   <section class="station-picker">
     <div class="picker-header">
-      <span class="pointer" @click="$emit('close')"><left-arrow-svg /></span> <span> Add to playlist
+      <span class="pointer" @click="$emit('close')"><left-arrow-svg /></span> <span> Add to a playlist
       </span><span></span>
     </div>
     <button class="create-btn" @click="createStation">New Playlist</button>
@@ -10,9 +10,9 @@
       <input v-model="searchStr" @input="filterStations" type="search" placeholder="Find playlist">
       <search-icon />
     </div>
-    
-    <ul class="clean-list" v-if="stations.length" :key="listKey">
-      <li v-for="station in stations" :key="station._id" @click="addToStation(station._id)"
+
+    <ul class="clean-list" v-if="filteredStations.length" :key="listKey">
+      <li v-for="station in filteredStations" :key="station._id" @click="addToStation(station._id)"
         class="flex align-center pointer">
         <div class="img-container">
           <img
@@ -43,23 +43,36 @@ export default {
   data() {
     return {
       searchStr: '',
-      listKey:0
+      listKey: 0,
+      stations: []
     }
   },
   computed: {
-    async stations() {
-      const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
-      const userStationPrms = userStationsIds.map(id => stationService.getById(id))
-      const userStations = await Promise.all(userStationPrms)
-      // const userStations = this.$store.getters.stations.filter(s => userStationsIds.includes(s._id))
+
+    filteredStations(){
       const regex = new RegExp(this.searchStr, 'i')
-      return userStations.filter(s => s && (regex.test(s.name) || regex.test(s.desc)))
-    },
+    return this.stations.filter(station => station && (regex.test(station.name) || regex.test(station.desc)))
+
+    }
   },
   created() {
+    this.getUserStations()
   },
   methods: {
+    async getUserStations() {
+      const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
+      console.log('USERSTATIONSIDS', userStationsIds)
+      const userStationPrms = userStationsIds.map(id => stationService.getById(id))
+      console.log('userStationsPrms', userStationPrms)
+      var userStations = await Promise.all(userStationPrms)
+      userStations = userStations.filter(station => station)
+      console.log('userStations', userStations)
+      this.stations = userStations
+
+    }
+    ,
     async addToStation(stationId) {
+      console.log('ID', stationId)
       try {
         const editedStation = JSON.parse(JSON.stringify(this.stations.find(s => s._id === stationId)))
         editedStation.songs.push(this.song)
@@ -67,9 +80,12 @@ export default {
         showSuccessMsg('Added to playlist')
         this.$emit('close')
         this.$router.push(`/station/${stationId}`)
-        // this.loadStation()
-        // if (this.isCurrStationPlayed && this.isPlaying)
-        //   this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
+
+
+
+        // // this.loadStation()
+        // // if (this.isCurrStationPlayed && this.isPlaying)
+        // //   this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
 
       } catch (err) {
         console.log(err)
