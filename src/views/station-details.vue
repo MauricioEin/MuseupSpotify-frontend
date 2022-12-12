@@ -46,7 +46,7 @@
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="songClicked" @saveSong="saveSong" @removeSong="removeSong"
         @play="playStation" @reorder="reorderSongs" @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }"
-        @queueSong="queueSong" @removeQueue="removeQueue" />
+        @queueSong="queueSong" @removeQueue="removeQueue" @share="share"/>
 
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
@@ -199,8 +199,8 @@ export default {
     // socketService.on('add-song', song)
   },
   methods: {
-    share(){
-      navigator.clipboard.writeText(window.location.href);
+    share(idx){
+        navigator.clipboard.writeText(window.location.origin + `/#` + `/station/${this.station._id}` + `/${idx}`);
       if (window.innerWidth < 860) {
         showSuccessMsg('Share link copied')
       }else{

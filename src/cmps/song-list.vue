@@ -87,12 +87,7 @@ export default {
     },
     methods: {
         share(idx){
-            if(this.$route.params.songIdx){
-                navigator.clipboard.writeText(window.location.href + `${idx}`);
-            }else{
-                navigator.clipboard.writeText(window.location.href + `${idx}`);
-            }
-            showSuccessMsg('Share link copied')
+            this.$emit('share', idx)
         },
         onSongClicked(id, idx) {
             this.clickedSong = id
