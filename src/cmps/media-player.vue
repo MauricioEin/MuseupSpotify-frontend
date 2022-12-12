@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { defineComponent } from 'vue'
 import YouTube from 'vue3-youtube'
 import { utilService } from '../services/util.service'
@@ -246,7 +247,7 @@ export default defineComponent({
             }
         },
         saveSong() {
-            this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
+                this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
 
         },
 
