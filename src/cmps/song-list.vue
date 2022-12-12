@@ -9,7 +9,7 @@
                         @playing="id => playingSong = id" :key="song._id" :song="song" :loggedInUser="loggedInUser"
                         :index="index" :dropKey="dropKey" :clickedSong="clickedSong" :playingSong="playingSong"
                         @play="$emit('play', index)" @songAction="action => $emit(action, song)"
-                        :isLikedSongs="isLikedSongs || false" />
+                        :isLikedSongs="isLikedSongs || false" @share="share(index)"/>
                 </Draggable>
             </Container>
         </ul>
@@ -28,6 +28,7 @@
 
 <script>
 import { Container, Draggable } from "vue3-smooth-dnd";
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 import songPreview from '../cmps/song-preview.vue'
 import songListHeader from './song-list-header.vue'
@@ -85,6 +86,9 @@ export default {
         }
     },
     methods: {
+        share(idx){
+            this.$emit('share', idx)
+        },
         onSongClicked(id, idx) {
             this.clickedSong = id
             this.$emit('songClicked', idx)
