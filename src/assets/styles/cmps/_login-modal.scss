@@ -1,0 +1,22 @@
+.login-modal {
+    background-color: $clr06;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    display: grid;
+    gap: 15px;
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    button {
+        cursor: pointer;
+        padding: 15px 25px;
+        border-radius: 6px;
+    }
+}

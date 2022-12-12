@@ -45,6 +45,9 @@
       <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations.length" />
       <station-preview v-for="station in stations" :station="station" :key="station?._id || 'error'" />
     </ul>
+
+    <login-modal :action="'adding playlists'" v-if="!loggedinUser || loggedinUser._id === 'demo'" />
+
   </section>
 </template>
 
@@ -54,6 +57,7 @@ import { socketService } from '../services/socket.service'
 import stationList from '../cmps/station-list.vue'
 import stationPreview from '../cmps/station-preview.vue'
 import likedSongsCard from '../cmps/liked-songs-card.vue'
+import loginModal from '../cmps/login-modal.vue'
 
 import searchIcon from '../assets/svgs/search-icon.vue'
 import plusBtnSvg from '../assets/svgs/plus-btn-svg.vue'
@@ -97,7 +101,8 @@ export default {
     plusBtnSvg,
     userPortrait,
     stationPreview,
-    likedSongsCard
+    likedSongsCard,
+    loginModal
   },
 
   computed: {
