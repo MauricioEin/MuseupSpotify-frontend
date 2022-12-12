@@ -8,7 +8,7 @@
         <main-search v-if="isOnSearchPage" />
       </nav>
 
-      <section @click="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
+      <section @click.stop="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
         <div class="user-img-container">
           <img v-if="imgSrc" :src="imgSrc" class="fit-img" alt="">
           <div v-else>
@@ -17,8 +17,8 @@
         </div>
         <span>{{ loggedInUser.fullname }}</span>
         <menu-arrow-down />
-        <mini-menu @profile="goToProfile" @logOut="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
-          style="transform: translateY(40%); top: 0; right: 0;" />
+        <mini-menu @click="closeMenu" @profile="goToProfile" @logOut="logout" :actions="['Profile', 'Log out']" v-if="isMenuOpen"
+          style="transform: translateY(40%); top: 0; right: 0;"  />
       </section>
 
       <section class="header-login-signup" v-else>
@@ -69,19 +69,25 @@ export default {
       this.isMenuOpen = true
     },
     closeMenu() {
+      console.log('closing, isMenuOpen?', this.isMenuOpen)
       this.isMenuOpen = false
+      console.log('closed, isMenuOpen?', this.isMenuOpen)
     },
     goToLogin() {
+      this.closeMenu()
       this.$router.push('/login')
     },
     goToSignup() {
+      this.closeMenu()
       this.$router.push('/signup')
     },
     logout() {
+      this.closeMenu()
       this.$store.dispatch({ type: 'logout' })
       this.$router.push('/station')
     },
     goToProfile() {
+      this.closeMenu()
       const id = this.loggedInUser._id
       this.$router.push(`/user/${id}`)
     },
@@ -93,12 +99,13 @@ export default {
 
   },
 
-  // mounted() {
-  //   this.headerObserver = new IntersectionObserver(this.onHeaderObserved, {
-  //     rootMargin: "100px 0px 0px",
-  //   });
-  //   this.headerObserver.observe(this.$refs.header);
-  // },
+  mounted() {
+    window.addEventListener('click', this.closeMenu)
+  },
+  unmounted() {
+    window.removeEventListener('click', this.closeMenu)
+  },
+
 
   components: {
     mainSearch,

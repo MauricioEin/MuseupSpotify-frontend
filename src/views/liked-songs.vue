@@ -30,8 +30,9 @@
       </section>
       <song-list v-if="user.likedSongs?.length" :songs="user.likedSongs" :loggedInUser="user" @saveSong="saveSong"
         @play="playStation" :isLikedSongs="true" />
-      <!--  -->
     </section>
+
+    <login-modal :action="'following songs'" v-if="!user || user._id === 'demo'" />
 
   </section>
 </template>
@@ -39,6 +40,7 @@
 <script>
 
 import songList from '../cmps/song-list.vue'
+import loginModal from '../cmps/login-modal.vue'
 
 
 import pauseBtn from '../assets/svgs/media-player-stop.vue'
@@ -49,7 +51,7 @@ export default {
     songList,
     playBtn,
     pauseBtn,
-
+    loginModal
   },
   data() {
     return {

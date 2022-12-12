@@ -188,6 +188,16 @@
     >* {
         margin-inline-end: 10px;
     }
+
+    .lyrics-btn {
+        opacity: 0;
+        pointer-events: none;
+
+        &.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
 }
 
 .right-controls {

@@ -23,7 +23,7 @@ export default {
 
     methods: {
         getImgSrc(i) {
-            return `../assets/img/categories/${i}.jpg`
+            return new URL(`../assets/img/categories/${i}.jpg`,import.meta.url).href
         }
     }
 }
