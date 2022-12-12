@@ -38,7 +38,8 @@
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
               @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
-              :isQueued="isStationQueued" />
+              :isQueued="isStationQueued"
+              :visualData="{ imgUrl: stationImg, text1: station.name, text2: 'by ' + station.owner.username }" />
           </button>
         </div>
       </section>

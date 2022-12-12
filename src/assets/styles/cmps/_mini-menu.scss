@@ -23,7 +23,7 @@
     @media(max-width:$narrow-breakpoint) {
         padding: 20px 20px 0 25px;
         position: fixed;
-        inset: 0;
+        inset: 0 !important;
         background-color: $clr08;
         z-index: 20;
         width: 100%;
@@ -33,11 +33,13 @@
             font-size: 1.4em;
             width: 100% !important;
             font-weight: bold;
+            height:2.4em !important;
+            // margin-bottom: 30px;
         }
 
         .close-menu {
             justify-content: end;
-            margin-bottom:25px;
+            margin-bottom: 25px;
         }
 
         // margin:0;
@@ -49,19 +51,25 @@
         size: 5px;
     }
 
-    .song-data {
+    .visual-data {
         align-self: center; // text-align: center;
+        font-size: 1rem;
+        color: $clr02;
 
-        .artist {
+
+
+        .title {
             font-weight: bold;
-            color: $clrGreen;
+            color: $clr01;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
     }
 
     .img-container {
-        width: 120px;
-        height: 120px;
-        margin: 20px auto;
+        width: 43vw;
+        height: 43vw;
+        margin: 0px auto 15px;
     }
 
     button {

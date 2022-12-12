@@ -37,11 +37,11 @@
             <button class="btn-more" @click.stop="toggleMiniMenu">
                 <more-options-svg />
                 <mini-menu v-if="isMiniMenu" ref="miniMenu" :actions="songActions"
-                    :songData="{ imgUrl, artist: song.title.slice(0, titleBreakIdx), title: song.title.slice(titleBreakIdx+1) }"
+                    :visualData="{ imgUrl, text2: song.title.slice(0, titleBreakIdx), text1: song.title.slice(titleBreakIdx+1) }"
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
                     @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
                     @removeFromQueue="onMiniMenu('removeQueue')" @AddToAPlaylist="onMiniMenu('addToPlaylist')"
-                    @closeMenu="toggleMiniMenu" />
+                     />
             </button>
         </div>
     </li>

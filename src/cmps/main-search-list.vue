@@ -5,7 +5,7 @@
             <li v-for="(song, index) in songs" :key="song._id">
                 <search-song-preview @songSelected="songSelected" :index="index" :song="song"
                     :playingSongId="playingSongId" :clickedSong="clickedSong" :loggedInUser="loggedInUser"
-                    @songClick="onSongClicked" @addToStation="$emit('addToStation', song)" />
+                    @songClicked="onSongClicked" @addToStation="$emit('addToStation', song)" />
             </li>
         </ul>
     </section>
@@ -38,9 +38,17 @@ export default {
         },
         onSongClicked(id) {
             this.clickedSong = id
+        },
+        removeClick(){
+            this.clickedSong=''
         }
     },
-
+    mounted() {
+        window.addEventListener('click', this.removeClick)
+    },
+    unmounted() {
+        window.removeEventListener('click', this.removeClick)
+    },
     components: {
         searchSongPreview,
         mainSearchListHeader

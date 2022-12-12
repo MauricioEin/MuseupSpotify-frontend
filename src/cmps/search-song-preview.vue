@@ -65,7 +65,7 @@ export default {
             type: Object
         },
     },
-    created() {
+    mounted() {
         window.addEventListener('click', this.emitClicked)
     },
     unmounted() {
@@ -104,9 +104,9 @@ export default {
         },
     },
     methods: {
-        songClick(song){
+        songClick(song) {
             this.$emit('songClicked', song.id)
-            if(window.innerWidth < 750){
+            if (window.innerWidth < 750) {
                 this.playSong()
             }
         },

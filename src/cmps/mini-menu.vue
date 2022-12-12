@@ -1,12 +1,12 @@
 <template>
     <section class="mini-menu">
-        <button v-if="isFull" class="close-menu flex" @click="$emit('closeMenu')" ><x-btn-svg/></button>
-        <div v-if="isFull && songData" class="song-data">
+        <button v-if="isFull" class="close-menu flex" @click="$emit('closeMenu')"><x-btn-svg /></button>
+        <div v-if="isFull && visualData" class="visual-data">
             <div class="img-container">
-                <img :src="songData.imgUrl" class="fit-img"/>
+                <img :src="visualData.imgUrl" class="fit-img" />
             </div>
-        <p class="artist">{{songData.artist}}</p>
-        <p>{{songData.title}}</p>
+            <p class="title">{{ visualData.text1 }}</p>
+            <p>{{ visualData.text2 }}</p>
         </div>
         <button v-for="action in actions" :key="action" @click.stop="$emit(makeEventName(action))">
             {{ action }}
@@ -19,7 +19,7 @@ import { withModifiers } from 'vue';
 import xBtnSvg from '../assets/svgs/x-btn-svg.vue'
 
 export default {
-    props: ['actions', 'songData'],
+    props: ['actions', 'visualData'],
     methods: {
         makeEventName(action) {
             var words = action.split(' ')
@@ -27,12 +27,12 @@ export default {
             return words.join('')
         }
     },
-    computed:{
-        isFull(){
-            return window.innerWidth < 860 
+    computed: {
+        isFull() {
+            return window.innerWidth < 860
         }
     },
-    components:{
+    components: {
         xBtnSvg
     }
 }
