@@ -154,6 +154,11 @@ export default defineComponent({
             }
             else if (ev.data === 0 &&
                 this.currSongIdx === this.songList.length - 1 &&
+                this.loopType === 0) {
+                this.togglePlay()
+            }
+            else if (ev.data === 0 &&
+                this.currSongIdx === this.songList.length - 1 &&
                 this.loopType === 1) {
                 this.changeSong(1)
             }
@@ -299,14 +304,15 @@ export default defineComponent({
 
         },
         isPlayingInStore() {
-            this.isPlaying = this.isPlayingInStore
+            this.isPlaying = this.isPlayingInStore            
         },
-
+        
         isPlaying() {
             if (this.isPlaying) {
                 this.$refs.youtube.playVideo()
                 // this.isPlaying = true
                 this.updateCurrTime()
+                this.$refs.youtube.playVideo()
             } else {
                 this.$refs.youtube.pauseVideo()
                 // this.isPlaying = false
