@@ -8,7 +8,7 @@
     width: 100%;
     overflow: hidden;
     z-index: 400;
-
+    background-color: unset;
     .playing-from{
         width: 100%;
         position: absolute;
@@ -106,8 +106,10 @@
         // background-image: url(../img/lp-bg4.png);
 
         // background: linear-gradient(180.6deg, rgb(57, 57, 57) 1.2%, rgba(21, 20, 20, 0.93) 68.9%);
+        // background: linear-gradient(158deg, rgb(57 57 57) 1.2%, rgb(21 20 20) 68.9%);
+        // background: linear-gradient(180.6deg, rgb(57, 57, 57), rgba(21, 20, 20, 0.93));
         // background-color: rgb(24, 23, 23);
-        background: linear-gradient(transparent 0, rgba(0, 0, 0, .5) 70%);
+        background: linear-gradient(transparent, 0, rgba(0, 0, 0, .5) 70%);
         background-color: $clr04;
 
 
