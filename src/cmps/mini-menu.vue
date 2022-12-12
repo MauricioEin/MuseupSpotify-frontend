@@ -1,6 +1,6 @@
 <template>
     <section class="mini-menu">
-        <button v-if="isFull">Close menu</button>
+        <button v-if="isFull" class="close-menu" @click="$emit('closeMenu')" ><x-btn-svg/></button>
         <div v-if="isFull && songData" class="song-data">
             <div class="img-container">
                 <img :src="songData.imgUrl" class="fit-img"/>
@@ -16,6 +16,7 @@
 
 <script>
 import { withModifiers } from 'vue';
+import xBtnSvg from '../assets/svgs/x-btn-svg.vue'
 
 export default {
     props: ['actions', 'songData'],
@@ -29,8 +30,10 @@ export default {
     computed:{
         isFull(){
             return window.innerWidth < 860 
-
         }
+    },
+    components:{
+        xBtnSvg
     }
 }
 </script> 
