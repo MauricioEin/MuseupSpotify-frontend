@@ -38,15 +38,14 @@
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
               @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
-              :isQueued="isStationQueued" @share="shareStation"
-              :visualData="visualData" />
+              :isQueued="isStationQueued" @share="shareStation" :visualData="visualData" />
           </button>
         </div>
       </section>
       <song-list v-if="station.songs.length" :songs="station.songs" :isClickOutside="isStationMenuOpen"
         :loggedInUser="loggedInUser" @songClicked="songClicked" @saveSong="saveSong" @removeSong="removeSong"
         @play="playStation" @reorder="reorderSongs" @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }"
-        @queueSong="queueSong" @removeQueue="removeQueue" @share="share"/>
+        @queueSong="queueSong" @removeQueue="removeQueue" @share="share" />
 
       <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
       <!-- <section > -->
@@ -105,14 +104,14 @@ export default {
       stationClr: '',
     }
   },
-  created(){
-    setTimeout(()=>{
-      console.log(this.$route.params);
-      if(this.$route.params.songIdx && this.station){
-        this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length -1] })
-      }
-    },2500)
-  },  
+  created() {
+    // setTimeout(()=>{
+    //   console.log(this.$route.params);
+    //   if(this.$route.params.songIdx && this.station){
+    //     this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length -1] })
+    //   }
+    // },5500)
+  },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedinUser
@@ -192,6 +191,12 @@ export default {
       this.$store.commit({ type: 'updateStation', station })
       console.log('Station updated by someone else', station);
     })
+    // setTimeout(() => {
+    console.log(this.$route.params);
+    if (this.$route.params.songIdx && this.station) {
+      this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length - 1] })
+    }
+    // }, 5500)
   },
   unmounted() {
     window.removeEventListener('click', this.closeMenu)
@@ -199,20 +204,20 @@ export default {
     // socketService.on('add-song', song)
   },
   methods: {
-    shareStation(){
+    shareStation() {
       navigator.clipboard.writeText(window.location.origin + `/#` + `/station/${this.station._id}`);
       if (window.innerWidth < 860) {
         showSuccessMsg('Share link copied')
-      }else{
+      } else {
         showSuccessMsg('Share link copied to clipboard')
       }
 
     },
-    share(idx){
-        navigator.clipboard.writeText(window.location.origin + `/#` + `/station/${this.station._id}` + `/${idx}`);
+    share(idx) {
+      navigator.clipboard.writeText(window.location.origin + `/#` + `/station/${this.station._id}` + `/${idx}`);
       if (window.innerWidth < 860) {
         showSuccessMsg('Share link copied')
-      }else{
+      } else {
         showSuccessMsg('Share link copied to clipboard')
       }
     },
@@ -313,7 +318,7 @@ export default {
         const editedStation = JSON.parse(JSON.stringify(this.station))
         // if (editedStation.songs.some(s => s.youtubeId === song.youtubeId))
 
-          editedStation.songs.push(song)
+        editedStation.songs.push(song)
         const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
         socketService.emit('update-station', res)
         showSuccessMsg('Added to playlist')
