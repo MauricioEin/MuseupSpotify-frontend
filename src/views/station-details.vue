@@ -38,7 +38,7 @@
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
               @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
-              :isQueued="isStationQueued" @share="share"
+              :isQueued="isStationQueued" @share="shareStation"
               :visualData="visualData" />
           </button>
         </div>
@@ -199,6 +199,15 @@ export default {
     // socketService.on('add-song', song)
   },
   methods: {
+    shareStation(){
+      navigator.clipboard.writeText(window.location.origin + `/#` + `/station/${this.station._id}`);
+      if (window.innerWidth < 860) {
+        showSuccessMsg('Share link copied')
+      }else{
+        showSuccessMsg('Share link copied to clipboard')
+      }
+
+    },
     share(idx){
         navigator.clipboard.writeText(window.location.origin + `/#` + `/station/${this.station._id}` + `/${idx}`);
       if (window.innerWidth < 860) {
