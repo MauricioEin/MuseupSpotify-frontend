@@ -3,7 +3,7 @@
     overflow-y: scroll;
 
     @media (max-width: $narrow-breakpoint) {
-        padding-top: 50px;
+        padding-top: 30px;
         position: fixed;
         inset: 0;
         height: unset;
@@ -15,12 +15,25 @@
         position: absolute;
         z-index: 60;
         background-color: $clr07;
-        height: 80vh;
+        height: fit-content;
         width: 500px;
         inset: 50vh 0 auto auto;
         transform: translate(-50%, -50%);
         box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+        // box-shadow: -1px -1px 10px rgba(84, 84, 84, 0.152);
+
         border-radius: 7px;
+
+        ul {
+            margin-top: 10px;
+            max-height: 50vh;
+            overflow-y: auto;
+            padding-inline-end: -5px;
+
+            &:hover::-webkit-scrollbar-thumb {
+                background: $clr06;
+            }
+        }
     }
 
     .picker-header {
@@ -29,6 +42,9 @@
         grid-template-columns: 40px 1fr 40px;
         text-align: center;
         font-size: 1.5rem;
+        @media (max-width:$narrow-breakpoint){
+            margin-bottom:20px;
+        }
     }
 
 
@@ -89,18 +105,25 @@
         }
 
         h4 {
-            font-size: 1rem;
+            flex-grow: 1;
+            margin-bottom: 6px;
         }
 
         p {
+            flex-grow: 1;
             font-size: 0.875rem;
             color: $clr02;
+            height:16px;
         }
 
         @media (min-width: $narrow-breakpoint) {
+            margin-top: 0;
+            height: 80px;
+            padding-inline-start: 10px;
+            border-radius: 5px;
 
             &:hover {
-                background-color: $clr04;
+                background-color: #59595934;
             }
         }
     }
