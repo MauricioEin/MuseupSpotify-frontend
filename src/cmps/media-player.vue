@@ -27,7 +27,8 @@
                         <heart-btn-svg v-if="isLiked" class="liked" />
                         <heart-empty-svg v-else />
                     </button>
-                    <button v-if="songLyrics" class="flex justify-center align-center lyrics-btn">
+                    <!-- <button v-if="songLyrics" class="flex justify-center align-center lyrics-btn"> -->
+                    <button class="flex justify-center align-center lyrics-btn" :class="{ active: songLyrics }">
                         <lyrics-btn-svg @click="isLyrics = !isLyrics" :class="{ liked: isLyrics }" />
                     </button>
                 </div>
@@ -247,7 +248,7 @@ export default defineComponent({
             }
         },
         saveSong() {
-                this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
+            this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
 
         },
 
