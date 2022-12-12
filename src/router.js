@@ -51,7 +51,7 @@ const routes = [
     component: stationLibrary
   },
   {
-    path: '/station/:id',
+    path: '/station/:id/:songIdx?',
     name: 'station-details',
     component: stationDetails
   },

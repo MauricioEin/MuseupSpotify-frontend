@@ -38,7 +38,7 @@
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
               @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
-              :isQueued="isStationQueued"
+              :isQueued="isStationQueued" @share="share"
               :visualData="{ imgUrl: stationImg, text1: station.name, text2: 'by ' + station.owner.username }" />
           </button>
         </div>
@@ -105,6 +105,14 @@ export default {
       stationClr: '',
     }
   },
+  created(){
+    setTimeout(()=>{
+      console.log(this.$route.params);
+      if(this.$route.params.songIdx && this.station){
+        this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length -1] })
+      }
+    },2000)
+  },  
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedinUser
@@ -184,6 +192,14 @@ export default {
     // socketService.on('add-song', song)
   },
   methods: {
+    share(){
+      navigator.clipboard.writeText(window.location.href);
+      if (window.innerWidth < 860) {
+        showSuccessMsg('Share link copied')
+      }else{
+        showSuccessMsg('Share link copied to clipboard')
+      }
+    },
     songClicked(idx) {
       this.isStationMenuOpen = false
       console.log('playing')

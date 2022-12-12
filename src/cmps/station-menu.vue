@@ -11,6 +11,7 @@
 
         <button @click="queueStation">{{ queueAction }}</button>
         <button @click="$emit('follow')">{{ followAction }}</button>
+        <button @click="$emit('share')">Share</button>
         <button @click="$emit('edit')">Edit details</button>
         <button @click="$emit('remove')">Delete</button>
     </section>

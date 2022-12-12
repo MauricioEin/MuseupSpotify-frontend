@@ -41,7 +41,7 @@
                     @saveToYourLikedSongs="onMiniMenu('saveSong')" @removeFromPlaylist="onMiniMenu('removeSong')"
                     @removeFromYourLikedSongs="onMiniMenu('saveSong')" @addToQueue="onMiniMenu('queueSong')"
                     @removeFromQueue="onMiniMenu('removeQueue')" @AddToAPlaylist="onMiniMenu('addToPlaylist')"
-                     />
+                    @Share="share" />
             </button>
         </div>
     </li>
@@ -51,6 +51,7 @@
 
 <script>
 import { utilService } from '../services/util.service'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 
 import heartEmptySvg from '../assets/svgs/heart-empty-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
@@ -133,6 +134,10 @@ export default {
         },
 
     }, methods: {
+        share(){
+            this.$emit('share')
+            this.isMiniMenu = !this.isMiniMenu
+        },
         toggleMiniMenu() {
             console.log('TOGGLE')
             this.isMiniMenu = !this.isMiniMenu

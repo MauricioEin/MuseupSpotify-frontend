@@ -155,7 +155,8 @@ export const stationStore = {
         },
         setStationClr(state, { clr }) {
             state.currStationClr = clr
-        }
+        },
+
 
         // removeAllQueued(state){
         //     state.playingStation.songs.forEach((song, idx)=>{
