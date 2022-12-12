@@ -38,12 +38,8 @@
             <more-options-svg @click.stop="toggleStationMenu" />
             <station-menu v-if="isStationMenuOpen" @queue="queueStation" @remove="removeStation" @follow="follow"
               @edit="isEdit = true" @removeStationQueue="removeQueue(station)" :isFollowed="isFollowed"
-<<<<<<< HEAD
               :isQueued="isStationQueued" @share="share"
-              :visualData="{ imgUrl: stationImg, text1: station.name, text2: 'by ' + station.owner.username }" />
-=======
-              :isQueued="isStationQueued" :visualData="visualData" />
->>>>>>> a5b29cfe938c86f7af82bc26e108e96a1ce11315
+              :visualData="visualData" />
           </button>
         </div>
       </section>
