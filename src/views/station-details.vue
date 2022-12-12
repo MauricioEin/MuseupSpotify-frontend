@@ -219,7 +219,7 @@ export default {
         showSuccessMsg('Station ' + actionStr + 'ed')
       } catch (err) {
         console.error(err)
-        showErrorMsg('Cannot ' + actionStr + ' station')
+        // showErrorMsg('Cannot ' + actionStr + ' station')
       }
     },
     async removeStation() {

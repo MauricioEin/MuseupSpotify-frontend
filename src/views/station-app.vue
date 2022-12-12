@@ -10,7 +10,7 @@
           <gear-svg @click="togglePhoneMenu" />
         </button>
         <mini-menu ref="phoneMenu" v-if="isPhoneMenuOpen" @login="goToLogin" @logout="logout" @signup="goToSignup"
-          @profile="goToProfile" :actions="phoneActions" />
+          @profile="goToProfile" :actions="phoneActions" @closeMenu="isPhoneMenuOpen=false" />
       </section>
     </section>
     <section class="user-cards" v-if="(loggedinUser._id !== 'demo')">

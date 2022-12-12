@@ -136,11 +136,16 @@ export const userStore = {
             commit({ type: 'setLoggedinUser', user: savedUser })
         },
         async saveSong({ commit, state }, { song }) {
-            const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
-            const savedUser = await userService.saveSong(song, loggedinUser)
-            console.log('savedUserFromService:', savedUser)
-            commit({ type: 'updateUser', user: savedUser })
-            commit({ type: 'setLoggedinUser', user: savedUser })
+            try{
+                const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
+                const savedUser = await userService.saveSong(song, loggedinUser)
+                console.log('savedUserFromService:', savedUser)
+                commit({ type: 'updateUser', user: savedUser })
+                commit({ type: 'setLoggedinUser', user: savedUser })
+            }catch(err){
+                console.log(err);
+                showErrorMsg('Log in to like songs')
+            }
         },
         async removeUserStation({ commit, state }, { id }) {
             try {
