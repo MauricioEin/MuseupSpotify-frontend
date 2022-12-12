@@ -111,7 +111,7 @@ export default {
       if(this.$route.params.songIdx && this.station){
         this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length -1] })
       }
-    },2000)
+    },2500)
   },  
   computed: {
     loggedInUser() {
