@@ -145,6 +145,7 @@
             fill: black;
             width: 23px;
         }
+
         img {
             height: 145px;
         }
@@ -190,8 +191,8 @@
 }
 
 .skeleton-7b7uvxywsks {
-    margin: 15px 10px;
-    width: 175px;
+    margin: 15px auto 15px 0;
+    width: 100%;
 }
 
 .skeleton-7b7uvxywsks:empty {
@@ -230,7 +231,7 @@
     }
 
     .skeleton-7b7uvxywsks:empty:before {
-        
+
         content: ' ';
         position: absolute;
         z-index: 10;
@@ -256,10 +257,10 @@
 
 .skeleton-7b7uvxywsk {
     width: 155px;
-    height:20px;
+    height: 20px;
     margin-inline-start: 40px;
-    margin-top:30px;
-    margin-bottom:15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
     border-radius: 5px;
 }
 
@@ -300,9 +301,49 @@
 
 
 .card-loader {
-    // flex-wrap: nowrap;
     overflow: hidden;
-    gap: 05px;
-    margin-inline-start: 25px;
     margin-bottom: 30px;
+    margin-inline-start: 40px;
+    gap:20px;
+
+
+    .skeleton-7b7uvxywsks{
+        margin:15px 0;
+        width:175px;
+    }
+}
+
+
+
+
+
+//liked songs loader:
+.skeleton-vqlfosng44v {
+    display: none;
+}
+
+@media (min-width:860px) {
+    .skeleton-vqlfosng44v {
+        display: block;
+    }
+
+    .skeleton-vqlfosng44v:empty {
+        grid-column: span 2;
+        margin: 15px auto 15px 0;
+        width: 100%;
+        height: 265px;
+        background-color: #3333336d;
+        border-radius: 10px 10px 10px 10px;
+        background-image: linear-gradient(100deg, rgba(173, 171, 171, 0), rgba(56, 56, 56, 0.344) 50%, rgba(156, 31, 31, 0) 80%), linear-gradient(#4a4a4a44 20px, transparent 0), linear-gradient(#4a4a4a44 71px, transparent 0), linear-gradient(#4a4a4a44 34px, transparent 0);
+        background-repeat: repeat-y;
+        background-size: 50px 265px, 20% 280px, 80% 280px, 40% 280px;
+        background-position: -20% 0, 25px 203px, 25px 39px, 25px 145px;
+        animation: shineForSkeleton-vqlfosng44v 3s infinite;
+    }
+
+    @keyframes shineForSkeleton-vqlfosng44v {
+        to {
+            background-position: 120% 0, 25px 203px, 25px 39px, 25px 145px;
+        }
+    }
 }

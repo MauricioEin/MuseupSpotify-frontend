@@ -14,7 +14,7 @@
 
     //phone only
     @media (max-width:860px) {
-        grid-template-columns: 10px 40px 1fr 60px;
+        grid-template-columns: 20px 40px 1fr 60px;
         gap: 19px;
     }
 
@@ -152,7 +152,7 @@
 
     &.clicked {
         @media(min-width:$narrow-breakpoint) {
-            
+
             background-color: $clr04;
         }
 

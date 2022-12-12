@@ -35,6 +35,8 @@
     &.mobile-lyrics {
 
         @media (max-width: $narrow-breakpoint) {
+            background-color: rgba(36, 141, 153);
+
             border-radius: 8px;
             margin-top: 20px;
             height: 50vh;
@@ -49,12 +51,15 @@
             }
 
             &.expanded {
-                inset: 0;
+                inset: 10px;
                 position: fixed;
-                height: 100vh;
+                height: calc(100vh - 20px);
                 z-index: 50;
+                margin-top:0;
+                // border-radius: 0;
+                background-color: rgba(36, 141, 153);
 
-                background-color: black;
+                // background-color: rgb(143, 155, 178);
 
                 .lyrics-container{
                     height:100vh;
@@ -74,6 +79,8 @@
 
 .mobile-lyrics-container {
     padding-bottom: 15px;
+
+
     @media(min-width: $narrow-breakpoint){
         display: none;
     }

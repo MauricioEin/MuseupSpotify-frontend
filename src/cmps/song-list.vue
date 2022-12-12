@@ -86,7 +86,6 @@ export default {
     },
     methods: {
         onSongClicked(id, idx) {
-            console.log('ID', id)
             this.clickedSong = id
             this.$emit('songClicked', idx)
             // console.log(index);

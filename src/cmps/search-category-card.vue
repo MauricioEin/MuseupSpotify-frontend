@@ -2,7 +2,7 @@
     <div class="search-category-card">
         <h1>{{ label }}</h1>
         <div class="img-container">
-            <img :src="imgSrc" alt="">
+            <img :src="imgSrc" :title="imgSrc">
         </div>
     </div>
 </template>
@@ -20,8 +20,9 @@ export default {
 
     computed: {
         imgSrc() {
-            return `src/assets/img/categories/${this.imgIdx}.jpg`
+            return `../assets/img/categories/${this.imgIdx}.jpg`
         }
     }
 }
+
 </script>

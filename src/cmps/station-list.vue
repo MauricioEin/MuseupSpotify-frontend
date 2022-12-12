@@ -19,6 +19,15 @@
     <div>
       <div class="skeleton-7b7uvxywsks"></div>
     </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
+    <div>
+      <div class="skeleton-7b7uvxywsks"></div>
+    </div>
   </div>
   <div class="station-list-container" v-if="(stations && stations.length)">
     <div class="station-list-head">
@@ -96,7 +105,7 @@ export default {
 
     playStation(station) {
       this.$store.commit({ type: 'toggleIsPlaying' })
-      this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id })
+      this.$store.commit({ type: 'playSong', song: JSON.parse(JSON.stringify(station.firstSong)), stationId: station._id, stationClr: station.clr })
       this.$store.dispatch({ type: 'playFromHomePage', station })
     },
 
