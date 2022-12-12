@@ -116,9 +116,9 @@ export default {
     loggedInUser() {
       return this.$store.getters.loggedinUser
     },
-    stations() {
-      return this.$store.getters.stations
-    },
+    // stations() {
+    //   return this.$store.getters.stations
+    // },
     stationImg() {
       return this.station?.imgUrl || this.station?.songs[0]?.imgUrl.medium || this.station?.songs[0]?.imgUrl
     },

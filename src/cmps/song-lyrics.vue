@@ -1,7 +1,7 @@
 <template>
   <section ref="lyrics" class="song-lyrics" @click.stop="expandLyrics">
     <div class="lyrics-container">
-      <pre>{{ lyrics.substring(0, lyrics.length - 70) }}
+      <pre>{{ lyrics?.substring(0, lyrics?.length - 70) }}
 
 
         

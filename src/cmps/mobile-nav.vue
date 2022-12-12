@@ -82,9 +82,9 @@ import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 export default {
   components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg },
   computed: {
-    stations() {
-      return this.$store.getters.stations
-    },
+    // stations() {
+    //   return this.$store.getters.stations
+    // },
     loggedinUser() {
       return this.$store.getters.loggedinUser
     }

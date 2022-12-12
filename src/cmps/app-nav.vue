@@ -60,9 +60,9 @@ import { socketService } from '../services/socket.service'
 export default {
   components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg },
   computed: {
-    stations() {
-      return this.$store.getters.stations
-    },
+    // stations() {
+    //   return this.$store.getters.stations
+    // },
     loggedinUser() {
       return this.$store.getters.loggedinUser
     }
