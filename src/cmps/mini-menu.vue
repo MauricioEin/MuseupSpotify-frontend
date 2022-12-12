@@ -1,6 +1,6 @@
 <template>
     <section class="mini-menu">
-        <button v-if="isFull" class="close-menu" @click="$emit('closeMenu')" ><x-btn-svg/></button>
+        <button v-if="isFull" class="close-menu flex" @click="$emit('closeMenu')" ><x-btn-svg/></button>
         <div v-if="isFull && songData" class="song-data">
             <div class="img-container">
                 <img :src="songData.imgUrl" class="fit-img"/>
