@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import pic from '../assets/img/landing-page.png'
 import logoSvg from '../assets/svgs/logo-svg.vue';
 export default {
   name: 'home',
