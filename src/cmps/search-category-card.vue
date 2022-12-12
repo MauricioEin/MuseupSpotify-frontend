@@ -2,7 +2,7 @@
     <div class="search-category-card">
         <h1>{{ label }}</h1>
         <div class="img-container">
-            <img :src="imgSrc" :title="imgSrc">
+            <img :src="getImgSrc(imgIdx)">
         </div>
     </div>
 </template>
@@ -15,12 +15,15 @@ export default {
         },
         imgIdx: {
             type: Number
+        },
+        imgSrc: {
+            type: String
         }
     },
 
-    computed: {
-        imgSrc() {
-            return `../assets/img/categories/${this.imgIdx}.jpg`
+    methods: {
+        getImgSrc(i) {
+            return require(`../assets/img/categories/${i}.jpg`)
         }
     }
 }

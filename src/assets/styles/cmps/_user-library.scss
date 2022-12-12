@@ -56,6 +56,18 @@
         margin: 0;
         // background-color: beige;
 
+        .liked-songs-info{
+            @media(max-width:$narrow-breakpoint) {
+                h1 {
+                    color: $clr01;
+                    font-size:1.15rem;
+                }
+                p{
+                    font-size: 1rem;
+                }
+            }
+        }
+
         @media(max-width:$narrow-breakpoint) {
             gap: 10px;
             padding: 10px 5px;
@@ -69,8 +81,11 @@
                     gap: 10px;
                     align-self: center;
                     color: $clr02;
-
-                    .station-desc {
+                    
+                    .station-title {
+                        font-size: 1.15rem;
+                        color: $clr01;
+                        line-height: 1;
                         // display: flex;
                         // align-items: center;
                     }
@@ -83,7 +98,7 @@
 
             @media (max-width:$narrow-breakpoint) {
                 display: grid;
-                grid-template-columns: 40px 1fr;
+                grid-template-columns: 70px 1fr;
 
 
             }
