@@ -145,8 +145,15 @@ export const stationStore = {
                     state.playingStation.songs.splice(idx, 1)
                 })
             }
-        }, filterStations(state, { filteredStations }) {
-            state.filteredStations = filteredStations
+        },
+        filterStations(state, { filteredStations }) {
+            console.log('filteredStations in', filteredStations)
+
+            console.log('keys', Object.keys(filteredStations))
+            Object.keys(filteredStations).forEach(key => state.filteredStations[key] = filteredStations[key])
+            console.log('filteredStations', state.filteredStations)
+
+            // state.filteredStations = filteredStations
         },
 
         addFilteredStation(state, { station }) {
@@ -165,20 +172,22 @@ export const stationStore = {
         // }
     },
     actions: {
-        filterStations(context, { categories }) {
+        async filterStations(context, { categories }) {
             const filteredStations = {}
 
             try {
-                categories.forEach(async category => {
+                const catPrms = categories.map(category => {
                     if (category === 'user') {
-                        filteredStations.user = await stationService.query({ owner: context.getters.loggedinUser._id })
+                        return stationService.query({ owner: context.getters.loggedinUser._id })
                     }
                     else if (category === 'others') {
-                        filteredStations.others = await stationService.query({ others: context.getters.loggedinUser._id })
+                        return stationService.query({ others: context.getters.loggedinUser._id })
                     }
-                    else filteredStations[category] = await stationService.query({ category })
+                    else return stationService.query({ category })
                 })
-                console.log('filteredStations:', filteredStations)
+                const catStations = await Promise.all(catPrms)
+                categories.forEach((cat, idx) => filteredStations[cat] = catStations[idx])
+
                 context.commit({ type: 'filterStations', filteredStations })
             } catch (err) {
                 console.log('stationStore: Error in filterStations', err)
@@ -209,7 +218,7 @@ export const stationStore = {
             try {
                 station = await stationService.save(station)
                 context.commit(getActionUpdateStation(station))
-                console.log('context.getters.loggedinUser._id',context.getters.loggedinUser._id)
+                console.log('context.getters.loggedinUser._id', context.getters.loggedinUser._id)
                 if (station.owner._id === context.getters.loggedinUser._id)
                     context.commit({ type: 'updateUserStations', station, isUpdate: true })
                 return station

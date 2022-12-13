@@ -51,18 +51,15 @@ export default {
     return {
       isPhoneMenuOpen: false,
       categories: ['user', 'others', 'trending', 'bestOf', 'focus', 'mood', 'popular'],
-      filteredStations: {},
+      // filteredStations: {},
     }
   },
 
   computed: {
-    // filteredStations() {
-    //   return this.$store.getters.filteredStations
+    filteredStations() {
+      return this.$store.getters.filteredStations
 
-    // },
-    // stations() {
-    //   return this.$store.getters.stations
-    // },
+    },
     loggedinUser() {
       console.log('USER', this.$store.getters.loggedinUser)
       return this.$store.getters.loggedinUser
@@ -103,21 +100,17 @@ export default {
     },
 
     async loadHomeStations() {
-      const delay = this.$store.getters.filteredStations.trending ? 0 : 5000
-      setTimeout(() => {
-        this.filteredStations = this.$store.getters.filteredStations
-        if (this.filteredStations.trending) {
-          console.log('this stations:', this.filteredStations)
-          return          
-        }
-        loadHomeStations()
-      }, delay)
-      // console.log('Hello', this.isLoaded, this.filteredStations);
+      // const delay = this.$store.getters.filteredStations.trending ? 0 : 5000
+      // setTimeout(() => {
+      //   this.filteredStations = this.$store.getters.filteredStations
+      //   if (this.filteredStations.trending) {
+      //     console.log('this stations:', this.filteredStations)
+      //     return
+      //   }
+      //   loadHomeStations()
+      // }, delay)
+      // // console.log('Hello', this.isLoaded, this.filteredStations);
     },
-    // stationsWithGenre(genre) {
-    //   // this.$store.dispatch({ type: 'filterGenre', genre })
-    //   return this.$store.getters.stations//.filter(station => station.category === genre)
-    // },
     openPhoneMenu() {
       this.isPhoneMenuOpen = true
     },
