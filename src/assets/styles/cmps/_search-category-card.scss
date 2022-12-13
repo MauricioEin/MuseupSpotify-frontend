@@ -5,6 +5,7 @@
     border-radius: 8px;
     cursor: pointer;
 
+
     h1 {
         font-size: 1.5rem;
         padding: 16px;
@@ -21,6 +22,23 @@
         img {
             aspect-ratio: 1;
             height: 100%;
+            border-radius: 8px;
         }
+
+    }
+
+    @media (max-width:$narrow-breakpoint) {
+        aspect-ratio: 2/1;
+
+        .img-container {
+            height: 60px;
+            width: 60px;
+        }
+
+        h1 {
+            max-width: 70%;
+        }
+
+
     }
 }

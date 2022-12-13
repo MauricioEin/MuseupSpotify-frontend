@@ -87,7 +87,6 @@ export default {
     //   this.stations = stations
     // },
     async createStation() {
-      console.log('creating!')
       const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
       socketService.emit('station-added', savedStation)
@@ -116,12 +115,10 @@ export default {
       return this.loggedinUser?.profileImg
     },
     stations(){
-      console.log('this.$store.getters.userStations',this.$store.getters.userStations)
       return this.$store.getters.userStations
     }
   }, watch:{
     stations(){
-      console.log('stations from store:',this.stations, new Date())
     }
   }
 }

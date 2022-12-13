@@ -30,7 +30,6 @@ export const userStore = {
         updateUserStations(state, { station, isToFollow = false, stationId = '', isUpdate = false }) {
             if (isToFollow) state.userStations.unshift(station)
             else {
-                console.log('state.userStations',state.userStations)
                 const idx = state.userStations.findIndex(s => s?._id === (station?._id || stationId))
                 isUpdate ? state.userStations.splice(idx, 1, station)
                     : state.userStations.splice(idx, 1)
@@ -71,8 +70,6 @@ export const userStore = {
         async login({ commit, dispatch }, { userCred }) {
             try {
                 const user = await userService.login(userCred)
-                console.log('loggedInUser Action', user)
-
                 commit({ type: 'setLoggedinUser', user })
                 dispatch({ type: 'loadUserStations', user })
                 return user

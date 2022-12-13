@@ -61,7 +61,6 @@ export default {
 
     },
     loggedinUser() {
-      console.log('USER', this.$store.getters.loggedinUser)
       return this.$store.getters.loggedinUser
     },
     isOnHomePage() {
@@ -85,7 +84,7 @@ export default {
 
     visualData() {
       return {
-        imgUrl: this.loggedinUser.imgUrl,
+        imgUrl: this.loggedinUser.profileImg,
         text1: 'Hi ' + this.loggedinUser.username + ',',
         text2: 'Good ' + this.greeting + '!'
       }
@@ -138,7 +137,6 @@ export default {
   async created() {
     await this.loadHomeStations()
     socketService.on('station-created', (savedStation) => {
-      console.log('savedStation', savedStation)
       this.$store.commit({ type: 'addFilteredStation', station: savedStation })
     })
   },

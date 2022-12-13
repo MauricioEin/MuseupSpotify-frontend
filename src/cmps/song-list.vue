@@ -74,14 +74,12 @@ export default {
             if (this.isClickOutside) this.clickedSong = ''
         },
         songs() {
-            console.log('songs changed')
             this.songsCopy = [...this.songs]
             this.listKey++
         },
         songsCopy() {
             if (JSON.stringify(this.songsCopy) !== JSON.stringify(this.songs)) {
                 this.$emit('reorder', { songs: this.songsCopy })
-                console.log('reordered!')
             }
         }
     },

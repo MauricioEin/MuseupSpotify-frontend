@@ -59,13 +59,18 @@ async function update(user) {
 async function login(userCred) {
     // const users = await storageService.query('user')
     // const user = users.find(user => user.username === userCred.username)
+    try {
+        const user = await httpService.post('auth/login', userCred)
 
-    const user = await httpService.post('auth/login', userCred)
+        if (user) {
+            // socketService.login(user._id)
+            const savedUser = saveLocalUser(user)
 
-    if (user) {
-        // socketService.login(user._id)
-        const savedUser = saveLocalUser(user)
-        return savedUser
+            return savedUser
+        }
+    } catch (err) {
+        console.error(err)
+        throw err
     }
 }
 async function signup(userCred) {

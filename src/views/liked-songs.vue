@@ -32,7 +32,7 @@
         @play="playStation" :isLikedSongs="true" />
     </section>
 
-    <login-modal :action="'following songs'" v-if="!user || user._id === 'demo'" />
+    <login-modal :action="'saving songs'" v-if="!user || user._id === 'demo'" />
 
   </section>
 </template>
@@ -88,16 +88,13 @@ export default {
   },
   methods: {
     playStation(idx) {
-      console.log('playing')
       if (this.isCurrStationPlayed && (idx === undefined || idx === this.playingSongIdx)) return this.toggleIsPlaying()
-      console.log('got here with', idx, this.playingSongIdx, 'station:', this.station,)
       this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
     toggleIsPlaying() {
       this.$store.commit('toggleIsPlaying')
     },
     saveSong(song) {
-      console.log('saving', song)
       this.$store.dispatch({ type: 'saveSong', song })
     },
 

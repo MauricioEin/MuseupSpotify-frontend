@@ -37,12 +37,16 @@
                         justify-self: center;
                         align-self: center;
                     }
+
                 }
 
                 .mini-menu {
                     top: 0;
                     right: 0;
                     transform: translate(-20px, 50px);
+                     img{
+                        border-radius:4000px;
+                    }
                 }
             }
         }

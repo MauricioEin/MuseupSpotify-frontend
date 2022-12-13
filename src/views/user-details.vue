@@ -1,18 +1,6 @@
 <template>
   <section class="user-details content-layout" v-if="user">
-    <!-- <h1>User Details - {{ user.fullname }}</h1>
-    <h3>{{ user.username }} score: {{ user.score }}</h3>
-    <ul>
-      <li v-for="review in user.givenReviews" :key="review._id">
-        {{ review.txt }}
-        <router-link :to="`/user/${review.aboutUser._id}`">
-          About {{ review.aboutUser.fullname }}
-        </router-link>
-      </li>
-    </ul> -->
-    <!-- <section class="user-info"> -->
     <div>
-
       <label class="user-img-container">
         <input hidden type="file" accept="image/.jpg, image/.jpeg, image/.png" @change="handleFile">
         <img v-if="imgUrl" :src="imgUrl" class="fit-img" alt="">
@@ -76,10 +64,8 @@ export default {
 
   methods:{
     handleFile(ev) {
-            console.log('ev', ev)
             let file
             if (ev.type === 'change') file = ev.target.files[0]
-            console.log('file', file)
             this.onUploadFile(file)
         },
         async onUploadFile(file) {

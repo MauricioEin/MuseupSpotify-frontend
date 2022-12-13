@@ -144,9 +144,11 @@ export default defineComponent({
     },
 
     methods: {
-        onStateChange(ev) {
+        async onStateChange(ev) {
             if (ev.data === 1) {
-                this.getDuration()
+                this.getDuration() 
+                this.songLyrics = await getLyrics(this.currSongPlaying.title) || ''
+
             }
             if (ev.data === 0 &&
                 this.currSongIdx !== this.songList.length - 1 &&
@@ -232,14 +234,13 @@ export default defineComponent({
             return minutes.toString() + ':' + seconds
         },
 
-        async updateCurrStation() {
+        updateCurrStation() {
             this.originalList = this.songList = this.playingStation.songs
             this.currSongIdx = this.playingSongIdx
             this.currSongPlaying = this.songList[this.currSongIdx]
             if (!this.isPlayingInStore) {
                 this.togglePlay()
             }
-            this.songLyrics = await getLyrics(this.currSongPlaying.title)
         },
 
         changeLoopType() {
@@ -324,7 +325,6 @@ export default defineComponent({
             if (!this.songLyrics) this.isLyrics = false
         },
         isFullscreen() {
-            console.log('STATION!', this.playingStation)
             // if(this.isFullscreen)
             this.$refs.player.style.backgroundColor = this.isFullscreen ?
                 this.playingStation.clr : ''

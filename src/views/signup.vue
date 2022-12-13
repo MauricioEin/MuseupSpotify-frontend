@@ -67,10 +67,8 @@ export default {
     },
 
     handleFile(ev) {
-      console.log('ev', ev)
       let file
       if (ev.type === 'change') file = ev.target.files[0]
-      console.log('file', file)
       this.onUploadFile(file)
     },
     async onUploadFile(file) {

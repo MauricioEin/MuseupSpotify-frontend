@@ -147,11 +147,7 @@ export const stationStore = {
             }
         },
         filterStations(state, { filteredStations }) {
-            console.log('filteredStations in', filteredStations)
-
-            console.log('keys', Object.keys(filteredStations))
             Object.keys(filteredStations).forEach(key => state.filteredStations[key] = filteredStations[key])
-            console.log('filteredStations', state.filteredStations)
 
             // state.filteredStations = filteredStations
         },
@@ -218,7 +214,6 @@ export const stationStore = {
             try {
                 station = await stationService.save(station)
                 context.commit(getActionUpdateStation(station))
-                console.log('context.getters.loggedinUser._id', context.getters.loggedinUser._id)
                 if (station.owner._id === context.getters.loggedinUser._id)
                     context.commit({ type: 'updateUserStations', station, isUpdate: true })
                 return station

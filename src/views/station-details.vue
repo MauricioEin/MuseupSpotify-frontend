@@ -190,10 +190,8 @@ export default {
     await this.loadStation()
     socketService.on('update-station', station => {
       this.$store.commit({ type: 'updateStation', station })
-      console.log('Station updated by someone else', station);
     })
     // setTimeout(() => {
-    console.log(this.$route.params);
     if (this.$route.params.songIdx && this.station) {
       this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length - 1] })
     }
@@ -224,13 +222,11 @@ export default {
     },
     songClicked(idx) {
       this.isStationMenuOpen = false
-      console.log('playing')
       if (window.innerWidth < 860) {
         this.playStation(idx)
       }
     },
     removeQueue(item) {
-      console.log(item);
       if (!item.songs) {
         this.$store.commit({ type: 'removeQueue', item })
       } else {
@@ -243,12 +239,11 @@ export default {
       this.$store.commit({ type: 'queueStation', station: this.station.songs })
     },
     queueSong(song) {
-      console.log(song);
       try {
         this.$store.commit({ type: 'queueSong', song })
         showSuccessMsg('Queued')
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     },
     async follow() {
@@ -268,10 +263,9 @@ export default {
       }
       try {
         await this.$store.dispatch(getActionRemoveStation(this.station._id))
-        await this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
         showSuccessMsg('Station removed')
         this.$router.push('/station')
-
+        await this.$store.dispatch({ type: 'updateUser', user: this.loggedInUser })
       } catch (err) {
         console.log(err)
         showErrorMsg('Cannot remove station')
@@ -324,8 +318,6 @@ export default {
         socketService.emit('update-station', res)
         showSuccessMsg('Added to playlist')
 
-        console.log('Emitting from front');
-
         this.loadStation()
         if (this.isCurrStationPlayed && this.isPlaying)
           this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
@@ -366,12 +358,9 @@ export default {
       this.isStationMenuOpen = false
     },
     async getAvgClr(url) {
-      console.log('GETTING COLOR!')
       const fac = new FastAverageColor()
       var clr = { hex: '#535353' }
       try {
-        console.log('TRYING', url)
-
         clr = await fac.getColorAsync(url)
         console.log('CLR:', clr.hex)
 

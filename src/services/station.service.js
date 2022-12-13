@@ -10,7 +10,7 @@ import { store } from '../store/store'
 import axios from 'axios'
 
 
-const API_KEY = [
+const API_KEYS = [
   'AIzaSyC-eUmSLJiWa-4c0NO17ogFFVaGMll8ngg',
   'AIzaSyC1Gw-VuraXVtAPlQQbrg8bFrYEwMEPQfA',
   'AIzaSyBVyzOPEOZa2Y4CTbf_JpQhnO5L53IxYjU',
@@ -76,7 +76,6 @@ async function remove(stationId) {
 function save(station) {
   try {
     // socketService.emit('update-station', station)
-    console.log('saving:', station)
     return station._id ? _update(station) : _add(station)
   } catch (err) {
     console.log(err);
@@ -89,7 +88,6 @@ function _update(updatedStation) {
 }
 
 function _add(addedStation) {
-  console.log('adding:', addedStation)
 
   const newStation = _createStation(addedStation)
   return httpService.post('station/', newStation)
@@ -156,7 +154,7 @@ function getEmptyStation() {
 
 async function searchSongs(searchStr) {
   try {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&maxResults=20&type=video&key=${API_KEY[keyIdx]}&q=${searchStr + ' song'}`
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&maxResults=20&type=video&key=${API_KEYS[keyIdx]}&q=${searchStr + ' song'}`
     const res = await axios.get(url)
     // console.log('res', res.data.items)
     const songs = await _prepareSongSearchPreviews(res.data.items)
@@ -164,7 +162,7 @@ async function searchSongs(searchStr) {
   } catch (err) {
     console.log(err)
     ++keyIdx
-    if (keyIdx >= API_KEY.length) {
+    if (keyIdx >= API_KEYS.length) {
       throw err
     }
     const songs = searchSongs(searchStr)
@@ -202,7 +200,7 @@ async function _prepareSongSearchPreviews(items) {
 }
 
 async function _getSongLength(videoId) {
-  const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEY[keyIdx]}`
+  const url = `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${API_KEYS[keyIdx]}`
   const res = await axios.get(url)
   const data = res.data.items[0].contentDetails.duration
   // data returned: PT3H46M32S

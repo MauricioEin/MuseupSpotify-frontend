@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     async addToStation(stationId) {
-      console.log('ID', stationId)
       try {
         const editedStation = JSON.parse(JSON.stringify(this.stations.find(s => s._id === stationId)))
         editedStation.songs.push(this.song)
