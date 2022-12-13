@@ -25,10 +25,10 @@
       <station-list :stations="filteredStations.mood" :title="'Mood'" />
       <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
       <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
-      <station-list v-if="(loggedinUser && filteredStations.user?.length)" :stations="filteredStations.user"
-        :title="'Your playlists'" />
+      <station-list v-if="(loggedinUser?._id !== 'demo' && filteredStations.user?.length)"
+        :stations="filteredStations.user" :title="'Your playlists'" />
       <station-list v-if="(filteredStations.others?.length)" :stations="filteredStations.others"
-        :title="'Playlists by other users'" />
+        :title="'Playlists by MuseUp users'" />
     </section>
   </section>
   <!-- <section class="loader" v-else>
@@ -85,7 +85,7 @@ export default {
     visualData() {
       return {
         imgUrl: this.loggedinUser.profileImg,
-        text1: 'Hi ' + this.loggedinUser.username + ',',
+        text1: 'Hi ' + (this.loggedinUser.username === 'demo' ? 'guest' : this.loggedinUser.username )+ ',',
         text2: 'Good ' + this.greeting + '!'
       }
     }
@@ -98,18 +98,6 @@ export default {
       })
     },
 
-    async loadHomeStations() {
-      // const delay = this.$store.getters.filteredStations.trending ? 0 : 5000
-      // setTimeout(() => {
-      //   this.filteredStations = this.$store.getters.filteredStations
-      //   if (this.filteredStations.trending) {
-      //     console.log('this stations:', this.filteredStations)
-      //     return
-      //   }
-      //   loadHomeStations()
-      // }, delay)
-      // // console.log('Hello', this.isLoaded, this.filteredStations);
-    },
     openPhoneMenu() {
       this.isPhoneMenuOpen = true
     },
@@ -135,7 +123,7 @@ export default {
     },
   },
   async created() {
-    await this.loadHomeStations()
+    // await this.loadHomeStations()
     socketService.on('station-created', (savedStation) => {
       this.$store.commit({ type: 'addFilteredStation', station: savedStation })
     })
