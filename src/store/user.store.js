@@ -9,17 +9,32 @@ export const userStore = {
     state: {
         loggedinUser: null,
         users: [],
-        watchedUser: null
+        watchedUser: null,
+        userStations: null,
     },
     getters: {
         users({ users }) { return users },
         loggedinUser({ loggedinUser }) { return loggedinUser },
-        watchedUser({ watchedUser }) { return watchedUser }
+        watchedUser({ watchedUser }) { return watchedUser },
+        userStations({ userStations }) { return userStations }
     },
     mutations: {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
             state.loggedinUser = (user) ? { ...user, stations: [...user.stations], likedSongs: [...user.likedSongs] } : null
+
+        },
+        setUserStations(state, { stations }) {
+            state.userStations = stations
+        },
+        updateUserStations(state, { station, isToFollow = false, stationId = '', isUpdate = false }) {
+            if (isToFollow) state.userStations.unshift(station)
+            else {
+                console.log('state.userStations',state.userStations)
+                const idx = state.userStations.findIndex(s => s?._id === (station?._id || stationId))
+                isUpdate ? state.userStations.splice(idx, 1, station)
+                    : state.userStations.splice(idx, 1)
+            }
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
@@ -53,12 +68,13 @@ export const userStore = {
 
     },
     actions: {
-        async login({ commit }, { userCred }) {
+        async login({ commit, dispatch }, { userCred }) {
             try {
                 const user = await userService.login(userCred)
-                console.log('loggedInUser Action',user)
+                console.log('loggedInUser Action', user)
 
                 commit({ type: 'setLoggedinUser', user })
+                dispatch({ type: 'loadUserStations', user })
                 return user
             } catch (err) {
                 console.log('userStore: Error in login', err)
@@ -127,22 +143,18 @@ export const userStore = {
 
         async addStationToLibrary({ commit, state }, { miniStation }) {
             const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
-            console.log('loggedInUser 131',loggedinUser)
-
             const savedUser = await userService.followStation(miniStation, true, loggedinUser)
-            console.log('savedUser134',savedUser)
-
             commit({ type: 'updateUser', user: savedUser })
             commit({ type: 'setLoggedinUser', user: savedUser })
         },
         async saveSong({ commit, state }, { song }) {
-            try{
+            try {
                 const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
                 const savedUser = await userService.saveSong(song, loggedinUser)
                 console.log('savedUserFromService:', savedUser)
                 commit({ type: 'updateUser', user: savedUser })
                 commit({ type: 'setLoggedinUser', user: savedUser })
-            }catch(err){
+            } catch (err) {
                 console.log(err);
                 showErrorMsg('Log in to like songs')
             }
@@ -158,6 +170,15 @@ export const userStore = {
                 console.log(err);
                 showErrorMsg('Cannot delete station')
             }
+        },
+        async loadUserStations({ commit }, { user }) {
+            const userStations = user.stations.map(async (currStation) => {
+                const station = await stationService.getById(currStation._id)
+                return station
+            })
+            const stations = await Promise.all(userStations)
+            commit({ type: 'setUserStations', stations })
+
         }
     }
 }

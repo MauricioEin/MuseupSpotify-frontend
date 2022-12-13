@@ -41,8 +41,8 @@
     </nav>
     <hr>
     <ul v-if="loggedinUser" class="user-stations clean-list">
-      <li v-for="station in loggedinUser.stations" :key="station._id">
-        <router-link :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
+      <li v-for="station in stations" :key="station?._id" >
+        <router-link v-if="station" :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
       </li>
     </ul>
   </section>
@@ -60,9 +60,9 @@ import { socketService } from '../services/socket.service'
 export default {
   components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg },
   computed: {
-    // stations() {
-    //   return this.$store.getters.stations
-    // },
+    stations() {
+      return this.$store.getters.userStations
+    },
     loggedinUser() {
       return this.$store.getters.loggedinUser
     }

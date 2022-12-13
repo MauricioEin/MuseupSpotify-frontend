@@ -185,8 +185,7 @@ export const stationStore = {
                 throw err
             }
 
-        }
-        ,
+        },
         async addStation(context, { station }) {
             try {
                 const user = { ...context.getters.loggedinUser }
@@ -196,6 +195,7 @@ export const stationStore = {
                 station = await stationService.save(station)
 
                 context.commit(getActionAddStation(station))
+                context.commit({ type: 'updateUserStations', station, isToFollow: true })
                 const { name, desc, _id, imgUrl, owner } = station
                 context.dispatch({ type: 'addStationToLibrary', miniStation: { _id, name, desc, imgUrl, owner: owner._id } })
 
@@ -209,6 +209,9 @@ export const stationStore = {
             try {
                 station = await stationService.save(station)
                 context.commit(getActionUpdateStation(station))
+                console.log('context.getters.loggedinUser._id',context.getters.loggedinUser._id)
+                if (station.owner._id === context.getters.loggedinUser._id)
+                    context.commit({ type: 'updateUserStations', station, isUpdate: true })
                 return station
             } catch (err) {
                 console.log('stationStore: Error in updateStation', err)
@@ -228,6 +231,7 @@ export const stationStore = {
             try {
                 await stationService.remove(stationId)
                 context.commit(getActionRemoveStation(stationId))
+                context.commit({ type: 'updateUserStations', stationId, isToFollow: false })
                 context.dispatch({ type: 'removeUserStation', id: stationId })
 
             } catch (err) {

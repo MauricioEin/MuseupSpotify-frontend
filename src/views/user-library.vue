@@ -21,28 +21,28 @@
     </section>
     <!-- <station-list :stations="stations" /> -->
     <ul class="station-library-list">
-      <div v-if="!stations.length" class="skeleton-vqlfosng44v"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <div v-if="!stations.length" class="skeleton-7b7uvxywsks"></div>
-      <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations.length" />
+      <div v-if="!stations" class="skeleton-vqlfosng44v"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
+      <liked-songs-card v-if="loggedinUser._id !== 'demo' && stations" />
       <station-preview v-for="station in stations" :station="station" :key="station?._id || 'error'" />
     </ul>
 
@@ -67,25 +67,25 @@ export default {
 
   data() {
     return {
-      stations: [],
+      // stations: [],
     }
   },
 
   created() {
-    this.getUserStations()
+    // this.getUserStations()
   },
 
   methods: {
-    async getUserStations() {
-      const user = this.$store.getters.loggedinUser
-      const userStations = user.stations.map(async (currStation) => {
-        const station = await stationService.getById(currStation._id)
-        return station
-      })
-      const stations = await Promise.all(userStations)
-      console.log('stations', stations)
-      this.stations = stations
-    },
+    // async getUserStations() {
+    //   const user = this.$store.getters.loggedinUser
+    //   const userStations = user.stations.map(async (currStation) => {
+    //     const station = await stationService.getById(currStation._id)
+    //     return station
+    //   })
+    //   const stations = await Promise.all(userStations)
+    //   console.log('stations', stations, new Date())
+    //   this.stations = stations
+    // },
     async createStation() {
       console.log('creating!')
       const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
@@ -114,6 +114,14 @@ export default {
     },
     imgSrc() {
       return this.loggedinUser?.profileImg
+    },
+    stations(){
+      console.log('this.$store.getters.userStations',this.$store.getters.userStations)
+      return this.$store.getters.userStations
+    }
+  }, watch:{
+    stations(){
+      console.log('stations from store:',this.stations, new Date())
     }
   }
 }

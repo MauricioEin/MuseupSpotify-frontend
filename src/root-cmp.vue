@@ -32,8 +32,9 @@ export default {
 
     if (!user) user = { _id: 'demo', username: 'demo', fullname: 'Guest', likedSongs: [], stations: [] }
     this.$store.commit({ type: 'setLoggedinUser', user })
-    const categories = ['user', 'others', 'trending', 'bestOf', 'focus', 'mood', 'popular']
+    this.$store.dispatch({ type: 'loadUserStations', user })
 
+    const categories = ['user', 'others', 'trending', 'bestOf', 'focus', 'mood', 'popular']
     this.$store.dispatch({ type: 'filterStations', categories })
     this.$store.dispatch({ type: 'loadStations' })
 

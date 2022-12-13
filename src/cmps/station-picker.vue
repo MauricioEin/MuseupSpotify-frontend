@@ -11,7 +11,7 @@
       <search-icon />
     </div>
 
-    <ul class="clean-list" v-if="filteredStations.length" :key="listKey">
+    <ul class="clean-list" v-if="filteredStations" :key="listKey">
       <li v-for="station in filteredStations" :key="station._id" @click="addToStation(station._id)"
         class="flex align-center pointer">
         <div class="img-container">
@@ -44,33 +44,24 @@ export default {
     return {
       searchStr: '',
       listKey: 0,
-      stations: []
+      // stations: []
     }
   },
   computed: {
 
-    filteredStations(){
+    stations() {
+      return this.$store.getters.userStations.filter(station=>station?.owner._id === this.user._id)
+    },
+
+    filteredStations() {
       const regex = new RegExp(this.searchStr, 'i')
-    return this.stations.filter(station => station && (regex.test(station.name) || regex.test(station.desc)))
+      return this.stations?.filter(station => station && (regex.test(station.name) || regex.test(station.desc)))
 
     }
   },
   created() {
-    this.getUserStations()
   },
   methods: {
-    async getUserStations() {
-      const userStationsIds = this.user.stations.filter(s => s.owner === this.user._id).map(s => s._id)
-      console.log('USERSTATIONSIDS', userStationsIds)
-      const userStationPrms = userStationsIds.map(id => stationService.getById(id))
-      console.log('userStationsPrms', userStationPrms)
-      var userStations = await Promise.all(userStationPrms)
-      userStations = userStations.filter(station => station)
-      console.log('userStations', userStations)
-      this.stations = userStations
-
-    }
-    ,
     async addToStation(stationId) {
       console.log('ID', stationId)
       try {
@@ -80,12 +71,6 @@ export default {
         showSuccessMsg('Added to playlist')
         this.$emit('close')
         this.$router.push(`/station/${stationId}`)
-
-
-
-        // // this.loadStation()
-        // // if (this.isCurrStationPlayed && this.isPlaying)
-        // //   this.$store.commit({ type: 'updatePlayingOrder', songs: editedStation.songs })
 
       } catch (err) {
         console.log(err)

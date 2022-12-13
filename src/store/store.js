@@ -32,6 +32,8 @@ export const store = Vuex.createStore({
         commit({ type: 'updateStation', station: savedStation })
         commit({ type: 'updateUser', user: savedUser })
         commit({ type: 'setLoggedinUser', user: savedUser })
+        commit({ type: 'updateUserStations', station, isToFollow})
+
       } catch (err) {
         console.error('store: Error in following/unfollowing', err)
         showErrorMsg('Log in to like stations')

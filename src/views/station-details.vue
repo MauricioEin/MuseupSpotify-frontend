@@ -105,6 +105,7 @@ export default {
     }
   },
   created() {
+
     // setTimeout(()=>{
     //   console.log(this.$route.params);
     //   if(this.$route.params.songIdx && this.station){
