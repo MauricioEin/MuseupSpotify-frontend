@@ -11,8 +11,8 @@
       <button @click.stop="this.$router.push('/station')" class="btn-get-started">Get started</button>
     </div>
 
-    <img class="desktop-img" src="../assets/img/landing-page.png" alt="">
-    <img class="mobile-img" src="../assets/img/mobile-landing-image.png" alt="">
+    <img class="desktop-img" src="../assets/img/landing-page-min.png" alt="">
+    <img class="mobile-img" src="../assets/img/mobile-landing-image-min.png" alt="">
 
   </section>
 
