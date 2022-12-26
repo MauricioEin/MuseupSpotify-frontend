@@ -11,7 +11,7 @@
         <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
         <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} • {{ station.followers?.length || 0 }}
           likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
-          }}</span></span></p>
+}}</span></span></p>
       </div>
     </section>
 
@@ -47,22 +47,17 @@
         @play="playStation" @reorder="reorderSongs" @addToPlaylist="song => { isPickerOpen = true; songToAdd = song }"
         @queueSong="queueSong" @removeQueue="removeQueue" @share="share" />
 
-      <!-- <h3 v-else> <hr>Let's find something for your playlist </h3> -->
-      <!-- <section > -->
       <station-song-search v-if="!station.songs.length || isSearchOpen" :isStationEmpty="!station.songs.length"
         @closeSearch="closeSearch" :key="stationId" />
       <button v-else @click="openSearch" class="btn-find-more">Find more</button>
     </section>
     <station-search-list @addSongToStation="addSongToStation" v-if="searchedSongs" :songs="searchedSongs" />
-    <!-- </section> -->
-    <!-- <station-picker v-if="isPickerOpen" :user="loggedInUser" @close="isPickerOpen = false" /> -->
 
     <station-picker v-if="isPickerOpen" :isOpen="isPickerOpen" :user="loggedInUser" :song="songToAdd"
       @close="isPickerOpen = false" />
     <div @click.stop="isPickerOpen = false" class="picker-screen" :class="{ 'shown': isPickerOpen }"></div>
 
   </section>
-  <!-- <pre>{{ station }}</pre> -->
 </template>
 
 
@@ -106,20 +101,11 @@ export default {
   },
   created() {
 
-    // setTimeout(()=>{
-    //   console.log(this.$route.params);
-    //   if(this.$route.params.songIdx && this.station){
-    //     this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length -1] })
-    //   }
-    // },5500)
   },
   computed: {
     loggedInUser() {
       return this.$store.getters.loggedinUser
     },
-    // stations() {
-    //   return this.$store.getters.stations
-    // },
     stationImg() {
       return this.station?.imgUrl || this.station?.songs[0]?.imgUrl.medium || this.station?.songs[0]?.imgUrl
     },
@@ -332,7 +318,9 @@ export default {
       this.$store.commit({ type: 'playStation', station: this.station, idx: idx || 0 })
     },
     saveSong(song) {
-      this.$store.dispatch({ type: 'saveSong', song })
+      console.log('logged in as:', this.loggedInUser)
+      // if (this.loggedInUser._id !== 'demo') 
+        this.$store.dispatch({ type: 'saveSong', song })
     },
     toggleIsPlaying() {
       this.$store.commit('toggleIsPlaying')

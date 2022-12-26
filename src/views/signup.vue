@@ -2,16 +2,19 @@
   <section class="signup-page">
     <form @submit.prevent="doSignup">
       <h2>Signup</h2>
-      <label>Full name</label>
-      <input type="text" v-model="signupCred.fullname" placeholder="Your full name" />
-      <label>Username</label>
-      <input type="text" v-model="signupCred.username" placeholder="Username" />
-      <label>Password</label>
-      <input type="password" v-model="signupCred.password" placeholder="Password" />
+      <label class="flex">Full name
+        <input type="text" v-model="signupCred.fullname" placeholder="Your full name" />
+      </label>
+      <label class="flex">Username
+        <input type="text" v-model="signupCred.username" placeholder="Username" />
+      </label>
+      <label class="flex">Password
+        <input type="password" v-model="signupCred.password" placeholder="Password" />
+      </label>
       <!-- <img-uploader></img-uploader> -->
-      <label for="upload">
+      <label class="flex justify-center pointer">
         Upload Image
-        <input hidden id="upload" type="file" accept="image/.jpg, image/.jpeg, image/.png" @change="handleFile" />
+        <input hidden type="file" accept="image/.jpg, image/.jpeg, image/.png" @change="handleFile" />
       </label>
 
       <button>Signup</button>

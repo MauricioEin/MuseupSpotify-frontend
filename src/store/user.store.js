@@ -145,14 +145,20 @@ export const userStore = {
             commit({ type: 'setLoggedinUser', user: savedUser })
         },
         async saveSong({ commit, state }, { song }) {
+            // optimistic: first update DOM, then update DB
+            const user = JSON.parse(JSON.stringify(state.loggedinUser))
+            const unsavedUser = JSON.parse(JSON.stringify(user)) // for undoing if err
+            const idx = user.likedSongs.findIndex(s => s.id === song.id)
+            idx === -1 ? user.likedSongs.unshift({ ...song }) : user.likedSongs.splice(idx, 1)
+            commit({ type: 'updateUser', user })
+            commit({ type: 'setLoggedinUser', user })
+
             try {
-                const loggedinUser = JSON.parse(JSON.stringify(state.loggedinUser))
-                const savedUser = await userService.saveSong(song, loggedinUser)
-                console.log('savedUserFromService:', savedUser)
-                commit({ type: 'updateUser', user: savedUser })
-                commit({ type: 'setLoggedinUser', user: savedUser })
+                await userService.update(user)
             } catch (err) {
                 console.log(err);
+                commit({ type: 'setLoggedinUser', user: unsavedUser })
+                commit({ type: 'updateUser', user: unsavedUser })
                 showErrorMsg('Log in to like songs')
             }
         },

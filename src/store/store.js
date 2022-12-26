@@ -18,25 +18,35 @@ export const store = Vuex.createStore({
   },
   actions: {
     async followStation({ state, commit }, { station, isToFollow }) {
+      // OPTIMISTIC:
+      const loggedInUser = JSON.parse(JSON.stringify(state.userStore.loggedinUser))
+      const unsavedUser = JSON.parse(JSON.stringify(loggedInUser))
+      const miniStation = { _id: station._id, name: station.name }
+      isToFollow ? loggedInUser.stations.unshift(miniStation)
+      : loggedInUser.stations = loggedInUser.stations.filter(station => station._id !== miniStation._id)
+      commit({ type: 'setLoggedinUser', user: loggedInUser })
+      console.log('did commit with')
+
       try {
-        const loggedInUser = JSON.parse(JSON.stringify(state.userStore.loggedinUser))
+        const savedUser = await userService.update(loggedInUser)
+        console.log('saver user', savedUser)
+
         const miniUser = {
           _id: loggedInUser._id,
           username: loggedInUser.username,
         }
-        const miniStation = { _id: station._id, name: station.name }
 
         const savedStation = await stationService.updateFollowers(station, miniUser, isToFollow)
-        const savedUser = await userService.followStation(miniStation, isToFollow, loggedInUser)
 
         commit({ type: 'updateStation', station: savedStation })
         commit({ type: 'updateUser', user: savedUser })
-        commit({ type: 'setLoggedinUser', user: savedUser })
-        commit({ type: 'updateUserStations', station, isToFollow})
+        commit({ type: 'updateUserStations', station, isToFollow })
 
       } catch (err) {
         console.error('store: Error in following/unfollowing', err)
+        commit({ type: 'setLoggedinUser', user: unsavedUser })
         showErrorMsg('Log in to like stations')
+
         throw err
       }
     },
