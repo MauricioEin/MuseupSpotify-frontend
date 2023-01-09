@@ -1,3 +1,10 @@
+.debug{
+    background-color: #181818;
+    position:absolute;
+    width:100vw;
+    z-index:1000000000;
+}
+
 .media-player {
     pointer-events: all;
 

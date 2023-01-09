@@ -1,6 +1,9 @@
 <template>
     <section class="media-player" :class="setFull" ref="player">
         <div class="playing-from" v-if="isFullscreen">
+            <p class="debug">Debug: <button @click="this.YTstates=''">clear</button>
+{{ YTstates }}
+            </p>
             <span>Playing From</span>
             <span class="playlist-name">{{ playingStation.name }}</span>
         </div>
@@ -134,6 +137,7 @@ export default defineComponent({
             songLyrics: '',
             isLyrics: false,
             station: "",
+            YTstates:''
         }
     },
 
@@ -145,9 +149,12 @@ export default defineComponent({
 
     methods: {
         async onStateChange(ev) {
+            console.log('YT state change!', ev.data)
+            this.YTstates+=ev.data+', '
             if (ev.data === 1) {
                 this.getDuration() 
                 this.songLyrics = await getLyrics(this.currSongPlaying.title) || ''
+                this.YTstates+='L, '
 
             }
             if (ev.data === 0 &&
