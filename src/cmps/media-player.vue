@@ -1,26 +1,30 @@
+<!-- TODO: erase things from debugging: YTState, clickImg(), playBtn ref -->
+
+
+
 <template>
     <section class="media-player" :class="setFull" ref="player">
         <div class="playing-from" v-if="isFullscreen">
-            <p class="debug">Debug: <button @click="this.YTstates=''">clear</button>
-{{ YTstates }}
+            <p class="debug">Debug: <button @click="this.YTstates = ''">clear</button>
+                {{ YTstates }}
             </p>
             <span>Playing From</span>
             <span class="playlist-name">{{ playingStation.name }}</span>
         </div>
-        <img class="fit-img album" :class="setFull" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl"
-            alt="">
+        <img class="fit-img album" @click="clickImg()" :class="setFull"
+            :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" alt="">
         <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)">
             <btn-down-svg />
         </button>
 
         <div class="player-section">
 
-            <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
+            <YouTube src="https://www.youtube.com/watch?v=bZYPI4mYwhw" @ready="getDuration"
                 @state-change="onStateChange" ref="youtube" />
 
             <div class="controls" :class="setFull" @click="setFullInMobile">
                 <div class="left-controls" :class="setFull">
-                    <img class="media-img fit-img" :class="setFull"
+                    <img @click="clickImg()" class="media-img fit-img" :class="setFull"
                         :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" :alt="currSongPlaying.title">
                     <div :class="setFull" class="artist-details">
                         <span class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</span>
@@ -44,11 +48,11 @@
                         <button @click="changeSong(-1)">
                             <prev-svg />
                         </button>
-                        <button @click.stop="togglePlay" class="play-btn">
+                        <button ref="playBtn" @click.stop="togglePlay" class="play-btn">
                             <play-svg class="play-svg" v-if="!isPlaying" />
                             <stop-svg class="stop-svg" v-else />
                         </button>
-                        <button @click="changeSong(1)">
+                        <button @click=" changeSong(1)">
                             <next-svg />
                         </button>
                         <button @click="changeLoopType">
@@ -119,15 +123,12 @@ import lyricsBtnSvg from '../assets/svgs/lyrics-btn-svg.vue'
 import songLyrics from './song-lyrics.vue'
 
 export default defineComponent({
-    //[{title:'Coldplay - Universe', imgUrl:'https://upload.wikimedia.org/wikipedia/en/a/a2/Coldplay_-_My_Universe.png', youtubueId: 'nukZQTFsA10'}
     data() {
         return {
-            isPlaying: false,
             isMute: false,
             isShuffled: false,
             isFullscreen: false,
             volume: 50,
-            currSongIdx: this.playingSongIdx,
             songList: [],
             currTime: 0,
             duration: null,
@@ -137,135 +138,13 @@ export default defineComponent({
             songLyrics: '',
             isLyrics: false,
             station: "",
-            YTstates:''
+            YTstates: '' //for debug
         }
     },
 
     created() {
         this.songList = [...this.playingStation.songs]
-        this.currSongIdx = this.playingSongIdx
-        this.currSongPlaying = this.songList[this.currSongIdx]
-    },
-
-    methods: {
-        async onStateChange(ev) {
-            console.log('YT state change!', ev.data)
-            this.YTstates+=ev.data+', '
-            if (ev.data === 1) {
-                this.getDuration() 
-                this.songLyrics = await getLyrics(this.currSongPlaying.title) || ''
-                this.YTstates+='L, '
-
-            }
-            if (ev.data === 0 &&
-                this.currSongIdx !== this.songList.length - 1 &&
-                this.loopType !== 2) {
-                this.changeSong(1)
-            }
-            else if (ev.data === 0 &&
-                this.currSongIdx === this.songList.length - 1 &&
-                this.loopType === 0) {
-                this.togglePlay()
-            }
-            else if (ev.data === 0 &&
-                this.currSongIdx === this.songList.length - 1 &&
-                this.loopType === 1) {
-                this.changeSong(1)
-            }
-            else if (ev.data === 0 &&
-                this.loopType === 2) {
-                this.$refs.youtube.loadVideoById(this.songList[this.currSongIdx].youtubeId)
-            }
-
-        },
-
-        togglePlay() {
-            this.$store.commit({ type: 'toggleIsPlaying' })
-        },
-
-        toggleMute() {
-            if (this.isMute) {
-                this.$refs.youtube.unMute()
-                this.isMute = false
-            } else {
-                this.$refs.youtube.mute()
-                this.isMute = true
-            }
-        },
-
-        setVolume(ev) {
-            const volume = ev.target.value
-            this.volume = volume
-            this.$refs.youtube.setVolume(volume)
-        },
-
-        changeSong(dir) {
-            var newIdx = this.currSongIdx
-            if (this.isShuffled) {
-                while (newIdx === this.currSongIdx) {
-                    newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
-                }
-            } else newIdx = (this.currSongIdx + dir + this.songList.length) % this.songList.length
-
-            // this gives us the calc for looping around the playlist
-            this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
-        },
-
-        setTimestamp(ev) {
-            const timeStamp = ev.target.value
-            this.currTime = timeStamp
-            this.$refs.youtube.seekTo(timeStamp)
-        },
-
-        updateCurrTime() {
-            this.timeInterval = setInterval(() => {
-                const currTime = this.$refs?.youtube?.getCurrentTime()
-                // console.log(currTime)
-                if (currTime) {
-                    this.currTime = Math.floor(currTime)
-                }
-            }, 1000)
-        },
-
-        getDuration() {
-            this.duration = Math.floor(this.$refs.youtube.getDuration())
-        },
-
-        formattedTime(time) {
-            const duration = time
-            const minutes = ('minutes:,', Math.floor(duration / 60))
-            var seconds = ('seconds:,', Math.floor(((duration / 60) % 1) * 60).toString())
-            if (seconds.length < 2) {
-                seconds = '0' + seconds
-            }
-            return minutes.toString() + ':' + seconds
-        },
-
-        updateCurrStation() {
-            this.originalList = this.songList = this.playingStation.songs
-            this.currSongIdx = this.playingSongIdx
-            this.currSongPlaying = this.songList[this.currSongIdx]
-            if (!this.isPlayingInStore) {
-                this.togglePlay()
-            }
-        },
-
-        changeLoopType() {
-            this.loopType++
-            if (this.loopType === 3) this.loopType = 0
-        },
-
-        setFullInMobile() {
-            if (window.innerWidth < 750) {
-                this.isFullscreen = true
-            }
-        },
-        saveSong() {
-            this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
-
-        },
-
-
+        this.currSongPlaying = this.songList[this.playingSongIdx]
     },
 
     computed: {
@@ -288,7 +167,7 @@ export default defineComponent({
             return this.$store.getters.getPlayingSongIdx
         },
 
-        isPlayingInStore() {
+        isPlaying() {
             return this.$store.getters.isPlaying
         },
         loggedInUser() {
@@ -304,27 +183,173 @@ export default defineComponent({
 
     },
 
-    watch: {
-        playingStation() {
-            this.updateCurrStation()
-        },
-        playingSongIdx() {
-            this.updateCurrStation()
+    methods: {
+        clickImg() {
+            console.log('click')
+            this.$refs.playBtn.click()
+        }
+        ,
+        async onStateChange(ev) {
+            console.log('YT state change!', ev.data)
+            this.YTstates += ev.data + ', '
+            if (ev.data === 1) {
+                this.getDuration()
+                if (!this.songLyrics) {
+                    this.songLyrics = await getLyrics(this.currSongPlaying.title) || ''
+                    this.YTstates += 'L, '
+                }
+
+            }
+            else if (ev.data === -1) {
+                this.songLyrics = ''
+            }
+            else if (ev.data === 0 &&
+                this.playingSongIdx !== this.songList.length - 1 &&
+                this.loopType !== 2) {
+                this.changeSong(1)
+            }
+            else if (ev.data === 0 &&
+                this.playingSongIdx === this.songList.length - 1 &&
+                this.loopType === 0) {
+                this.togglePlay()
+            }
+            else if (ev.data === 0 &&
+                this.playingSongIdx === this.songList.length - 1 &&
+                this.loopType === 1) {
+                this.changeSong(1)
+            }
+            else if (ev.data === 0 &&
+                this.loopType === 2) {
+                this.$refs.youtube.loadVideoById(this.songList[this.playingSongIdx].youtubeId)
+            }
+            else if (ev.data === 2 && this.isPlaying) {
+                this.YTstates += '&P, '
+                this.$refs.playBtn.click()
+                setTimeout(() => this.$refs.playBtn.click(), 1)
+            }
+            else if (ev.data === 5 && this.isPlaying) {
+                // this.$refs.youtube.playVideo()
+
+            }
+
+
 
         },
-        isPlayingInStore() {
-            this.isPlaying = this.isPlayingInStore            
+
+        togglePlay() {
+            this.YTstates += 't, '
+            this.$store.commit({ type: 'toggleIsPlaying' })
         },
-        
+
+        toggleMute() {
+            this.isMute ? this.$refs.youtube.unMute()
+                : this.$refs.youtube.mute()
+            this.isMute = !this.isMute
+        },
+
+        setVolume(ev) {
+            const volume = ev.target.value
+            this.volume = volume
+            this.$refs.youtube.setVolume(volume)
+        },
+
+        changeSong(dir) {
+            var newIdx = this.playingSongIdx
+            if (this.isShuffled) {
+                while (newIdx === this.playingSongIdx) {
+                    newIdx = utilService.getRandomIntInclusive(0, this.songList.length - 1)
+                }
+            } else newIdx = (this.playingSongIdx + dir + this.songList.length) % this.songList.length
+
+            // this gives us the calc for looping around the playlist
+            this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
+        },
+
+        setTimestamp(ev) {
+            this.currTime = ev.target.value
+            this.$refs.youtube.seekTo(this.currTime)
+        },
+
+        updateCurrTime() {
+            this.timeInterval = setInterval(() => {
+                const currTime = this.$refs?.youtube?.getCurrentTime()
+                if (currTime) {
+                    this.currTime = Math.floor(currTime)
+                }
+            }, 1000)
+        },
+
+        getDuration() {
+            this.duration = Math.floor(this.$refs.youtube.getDuration())
+        },
+
+        formattedTime(time) {
+            const duration = time
+            const minutes = ('minutes:,', Math.floor(duration / 60))
+            var seconds = ('seconds:,', Math.floor(((duration / 60) % 1) * 60).toString())
+            if (seconds.length < 2) {
+                seconds = '0' + seconds
+            }
+            return minutes.toString() + ':' + seconds
+        },
+
+        updateCurrStation() {
+            this.YTstates += 'UpDS, '
+            this.originalList = this.songList = this.playingStation.songs
+            // this.playingSongIdx = this.playingSongIdx
+            this.currSongPlaying = this.songList[this.playingSongIdx]
+            // const newSrc = 'https://www.youtube.com/watch?v=' + this.currSongPlaying.youtubeId
+            this.$refs.youtube.loadVideoById(this.currSongPlaying.youtubeId)
+            // if (this.$refs.youtube.src !== newSrc) this.$refs.youtube.src = newSrc
+            if (!this.isPlaying) this.togglePlay()
+            else {
+                // this.YTstates += '(Pp--), '
+                // this.togglePlay() // this is to bypass iOs auto-pause
+                // setTimeout(() => this.togglePlay(), 10)
+                // setTimeout(() => this.$refs.youtube.playVideo(), 100) //for iOS bug
+                // this.$refs.youtube.playVideo()
+            }
+
+        },
+
+        changeLoopType() {
+            this.loopType++
+            if (this.loopType === 3) this.loopType = 0
+        },
+
+        setFullInMobile() {
+            if (window.innerWidth < 750) {
+                this.isFullscreen = true
+            }
+        },
+        saveSong() {
+            this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
+
+        },
+
+
+    },
+
+    watch: {
+        playingStation() {
+            console.log('station changed')
+            this.updateCurrStation()
+        },
+        // playingSongIdx() {
+        //     console.log('idx changed')
+        //     this.updateCurrStation()
+        // },
+
         isPlaying() {
             if (this.isPlaying) {
+                this.YTstates += '[isPl+]'
+                this.YTstates += '(Pp), '
+                setTimeout(() => this.$refs.youtube.playVideo(), 100) //for iOS bug
                 this.$refs.youtube.playVideo()
-                // this.isPlaying = true
                 this.updateCurrTime()
-                this.$refs.youtube.playVideo()
             } else {
+                this.YTstates += '[isPl-]'
                 this.$refs.youtube.pauseVideo()
-                // this.isPlaying = false
                 clearInterval(this.timeInterval)
             }
         },
@@ -332,7 +357,6 @@ export default defineComponent({
             if (!this.songLyrics) this.isLyrics = false
         },
         isFullscreen() {
-            // if(this.isFullscreen)
             this.$refs.player.style.backgroundColor = this.isFullscreen ?
                 this.playingStation.clr : ''
         }

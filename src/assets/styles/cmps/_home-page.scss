@@ -10,6 +10,7 @@
     background-position: bottom;
     overflow: hidden;
     height: 100vh;
+    width:100vw;
     position: absolute;
     inset: 0;
     z-index: 5000;
@@ -38,6 +39,7 @@
         left: 50%;
         transform: translateX(-50%);
         white-space: nowrap;
+        
 
         h1 {
             font-family: circular-light;
@@ -100,6 +102,9 @@
                 text-align: center;
             }
         }
+        @media (max-width: 300px) {
+            width:80%;
+        }
     }
 
     .desktop-img {
@@ -112,6 +117,8 @@
         @media (max-width: $narrow-breakpoint) {
             display: none;
         }
+    
+
     }
 
     .mobile-img {
@@ -119,6 +126,9 @@
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 30%) scale(0.5);
+        transform: translateX(-50%);
+        height: calc(100vh - 122px - 250px);
+        max-height: 45vh;
 
         @media (min-width: $narrow-breakpoint) {
             display: none;

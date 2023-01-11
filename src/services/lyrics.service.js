@@ -12,13 +12,11 @@ const API_KEYS = [
 let keyIdx = 0
 
 export const getLyrics = async songTitle => {
-  console.log('got to lyrics!')
   try {
     const res = await axios.get(BASE_URL + `lyrics?q=${songTitle}&apikey=${API_KEYS[keyIdx]}`)
-    const lyrics = res.data  
-    console.log('lyrics:\n', lyrics)
+    const lyrics = res.data
     return lyrics
-  } catch (err) { 
+  } catch (err) {
     console.error('ERROR:', err)
     keyIdx++
     if (keyIdx >= API_KEYS.length) {

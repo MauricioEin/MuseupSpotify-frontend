@@ -102,11 +102,8 @@ export const stationStore = {
                 }
             }) || station
 
-            state.playingStation = miniStation
             state.playingSongIdx = idx
-            // commit('toggleIsPlaying')
-            // state.isPlaying = !state.isPlaying
-            // console.log(state.isPlaying)
+            state.playingStation = miniStation
         },
         toggleIsPlaying(state) {
             state.isPlaying = !state.isPlaying
