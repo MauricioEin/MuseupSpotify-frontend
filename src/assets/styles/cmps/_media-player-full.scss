@@ -145,26 +145,31 @@
         display: flex;
         position: absolute;
         bottom: -2vw;
-
-        // padding-left: 3px;
-        button.play-btn {
+       
+        .play-btn {
+            background-color: $clr01;
+            border-radius: 500px;
             width: 43px;
             height: 43px;
-        }
+            min-width: 8vh;
+            min-height: 8vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-        .play {
-            height: 18px;
-            width: 15px;
+            svg {
+                fill: $clr07;
+                overflow: visible;
+                height: 18px;
+                width: 15px;
+                // min-height: 6vh;
+                // min-width: 6vh;
+            }
         }
 
         button {
             display: block;
             align-items: flex-end;
-
-            svg.play {
-                // width: 20px;
-                // height: 20px;
-            }
         }
 
         svg:not(.stop-svg, .play-svg) {
@@ -188,20 +193,6 @@
 
         }
 
-        .play-btn {
-            background-color: $clr01;
-            border-radius: 500px;
-            height: 32px;
-            width: 32px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            svg {
-                fill: $clr07;
-                overflow: visible;
-            }
-        }
     }
 
     .bottom-center-controls.full {
@@ -232,7 +223,7 @@
     .left-controls.full {
         width: 98%;
         position: absolute;
-        bottom: 38vw;
+        bottom: calc(38vw - 15px);
         left: 16px;
         padding: 0 5px;
 
@@ -245,15 +236,19 @@
         }
 
         .player-song-name {
-            font-size: 22px;
+            font-size: clamp(5vw,22px,7vw);
             font-weight: 800;
             color: white;
+            max-height: 100px;
+            position:relative;
         }
     }
 
     .album.full {
         height: 78vw;
+        max-height:40vh;
         width: 78vw;
+        max-width:40vh;
         filter: brightness(100%);
         opacity: 1;
         transition: opacity .4s;

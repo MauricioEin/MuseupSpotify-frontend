@@ -117,8 +117,6 @@ export default {
       return (this.isPlaying && station._id === this.getPlayingStation._id)
     },
     resizeList() {
-      // if(this.title !== 'Trending now') return
-      // console.log('RESIZING',this.title, 'num of stations:', this.stations.length)
       if (window.innerWidth < 860) {
         this.isIntersecting = false
         if (!this.$refs.stationCard?.length) return
@@ -127,10 +125,7 @@ export default {
         })
       } else {
         this.isIntersecting = false
-        // console.log('hi1', this.isIntersecting)
-        // console.log('stationcard:', this.$refs.stationCard)
         if (!this.$refs.stationCard?.length) return
-        // console.log('hi2')
 
         this.$refs.stationCard.forEach(elStation => {
 
@@ -142,7 +137,6 @@ export default {
             elStation.style.display = 'none'
           }
         })
-        // console.log('hi3')
 
       }
       this.$emit('doneResize')

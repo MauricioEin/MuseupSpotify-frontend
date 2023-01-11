@@ -11,7 +11,7 @@
         background-color: $clr04;
         padding: 60px 35px 24px;
 
-        @media (max-width:860px) {
+        @media (max-width:$narrow-breakpoint) {
             padding: 60px 10px 24px;
             max-height: unset;
 
@@ -222,7 +222,7 @@
     }
 }
 
-@media (max-width:757px) {
+@media (max-width:$narrow-breakpoint) {
     .station-details-page {
         width: 100vw;
     }
@@ -257,6 +257,9 @@
 
         .mini-menu {
             right: 0;
+            height:calc(100vh - 50px);
+            overflow-y: auto;
+            padding-bottom: 100px;
         }
     }
 

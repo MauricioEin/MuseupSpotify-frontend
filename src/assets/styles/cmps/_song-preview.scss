@@ -13,7 +13,7 @@
     grid-template-columns: 0 40px 40px 2fr 1fr 120px;
 
     //phone only
-    @media (max-width:860px) {
+    @media (max-width:$narrow-breakpoint) {
         grid-template-columns: 20px 40px 1fr 60px;
         gap: 19px;
     }

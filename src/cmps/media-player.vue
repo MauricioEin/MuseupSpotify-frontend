@@ -27,7 +27,7 @@
                     <img @click="clickImg()" class="media-img fit-img" :class="setFull"
                         :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" :alt="currSongPlaying.title">
                     <div :class="setFull" class="artist-details">
-                        <span class="player-song-name">{{ currSongPlaying.title.slice(0, 25) }}...</span>
+                        <span class="player-song-name">{{ currSongPlaying.title }}</span>
                         <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
                     <button class="flex justify-center align-center" @click.stop="saveSong" :class="{ liked: isLiked }">

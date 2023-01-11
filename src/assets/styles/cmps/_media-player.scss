@@ -1,8 +1,9 @@
-.debug{
+.debug {
     background-color: #181818;
-    position:absolute;
-    width:100vw;
-    z-index:1000000000;
+    position: absolute;
+    width: 100vw;
+    z-index: 1000000000;
+    display: none;
 }
 
 .media-player {
@@ -180,7 +181,7 @@
     }
 
     .player-song-name {
-
+        width: 100%;
         color: $clr02;
         font-size: 14px;
         overflow: hidden;
@@ -277,6 +278,7 @@
 .artist-details {
     min-width: 90px;
     max-height: 90%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     // flex-basis: 33%;
@@ -333,7 +335,8 @@
     }
 
     .left-controls {
-        flex-basis:90%;
+        flex-basis: 90%;
+
         button {
             position: absolute;
             right: 50px;
@@ -345,6 +348,7 @@
 
         .player-song-name {
             font-size: 1rem;
+            max-height:50px;
         }
     }
 

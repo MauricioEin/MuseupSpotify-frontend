@@ -10,7 +10,7 @@
         display: flex;
         justify-content: space-between;
 
-        @media(max-width:750px) {
+        @media(max-width:$narrow-breakpoint) {
             margin-inline-start: 13px;
         }
 
@@ -23,7 +23,7 @@
         button {
             display: none;
 
-            @media (min-width: 860px) {
+            @media (min-width: $narrow-breakpoint) {
                 display: block;
                 font-size: rem(12px);
                 background-color: unset;
@@ -51,7 +51,7 @@
     margin: 0;
     // background-color: beige;
 
-    @media(max-width:750px) {
+    @media(max-width:$narrow-breakpoint) {
         gap: unset;
     }
 
@@ -70,6 +70,7 @@
     &::-webkit-scrollbar {
         display: none;
     }
+
 
 }
 
@@ -161,10 +162,11 @@
 
 }
 
-@media (max-width:750px) {
+@media (max-width:$narrow-breakpoint) {
     .station-card {
         background-color: transparent;
         padding-top: 5px;
+
         &:hover {
             background-color: unset;
 
@@ -304,12 +306,12 @@
     overflow: hidden;
     margin-bottom: 30px;
     margin-inline-start: 40px;
-    gap:20px;
+    gap: 20px;
 
 
-    .skeleton-7b7uvxywsks{
-        margin:15px 0;
-        width:175px;
+    .skeleton-7b7uvxywsks {
+        margin: 15px 0;
+        width: 175px;
     }
 }
 

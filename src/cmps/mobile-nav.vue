@@ -22,53 +22,7 @@
         </li>
       </ul>
 </section>
-  <!-- <section class="">
-    <div class="logo pointer" @click="$router.push('/station')">
-      <logo-svg /> <span>MuseUp</span>
-    </div>
-    <nav class="permanent-nav">
-      <ul class="app-nav clean-list">
-        <li>
-          <router-link to="/station">
-            <home-btn-svg />
-            <span>Home</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/search">
-            <search-btn-svg />
-            <span>Search</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link to="/collection">
-            <library-btn-svg />
-            <span>Your Library</span>
-          </router-link>
-        </li>
-      </ul>
-      <div class="user-nav flex column">
-        <router-link @click="createStation" to="" class="create">
-          <div class="btn-nav flex align-center justify-center">
-            <plus-btn-svg />
-          </div>
-          <span>Create Playlist</span>
-        </router-link>
-        <router-link to="/collection/tracks">
-          <div class="btn-nav btn-heart flex align-center justify-center">
-            <heart-btn-svg />
-          </div>
-          <span>Liked Songs</span>
-        </router-link>
-      </div>
-    </nav>
-    <hr>
-    <ul v-if="loggedinUser" class="user-stations clean-list">
-      <li v-for="station in loggedinUser.stations" :key="station._id">
-        <router-link :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
-      </li>
-    </ul>
-  </section> -->
+
 </template>
 
 <script>
