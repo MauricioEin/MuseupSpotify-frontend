@@ -9,7 +9,7 @@
     .category-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
+        gap: 14px;
 
         @media (min-width: $narrow-breakpoint) {
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
