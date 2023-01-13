@@ -3,7 +3,7 @@
 
 
 <template>
-    <section class="media-player" :class="setFull" ref="player">
+    <section class="media-player" :class="setFull" ref="player" @touchstart="startTouch" @touchend="endTouch">
         <div class="playing-from" v-if="isFullscreen">
             <p class="debug">Debug: <button @click="this.YTstates = ''">clear</button>
                 {{ YTstates }}
@@ -137,6 +137,9 @@ export default defineComponent({
             songLyrics: '',
             isLyrics: false,
             station: "",
+            touchStartX: 0,
+            touchStartY: 0,
+
             YTstates: '' //for debug
         }
     },
@@ -144,8 +147,7 @@ export default defineComponent({
     created() {
         this.songList = [...this.playingStation.songs]
         this.currSongPlaying = this.songList[this.playingSongIdx]
-
-        window.addEventListener('popstate', this.onPopState, false);
+        window.addEventListener('popstate', this.onPopState, false)
     },
 
     computed: {
@@ -192,13 +194,35 @@ export default defineComponent({
                 this.$router.push(event.state.forward)
             }
         },
-        clickImg() {
-            console.log('click')
+        startTouch(ev) {
+            this.touchStartX = ev.changedTouches[0].screenX;
+            this.touchStartY = ev.changedTouches[0].screenY;
+
+        },
+        endTouch(ev) {
+            const touchEndX = ev.changedTouches[0].screenX;
+            const touchEndY = ev.changedTouches[0].screenY;
+            this.handleSwipe(this.touchStartX, this.touchStartY, touchEndX, touchEndY);
+        },
+        handleSwipe(startX, startY, endX, endY) {
+            if (Math.abs(endY - startY) < 60) {
+                const diff = endX - startX
+                if (diff > 80) {
+                    this.changeSong(1)
+                }
+                else if (diff < -80) {
+                    this.changeSong(-1)
+                }
+            }
+        },
+
+        clickImg() { // FOR DEBUGGING ONLY
+            // console.log('click')
             this.$refs.playBtn.click()
         }
         ,
         async onStateChange(ev) {
-            console.log('YT state change!', ev.data)
+            // console.log('YT state change!', ev.data)
             this.YTstates += ev.data + ', '
             if (ev.data === 1) {
                 this.getDuration()
@@ -340,7 +364,7 @@ export default defineComponent({
 
     watch: {
         playingStation() {
-            console.log('station changed')
+            // console.log('station changed')
             this.updateCurrStation()
         },
         // playingSongIdx() {
