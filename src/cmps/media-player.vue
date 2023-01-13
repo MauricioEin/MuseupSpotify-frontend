@@ -209,10 +209,10 @@ export default defineComponent({
             if (Math.abs(endY - startY) < 60) {
                 const diff = endX - startX
                 if (diff > 80) {
-                    this.changeSong(1)
+                    this.changeSong(+1)
                 }
                 else if (diff < -80) {
-                    this.changeSong(-1)
+                    this.changeSong(1)
                 }
             }
         },
