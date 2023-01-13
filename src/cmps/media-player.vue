@@ -205,6 +205,7 @@ export default defineComponent({
             this.handleSwipe(this.touchStartX, this.touchStartY, touchEndX, touchEndY);
         },
         handleSwipe(startX, startY, endX, endY) {
+            if (!this.isFullscreen) return
             if (Math.abs(endY - startY) < 60) {
                 const diff = endX - startX
                 if (diff > 80) {
