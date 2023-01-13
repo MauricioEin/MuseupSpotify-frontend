@@ -34,7 +34,6 @@
                         <heart-btn-svg v-if="isLiked" class="liked" />
                         <heart-empty-svg v-else />
                     </button>
-                    <!-- <button v-if="songLyrics" class="flex justify-center align-center lyrics-btn"> -->
                     <button class="flex justify-center align-center lyrics-btn" :class="{ active: songLyrics }">
                         <lyrics-btn-svg @click="isLyrics = !isLyrics" :class="{ liked: isLyrics }" />
                     </button>
@@ -52,7 +51,7 @@
                             <play-svg class="play-svg" v-if="!isPlaying" />
                             <stop-svg class="stop-svg" v-else />
                         </button>
-                        <button @click=" changeSong(1)">
+                        <button @click="changeSong(1)">
                             <next-svg />
                         </button>
                         <button @click="changeLoopType">
@@ -145,6 +144,8 @@ export default defineComponent({
     created() {
         this.songList = [...this.playingStation.songs]
         this.currSongPlaying = this.songList[this.playingSongIdx]
+
+        window.addEventListener('popstate', this.onPopState, false);
     },
 
     computed: {
@@ -184,6 +185,13 @@ export default defineComponent({
     },
 
     methods: {
+        onPopState(event) {
+            // The popstate event is fired each time when the current history entry changes.
+            if (this.isFullscreen) {
+                this.isFullscreen = false
+                this.$router.push(event.state.forward)
+            }
+        },
         clickImg() {
             console.log('click')
             this.$refs.playBtn.click()
