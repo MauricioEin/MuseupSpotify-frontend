@@ -32,7 +32,7 @@
         @play="playStation" :isLikedSongs="true" />
     </section>
 
-    <login-modal :action="'saving songs'" v-if="!user || user._id === 'demo'" />
+    <login-modal :action="'start saving songs'" v-if="!user || !user._id" />
 
   </section>
 </template>

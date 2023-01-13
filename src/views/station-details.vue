@@ -10,8 +10,9 @@
         <h1 class="pointer" @click="isEdit = true">{{ station.name }}</h1>
         <p class="station-desc pointer light" v-if="station.desc" @click="isEdit = true">{{ station.desc }}</p>
         <p class="mini-dashboard"> {{ station.owner?.username || 'anonymous' }} • {{ station.followers?.length || 0 }}
-          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{ totalTime
-}}</span></span></p>
+          likes • {{ station.songs.length }} songs<span v-if="station.songs.length">, <span class="light">{{
+            totalTime
+          }}</span></span></p>
       </div>
     </section>
 
@@ -57,6 +58,8 @@
       @close="isPickerOpen = false" />
     <div @click.stop="isPickerOpen = false" class="picker-screen" :class="{ 'shown': isPickerOpen }"></div>
 
+    <login-modal :action="'follow songs and playlists'" v-if="!loggedInUser || !loggedInUser._id" />
+
   </section>
 </template>
 
@@ -75,6 +78,7 @@ import stationSongSearch from '../cmps/station-song-search.vue'
 import stationSearchList from '../cmps/station-search-list.vue'
 import imgUploader from '../cmps/img-uploader.vue'
 import stationPicker from '../cmps/station-picker.vue'
+import loginModal from '../cmps/login-modal.vue'
 
 import playBtn from '../assets/svgs/play-btn-svg.vue'
 import moreOptionsSvg from '../assets/svgs/more-options-svg.vue'
@@ -177,11 +181,9 @@ export default {
     socketService.on('update-station', station => {
       this.$store.commit({ type: 'updateStation', station })
     })
-    // setTimeout(() => {
     if (this.$route.params.songIdx && this.station) {
       this.$store.commit({ type: 'playStation', station: this.station, idx: +this.$route.params.songIdx[this.$route.params.songIdx.length - 1] })
     }
-    // }, 5500)
   },
   unmounted() {
     window.removeEventListener('click', this.closeMenu)
@@ -239,7 +241,6 @@ export default {
         showSuccessMsg('Station ' + actionStr + 'ed')
       } catch (err) {
         console.error(err)
-        // showErrorMsg('Cannot ' + actionStr + ' station')
       }
     },
     async removeStation() {
@@ -297,8 +298,6 @@ export default {
     async addSongToStation(song) {
       try {
         const editedStation = JSON.parse(JSON.stringify(this.station))
-        // if (editedStation.songs.some(s => s.youtubeId === song.youtubeId))
-
         editedStation.songs.push(song)
         const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
         socketService.emit('update-station', res)
@@ -319,8 +318,7 @@ export default {
     },
     saveSong(song) {
       console.log('logged in as:', this.loggedInUser)
-      // if (this.loggedInUser._id !== 'demo') 
-        this.$store.dispatch({ type: 'saveSong', song })
+      this.$store.dispatch({ type: 'saveSong', song })
     },
     toggleIsPlaying() {
       this.$store.commit('toggleIsPlaying')
@@ -399,7 +397,8 @@ export default {
     heartBtnSvg,
     playBtn,
     pauseBtn,
-    stationPicker
+    stationPicker,
+    loginModal
   }
 
 

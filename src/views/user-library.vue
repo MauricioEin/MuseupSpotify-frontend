@@ -46,7 +46,7 @@
       <station-preview v-for="station in stations" :station="station" :key="station?._id || 'error'" />
     </ul>
 
-    <login-modal :action="'adding playlists'" v-if="!loggedinUser || loggedinUser._id === 'demo'" />
+    <login-modal :action="'start adding playlists'" v-if="!loggedinUser || !loggedinUser._id " />
 
   </section>
 </template>

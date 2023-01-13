@@ -21,6 +21,7 @@ export const userStore = {
     mutations: {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
+            console.log('store:setting user:',user)
             state.loggedinUser = (user) ? { ...user, stations: [...user.stations], likedSongs: [...user.likedSongs] } : null
 
         },
@@ -152,7 +153,7 @@ export const userStore = {
             idx === -1 ? user.likedSongs.unshift({ ...song }) : user.likedSongs.splice(idx, 1)
             commit({ type: 'updateUser', user })
             commit({ type: 'setLoggedinUser', user })
-
+            if(user._id === 'guest') return
             try {
                 await userService.update(user)
             } catch (err) {

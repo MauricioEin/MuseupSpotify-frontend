@@ -31,10 +31,6 @@
         :title="'Playlists by MuseUp users'" />
     </section>
   </section>
-  <!-- <section class="loader" v-else>
-    Loading...
-    <img src="../assets/gifs/loader3.gif" alt="">
-  </section> -->
 </template>
 
 <script>

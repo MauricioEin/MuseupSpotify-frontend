@@ -20,12 +20,19 @@ export const store = Vuex.createStore({
     async followStation({ state, commit }, { station, isToFollow }) {
       // OPTIMISTIC:
       const loggedInUser = JSON.parse(JSON.stringify(state.userStore.loggedinUser))
+      console.log('loggedInUser:', loggedInUser)
       const unsavedUser = JSON.parse(JSON.stringify(loggedInUser))
       const miniStation = { _id: station._id, name: station.name }
       isToFollow ? loggedInUser.stations.unshift(miniStation)
-      : loggedInUser.stations = loggedInUser.stations.filter(station => station._id !== miniStation._id)
+        : loggedInUser.stations = loggedInUser.stations.filter(station => station._id !== miniStation._id)
       commit({ type: 'setLoggedinUser', user: loggedInUser })
-      console.log('did commit with')
+      if (loggedInUser._id === 'guest') {
+        commit({ type: 'updateUser', user: loggedInUser })
+        commit({ type: 'updateUserStations', station, isToFollow })
+
+        return
+      }
+
 
       try {
         const savedUser = await userService.update(loggedInUser)
