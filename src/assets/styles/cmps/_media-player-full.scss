@@ -1,6 +1,5 @@
 .media-player.full {
     pointer-events: all;
-    // background-image: url(https://assets.fontsinuse.com/static/use-media-items/52/51196/full-1500x1500/58f577f9/C9H8-PWUIAAzbQ2-jpg-large-e.jpeg);
     position: fixed;
     top: 0;
     left: 0;
@@ -106,17 +105,8 @@
 
 @media(max-width:$narrow-breakpoint) {
     .media-player.full {
-        // background-image: url(../img/lp-bg4.png);
-
-        // background: linear-gradient(180.6deg, rgb(57, 57, 57) 1.2%, rgba(21, 20, 20, 0.93) 68.9%);
-        // background: linear-gradient(158deg, rgb(57 57 57) 1.2%, rgb(21 20 20) 68.9%);
-        // background: linear-gradient(180.6deg, rgb(57, 57, 57), rgba(21, 20, 20, 0.93));
-        // background-color: rgb(24, 23, 23);
-        background: linear-gradient(transparent, 0, rgba(0, 0, 0, .5) 70%);
+        background: linear-gradient(transparent, rgba(0, 0, 0, .5) 70%);
         background-color: $clr04;
-
-        // background: linear-gradient(180.6deg, rgba(220, 220, 220, 0.3) 1.2%, rgba(69, 68, 68, 0.351) 68.9%);
-        // background-color: rgb(247, 154, 154);
         padding: 2vw;
 
     }
@@ -162,8 +152,6 @@
                 overflow: visible;
                 height: 18px;
                 width: 15px;
-                // min-height: 6vh;
-                // min-width: 6vh;
             }
         }
 
@@ -239,7 +227,6 @@
             font-size: clamp(5vw,22px,7vw);
             font-weight: 800;
             color: white;
-            max-height: 100px;
             position:relative;
         }
     }

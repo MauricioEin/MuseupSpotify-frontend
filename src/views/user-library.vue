@@ -46,7 +46,9 @@
       <station-preview v-for="station in stations" :station="station" :key="station?._id || 'error'" />
     </ul>
 
-    <login-modal :action="'start adding playlists'" v-if="!loggedinUser || !loggedinUser._id " />
+    <login-modal :action="'start adding playlists'" v-if="!loggedinUser || !loggedinUser._id" />
+    <login-modal :action="'create new stations'"
+      v-if="isCreating && (!loggedinUser || !loggedinUser._id || loggedinUser._id === 'guest')" />
 
   </section>
 </template>
@@ -67,41 +69,8 @@ export default {
 
   data() {
     return {
-      // stations: [],
+      isCreating: false
     }
-  },
-
-  created() {
-    // this.getUserStations()
-  },
-
-  methods: {
-    // async getUserStations() {
-    //   const user = this.$store.getters.loggedinUser
-    //   const userStations = user.stations.map(async (currStation) => {
-    //     const station = await stationService.getById(currStation._id)
-    //     return station
-    //   })
-    //   const stations = await Promise.all(userStations)
-    //   console.log('stations', stations, new Date())
-    //   this.stations = stations
-    // },
-    async createStation() {
-      const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
-      const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
-      socketService.emit('station-added', savedStation)
-      this.$router.push('/station/' + savedStation._id)
-    },
-  },
-
-  components: {
-    stationList,
-    searchIcon,
-    plusBtnSvg,
-    userPortrait,
-    stationPreview,
-    likedSongsCard,
-    loginModal
   },
 
   computed: {
@@ -114,12 +83,37 @@ export default {
     imgSrc() {
       return this.loggedinUser?.profileImg
     },
-    stations(){
+    stations() {
       return this.$store.getters.userStations
     }
-  }, watch:{
-    stations(){
+  }, watch: {
+    stations() {
     }
-  }
+  },
+  methods: {
+    async createStation() {
+      this.isCreating = true
+      if (!this.loggedinUser || !this.loggedinUser._id || this.loggedinUser._id === 'guest') return
+      const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
+      const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
+      socketService.emit('station-added', savedStation)
+      this.$router.push('/station/' + savedStation._id)
+    },
+  },
+  watch: {
+    loggedinUser() {
+      console.log('changed')
+      if (this.loggedinUser._id === 'guest') this.isCreating = false
+    }
+  },
+  components: {
+    stationList,
+    searchIcon,
+    plusBtnSvg,
+    userPortrait,
+    stationPreview,
+    likedSongsCard,
+    loginModal
+  },
 }
 </script>

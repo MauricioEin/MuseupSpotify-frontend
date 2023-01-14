@@ -30,6 +30,8 @@ export default {
     console.log('Vue App created')
     var user = userService.getLoggedinUser()
 
+    if (this.isIos()) this.$store.commit({type:'isIos'})
+
     if (!user) user = { _id: '', username: 'demo', fullname: 'Guest', likedSongs: [], stations: [] }
     this.$store.commit({ type: 'setLoggedinUser', user })
     this.$store.dispatch({ type: 'loadUserStations', user })
@@ -38,6 +40,14 @@ export default {
     this.$store.dispatch({ type: 'filterStations', categories })
     this.$store.dispatch({ type: 'loadStations' })
 
+  },
+
+  methods: {
+    isIos() {
+      if (typeof window === `undefined` || typeof navigator === `undefined`) return false
+      return (/iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))
+    }
   },
   components: {
     appHeader,

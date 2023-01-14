@@ -18,7 +18,7 @@
 
 
     <station-edit v-if="isEdit" :station="station" :altImg="stationImg" @close="isEdit = false"
-      @save="station => updateStation({ ...station, clr: getAvgClr(station.imgUrl) })" />
+      @save="station => updateStation({ ...station, clr: getAvgClr(station.imgUrl) }, false, true)" />
 
     <section class="song-list-container content-layout" ref="list">
       <section class="playlist-actions"
@@ -245,7 +245,7 @@ export default {
     },
     async removeStation() {
       if (this.station.owner._id !== this.loggedInUser._id) {
-        showErrorMsg('Not your station')
+        showErrorMsg('Error: This station is not yours')
         return
       }
       try {
@@ -258,7 +258,11 @@ export default {
         showErrorMsg('Cannot remove station')
       }
     },
-    async updateStation(editedStation, silent = false) {
+    async updateStation(editedStation, silent = false, fromEditor = false) {
+      if (fromEditor && this.station.owner._id !== this.loggedInUser._id) {
+        showErrorMsg('Error: This station is not yours')
+        return
+      }
       try {
         editedStation = { ...this.station, ...editedStation }
         const res = await this.$store.dispatch(getActionUpdateStation(editedStation))
@@ -363,7 +367,7 @@ export default {
       // }
     },
     reorderSongs(reorderedStation) {
-      this.updateStation(reorderedStation)
+      this.updateStation(reorderedStation, true)
       if (this.isCurrStationPlayed && this.isPlaying) {
         this.$store.commit({ type: 'updatePlayingOrder', songs: reorderedStation.songs })
       }

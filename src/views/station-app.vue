@@ -25,7 +25,7 @@
       <station-list :stations="filteredStations.mood" :title="'Mood'" />
       <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
       <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
-      <station-list v-if="(loggedinUser?._id !== 'demo' && filteredStations.user?.length)"
+      <station-list v-if="(loggedinUser?._id && loggedinUser?._id !== 'demo' && loggedinUser?._id !== 'guest' && filteredStations.user?.length)"
         :stations="filteredStations.user" :title="'Your playlists'" />
       <station-list v-if="(filteredStations.others?.length)" :stations="filteredStations.others"
         :title="'Playlists by MuseUp users'" />
@@ -47,7 +47,6 @@ export default {
     return {
       isPhoneMenuOpen: false,
       categories: ['user', 'others', 'trending', 'bestOf', 'focus', 'mood', 'popular'],
-      // filteredStations: {},
     }
   },
 

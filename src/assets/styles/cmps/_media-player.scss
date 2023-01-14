@@ -184,8 +184,39 @@
         width: 100%;
         color: $clr02;
         font-size: 14px;
-        overflow: hidden;
+        overflow-y: auto;
         text-overflow: ellipsis;
+        max-height: 56px;
+
+        &:hover::-webkit-scrollbar {
+            position: absolute;
+            left: 0;
+            width: 3px;
+            // transform: translateX(100%);
+
+        
+            /* Track */
+            &-track {
+                background: transparent;
+            }
+        
+            /* Handle */
+            &-thumb {
+                background: rgba(173, 173, 173, 0.386);
+                border-radius: 999px;
+            }
+        
+            /* Handle on hover */
+            &-thumb:hover {
+                // background: rgba(136, 136, 136, 0.5);
+                // background: #555;
+            }
+        
+            @media(max-width:$narrow-breakpoint) {
+                display: none;
+            }
+        }
+
     }
 
     .player-artist-name {
@@ -348,7 +379,6 @@
 
         .player-song-name {
             font-size: 1rem;
-            max-height:50px;
         }
     }
 

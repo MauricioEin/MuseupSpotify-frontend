@@ -34,7 +34,9 @@ export const stationStore = {
         currStation: null,
         isPlaying: false,
         filteredStations: {},
-        currStationClr: ''
+        currStationClr: '',
+        isIos: false,
+        isIosWarned: false,
     },
     getters: {
         stations({ stations }) { return stations },
@@ -54,7 +56,8 @@ export const stationStore = {
         },
         filteredStations(state) { return state.filteredStations },
         stationClr(state) { return state.currStationClr },
-
+        isIos(state) { return state.isIos },
+        isIosWarned(state) { return state.isIosWarned }
     },
     mutations: {
         setStations(state, { stations }) {
@@ -145,36 +148,31 @@ export const stationStore = {
         },
         filterStations(state, { filteredStations }) {
             Object.keys(filteredStations).forEach(key => state.filteredStations[key] = filteredStations[key])
-
-            // state.filteredStations = filteredStations
         },
 
         addFilteredStation(state, { station }) {
-            // console.log(state.filteredStations)
             state.filteredStations.others.unshift(station)
         },
         setStationClr(state, { clr }) {
             state.currStationClr = clr
         },
-
-
-        // removeAllQueued(state){
-        //     state.playingStation.songs.forEach((song, idx)=>{
-        //         if(song.isQueued) state.playingStation.songs.splice(idx, 1)
-        //     })
-        // }
+        isIos(state) {
+            state.isIos = true
+        },
+        isIosWarned(state) {
+            state.isIosWarned = true
+        },
     },
     actions: {
         async filterStations(context, { categories }) {
             const filteredStations = {}
-
             try {
                 const catPrms = categories.map(category => {
                     if (category === 'user') {
-                        return stationService.query({ owner: context.getters.loggedinUser._id })
+                        return stationService.query({ owner: context.getters.loggedinUser._id || 'guest' })
                     }
                     else if (category === 'others') {
-                        return stationService.query({ others: context.getters.loggedinUser._id })
+                        return stationService.query({ others: context.getters.loggedinUser._id || 'guest' })
                     }
                     else return stationService.query({ category })
                 })
@@ -191,10 +189,10 @@ export const stationStore = {
         async addStation(context, { station }) {
             try {
                 const user = { ...context.getters.loggedinUser }
-                // station.owner = context.getters.loggedinUser
-                // console.log('user:',context.rootState.userStore.loggedinUser)
                 station.owner = user
-                station = await stationService.save(station)
+                if (user._id === 'guest')
+                    station._id = 'guest' + Date.now()
+                else station = await stationService.save(station)
 
                 context.commit(getActionAddStation(station))
                 context.commit({ type: 'updateUserStations', station, isToFollow: true })

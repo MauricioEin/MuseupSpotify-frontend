@@ -3,32 +3,28 @@
 
 
 <template>
-    <section class="media-player" :class="setFull" ref="player" @touchstart="startTouch" @touchend="endTouch">
+    <section class="media-player" :class="fullClass" ref="player" @touchstart="startTouch" @touchend="endTouch">
         <div class="playing-from" v-if="isFullscreen">
-            <p class="debug">Debug: <button @click="this.YTstates = ''">clear</button>
-                {{ YTstates }}
-            </p>
             <span>Playing From</span>
             <span class="playlist-name">{{ playingStation.name }}</span>
         </div>
-        <img class="fit-img album" @click="clickImg()" :class="setFull"
-            :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" alt="">
+        <img class="fit-img album" :class="fullClass" :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl"
+            alt="">
         <button v-if="isFullscreen" class="close-full-mobile" @click="(isFullscreen = false)">
             <btn-down-svg />
         </button>
 
         <div class="player-section">
 
-            <YouTube src="https://www.youtube.com/watch?v=bZYPI4mYwhw" @ready="getDuration"
+            <YouTube :src="`https://www.youtube.com/watch?v=${currSongPlaying.youtubeId}`" @ready="getDuration"
                 @state-change="onStateChange" ref="youtube" />
 
-            <div class="controls" :class="setFull" @click="setFullInMobile">
-                <div class="left-controls" :class="setFull">
-                    <img @click="clickImg()" class="media-img fit-img" :class="setFull"
+            <div class="controls" :class="fullClass" @click="setFullInMobile">
+                <div class="left-controls" :class="fullClass">
+                    <img class="media-img fit-img" :class="fullClass"
                         :src="currSongPlaying.imgUrl.medium || currSongPlaying.imgUrl" :alt="currSongPlaying.title">
-                    <div :class="setFull" class="artist-details">
+                    <div :class="fullClass" class="artist-details">
                         <span class="player-song-name">{{ currSongPlaying.title }}</span>
-                        <!-- <a href="" class="player-artist-name">Coldplay, BTS</a> -->
                     </div>
                     <button class="flex justify-center align-center" @click.stop="saveSong" :class="{ liked: isLiked }">
                         <heart-btn-svg v-if="isLiked" class="liked" />
@@ -39,15 +35,15 @@
                     </button>
                 </div>
 
-                <div class="center-controls" :class="setFull">
-                    <div class="top-center-controls" :class="setFull">
+                <div class="center-controls" :class="fullClass">
+                    <div class="top-center-controls" :class="fullClass">
                         <button @click="isShuffled = !isShuffled">
                             <random-svg class="random-btn" :style="shuffleStyle" />
                         </button>
                         <button @click="changeSong(-1)">
                             <prev-svg />
                         </button>
-                        <button ref="playBtn" @click.stop="togglePlay" class="play-btn">
+                        <button @click.stop="togglePlay" class="play-btn">
                             <play-svg class="play-svg" v-if="!isPlaying" />
                             <stop-svg class="stop-svg" v-else />
                         </button>
@@ -59,7 +55,7 @@
                             <loop-svg class="loop-song" v-else :style="loopStyle" />
                         </button>
                     </div>
-                    <div class="bottom-center-controls" :class="setFull">
+                    <div class="bottom-center-controls" :class="fullClass">
                         <span class="time-progress-1">{{ formattedTime(currTime) }}</span>
                         <div class="progress-container">
                             <progress class="prog progress-bar" type="progress" :value="currTime" min="0"
@@ -72,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="right-controls" :class="setFull">
+                <div class="right-controls" :class="fullClass">
 
                     <button class="sound-btn" @click="toggleMute">
                         <sound-svg v-if="!isMute" />
@@ -87,18 +83,18 @@
                         <minimize-svg v-else />
                     </button>
                 </div>
-                <div class="mobile-lyrics-container" v-if="songLyrics && mobileFullScreen">
+                <div class="mobile-lyrics-container" v-if="songLyrics && isMobileFullScreen">
                     <song-lyrics class="mobile-lyrics" :lyrics="songLyrics" />
                 </div>
             </div>
 
         </div>
         <song-lyrics v-if="songLyrics && isLyrics" :lyrics="songLyrics" />
+        <login-modal :isIosWarning="true" v-if="isPlaying && isIos && !isIosWarned"/>
     </section>
 </template>
 
 <script>
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { defineComponent } from 'vue'
 import YouTube from 'vue3-youtube'
 import { utilService } from '../services/util.service'
@@ -121,6 +117,8 @@ import btnDownSvg from '../assets/svgs/btn-down-svg.vue'
 import lyricsBtnSvg from '../assets/svgs/lyrics-btn-svg.vue'
 import songLyrics from './song-lyrics.vue'
 
+import loginModal from './login-modal.vue'
+
 export default defineComponent({
     data() {
         return {
@@ -139,8 +137,6 @@ export default defineComponent({
             station: "",
             touchStartX: 0,
             touchStartY: 0,
-
-            YTstates: '' //for debug
         }
     },
 
@@ -154,22 +150,18 @@ export default defineComponent({
         shuffleStyle() {
             return (this.isShuffled) ? { fill: '#1ED760' } : {}
         },
-
         loopStyle() {
             return (!this.loopType) ? { fill: '#b3b3b3' } : {}
         },
-
-        setFull() {
+        fullClass() {
             return (this.isFullscreen) ? 'full' : ''
         },
         playingStation() {
             return this.$store.getters.getPlayingStation
         },
-
         playingSongIdx() {
             return this.$store.getters.getPlayingSongIdx
         },
-
         isPlaying() {
             return this.$store.getters.isPlaying
         },
@@ -179,16 +171,19 @@ export default defineComponent({
         isLiked() {
             return this.loggedInUser.likedSongs.some(song => song.youtubeId === this.currSongPlaying.youtubeId)
         },
-        mobileFullScreen() {
+        isMobileFullScreen() {
             return this.isFullscreen && window.innerWidth < 860
         },
-
-
+        isIos() {
+            return this.$store.getters.isIos
+        },
+        isIosWarned() {
+            return this.$store.getters.isIosWarned
+        },
     },
 
     methods: {
         onPopState(event) {
-            // The popstate event is fired each time when the current history entry changes.
             if (this.isFullscreen) {
                 this.isFullscreen = false
                 this.$router.push(event.state.forward)
@@ -209,29 +204,18 @@ export default defineComponent({
             if (Math.abs(endY - startY) < 60) {
                 const diff = endX - startX
                 if (diff > 80) {
-                    this.changeSong(+1)
+                    this.changeSong(-1)
                 }
                 else if (diff < -80) {
                     this.changeSong(1)
                 }
             }
         },
-
-        clickImg() { // FOR DEBUGGING ONLY
-            // console.log('click')
-            this.$refs.playBtn.click()
-        }
-        ,
         async onStateChange(ev) {
-            // console.log('YT state change!', ev.data)
-            this.YTstates += ev.data + ', '
             if (ev.data === 1) {
                 this.getDuration()
-                if (!this.songLyrics) {
+                if (!this.songLyrics)
                     this.songLyrics = await getLyrics(this.currSongPlaying.title) || ''
-                    this.YTstates += 'L, '
-                }
-
             }
             else if (ev.data === -1) {
                 this.songLyrics = ''
@@ -255,22 +239,11 @@ export default defineComponent({
                 this.loopType === 2) {
                 this.$refs.youtube.loadVideoById(this.songList[this.playingSongIdx].youtubeId)
             }
-            else if (ev.data === 2 && this.isPlaying) {
-                this.YTstates += '&P, '
-                this.$refs.playBtn.click()
-                setTimeout(() => this.$refs.playBtn.click(), 1)
-            }
-            else if (ev.data === 5 && this.isPlaying) {
-                // this.$refs.youtube.playVideo()
-
-            }
-
-
-
+            // else if (ev.data === 2 && this.isPlaying) {
+            // }
         },
 
         togglePlay() {
-            this.YTstates += 't, '
             this.$store.commit({ type: 'toggleIsPlaying' })
         },
 
@@ -280,10 +253,9 @@ export default defineComponent({
             this.isMute = !this.isMute
         },
 
-        setVolume(ev) {
-            const volume = ev.target.value
-            this.volume = volume
-            this.$refs.youtube.setVolume(volume)
+        setVolume({ target }) {
+            this.volume = target.value
+            this.$refs.youtube.setVolume(this.volume)
         },
 
         changeSong(dir) {
@@ -294,7 +266,6 @@ export default defineComponent({
                 }
             } else newIdx = (this.playingSongIdx + dir + this.songList.length) % this.songList.length
 
-            // this gives us the calc for looping around the playlist
             this.$store.commit({ type: 'playStation', station: this.playingStation, idx: newIdx })
         },
 
@@ -327,22 +298,9 @@ export default defineComponent({
         },
 
         updateCurrStation() {
-            this.YTstates += 'UpDS, '
             this.originalList = this.songList = this.playingStation.songs
-            // this.playingSongIdx = this.playingSongIdx
             this.currSongPlaying = this.songList[this.playingSongIdx]
-            // const newSrc = 'https://www.youtube.com/watch?v=' + this.currSongPlaying.youtubeId
-            this.$refs.youtube.loadVideoById(this.currSongPlaying.youtubeId)
-            // if (this.$refs.youtube.src !== newSrc) this.$refs.youtube.src = newSrc
             if (!this.isPlaying) this.togglePlay()
-            else {
-                // this.YTstates += '(Pp--), '
-                // this.togglePlay() // this is to bypass iOs auto-pause
-                // setTimeout(() => this.togglePlay(), 10)
-                // setTimeout(() => this.$refs.youtube.playVideo(), 100) //for iOS bug
-                // this.$refs.youtube.playVideo()
-            }
-
         },
 
         changeLoopType() {
@@ -351,37 +309,23 @@ export default defineComponent({
         },
 
         setFullInMobile() {
-            if (window.innerWidth < 750) {
+            if (window.innerWidth < 750)
                 this.isFullscreen = true
-            }
         },
         saveSong() {
             this.$store.dispatch({ type: 'saveSong', song: this.currSongPlaying })
-
         },
-
-
     },
 
     watch: {
         playingStation() {
-            // console.log('station changed')
             this.updateCurrStation()
         },
-        // playingSongIdx() {
-        //     console.log('idx changed')
-        //     this.updateCurrStation()
-        // },
-
         isPlaying() {
             if (this.isPlaying) {
-                this.YTstates += '[isPl+]'
-                this.YTstates += '(Pp), '
-                setTimeout(() => this.$refs.youtube.playVideo(), 100) //for iOS bug
                 this.$refs.youtube.playVideo()
                 this.updateCurrTime()
             } else {
-                this.YTstates += '[isPl-]'
                 this.$refs.youtube.pauseVideo()
                 clearInterval(this.timeInterval)
             }
@@ -412,7 +356,8 @@ export default defineComponent({
         loopSongSvg,
         btnDownSvg,
         lyricsBtnSvg,
-        songLyrics
+        songLyrics,
+        loginModal
     },
 })
 </script>

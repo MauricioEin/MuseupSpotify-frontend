@@ -41,11 +41,14 @@
     </nav>
     <hr>
     <ul v-if="loggedinUser" class="user-stations clean-list">
-      <li v-for="station in stations" :key="station?._id" >
-        <router-link v-if="station" :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }} </router-link>
+      <li v-for="station in stations" :key="station?._id">
+        <router-link v-if="station" :to="'/station/' + station._id" class="light flex align-center"> {{ station.name }}
+        </router-link>
       </li>
     </ul>
   </section>
+  <login-modal :action="'create and follow stations'"
+    v-if="isCreating && (!loggedinUser || !loggedinUser._id || loggedinUser._id === 'guest')" />
 </template>
 
 <script>
@@ -56,9 +59,15 @@ import libraryBtnSvg from '../assets/svgs/library-btn-svg.vue'
 import plusBtnSvg from '../assets/svgs/plus-btn-svg.vue'
 import heartBtnSvg from '../assets/svgs/heart-btn-svg.vue'
 import { socketService } from '../services/socket.service'
+import loginModal from './login-modal.vue'
 
 export default {
-  components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg },
+  components: { logoSvg, searchBtnSvg, homeBtnSvg, libraryBtnSvg, plusBtnSvg, heartBtnSvg, loginModal },
+  data() {
+    return {
+      isCreating: false
+    }
+  },
   computed: {
     stations() {
       return this.$store.getters.userStations
@@ -69,13 +78,18 @@ export default {
   },
   methods: {
     async createStation() {
-      console.log('creating!')
+      this.isCreating = true
+      if (!this.loggedinUser || !this.loggedinUser._id || this.loggedinUser._id === 'guest') return
       const newStation = { name: 'My Playlist #' + (this.loggedinUser.stations.length + 1), songs: [], followers: [] }
       const savedStation = await this.$store.dispatch({ type: 'addStation', station: newStation })
       socketService.emit('station-added', savedStation)
       this.$router.push('/station/' + savedStation._id)
     },
-
+  },
+  watch: {
+    loggedinUser() {
+      if (this.loggedinUser._id === 'guest') this.isCreating = false
+    }
   }
 }
 </script>
