@@ -34,84 +34,6 @@
         }
     }
 
-
-
-
-    // progress {
-    //     height: 4px;
-    //     border: 0.5px rgb(139, 139, 139) solid;
-    //     appearance: none;
-    //     background: gray;
-    //     width: 100%;
-    //     margin: 5px;
-    //     border-radius: 8px;
-    //     transition: 0.2s ease;
-    //     background-color: #5e5e5e;
-
-    //     &::-webkit-progress-bar {
-    //         border-radius: 20px;
-    //         background-color: #323232;
-    //     }
-
-    //     &::-webkit-progress-value {
-    //         background-color: white;
-    //         border-radius: 20px;
-    //     }
-
-    // }
-    // input {
-    //     width:100%;
-    //     padding:0px;
-    //     margin:5px;
-    //     accent-color:white;
-    //     height: 4px;
-    //     border: 0;
-    //     &::-webkit-slider-thumb{
-    //         background-color: red;
-    //     }
-    //   }
-
-
-    // input {
-    //     height: 4px;
-    //     // appearance: none;
-
-    //     background: gray;
-    //     width: 100%;
-    //     margin: 5px;
-    //     border-radius: 8px;
-    //     transition: 0.2s ease;
-    //     background-color: #5e5e5e;
-    //     cursor: pointer;
-
-
-    //     &::-webkit-slider-thumb {
-    //         // -webkit-appearance: none;
-    //         /* display: none; */
-    //         color: green;
-    //         width: 12px;
-    //         height: 12px;
-    //         border-radius: 50%;
-    //         background-color: white;
-    //         cursor: pointer;
-    //     }
-
-
-
-    //     &::-webkit-slider-thumb:hover {
-    //         background-color: $clr01;
-    //     }
-
-    //     &::-webkit-progress-bar {
-    //         background-color: $clr01;
-    //     }
-
-    //     &::-webkit-progress-value {
-    //         background-color: red;
-    //     }
-
-    // }
-
     .media-img {
         height: 56px,
     }
@@ -157,8 +79,6 @@
 .top-center-controls {
     .btn-play {
         path {
-            // transform: translateX(-14%);
-            // transform: translateY(1%);
             fill: $clr01;
         }
     }
@@ -175,48 +95,11 @@
         margin-inline-end: 16px;
     }
 
-    a {
-
-        // margin-inline-end: 20px;
-    }
 
     .player-song-name {
         width: 100%;
         color: $clr02;
         font-size: 14px;
-        overflow-y: auto;
-        text-overflow: ellipsis;
-        max-height: 56px;
-
-        &:hover::-webkit-scrollbar {
-            position: absolute;
-            left: 0;
-            width: 3px;
-            // transform: translateX(100%);
-
-        
-            /* Track */
-            &-track {
-                background: transparent;
-            }
-        
-            /* Handle */
-            &-thumb {
-                background: rgba(173, 173, 173, 0.386);
-                border-radius: 999px;
-            }
-        
-            /* Handle on hover */
-            &-thumb:hover {
-                // background: rgba(136, 136, 136, 0.5);
-                // background: #555;
-            }
-        
-            @media(max-width:$narrow-breakpoint) {
-                display: none;
-            }
-        }
-
     }
 
     .player-artist-name {
@@ -245,21 +128,11 @@
     align-items: center;
     flex-basis: 20%;
 
-    // input {
-    //     display: none;
     button {
         padding-bottom: 0;
     }
 
-    // &:hover {
-    //     input {
-    //         display: block;
-    //     }
 
-    //     progress {
-    //         display: none;
-    //     }
-    // }
 }
 
 .bottom-center-controls {
@@ -267,9 +140,7 @@
     width: 100%;
     align-items: center;
 
-    // input {
-    //     width: 100%;
-    // }
+
 
     .time-progress-1 {
         font-size: 11px;
@@ -283,26 +154,6 @@
         color: $clr02;
     }
 
-    input {
-        // display: none;
-        // position: absolute;
-        // width: 35%;
-        // transform: translateX(5%);
-        // opacity: 0;
-    }
-
-    &:hover {
-        // input {
-        //     display: block;
-        //     // position: absolute;
-        // }
-
-        // progress {
-        //     display: none;
-
-        // }
-    }
-
 
 }
 
@@ -310,13 +161,38 @@
     min-width: 90px;
     max-height: 90%;
     width: 100%;
-    overflow: hidden;
+    overflow-y: auto;
     display: flex;
-    // flex-basis: 33%;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-}
+    max-height: 68px;
+
+    &:hover::-webkit-scrollbar {
+        position: absolute;
+        left: 0;
+        width: 3px;
+        // transform: translateX(100%);
+
+    
+        /* Track */
+        &-track {
+            background: transparent;
+        }
+    
+        /* Handle */
+        &-thumb {
+            background: rgba(173, 173, 173, 0.386);
+            border-radius: 999px;
+        }
+    
+        /* Handle on hover */
+        &-thumb:hover {
+            // background: rgba(136, 136, 136, 0.5);
+            // background: #555;
+        }
+    
+        @media(max-width:$narrow-breakpoint) {
+            display: none;
+        }
+    }}
 
 @media(max-width:$narrow-breakpoint) {
 
@@ -441,7 +317,7 @@
         pointer-events: all;
 
         &:hover progress[value]::-webkit-progress-value {
-            background: $clrGreen; // change to spotify
+            background: $clrGreen; 
         }
 
         &:hover input[type='range']::-webkit-slider-thumb {
