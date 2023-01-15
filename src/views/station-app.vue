@@ -25,7 +25,8 @@
       <station-list :stations="filteredStations.mood" :title="'Mood'" />
       <station-list :stations="filteredStations.popular" :title="'Popular around you'" />
       <station-list :stations="filteredStations.focus" :title="'Best for Focus'" />
-      <station-list v-if="(loggedinUser?._id && loggedinUser?._id !== 'demo' && loggedinUser?._id !== 'guest' && filteredStations.user?.length)"
+      <station-list
+        v-if="(loggedinUser?._id && loggedinUser?._id !== 'demo' && loggedinUser?._id !== 'guest' && filteredStations.user?.length)"
         :stations="filteredStations.user" :title="'Your playlists'" />
       <station-list v-if="(filteredStations.others?.length)" :stations="filteredStations.others"
         :title="'Playlists by MuseUp users'" />
@@ -70,7 +71,8 @@ export default {
       else if (h >= 18 && h < 22) return 'evening'
     },
     phoneActions() {
-      return this.loggedinUser?._id !== 'demo' ? ['Profile', 'Logout'] : ['Login', 'Signup']
+      return this.loggedinUser?._id && this.loggedinUser?._id !== 'guest' ?
+        ['Profile', 'Logout'] : ['Login', 'Signup']
     },
 
     isLoaded() {
@@ -80,7 +82,7 @@ export default {
     visualData() {
       return {
         imgUrl: this.loggedinUser.profileImg,
-        text1: 'Hi ' + (this.loggedinUser.username === 'demo' ? 'guest' : this.loggedinUser.username )+ ',',
+        text1: 'Hi ' + (this.loggedinUser.username === 'demo' ? 'guest' : this.loggedinUser.username) + ',',
         text2: 'Good ' + this.greeting + '!'
       }
     }

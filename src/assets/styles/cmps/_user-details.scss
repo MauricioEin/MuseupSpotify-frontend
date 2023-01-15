@@ -2,7 +2,7 @@
     padding-top: 65px;
     padding-bottom: 25px;
     background: linear-gradient(180deg, rgba(83, 83, 83, 1) 0%, rgba(44, 44, 44, 1) 100%);
-
+    background-color: #3333336d;
 
     >div {
         display: flex;
@@ -42,10 +42,40 @@
             font-family: circular-light;
         }
 
-        .btn-follow{
+        .btn-follow {
             display: flex;
             justify-content: space-between;
         }
-        
+
+    }
+    
+    @media (max-width:$narrow-breakpoint){
+        padding-top: 20px;
+        background: linear-gradient(180deg, rgb(39, 39, 39) 0%, rgb(30, 30, 30) 100%);
+
+        >div{
+            // flex-direction: column;
+            align-items:flex-end;
+            justify-content: center;
+            gap:0px;
+
+        }
+        .user-img-container{
+            width:90px;
+            height:90px;
+            border-radius:10%;
+        }
+        .user-info{
+            align-self: flex-start;
+            padding-inline-start: 20px;
+            
+            h1{
+                font-size: 3rem;
+                width:calc(100vw - 150px);
+                overflow-x:auto;
+            }
+            
+
+        }
     }
 }

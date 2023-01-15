@@ -8,7 +8,7 @@
         <main-search v-if="isOnSearchPage" />
       </nav>
 
-      <section @click.stop="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser && loggedInUser._id !== 'demo')">
+      <section @click.stop="toggleMenu" class="loggedin-user flex" v-if="(loggedInUser._id && loggedInUser._id !== 'guest')">
         <div class="user-img-container">
           <img v-if="imgSrc" :src="imgSrc" class="fit-img" alt="">
           <div v-else>

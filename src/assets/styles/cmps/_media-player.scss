@@ -171,28 +171,29 @@
         width: 3px;
         // transform: translateX(100%);
 
-    
+
         /* Track */
         &-track {
             background: transparent;
         }
-    
+
         /* Handle */
         &-thumb {
             background: rgba(173, 173, 173, 0.386);
             border-radius: 999px;
         }
-    
+
         /* Handle on hover */
         &-thumb:hover {
             // background: rgba(136, 136, 136, 0.5);
             // background: #555;
         }
-    
+
         @media(max-width:$narrow-breakpoint) {
             display: none;
         }
-    }}
+    }
+}
 
 @media(max-width:$narrow-breakpoint) {
 
@@ -256,6 +257,9 @@
         .player-song-name {
             font-size: 1rem;
         }
+        .artist-details:not(.full){
+            max-height: 56px;
+        }
     }
 
     .lyrics-btn {
@@ -317,7 +321,7 @@
         pointer-events: all;
 
         &:hover progress[value]::-webkit-progress-value {
-            background: $clrGreen; 
+            background: $clrGreen;
         }
 
         &:hover input[type='range']::-webkit-slider-thumb {

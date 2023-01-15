@@ -10,16 +10,12 @@
       </div>
 
       <div class="library-actions">
-        <!-- <button>
-          <search-icon />
-        </button> -->
         <button @click="createStation">
           <plus-btn-svg />
         </button>
       </div>
 
     </section>
-    <!-- <station-list :stations="stations" /> -->
     <ul class="station-library-list">
       <div v-if="!stations" class="skeleton-vqlfosng44v"></div>
       <div v-if="!stations" class="skeleton-7b7uvxywsks"></div>
